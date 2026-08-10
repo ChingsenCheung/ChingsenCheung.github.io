@@ -16,7 +16,8 @@
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
   body{ margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
-  header.hero{ position:relative; background:#0f172a url('bg.jpg') center top / cover no-repeat; color:#fff; padding:40px 24px 56px; text-align:center; overflow:hidden; }
+  /* min-height 撑开与 index.html 一致的 hero 高度（index 有流内 h1 撑开 ~141px，cert 去重后无流内内容，故用 min-height 补偿，背景图区域两页像素级一致） */
+  header.hero{ position:relative; background:#0f172a url('bg.jpg') center top / cover no-repeat; color:#fff; padding:40px 24px 56px; text-align:center; overflow:hidden; min-height:141px; }
   header.hero::before{ content:''; position:absolute; inset:0; z-index:0; background:
     linear-gradient(180deg, rgba(15,23,42,.58) 0%, rgba(15,23,42,.12) 32%, rgba(15,23,42,.22) 68%, rgba(15,23,42,.62) 100%),
     linear-gradient(135deg, rgba(13,148,136,.34) 0%, rgba(14,165,233,.30) 100%); }
