@@ -13,7 +13,7 @@
   *{box-sizing:border-box;}
   html,body{margin:0;height:100%;overflow:hidden;}
   body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;background:#0f172a;}
-  /* 登录遮罩：flex 容器 + 卡片 margin:auto → 窗口水平垂直居中（与 index.html 登录遮罩一致） */
+  /* 登录遮罩：卡片用 position:fixed + translate(-50%,-50%) 钉死在视口中心，刷新时不因内容尺寸变化而位移（与 index.html 登录遮罩视觉一致） */
   .login-mask{position:fixed;inset:0;z-index:9999;display:flex;background:#0f172a;padding:20px;overflow:hidden;}
   /* 回退层：用与背景图同色的天空→草地渐变，使 object-fit:contain 在非 16:9 屏幕露出的细边自然融为天空延伸（视频加载失败时也是干净的渐变天空，而非黑屏） */
   .login-mask .bg{position:fixed;inset:0;background:linear-gradient(180deg,#bfe6f7 0%,#d8f0fb 30%,#eef8fb 52%,#e6f1e3 78%,#d3e7ca 100%);opacity:1;z-index:0;}
