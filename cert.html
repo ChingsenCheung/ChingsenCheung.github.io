@@ -71,16 +71,21 @@
   .doc-frame{ text-align:center; margin:14px 0 18px; overflow:hidden; max-height:2000px; opacity:1; transition:max-height .4s ease, opacity .3s ease, margin .3s ease; }
   .doc-frame img{ max-width:min(900px,100%); height:auto; border-radius:10px; border:1px solid var(--line); box-shadow:0 12px 34px rgba(15,23,42,.12); background:#fff; }
 
-  /* 同一板块内的多个文档卡（如骨科动力系统 / 骨钻系列） */
-  .doc-card + .doc-card{ margin-top:24px; padding-top:20px; border-top:1px dashed var(--line); }
-  .doc-card-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; cursor:pointer; user-select:none; }
+  /* 同一板块内的多个文档卡（如骨科动力系统 / 骨钻系列）：默认（相邻均收起）紧凑，任一展开则留白 */
+  .doc-card + .doc-card{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); }
+  .doc-card:not([data-collapsed]) + .doc-card,
+  .doc-card + .doc-card:not([data-collapsed]){ margin-top:24px; padding-top:20px; }
+  .doc-card-head{ display:flex; align-items:center; gap:0; margin-bottom:10px; cursor:pointer; user-select:none; }
   .doc-card-head h3{ margin:0; font-size:16px; color:#0f172a; }
   /* 折叠：PDF 预览默认收起（小三角朝右 ▸），点击标题/三角展开（小三角朝下 ▾） */
-  .doc-caret{ flex:none; width:16px; margin-right:8px; font-size:14px; line-height:1; color:var(--brand-dark); font-weight:700; transition:transform .25s ease; display:inline-block; transform:rotate(0deg); transform-origin:50% 50%; }
+  .doc-caret{ flex:none; width:22px; margin-right:6px; font-size:18px; line-height:1; text-align:center; color:var(--brand-dark); font-weight:700; transition:transform .25s ease; display:inline-block; transform:rotate(0deg); transform-origin:50% 50%; }
   .doc-card:not([data-collapsed]) .doc-caret{ transform:rotate(90deg); }
   .doc-card[data-collapsed] .doc-frame{ max-height:0; opacity:0; margin-top:0; margin-bottom:0; }
+  .doc-card[data-collapsed] .doc-card-head{ margin-bottom:2px; }
   .doc-card-head:focus{ outline:none; }
   .doc-card-head:focus-visible h3{ text-decoration:underline; }
+  /* 下载按钮始终靠右，标题与小三角紧凑靠左 */
+  .doc-card-head .btn-download{ margin-left:auto; }
 
   .meta-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin-top:18px; }
   .meta-card{ background:#f8fafc; border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
