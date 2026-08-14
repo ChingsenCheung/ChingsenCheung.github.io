@@ -68,13 +68,19 @@
   .btn-download{ display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#fff; background:linear-gradient(135deg,#0d9488,#0ea5e9); padding:9px 16px; border-radius:10px; font-size:13px; font-weight:700; box-shadow:0 4px 14px rgba(13,148,136,.25); transition:.15s; }
   .btn-download:hover{ transform:translateY(-2px); box-shadow:0 8px 22px rgba(13,148,136,.35); }
 
-  .doc-frame{ text-align:center; margin:14px 0 18px; }
+  .doc-frame{ text-align:center; margin:14px 0 18px; overflow:hidden; max-height:2000px; opacity:1; transition:max-height .4s ease, opacity .3s ease, margin .3s ease; }
   .doc-frame img{ max-width:min(900px,100%); height:auto; border-radius:10px; border:1px solid var(--line); box-shadow:0 12px 34px rgba(15,23,42,.12); background:#fff; }
 
   /* 同一板块内的多个文档卡（如骨科动力系统 / 骨钻系列） */
   .doc-card + .doc-card{ margin-top:24px; padding-top:20px; border-top:1px dashed var(--line); }
-  .doc-card-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
+  .doc-card-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; cursor:pointer; user-select:none; }
   .doc-card-head h3{ margin:0; font-size:16px; color:#0f172a; }
+  /* 折叠：PDF 预览默认收起（小三角朝右 ▸），点击标题/三角展开（小三角朝下 ▾） */
+  .doc-caret{ flex:none; width:16px; margin-right:8px; font-size:14px; line-height:1; color:var(--brand-dark); font-weight:700; transition:transform .25s ease; display:inline-block; transform:rotate(0deg); transform-origin:50% 50%; }
+  .doc-card:not([data-collapsed]) .doc-caret{ transform:rotate(90deg); }
+  .doc-card[data-collapsed] .doc-frame{ max-height:0; opacity:0; margin-top:0; margin-bottom:0; }
+  .doc-card-head:focus{ outline:none; }
+  .doc-card-head:focus-visible h3{ text-decoration:underline; }
 
   .meta-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin-top:18px; }
   .meta-card{ background:#f8fafc; border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
@@ -154,13 +160,19 @@
               <p>Declaration of Compliance with EU Quality Management System Certificate (MDR)</p>
             </div>
             <span class="spacer"></span>
-            <a class="btn-download" href="cert_hf_esu.pdf" download title="下载原版 PDF">
-              <span>⬇</span><span>下载原版 PDF</span>
-            </a>
           </div>
 
-          <div class="doc-frame">
-            <img src="cert_hf_esu_p1.png?v=202608131324" alt="高频电刀与能量平台 EU MDR 符合性声明">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
+              <h3>EU DoC 声明预览</h3>
+              <a class="btn-download" href="cert_hf_esu.pdf" download title="下载原版 PDF">
+                <span>⬇</span><span>下载原版 PDF</span>
+              </a>
+            </div>
+            <div class="doc-frame">
+              <img src="cert_hf_esu_p1.png?v=202608131324" alt="高频电刀与能量平台 EU MDR 符合性声明">
+            </div>
           </div>
         </div>
       </div>
@@ -177,8 +189,9 @@
           </div>
 
           <!-- 骨科动力系统 -->
-          <div class="doc-card">
-            <div class="doc-card-head">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
               <h3>骨科动力系统</h3>
               <a class="btn-download" href="cert_ortho.pdf" download title="下载原版 PDF"><span>⬇</span><span>下载原版 PDF</span></a>
             </div>
@@ -188,8 +201,9 @@
           </div>
 
           <!-- 骨钻系列 -->
-          <div class="doc-card">
-            <div class="doc-card-head">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
               <h3>骨钻系列</h3>
               <a class="btn-download" href="cert_ortho_drill.pdf" download title="下载原版 PDF"><span>⬇</span><span>下载原版 PDF</span></a>
             </div>
@@ -210,13 +224,19 @@
               <p>Declaration of Compliance with EU Quality Management System Certificate (MDR)</p>
             </div>
             <span class="spacer"></span>
-            <a class="btn-download" href="cert_vet_esu.pdf" download title="下载原版 PDF">
-              <span>⬇</span><span>下载原版 PDF</span>
-            </a>
           </div>
 
-          <div class="doc-frame">
-            <img src="cert_vet_esu_p1.png?v=202608101651" alt="兽用高频电刀与超声刀 EU MDR 符合性声明">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
+              <h3>EU DoC 声明预览</h3>
+              <a class="btn-download" href="cert_vet_esu.pdf" download title="下载原版 PDF">
+                <span>⬇</span><span>下载原版 PDF</span>
+              </a>
+            </div>
+            <div class="doc-frame">
+              <img src="cert_vet_esu_p1.png?v=202608101651" alt="兽用高频电刀与超声刀 EU MDR 符合性声明">
+            </div>
           </div>
         </div>
       </div>
@@ -233,8 +253,9 @@
           </div>
 
           <!-- ISO 9001 -->
-          <div class="doc-card">
-            <div class="doc-card-head">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
               <h3>ISO 9001 质量管理体系认证证书（有效期至 2028.4.8）</h3>
               <a class="btn-download" href="cert_iso9001.pdf" download title="下载原版 PDF"><span>⬇</span><span>下载原版 PDF</span></a>
             </div>
@@ -244,8 +265,9 @@
           </div>
 
           <!-- 医疗器械出口销售证明 -->
-          <div class="doc-card">
-            <div class="doc-card-head">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
               <h3>医疗器械出口销售证明（2026.5.28）</h3>
               <a class="btn-download" href="cert_export_sales.pdf" download title="下载原版 PDF"><span>⬇</span><span>下载原版 PDF</span></a>
             </div>
@@ -255,8 +277,9 @@
           </div>
 
           <!-- ISO 13485 -->
-          <div class="doc-card">
-            <div class="doc-card-head">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
               <h3>ISO 13485 医疗器械质量管理体系认证证书（有效期至 2028.1.7）</h3>
               <a class="btn-download" href="cert_iso13485.pdf" download title="下载原版 PDF"><span>⬇</span><span>下载原版 PDF</span></a>
             </div>
@@ -266,8 +289,9 @@
           </div>
 
           <!-- FDA -->
-          <div class="doc-card">
-            <div class="doc-card-head">
+          <div class="doc-card" data-collapsible data-collapsed>
+            <div class="doc-card-head" role="button" tabindex="0" aria-expanded="false">
+              <span class="doc-caret">▸</span>
               <h3>FDA 注册证书（盖章版 2025.12.25）</h3>
               <a class="btn-download" href="cert_fda.pdf" download title="下载原版 PDF"><span>⬇</span><span>下载原版 PDF</span></a>
             </div>
@@ -291,6 +315,24 @@
       const idx = btn.dataset.idx;
       navs.forEach(n => n.classList.toggle('active', n === btn));
       panels.forEach(p => p.classList.toggle('active', p.dataset.idx === idx));
+    });
+  });
+
+  // 资质 PDF 折叠：默认收起（小三角朝右 ▸），点击标题或三角展开（小三角朝下 ▾）
+  document.querySelectorAll('.doc-card[data-collapsible]').forEach(card => {
+    const head = card.querySelector('.doc-card-head');
+    if (!head) return;
+    const toggle = () => {
+      const collapsed = card.hasAttribute('data-collapsed');
+      if (collapsed) { card.removeAttribute('data-collapsed'); head.setAttribute('aria-expanded', 'true'); }
+      else { card.setAttribute('data-collapsed', ''); head.setAttribute('aria-expanded', 'false'); }
+    };
+    head.addEventListener('click', e => {
+      if (e.target.closest('.btn-download')) return; // 下载按钮不触发折叠
+      toggle();
+    });
+    head.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
   });
 </script>
