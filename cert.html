@@ -75,10 +75,9 @@
   .doc-collapse-btn:hover{ background:#fff; border-color:var(--brand); transform:translateY(-1px); }
   .doc-collapse-btn:active{ transform:translateY(0); }
 
-  /* 同一板块内的多个文档卡（如骨科动力系统 / 骨钻系列）：默认（相邻均收起）紧凑，任一展开则留白 */
+  /* 同一板块内的多个文档卡（如骨科动力系统 / 骨钻系列）：默认（相邻均收起）紧凑；仅当「前一张已展开」时后一张留白，避免被点击展开的卡片自身标题跳动 */
   .doc-card + .doc-card{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); }
-  .doc-card:not([data-collapsed]) + .doc-card,
-  .doc-card + .doc-card:not([data-collapsed]){ margin-top:24px; padding-top:20px; }
+  .doc-card:not([data-collapsed]) + .doc-card{ margin-top:24px; padding-top:20px; }
   .doc-card-head{ display:flex; align-items:center; gap:0; margin-bottom:10px; cursor:pointer; user-select:none; }
   .doc-card-head h3{ margin:0; font-size:16px; color:#0f172a; }
   /* 折叠：PDF 预览默认收起（小三角朝右 ▸），点击标题/三角展开（小三角朝下 ▾） */
