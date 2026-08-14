@@ -23,7 +23,9 @@
   .login-mask .bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;z-index:0;}
   .login-mask .bg-overlay{position:fixed;inset:0;background:rgba(15,23,42,.38);z-index:1;}
   .login-card{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;background:rgba(255,255,255,.96);border-radius:16px;padding:30px 28px;width:360px;max-width:calc(100vw - 24px);box-shadow:0 24px 60px rgba(15,23,42,.35);}
-  .login-card .logo{display:block;margin:0 auto 16px;max-height:50px;max-width:240px;width:auto;height:auto;aspect-ratio:1498/278;}
+  /* logo 固定高度容器：加载前即占好 50px，卡片总高度不随图片加载变化，刷新零位移 */
+  .login-card .logo-wrap{height:50px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .login-card .logo{display:block;max-height:50px;max-width:240px;width:auto;height:auto;}
   .login-card .title{text-align:center;font-size:19px;font-weight:700;color:#0f172a;letter-spacing:1px;margin:0 0 16px;}
   .login-card label{display:block;font-size:12px;color:#475569;font-weight:600;margin:12px 0 5px;}
   .login-card input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:9px;font-size:14px;box-sizing:border-box;}
@@ -59,7 +61,7 @@
   </video>
   <div class="bg-overlay"></div>
   <form class="login-card" id="f" autocomplete="off">
-    <img class="logo" src="shinva_logo.png" alt="新华健康" width="1498" height="278">
+    <div class="logo-wrap"><img class="logo" src="shinva_logo.png" alt="新华健康" width="1498" height="278"></div>
     <div class="title">外贸客户管理系统</div>
     <label for="u">账号</label>
     <div class="field">
