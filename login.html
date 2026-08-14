@@ -9,14 +9,14 @@
 <title>新华健康外贸客户管理系统 - 登录</title>
 <style>
   *{box-sizing:border-box;}
-  html,body{margin:0;height:100%;}
+  html,body{margin:0;height:100%;overflow:hidden;}
   body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;background:#0f172a;}
   /* 登录遮罩：flex 容器 + 卡片 margin:auto → 窗口水平垂直居中（与 index.html 登录遮罩一致） */
-  .login-mask{position:fixed;inset:0;z-index:9999;display:flex;background:#0f172a;padding:20px;overflow:auto;}
-  .login-mask .bg{position:absolute;inset:0;background:#0f172a url('bg.jpg') center center / cover no-repeat;opacity:.5;transform:scale(1.12);z-index:0;}
-  /* 动态背景视频：铺满视口，作为 .bg(bg.jpg) 之上的动态层；视频不可用时自动回退到 bg.jpg */
-  .login-mask .bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;z-index:0;}
-  .login-mask .bg-overlay{position:absolute;inset:0;background:rgba(15,23,42,.38);z-index:1;}
+  .login-mask{position:fixed;inset:0;z-index:9999;display:flex;background:#0f172a;padding:20px;overflow:hidden;}
+  .login-mask .bg{position:fixed;inset:0;background:#0f172a url('bg.jpg') center center / cover no-repeat;opacity:1;z-index:0;}
+  /* 动态背景视频：fixed 铺满视口（脱离 .login-mask 的 padding，避免四周露缝与滚动条）；视频不可用时回退到 .bg(bg.jpg) */
+  .login-mask .bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;z-index:0;}
+  .login-mask .bg-overlay{position:fixed;inset:0;background:rgba(15,23,42,.38);z-index:1;}
   .login-card{position:relative;z-index:2;margin:auto;background:rgba(255,255,255,.96);border-radius:16px;padding:30px 28px;width:360px;max-width:100%;box-shadow:0 24px 60px rgba(15,23,42,.35);}
   .login-card .logo{display:block;margin:0 auto 16px;max-height:50px;max-width:240px;width:auto;height:auto;}
   .login-card .title{text-align:center;font-size:19px;font-weight:700;color:#0f172a;letter-spacing:1px;margin:0 0 16px;}
@@ -50,7 +50,7 @@
 <div class="login-mask">
   <div class="bg"></div>
   <video class="bg-video" autoplay muted playsinline preload="auto" poster="bg.jpg">
-    <source src="assets/login-bg.mp4?v=202608141147" type="video/mp4">
+    <source src="assets/login-bg.mp4?v=202608141154" type="video/mp4">
   </video>
   <div class="bg-overlay"></div>
   <form class="login-card" id="f" autocomplete="off">
