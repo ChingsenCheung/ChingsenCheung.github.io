@@ -68,8 +68,12 @@
   .btn-download{ display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#fff; background:linear-gradient(135deg,#0d9488,#0ea5e9); padding:9px 16px; border-radius:10px; font-size:13px; font-weight:700; box-shadow:0 4px 14px rgba(13,148,136,.25); transition:.15s; }
   .btn-download:hover{ transform:translateY(-2px); box-shadow:0 8px 22px rgba(13,148,136,.35); }
 
-  .doc-frame{ text-align:center; margin:14px 0 18px; overflow:hidden; max-height:2000px; opacity:1; transition:max-height .4s ease, opacity .3s ease, margin .3s ease; }
+  .doc-frame{ position:relative; text-align:center; margin:14px 0 18px; overflow:hidden; max-height:2000px; opacity:1; transition:max-height .4s ease, opacity .3s ease, margin .3s ease; }
   .doc-frame img{ max-width:min(900px,100%); height:auto; border-radius:10px; border:1px solid var(--line); box-shadow:0 12px 34px rgba(15,23,42,.12); background:#fff; }
+  /* 展开预览后浮于 PDF 右下角的小「收起」按钮（收起态随 doc-frame max-height:0 自动隐藏） */
+  .doc-collapse-btn{ position:absolute; right:12px; bottom:12px; z-index:2; display:inline-flex; align-items:center; gap:4px; height:30px; padding:0 13px; font-size:12px; font-weight:700; color:var(--brand-dark); background:rgba(255,255,255,.92); border:1px solid var(--line); border-radius:8px; box-shadow:0 2px 8px rgba(15,23,42,.14); cursor:pointer; transition:.15s; }
+  .doc-collapse-btn:hover{ background:#fff; border-color:var(--brand); transform:translateY(-1px); }
+  .doc-collapse-btn:active{ transform:translateY(0); }
 
   /* 同一板块内的多个文档卡（如骨科动力系统 / 骨钻系列）：默认（相邻均收起）紧凑，任一展开则留白 */
   .doc-card + .doc-card{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); }
@@ -339,6 +343,21 @@
     head.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
+    // 在展开预览的 PDF 右下角注入「收起」按钮：点击直接收起该卡片
+    const frame = card.querySelector('.doc-frame');
+    if (frame) {
+      const cbtn = document.createElement('button');
+      cbtn.type = 'button';
+      cbtn.className = 'doc-collapse-btn';
+      cbtn.textContent = '收起';
+      cbtn.setAttribute('aria-label', '收起预览');
+      cbtn.addEventListener('click', e => {
+        e.stopPropagation();
+        card.setAttribute('data-collapsed', '');
+        head.setAttribute('aria-expanded', 'false');
+      });
+      frame.appendChild(cbtn);
+    }
   });
 </script>
 <script>
