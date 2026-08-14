@@ -13,9 +13,12 @@
   body{font-family:-apple-system,'Segoe UI','Microsoft YaHei',sans-serif;background:#0f172a;}
   /* 登录遮罩：flex 容器 + 卡片 margin:auto → 窗口水平垂直居中（与 index.html 登录遮罩一致） */
   .login-mask{position:fixed;inset:0;z-index:9999;display:flex;background:#0f172a;padding:20px;overflow:hidden;}
-  .login-mask .bg{position:fixed;inset:0;background:#0f172a url('bg.jpg') center center / cover no-repeat;opacity:1;z-index:0;}
-  /* 动态背景视频：fixed 铺满视口（脱离 .login-mask 的 padding，避免四周露缝与滚动条）；视频不可用时回退到 .bg(bg.jpg) */
-  .login-mask .bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;z-index:0;}
+  /* 回退层：用与背景图同色的天空→草地渐变，使 object-fit:contain 在非 16:9 屏幕露出的细边自然融为天空延伸（视频加载失败时也是干净的渐变天空，而非黑屏） */
+  .login-mask .bg{position:fixed;inset:0;background:linear-gradient(180deg,#bfe6f7 0%,#d8f0fb 30%,#eef8fb 52%,#e6f1e3 78%,#d3e7ca 100%);opacity:1;z-index:0;}
+  /* 动态背景视频：fixed 铺满视口（脱离 .login-mask 的 padding，避免四周露缝与滚动条）；
+     用 object-fit:contain 完整展示 16:9 全图、零裁切；视频层自身铺同色天空，contain 露出的细边不突兀；
+     视频不可用时回退到 .bg 渐变天空（poster="bg.jpg" 负责加载中占位） */
+  .login-mask .bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#cfeaf8;opacity:1;z-index:0;}
   .login-mask .bg-overlay{position:fixed;inset:0;background:rgba(15,23,42,.38);z-index:1;}
   .login-card{position:relative;z-index:2;margin:auto;background:rgba(255,255,255,.96);border-radius:16px;padding:30px 28px;width:360px;max-width:100%;box-shadow:0 24px 60px rgba(15,23,42,.35);}
   .login-card .logo{display:block;margin:0 auto 16px;max-height:50px;max-width:240px;width:auto;height:auto;}
