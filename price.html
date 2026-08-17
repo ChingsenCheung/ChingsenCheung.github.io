@@ -91,6 +91,15 @@
   .qty-step button:active{ transform:scale(.82); }
   .tri-up{ width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-bottom:8px solid #fff; }
   .tri-down{ width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid #fff; }
+  /* 计价清单数量列内联步进：与搜索栏实心白三角一致（覆盖全局 .qty-step 绝对定位） */
+  .mp-qty{ display:inline-flex; align-items:center; gap:6px; justify-content:flex-end; }
+  .mp-qty-val{ min-width:30px; text-align:right; font-variant-numeric:tabular-nums; }
+  .mp-qty .qty-step{ position:static; right:auto; top:auto; transform:none; display:flex; flex-direction:column; gap:2px; }
+  .mp-qty .qty-step button{ width:16px; height:9px; padding:0; margin:0; border:none; background:none;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; line-height:0; transition:.15s; }
+  .mp-qty .qty-step button:hover .tri-up{ border-bottom-color:var(--accent); }
+  .mp-qty .qty-step button:hover .tri-down{ border-top-color:var(--accent); }
+  .mp-qty .qty-step button:active{ transform:scale(.82); }
   /* 单价 × 数量 = 总价 计算模块（位于搜索栏下方） */
   .calc{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
   .calc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px 10px; }
@@ -1054,7 +1063,11 @@ results.addEventListener('keydown', function(e){
         + '<td>' + esc(it.model) + '</td>'
         + '<td>' + esc(specDisp) + '</td>'
         + '<td class="num">' + unitStr + '</td>'
-        + '<td class="num">' + fmtThou(it.qty.toFixed(0), 0) + '</td>'
+        + '<td class="num"><span class="mp-qty"><span class="mp-qty-val">' + fmtThou(it.qty.toFixed(0), 0) + '</span>'
+          + '<span class="qty-step" role="group" aria-label="数量步进">'
+            + '<button type="button" class="tri-btn" data-step="up" data-i="' + i + '" aria-label="数量加 1"><span class="tri-up"></span></button>'
+            + '<button type="button" class="tri-btn" data-step="down" data-i="' + i + '" aria-label="数量减 1"><span class="tri-down"></span></button>'
+          + '</span></span></td>'
         + '<td class="num">' + lineStr + '</td>'
         + '<td class="act"><button type="button" class="mp-del" data-i="' + i + '">删除产品</button></td>'
         + '</tr>';
@@ -1111,6 +1124,14 @@ results.addEventListener('keydown', function(e){
   });
   // 勾选框 / 删除按钮：事件委托绑定在 tbody，删除或切换后重渲染并同步「产品总价」
   tbody.addEventListener('click', (e) => {
+    const qb = e.target.closest('.qty-step button');
+    if (qb){ const i = +qb.dataset.i; const it = multiItems[i]; if(it){
+      const dir = qb.dataset.step === 'up' ? 1 : -1;
+      const nq = Math.max(0, Math.round((Number(it.qty) || 0) + dir));   // 整数步进，最低 0
+      it.qty = nq;
+      it.lineTotal = (Number(it.unit) || 0) * nq;                        // 同步行金额
+      renderTable(); recalcTotal();                                       // 重绘数量/金额 + 刷新底部合计
+    } return; }
     const ck = e.target.closest('.mp-ck');
     if (ck){ const i = +ck.dataset.i; if(multiItems[i]){ multiItems[i].checked = !multiItems[i].checked; renderTable(); recalcTotal(); } return; }
     const del = e.target.closest('.mp-del');
