@@ -1115,7 +1115,7 @@ results.addEventListener('keydown', function(e){
   mpList.addEventListener('click', (e) => { e.stopPropagation(); openModal(); });
   if(modalClose) modalClose.addEventListener('click', closeModal);
   // 仅右上角 × 号（及 ESC）可关闭计价清单；点击弹窗内部其他区域不再退出
-  if(clearBtn) clearBtn.addEventListener('click', () => { multiItems = []; exitMulti(); closeModal(); });
+  if(clearBtn) clearBtn.addEventListener('click', () => { multiItems = []; resetFileDocs(); exitMulti(); closeModal(); });
   // 统一货币：点击在「分币种显示 ↔ 统一人民币合计(约等于美金)」之间切换
   if(unifyBtn) unifyBtn.addEventListener('click', () => {
     unifiedMode = !unifiedMode;
@@ -1168,6 +1168,7 @@ results.addEventListener('keydown', function(e){
   // ESC 全局重置：清空清单 + 退出多品模式 + 关闭弹窗
   _onReset(() => {
     multiItems = [];
+    resetFileDocs();
     exitMulti();
     if(mpModalEl) mpModalEl.hidden = true;
   });
@@ -1318,6 +1319,8 @@ function renderFileRows(){
     cb.addEventListener('change', ()=>{ FILE_DOCS[+cb.dataset.i].checked = cb.checked; });
   });
 }
+// 还原生成文件默认配置：仅「报价单」默认勾选，其余取消（清空计价清单时调用）
+function resetFileDocs(){ FILE_DOCS.forEach(d => { d.checked = (d.key === 'quote'); }); }
 function openFileGen(){ renderFileRows(); fgStatus.textContent=''; fgModal.hidden=false; }
 function closeFileGen(){ fgModal.hidden=true; }
 if($('mpFileGen')) $('mpFileGen').addEventListener('click', (e)=>{ e.stopPropagation(); openFileGen(); });
