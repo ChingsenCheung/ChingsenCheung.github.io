@@ -96,7 +96,8 @@
   .mp-qty-val{ min-width:30px; text-align:right; font-variant-numeric:tabular-nums; }
   .mp-qty .qty-step{ position:static; right:auto; top:auto; transform:none; display:flex; flex-direction:column; gap:2px; }
   .mp-qty .qty-step button{ width:16px; height:9px; padding:0; margin:0; border:none; background:none;
-    display:flex; align-items:center; justify-content:center; cursor:pointer; line-height:0; transition:.15s; }
+    display:flex; align-items:center; justify-content:center; cursor:pointer; line-height:0; transition:.15s;
+    user-select:none; -webkit-user-select:none; touch-action:none; }
   .mp-qty .qty-step button:hover .tri-up{ border-bottom-color:var(--accent); }
   .mp-qty .qty-step button:hover .tri-down{ border-top-color:var(--accent); }
   .mp-qty .qty-step button:active{ transform:scale(.82); }
@@ -1122,16 +1123,42 @@ results.addEventListener('keydown', function(e){
     unifyBtn.textContent = unifiedMode ? '币种分算' : '统一货币';
     renderTable();
   });
+  // ===== 数量步进：单击 ±1；长按（按住不放）350ms 后开始连发并逐步加速 =====
+  function qtyStep(i, dir){
+    const it = multiItems[i];
+    if(!it) return;
+    const nq = Math.max(0, Math.round((Number(it.qty) || 0) + dir)); // 整数步进，最低 0
+    it.qty = nq;
+    it.lineTotal = (Number(it.unit) || 0) * nq;                       // 同步行金额
+    renderTable(); recalcTotal();                                      // 重绘数量/金额 + 刷新底部合计
+  }
+  let qtyHold = null; // { i, dir, t, delay } —— t 为当前挂起的定时器（自调度）
+  function qtyStop(){ if(qtyHold){ clearTimeout(qtyHold.t); qtyHold = null; } }
+  function qtyStart(btn){
+    qtyStop();                                                        // 清掉任何遗留计时（避免多指/重复触发叠加）
+    const i = +btn.dataset.i, dir = btn.dataset.step === 'up' ? 1 : -1;
+    qtyStep(i, dir);                                                   // 立即 +1/−1（同时覆盖普通单击）
+    const st = { i, dir, t:null, delay:220 };                          // 初速 220ms/次
+    st.t = setTimeout(function tick(){                                 // 350ms 后开始连发
+      qtyStep(st.i, st.dir);
+      st.delay = Math.max(50, st.delay - 18);                          // 每次连发加快 18ms，最快 50ms/次（缓慢加速）
+      st.t = setTimeout(tick, st.delay);
+    }, 350);
+    qtyHold = st;
+  }
+  // 鼠标 / 触摸按下触发（含长按加速）；触摸端 preventDefault 避免合成 mousedown 重复触发
+  const qtyPress = (e) => { const btn = e.target.closest('.qty-step button'); if(btn){ e.preventDefault(); qtyStart(btn); } };
+  tbody.addEventListener('mousedown', qtyPress);
+  tbody.addEventListener('touchstart', qtyPress, { passive:false });
+  // 松开 / 取消 / 失焦即停止连发；绑定在 document/window，规避重渲染后按钮节点替换导致漏触发
+  document.addEventListener('mouseup', qtyStop);
+  document.addEventListener('touchend', qtyStop);
+  document.addEventListener('touchcancel', qtyStop);
+  document.addEventListener('mouseleave', qtyStop);
+  window.addEventListener('blur', qtyStop);
+
   // 勾选框 / 删除按钮：事件委托绑定在 tbody，删除或切换后重渲染并同步「产品总价」
   tbody.addEventListener('click', (e) => {
-    const qb = e.target.closest('.qty-step button');
-    if (qb){ const i = +qb.dataset.i; const it = multiItems[i]; if(it){
-      const dir = qb.dataset.step === 'up' ? 1 : -1;
-      const nq = Math.max(0, Math.round((Number(it.qty) || 0) + dir));   // 整数步进，最低 0
-      it.qty = nq;
-      it.lineTotal = (Number(it.unit) || 0) * nq;                        // 同步行金额
-      renderTable(); recalcTotal();                                       // 重绘数量/金额 + 刷新底部合计
-    } return; }
     const ck = e.target.closest('.mp-ck');
     if (ck){ const i = +ck.dataset.i; if(multiItems[i]){ multiItems[i].checked = !multiItems[i].checked; renderTable(); recalcTotal(); } return; }
     const del = e.target.closest('.mp-del');
