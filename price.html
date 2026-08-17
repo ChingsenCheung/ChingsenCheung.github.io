@@ -85,7 +85,8 @@
   .qty-step{ position:absolute; right:36px; top:50%; transform:translateY(-50%);
     display:flex; flex-direction:column; gap:3px; }
   .qty-step button{ width:16px; height:10px; padding:0; margin:0; border:none; background:none;
-    display:flex; align-items:center; justify-content:center; cursor:pointer; line-height:0; transition:.15s; }
+    display:flex; align-items:center; justify-content:center; cursor:pointer; line-height:0; transition:.15s;
+    user-select:none; -webkit-user-select:none; touch-action:none; }
   .qty-step button:hover .tri-up{ border-bottom-color:var(--accent); }
   .qty-step button:hover .tri-down{ border-top-color:var(--accent); }
   .qty-step button:active{ transform:scale(.82); }
@@ -124,7 +125,7 @@
   .mp-modal{ position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center;
     background:rgba(3,8,18,.66); backdrop-filter:blur(6px); padding:18px; }
   .mp-modal[hidden]{ display:none; }
-  .mp-modal-box{ width:min(780px,94vw); max-height:84vh; display:flex; flex-direction:column;
+  .mp-modal-box{ width:min(1080px,96vw); max-height:84vh; display:flex; flex-direction:column;
     background:rgba(15,23,42,.94); border:1px solid rgba(255,255,255,.16); border-radius:16px;
     box-shadow:0 24px 60px rgba(0,0,0,.5); overflow:hidden; }
   .mp-modal-head{ display:flex; align-items:center; justify-content:space-between; padding:14px 18px;
@@ -133,12 +134,13 @@
   .mp-x{ width:28px; height:28px; border-radius:8px; border:1px solid rgba(255,255,255,.2);
     background:rgba(255,255,255,.06); color:#fff; font-size:18px; line-height:1; cursor:pointer; transition:.15s; }
   .mp-x:hover{ background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.4); }
-  .mp-modal-body{ padding:6px 12px 4px; overflow:auto; }
+  .mp-modal-body{ padding:6px 12px 4px; overflow:auto; scrollbar-gutter:stable; }
   .mp-table{ width:100%; border-collapse:collapse; font-size:13px; color:#fff; }
   .mp-table th{ font-size:11px; color:var(--accent); text-align:left; padding:9px 10px;
     border-bottom:1px solid rgba(255,255,255,.18); white-space:nowrap; position:sticky; top:0;
     background:rgba(15,23,42,.98); }
   .mp-table td{ padding:9px 10px; border-bottom:1px solid rgba(255,255,255,.08); vertical-align:top; }
+  .mp-table td.nm{ white-space:nowrap; }   /* 产品名称强制单行显示（配合加宽的窗口），避免换行撑高行导致计价清单窗口位移 */
   .mp-table td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
   .mp-table th.num{ text-align:right; }   /* 表头与数字列右对齐，避免错位 */
   .mp-table .idx{ color:var(--muted); text-align:center; }
@@ -803,10 +805,31 @@ results.addEventListener('keydown', function(e){
     });
   });
   // 数量步进三角（实心白三角）：上 +1 / 下 -1，默认 1，最低 0
+  // 同时支持「长按加速」：按下立即 ±1，按住 350ms 后连发并逐步加速（与计价清单数量列一致）
   const stepUp = document.querySelector('[data-step="up"]');
   const stepDown = document.querySelector('[data-step="down"]');
-  if(stepUp) stepUp.addEventListener('click', () => setQty(curQty() + 1));
-  if(stepDown) stepDown.addEventListener('click', () => setQty(curQty() - 1));
+  let sbHold = null;
+  function sbStop(){ if(sbHold){ clearTimeout(sbHold.t); sbHold = null; } }
+  function sbStart(dir){
+    sbStop();
+    setQty(curQty() + dir);                       // 立即 ±1（同时覆盖普通单击）
+    const st = { t:null, delay:220 };             // 初速 220ms/次
+    st.t = setTimeout(function tick(){            // 350ms 后开始连发
+      setQty(curQty() + dir);
+      st.delay = Math.max(50, st.delay - 18);     // 每次连发加快 18ms，最快 50ms/次（缓慢加速）
+      st.t = setTimeout(tick, st.delay);
+    }, 350);
+    sbHold = st;
+  }
+  const sbPress = (e) => { const btn = e.target.closest('.qty-step button'); if(btn){ e.preventDefault();
+    const dir = btn.dataset.step === 'up' ? 1 : -1; sbStart(dir); } };
+  if(stepUp){ stepUp.addEventListener('mousedown', sbPress); stepUp.addEventListener('touchstart', sbPress, { passive:false }); }
+  if(stepDown){ stepDown.addEventListener('mousedown', sbPress); stepDown.addEventListener('touchstart', sbPress, { passive:false }); }
+  document.addEventListener('mouseup', sbStop);
+  document.addEventListener('touchend', sbStop);
+  document.addEventListener('touchcancel', sbStop);
+  document.addEventListener('mouseleave', sbStop);
+  window.addEventListener('blur', sbStop);
   document.querySelectorAll('[data-calcclr]').forEach(b =>
     b.addEventListener('click', () => clearCalc(b.dataset.calcclr)));
   calc();
@@ -1060,7 +1083,7 @@ results.addEventListener('keydown', function(e){
           + (it.checked ? '✅' : '⬜') + '</button></td>'
         + '<td class="idx">' + (i + 1) + '</td>'
         + '<td class="code">' + esc(it.code) + '</td>'
-        + '<td>' + esc(it.name) + '</td>'
+        + '<td class="nm">' + esc(it.name) + '</td>'
         + '<td>' + esc(it.model) + '</td>'
         + '<td>' + esc(specDisp) + '</td>'
         + '<td class="num">' + unitStr + '</td>'
