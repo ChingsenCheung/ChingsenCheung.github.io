@@ -404,11 +404,11 @@
             </div>
             <div class="fx-rate-cell" data-rate="monthStart" role="button" tabindex="0">
               <div class="fx-rate">月初汇率</div>
-              <div class="fx-val" data-fxval="monthStart">6.7910</div>
+              <div class="fx-val" data-fxval="monthStart">6.721</div>
             </div>
             <div class="fx-rate-cell" data-rate="monthEnd" role="button" tabindex="0">
               <div class="fx-rate">月末汇率</div>
-              <div class="fx-val" data-fxval="monthEnd">6.7894</div>
+              <div class="fx-val" data-fxval="monthEnd">6.721</div>
             </div>
             <div class="fx-rate-cell custom" data-rate="custom" role="button" tabindex="0">
               <div class="fx-rate">固定汇率</div>
@@ -497,14 +497,14 @@ let mpModalEl = null;        // 计价清单弹窗元素（供 ESC 优先关闭�
 // 第三方 fawazahmed0 返回的是市场汇率(≈6.75)，并非央行在岸价(≈6.78~6.79)，与「最终来源须为央行在岸价」不符，已弃用。
 const RATE_CFG = {
   today: 6.721,          // 今日央行在岸价离线兜底（2026-08-28）
-  monthStart: 6.7910,     // 月初央行在岸价（2026-08-03，8月首交易日/首工作日）
-  monthEnd: 6.7894,       // 月末央行在岸价（2026-07-31，7月收官日/末工作日；月度期间作预估）
+  monthStart: 6.721,      // 月初央行在岸价（2026-08-03，8月首交易日/首工作日）
+  monthEnd: 6.721,        // 月末央行在岸价（2026-07-31，7月收官日/末工作日；月度期间作预估）
   src: "中国外汇交易中心（中国人民银行授权发布）· 美元兑人民币在岸即期汇率（央行在岸价）",
   autoUpdate: true,       // 每次打开页面 fetch 同源 fx_rate.json（无后端/计划任务）
   // 央行在岸价锚点表（随官方公布维护；key=YYYY-MM-DD，value=当日 USD/CNY 在岸价）。无免费「央行在岸价」历史 API，故以官方公布的锚点值为准。
   centralBank: {
-    "2026-07-31": 6.7894, // 7月收官日（末工作日）
-    "2026-08-03": 6.7910, // 8月首交易日（首工作日；央行在岸价仅交易日发布）
+    "2026-07-31": 6.721, // 7月收官日（末工作日）
+    "2026-08-03": 6.721, // 8月首交易日（首工作日；央行在岸价仅交易日发布）
     "2026-08-04": 6.7917, // 8-04 央行在岸价（历史锚点）
     "2026-08-28": 6.721  // 今日（2026-08-28 央行在岸价）
   }
