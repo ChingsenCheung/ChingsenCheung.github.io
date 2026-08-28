@@ -412,7 +412,7 @@
             </div>
             <div class="fx-rate-cell custom" data-rate="custom" role="button" tabindex="0">
               <div class="fx-rate">固定汇率</div>
-              <span class="fx-rate-in-wrap sm"><input id="fxCustom" class="fx-rate-in-sm" type="text" inputmode="decimal" value="6.721"><button type="button" class="clear-x" data-fxclr="fxCustom" title="清空" aria-label="清空">×</button></span>
+              <span class="fx-rate-in-wrap sm"><input id="fxCustom" class="fx-rate-in-sm" type="text" inputmode="decimal" value="7.0"><button type="button" class="clear-x" data-fxclr="fxCustom" title="清空" aria-label="清空">×</button></span>
             </div>
           </div>
           <div class="fx-src">汇率来源：今日 / 月初 / 月末 均取自「中国外汇交易中心（中国人民银行授权发布）· 美元兑人民币在岸即期汇率（央行在岸价）」。</div>
@@ -851,13 +851,13 @@ results.addEventListener('keydown', function(e){
   const rateCells = Array.from(document.querySelectorAll('.fx-rate-cell[data-rate]'));
   let reversed = false;   // 视觉顺序：false=RMB 在上；true=USD 在上
   let lastEdited = 'rmb'; // 当前换算源（最后输入的框）
-  let active = 'today';    // 当前生效的汇率键
+  let active = 'custom';   // 当前生效的汇率键（默认固定汇率 7.0 = 标准换算汇率）
   // 千分位：必须先于下方 input 监听注册，保证 recalc 读到的是已格式化值（numOf 会剥离 ,）
   attachThousands(rmbIn, 2);
   attachThousands(usdIn, 2);
   function rate(){
     const v = active === 'custom' ? numOf(customIn) : rateVals[active];
-    return (isFinite(v) && v > 0) ? v : (RATE_CFG.today || 6.721);
+    return (isFinite(v) && v > 0) ? v : 7.0;  // 换算兜底：标准汇率 7.0
   }
   // 暴露给「统一货币」模块：返回页面【当前选中】的汇率及其名称（今日/月初/月末/固定）
   window.fxActiveRate = function(){
@@ -942,7 +942,7 @@ results.addEventListener('keydown', function(e){
     active = k;
     rateCells.forEach(c => c.classList.toggle('sel', c.dataset.rate === k));
     if(k === 'custom'){
-      if(customIn.value.trim() === '') customIn.value = '6.721';  // 固定汇率默认取央行在岸价
+      if(customIn.value.trim() === '') customIn.value = '7.0';  // 固定汇率默认取标准换算汇率 7.0
       customIn.focus();
       if(customIn.select) customIn.select();
     }
@@ -958,9 +958,9 @@ results.addEventListener('keydown', function(e){
       e.preventDefault(); selectRate(e.target.dataset.rate);
     }
   });
-  // 固定汇率：聚焦且仍为默认 6.721（央行在岸价）时自动清空，方便输入
+  // 固定汇率：聚焦且仍为默认 7.0（标准换算汇率）时自动清空，方便输入
   customIn.addEventListener('focus', () => {
-    if(customIn.value === '6.721'){
+    if(customIn.value === '7.0'){
       customIn.value = '';
       const w = customIn.closest('.fx-rate-in-wrap');
       if(w) w.classList.remove('has-val');
@@ -985,16 +985,16 @@ results.addEventListener('keydown', function(e){
   });
   // 初始化显示由 RATE_CFG 驱动（覆盖 HTML 占位），确保刷新锚点生效
   showFxVals();
-  rateCells.forEach(c => c.classList.toggle('sel', c.dataset.rate === active));  // 默认今日汇率高亮边框
-  srcEl.innerHTML = '汇率来源：今日 / 月初 / 月末 均取自「<b>'+esc(RATE_CFG.src)+'</b>」。';
+  rateCells.forEach(c => c.classList.toggle('sel', c.dataset.rate === active));  // 默认固定汇率(标准7.0)高亮边框
+  srcEl.innerHTML = '汇率来源：今日 / 月初 / 月末 均取自「<b>'+esc(RATE_CFG.src)+'</b>」；换算默认采用「固定汇率 7.0」（标准换算汇率），可点选今日/月初/月末改用对应在岸价。';
   applySrc(); syncMainX(); recalc();
-  // ESC 全局重置：清空换算框 + 复原视觉顺序 + 汇率选项回到默认「今日」+ 清空固定汇率输入
+  // ESC 全局重置：清空换算框 + 复原视觉顺序 + 汇率选项回到默认「固定汇率 7.0」+ 清空固定汇率输入
   _onReset(() => {
     rmbIn.value = ''; usdIn.value = '';
     reversed = false; row.classList.remove('reversed');
     lastEdited = 'rmb'; applySrc(); syncMainX();
     customIn.value = ''; if(customWrap) customWrap.classList.remove('has-val');
-    selectRate('today');
+    selectRate('custom');
   });
   // 每次打开/登录网页界面自动刷新（无自动化任务）：今日抓实时源；月初/月末按业务规则抓历史汇率源
   if(RATE_CFG.autoUpdate){
@@ -1105,7 +1105,7 @@ results.addEventListener('keydown', function(e){
     // 统一货币模式：把所有勾选项按【页面当前选中】汇率折算成人民币合计 + 约等于美金（仅勾选项计入）
     if (unifiedMode && anyOn){
       const f = (window.fxActiveRate ? window.fxActiveRate() : { rate: RATE_CFG.today, label: '今日汇率' });
-      const fx = (isFinite(f.rate) && f.rate > 0) ? f.rate : 6.721;
+      const fx = (isFinite(f.rate) && f.rate > 0) ? f.rate : 7.0;  // 换算兜底：标准汇率 7.0
       const cny = (sums['¥'] || 0) + (sums['$'] || 0) * fx;
       const usd = cny / fx;
       const rmbPart = (sums['¥'] || 0), usdPart = (sums['$'] || 0);
