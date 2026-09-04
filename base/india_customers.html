@@ -19,7 +19,10 @@
         body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
         .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
         h1 { text-align: center; color: #1a3a6b; font-size: 24px; margin-bottom: 5px; padding: 20px 0 10px; border-bottom: 3px solid #1a3a6b; }
-        .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 25px; }
+  .searchbar{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto 18px;}
+  .searchbar input{flex:1;padding:10px 14px;border:1px solid #c9d4e3;border-radius:8px;font-size:14px;outline:none;}
+  .searchbar input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+  .search-count{font-size:13px;color:#666;white-space:nowrap;}
         .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .stat-card { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; min-width: 140px; }
         .stat-card .num { font-size: 28px; font-weight: 700; color: #1a3a6b; }
@@ -51,13 +54,15 @@
 <body>
 <div class="container">
     <h1>印度医疗器械经销商名录</h1>
-    <p class="subtitle">数据来源：东南亚四国医疗器械经销商总表（THAIMED 官方全量 + IndiaMART 目录 + vncommerce 工商清单 + 多源搜索核实）｜ 数据版本：2026-09-04</p>
-
     <div class="stats">
         <div class="stat-card total"><div class="num">232</div><div class="label">经销商总数</div></div><div class="stat-card"><div class="num">120</div><div class="label">电外科设备</div></div><div class="stat-card"><div class="num">91</div><div class="label">骨科动力·骨钻</div></div><div class="stat-card"><div class="num">2</div><div class="label">骨科·创伤器械</div></div><div class="stat-card"><div class="num">19</div><div class="label">综合外科设备</div></div>
     </div>
 
-    <table>
+      <div class="searchbar">
+    <input id="custSearch" type="text" placeholder="🔍 搜索公司名称 / 城市 / 电话 / 官网 / 方向…" autocomplete="off">
+    <span class="search-count" id="custCount"></span>
+  </div>
+<table>
         <thead>
             <tr>
                 <th style="width:30px;">#</th>
@@ -2163,9 +2168,26 @@
 
     <div class="footer">
         <p>📌 印度医疗器械经销商名录 · 共 232 家</p>
-        <p>🔍 所有条目均标注具体可核查来源（THAIMED 官方会员档案 / IndiaMART 店铺 / 越南工商目录 / 官网 / 黄页 / 政府库 / Medtech 报告）</p>
-        <p>⚠️ 印度经销商已逐家抓取官网公开信息补全电话 / WhatsApp / 邮箱 / 地址；未公开项未作任何虚构，请以官网实时信息为准</p>
-    </div>
+        </div>
 </div>
+<script>
+(function(){
+  var input=document.getElementById('custSearch');
+  var count=document.getElementById('custCount');
+  if(!input) return;
+  function filter(){
+    var q=input.value.trim().toLowerCase();
+    var rows=document.querySelectorAll('table tbody tr');
+    var n=0;
+    rows.forEach(function(tr){
+      var hit = !q || tr.textContent.toLowerCase().indexOf(q)>=0;
+      tr.style.display = hit ? '' : 'none';
+      if(hit) n++;
+    });
+    if(count) count.textContent = q ? ('匹配 '+n+' / '+rows.length+' 家') : '';
+  }
+  input.addEventListener('input', filter);
+})();
+</script>
 </body>
 </html>
