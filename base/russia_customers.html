@@ -52,6 +52,10 @@ a:hover{text-decoration:underline;}
 h2{font-size:16px;color:#455a64;margin:26px 0 10px;padding-left:8px;border-left:4px solid #90a4ae;}
 .footer{text-align:center;margin-top:30px;padding:20px;color:#888;font-size:12px;}
 .footer p{margin-bottom:4px;}
+.searchbar{display:flex;align-items:center;gap:12px;max-width:640px;margin:0 auto 18px;}
+#custSearch{flex:1;padding:10px 14px;border:1px solid #cfd8e3;border-radius:8px;font-size:14px;outline:none;transition:border-color .15s,box-shadow .15s;background:#fff;}
+#custSearch:focus{border-color:#2c5aa0;box-shadow:0 0 0 3px rgba(44,90,160,.15);}
+.cust-count{font-size:12px;color:#888;white-space:nowrap;}
 </style>
 </head>
 <body>
@@ -59,6 +63,10 @@ h2{font-size:16px;color:#455a64;margin:26px 0 10px;padding-left:8px;border-left:
 <h1>俄罗斯医疗器械经销商名录（合并版）</h1>
 <p class="subtitle">数据来源：俄罗斯医疗器械经销商总表 v1（人工核实）+ v2 总表 + 俄区渠道定向调研（55 家厂家核查）合并去重 ｜ 数据版本：2026-09-04</p>
 <div class="stats"><div class="stat-card total"><div class="num">172</div><div class="label">经销商/厂商总数</div></div><div class="stat-card"><div class="num">101</div><div class="label">综合外科设备</div></div><div class="stat-card"><div class="num">38</div><div class="label">电外科设备</div></div><div class="stat-card"><div class="num">30</div><div class="label">骨科·创伤器械</div></div><div class="stat-card"><div class="num">3</div><div class="label">骨科动力·骨钻</div></div><div class="stat-card"><div class="num">62</div><div class="label">参展商</div></div><div class="stat-card"><div class="num">52</div><div class="label">经销商·进口商</div></div><div class="stat-card"><div class="num">36</div><div class="label">厂商</div></div><div class="stat-card"><div class="num">5</div><div class="label">厂商（电外科本土制造）</div></div><div class="stat-card"><div class="num">4</div><div class="label">经销商/代理商</div></div><div class="stat-card"><div class="num">2</div><div class="label">俄B2B/电商平台上架(厂家直营)</div></div></div>
+<div class="searchbar">
+  <input id="custSearch" type="text" placeholder="🔍 搜索公司名称 / 城市 / 电话 / 官网 / 方向…" autocomplete="off">
+  <span id="custCount" class="cust-count"></span>
+</div>
 <table>
 <thead><tr>
 <th style="width:30px;">#</th><th style="width:210px;">公司名称</th><th style="width:130px;">城市</th>
@@ -1621,5 +1629,28 @@ h2{font-size:16px;color:#455a64;margin:26px 0 10px;padding-left:8px;border-left:
 <p>⚠️ 联系方式以各公司官网实时信息为准，未公开项未作任何虚构补全</p>
 </div>
 </div>
+<script>
+(function(){
+  var inp=document.getElementById('custSearch');
+  var cnt=document.getElementById('custCount');
+  var tbody=document.querySelector('table tbody');
+  if(!inp||!tbody) return;
+  var rows=Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+  function apply(){
+    var q=inp.value.trim().toLowerCase();
+    var shown=0;
+    rows.forEach(function(tr){
+      var txt=tr.textContent.toLowerCase();
+      tr.querySelectorAll('[title]').forEach(function(el){txt+=' '+(el.getAttribute('title')||'').toLowerCase();});
+      var hit=!q||txt.indexOf(q)>=0;
+      tr.style.display=hit?'':'none';
+      if(hit) shown++;
+    });
+    cnt.textContent=q?('匹配 '+shown+' / '+rows.length+' 家'):'';
+  }
+  inp.addEventListener('input',apply);
+  apply();
+})();
+</script>
 </body>
 </html>
