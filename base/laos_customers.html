@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script data-xh-gate>
+(function(){
+  var TTL=8*60*60*1000;
+  try{var a=JSON.parse(localStorage.getItem('xh_auth')||'null');if(a&&a.u&&(Date.now()-a.ts)<TTL)return;}catch(e){}
+  var seg=location.pathname.split('/').filter(Boolean).length;
+  var prefix=seg>1?new Array(seg).join('../'):'./';
+  var next=location.pathname+(location.search||'');
+  location.replace(prefix+'login.html?next='+encodeURIComponent(next));
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老挝医疗器械经销商名录</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; color: #1a3a6b; font-size: 24px; margin-bottom: 5px; padding: 20px 0 10px; border-bottom: 3px solid #1a3a6b; }
+        .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 25px; }
+        .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .stat-card { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; min-width: 140px; }
+        .stat-card .num { font-size: 28px; font-weight: 700; color: #1a3a6b; }
+        .stat-card .label { font-size: 12px; color: #888; }
+        .stat-card.total { border-top: 3px solid #27ae60; }
+        .stat-card.total .num { color: #27ae60; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-size: 13px; margin-bottom: 20px; }
+        thead { background: linear-gradient(135deg, #1a3a6b 0%, #2c5aa0 100%); color: #fff; }
+        th { padding: 12px 10px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+        td { padding: 10px 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+        tr:hover { background: #f8f9fb; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; }
+        .badge-electro { background: #f39c12; color: #fff; }
+        .badge-ortho { background: #3498db; color: #fff; }
+        .badge-surgical { background: #2ecc71; color: #fff; }
+        .badge-ot { background: #9b59b6; color: #fff; }
+        a { color: #2c5aa0; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .company-name { font-weight: 600; color: #1a3a6b; }
+        .contact-info { font-size: 12px; color: #555; }
+        .contact-info div { margin-bottom: 2px; }
+        .source-cell { font-size: 11px; color: #666; max-width: 300px; overflow-wrap: break-word; }
+        .src-link { font-size: 11px; color: #c0392b; font-weight: 600; }
+        .muted { color: #aaa; }
+        .footer { text-align: center; margin-top: 30px; padding: 20px; color: #888; font-size: 12px; }
+        .footer p { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>老挝医疗器械经销商名录</h1>
+    <p class="subtitle">数据来源：东南亚四国医疗器械经销商总表（THAIMED 官方全量 + IndiaMART 目录 + vncommerce 工商清单 + 多源搜索核实）｜ 数据版本：2026-09-04</p>
+
+    <div class="stats">
+        <div class="stat-card total"><div class="num">27</div><div class="label">经销商总数</div></div><div class="stat-card"><div class="num">27</div><div class="label">综合外科设备</div></div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width:30px;">#</th>
+                <th style="width:200px;">公司名称</th>
+                <th style="width:110px;">城市</th>
+                <th style="width:200px;">联系方式</th>
+                <th style="width:170px;">官网 / 店铺</th>
+                <th style="width:120px;">方向</th>
+                <th>来源（可核查）</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr>
+  <td>1</td>
+  <td class='company-name'>AI KEN Pharma (Laos) Company Limited</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 030 9974 999</div></td>
+  <td><a href="https://www.aikenpharma.com/" target="_blank">https://www.aikenpharma.com/</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>AI KEN Pharma 官网 + 108.jobs（日老合资，进口医药与医疗器械并分销至医院/药房/诊所；ASEAN MALL, Xaysettha, Vientiane） <a class="src-link" href="https://www.aikenpharma.com/" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>2</td>
+  <td class='company-name'>Asalao Sole Co. Ltd</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="http://asalao.com/" target="_blank">http://asalao.com/</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Asalao 官网（Reliable Medical Distributor in Laos；1200+ 全国网点、400+ 药房、10+ 年医药专业；Rohan Chandarana 领导，药品+FMCG+医疗产品分销） <a class="src-link" href="http://asalao.com/" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>3</td>
+  <td class='company-name'>BBL Laos (Best Buy Laos)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📧 <a href="mailto:BBLBESTBUYLAOS@GMAIL.COM">BBLBESTBUYLAOS@GMAIL.COM</a></div></td>
+  <td><a href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>FindGlocal 万象医药企业目录（药品/医疗产品销售） <a class="src-link" href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>4</td>
+  <td class='company-name'>BigBear Pharmaceutical Lao Co., Ltd.</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>FindGlocal 万象医药企业目录（Phonesavan Village, Xaythany District） <a class="src-link" href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>5</td>
+  <td class='company-name'>DKSH Laos Company Limited</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856 21 453 100</div></td>
+  <td><a href="https://www.dksh.com/la-en/home/" target="_blank">https://www.dksh.com/la-en/home/</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>DKSH 官网（亚太领先 Market Expansion Services；1996年进入老挝，医疗器材分销含 Medical Devices；万象总部 + Pakse / Xiengkhouang / Savannakhet / Luangprabang 多省分支） <a class="src-link" href="https://www.dksh.com/la-en/home/" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>6</td>
+  <td class='company-name'>Daiichi Denshi Laos</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856-21-737-001</div><div>📧 <a href="mailto:phonesavan@daiichidenshilao.com">phonesavan@daiichidenshilao.com</a></div></td>
+  <td><a href="https://daiichi-denshi.la" target="_blank">https://daiichi-denshi.la</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Daiichi Denshi Laos 官网（日本 Daiichi Denshi 老挝分支，VITA Park, Saitany District，医疗设备） <a class="src-link" href="https://daiichi-denshi.la" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>7</td>
+  <td class='company-name'>INTER MEDICAL CO LTD</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856-21 21 5421</div></td>
+  <td><a href="https://www.laosyp.com/company/4774/INTER_MEDICAL_CO_LTD" target="_blank">https://www.laosyp.com/company/4774/INTER_MEDICAL_CO_LTD</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Laos Yellow Pages（万象医疗设备供应商，Luang Prabang Rd） <a class="src-link" href="https://www.laosyp.com" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>8</td>
+  <td class='company-name'>KPN Pharma Co., Ltd.</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>FindGlocal 万象医药企业目录（Dongkhamxang Road, Saysetha District；医药产品销售 100+ 项） <a class="src-link" href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>9</td>
+  <td class='company-name'>KSD Pharma (KSD Pharma Export-Import Sole Co., Ltd.)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856 21 226 363</div><div>📧 <a href="mailto:info@ksd.la">info@ksd.la</a></div></td>
+  <td><a href="https://www.ksd.la" target="_blank">https://www.ksd.la</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>KSD Pharma 官网(ksd.la)+LinkedIn+108.jobs（老挝医疗产品领先经销商，30+年，含医疗器械/诊断工具/健康用品分销；Nongduang Thong, Sikhottabong, Vientiane） <a class="src-link" href="https://www.ksd.la" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>10</td>
+  <td class='company-name'>Lao KBN Medical Products Co., Ltd.</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://laokbn.com" target="_blank">https://laokbn.com</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>官网（2017年起，万象医疗设备+实验室仪器分销，进口自泰/台/越/新/日韩/中/欧盟/美） <a class="src-link" href="https://laokbn.com" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>11</td>
+  <td class='company-name'>Lao Medical Services Co., Ltd (LMS)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856-21-314944</div><div>📧 <a href="mailto:contact@lms.la">contact@lms.la</a></div></td>
+  <td><a href="http://www.lms.la" target="_blank">http://www.lms.la</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Humatem 本地生物医学资源库（1995年成立，医疗设备+药品进口/出口/分销，来源德/日/荷/瑞/泰/英美等） <a class="src-link" href="https://www.humatem.org/details_ressource_biomedicale_locale/886" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>12</td>
+  <td class='company-name'>Lao Medical Supply</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://www.go4worldbusiness.com/member/view/3183828/lao-medical-supply.html" target="_blank">https://www.go4worldbusiness.com/member/view/3183828/lao-medical-supply.html</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Go4WorldBusiness B2B 买家档案（2020年成立，医疗设备+耗材采购代理商，年销售约25万美元，联系人 Somkeo） <a class="src-link" href="https://www.go4worldbusiness.com/member/view/3183828/lao-medical-supply.html" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>13</td>
+  <td class='company-name'>Laos Alliance Pharmaceutical Group Co., Ltd.</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://alliancepharmagroup.com/" target="_blank">https://alliancepharmagroup.com/</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Laos Alliance 官网 + FindGlocal（注册/进口/营销/销售及分销医药、医疗器械与化妆品；Vientiane Saysettha SEZ，2021 成立） <a class="src-link" href="https://alliancepharmagroup.com/lo/cooperations/" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>14</td>
+  <td class='company-name'>Lavi Company Limited</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://lavihc.com" target="_blank">https://lavihc.com</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Lavi 官网（2014年成立，向全国诊所/医院分销药品及医疗设备；3个办事处，800+客户网络） <a class="src-link" href="https://lavihc.com" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>15</td>
+  <td class='company-name'>MEDICAL PRODUCTS SUPPLY CENTER (MPSC)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856-21 21 2042</div></td>
+  <td><a href="https://www.laosyp.com/company/4777/MEDICAL_PRODUCTS_SUPPLY_CENTER_MPSC_" target="_blank">https://www.laosyp.com/company/4777/MEDICAL_PRODUCTS_SUPPLY_CENTER_MPSC_</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Laos Yellow Pages（万象医疗设备供应商） <a class="src-link" href="https://www.laosyp.com" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>16</td>
+  <td class='company-name'>Mekong Medical Joint Stock Company (Mekong Medical JSC)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="http://mekong-medical.com/" target="_blank">http://mekong-medical.com/</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Mekong Medical 官网（西门子 Siemens Healthineers 超声/影像设备老挝授权分销；ACUSON 系列；万象） <a class="src-link" href="http://mekong-medical.com/" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>17</td>
+  <td class='company-name'>NNC Pharma Co., Ltd (CNC Pharmaceutical and Medical Equipment Co.)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="http://www.nncpharma.com/" target="_blank">http://www.nncpharma.com/</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Devex 企业库（2008年成立，万象；中标 LuxDev 3 项 Bolikhamxay 省医院医疗设备与家具供应合同 Lot 7/9/11） <a class="src-link" href="https://www.devex.com/organizations/top-chrono-ci-144600" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>18</td>
+  <td class='company-name'>Online Medical Equipment (Huakua-Nonkhor)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://www.healthandbeauty1.com/LA/Vientiane/149015/genre/1626402524354240/Pharmaceutical+Company" target="_blank">https://www.healthandbeauty1.com/LA/Vientiane/149015/genre/1626402524354240/Pharmaceutical+Company</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>HealthAndBeauty1 万象企业目录（医疗设备经销商，Ban Nonkhon Nuea, Saysettha District） <a class="src-link" href="https://www.healthandbeauty1.com/LA/Vientiane/149015/genre/1626402524354240/Pharmaceutical+Company" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>19</td>
+  <td class='company-name'>Palamy Pharma</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>FindGlocal 万象医药企业目录（Microtec Education Centre；医药产品进口与分销） <a class="src-link" href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>20</td>
+  <td class='company-name'>RxLibra Development (RxLibra.com)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="http://rxlibra.com" target="_blank">http://rxlibra.com</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>FindGlocal 万象医药企业目录（Phosai Village, Saisetha；配方制造与药品出口） <a class="src-link" href="https://www.findglocal.com/LA/Vientiane/149015-23/genre/1626402524354240/Pharmaceutical+Companies" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>21</td>
+  <td class='company-name'>SKN Trading Import-Export Sole Co., Ltd.</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856 21 451 657</div></td>
+  <td><a href="https://sknlaos.com" target="_blank">https://sknlaos.com</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>SKN 官网 + MedicalDevices Directory（2009年成立，老挝医疗&amp;实验室设备先锋供应商，万象） <a class="src-link" href="https://sknlaos.com" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>22</td>
+  <td class='company-name'>Scinest Global</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856-20-54863917</div><div>📧 <a href="mailto:trade@scinestglobal.com">trade@scinestglobal.com</a></div></td>
+  <td><a href="https://scinestglobal.com/about" target="_blank">https://scinestglobal.com/about</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Scinest Global 官网（老挝牙科/正畸/医疗/实验室用品分销商，10+年，万象） <a class="src-link" href="https://scinestglobal.com/about" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>23</td>
+  <td class='company-name'>The ENT Import-Export Sole Co., Ltd</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://mangkonthong.com/en/the-ent-import-export-sole-co-ltd/" target="_blank">https://mangkonthong.com/en/the-ent-import-export-sole-co-ltd/</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Mangkonthong 官网（进口分销 2000+ 牙科设备+医疗设备，全国分支；授权 Unidesa Odi 等品牌） <a class="src-link" href="https://mangkonthong.com/en/the-ent-import-export-sole-co-ltd/" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>24</td>
+  <td class='company-name'>Viengthong Med &amp; Pharma (Viengthong Pharmaceutical Import-Export Co., Ltd.)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://vtmedpharma.la" target="_blank">https://vtmedpharma.la</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>官网（1992年成立，医疗设备+药品+实验室试剂分销，多国制造商合作伙伴，万象） <a class="src-link" href="https://vtmedpharma.la" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>25</td>
+  <td class='company-name'>Viengthong Pharmaceutical Import-Export Co., Ltd. (Devex 记录)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://www.devex.com/organizations/viengthong-pharmaceutical-import-export-co-ltd-144604" target="_blank">https://www.devex.com/organizations/viengthong-pharmaceutical-import-export-co-ltd-144604</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Devex 企业库（1992年成立，医疗器械+实验室试剂分销；LuxDev 合同授予） <a class="src-link" href="https://www.devex.com" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>26</td>
+  <td class='company-name'>Vimpex Ltd (Vimpex Lao Co Ltd)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><div>📞 +856 20 93114500</div><div>📧 <a href="mailto:vimpex.laos@vimpexltd.com">vimpex.laos@vimpexltd.com</a></div></td>
+  <td><a href="http://vimpexltd.com/about-us" target="_blank">http://vimpexltd.com/about-us</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Vimpex 官网（新加坡总部，25+ 年东南亚贸易分销；老挝分公司 Ban Nonsanga village Unit 7 Xaysettha District, Vientiane）+ 52wmb 海关数据（Vimpex Lao Co Ltd 老挝买方，240 笔国际贸易，医药产品）+ businesses10（万象招聘 Medical Sales Representatives） <a class="src-link" href="http://vimpexltd.com/about-us" target="_blank">↗来源</a></td>
+</tr>
+<tr>
+  <td>27</td>
+  <td class='company-name'>Zuellig Pharma (Laos operation)</td>
+  <td>Vientiane</td>
+  <td class='contact-info'><span class='muted'>未公开</span></td>
+  <td><a href="https://www.zuelligpharma.com" target="_blank">https://www.zuelligpharma.com</a></td>
+  <td><span class='badge badge-ot'>综合外科设备</span></td>
+  <td class='source-cell'>Zuellig Pharma 企业新闻 + Vientiane Times（亚太大型医疗分销，老挝业务由柬埔寨/缅甸/老挝董事总经理负责；2024 与 Viengthong Pharma 战略合作覆盖老挝全境） <a class="src-link" href="http://corporate-dev.zuelligpharma.com/news-insights/Zuellig-Pharma-and-Viengthong-Pharma-Forge-Strategic-Partnership-to-Enhance-Healthcare-Accessibility-in-Laos" target="_blank">↗来源</a></td>
+</tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>📌 老挝医疗器械经销商名录 · 共 27 家</p>
+        <p>🔍 所有条目均标注具体可核查来源（THAIMED 官方会员档案 / IndiaMART 店铺 / 越南工商目录 / 官网 / 黄页 / 政府库 / Medtech 报告）</p>
+        <p>⚠️ IndiaMART 目录条目联系方式受平台验证码门控，已尽量补全店铺链接/官网；未公开项未作任何虚构补全</p>
+    </div>
+</div>
+</body>
+</html>
