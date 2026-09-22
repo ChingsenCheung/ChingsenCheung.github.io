@@ -135,6 +135,24 @@
     .cust-name{ align-self:flex-start; }
     .cust-row.expanded .cust-links{ flex:1 1 100%; }
   }
+  /* 扁平版块（国产厂家/科普/上传）行式：每行 = 标题 + 可点「打开↗」，视觉对齐国家行 */
+  .row-item{
+    display:flex; align-items:center; gap:14px;
+    padding:13px 16px; background:var(--panel);
+    border:1px solid var(--line); border-left:4px solid var(--accent,#0d9488);
+    border-radius:14px; text-decoration:none; color:var(--text); cursor:pointer;
+    box-shadow:0 2px 10px rgba(15,23,42,.05);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .row-item:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(15,23,42,.10); border-left-color:#0d9488; }
+  .row-item .t{ font-size:15px; font-weight:600; line-height:1.4; }
+  .row-item .sub{ font-size:12px; color:var(--muted); margin-left:8px; }
+  .row-item .go{ margin-left:auto; font-size:13px; font-weight:600; color:#0d6b63;
+    background:linear-gradient(135deg, rgba(37,99,235,.08), rgba(13,148,136,.10));
+    border:1px solid rgba(13,148,136,.25); border-radius:999px; padding:7px 15px; white-space:nowrap;
+    transition:background .18s, color .18s, box-shadow .18s; }
+  .row-item:hover .go{ background:linear-gradient(135deg,#0ea5e9,#0d9488); color:#fff; box-shadow:0 6px 16px rgba(13,148,136,.32); }
+  @media (max-width:600px){ .row-item{ flex-direction:column; align-items:flex-start; gap:8px; } .row-item .go{ margin-left:0; } }
   /* 全站主题化光标：地图/贸易风格十字准星，进入页面即生效 */
   html, body{ cursor:default; }
   a, button, .card, .tool-btn, [role=button], .cat-head, .cust-region-h, .modal-bar button, .topbar button{ cursor:pointer; }
@@ -470,21 +488,22 @@
       else if (role !== 'admin' && role !== 'vip') cats.appendChild(emptyBlock('你还没有上传文件（静态版不支持上传，请使用本地后端版本）。'));
     }
   }
+  // 扁平版块（国产厂家/科普/上传）：行式——每行 = 标题 + 可单独点选的「打开↗」，视觉对齐外贸客户行式
   function catBlock(c, items, getUrl, kind, showOwner){
     const sec = document.createElement('section'); sec.className='cat';
     const head = document.createElement('div'); head.className='cat-head';
     head.innerHTML = '<span class="dot" style="background:'+c.color+'"></span><h2>'+c.name+'</h2><span class="cnt">'+items.length+' 份</span>';
     sec.appendChild(head);
-    const grid = document.createElement('div'); grid.className='grid';
+    const wrap = document.createElement('div'); wrap.className='cust-rows';
     items.forEach(s => {
-      const card = document.createElement('div'); card.className='card '+(kind==='base'?c.id:'mine');
-      const sub = showOwner ? ('上传者：'+s.owner) : '';
-      card.innerHTML = '<span class="t"></span>'+(sub?'<span class="sub">'+sub+'</span>':'')+'<span class="go">打开 ↗</span>';
-      card.querySelector('.t').textContent = s.title;
-      card.addEventListener('click', () => openSection(getUrl(s)));
-      grid.appendChild(card);
+      const row = document.createElement('a'); row.className='row-item'; row.href=getUrl(s);
+      const t = document.createElement('span'); t.className='t'; t.textContent = s.title; row.appendChild(t);
+      if (showOwner){ const sub = document.createElement('span'); sub.className='sub'; sub.textContent='上传者：'+s.owner; row.appendChild(sub); }
+      const go = document.createElement('span'); go.className='go'; go.textContent='打开 ↗'; row.appendChild(go);
+      row.addEventListener('click', (e) => { e.preventDefault(); openSection(getUrl(s)); });
+      wrap.appendChild(row);
     });
-    sec.appendChild(grid);
+    sec.appendChild(wrap);
     return sec;
   }
   function emptyBlock(msg){
