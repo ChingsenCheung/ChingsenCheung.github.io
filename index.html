@@ -538,7 +538,12 @@
       rh.addEventListener('click', () => rg.classList.toggle('collapsed'));
       rg.appendChild(rh);
       const rows = document.createElement('div'); rows.className='cust-rows';
-      reg.countries.forEach(co => {
+      // 洲内国家按英文名首字母升序排列（忽略大小写与重音符号差异）
+      reg.countries.slice().sort((a, b) => {
+        const ka = (a.en || a.name || '').toUpperCase();
+        const kb = (b.en || b.name || '').toUpperCase();
+        return ka < kb ? -1 : (ka > kb ? 1 : 0);
+      }).forEach(co => {
         const files = (CUST_FILES && CUST_FILES[co.iso2]) || co.files || null;
         const row = document.createElement('div'); row.className='cust-row';
         const name = document.createElement('button'); name.type='button'; name.className='cust-name';
