@@ -107,7 +107,7 @@
     padding:9px 15px; cursor:pointer; white-space:nowrap;
     transition:background .18s, box-shadow .18s;
   }
-  .cust-name .flag{ font-size:17px; line-height:1; margin-left:3px; }
+  .cust-name .flag{ width:22px; height:15px; margin-left:5px; border-radius:2px; box-shadow:0 1px 2px rgba(15,23,42,.25); vertical-align:middle; object-fit:cover; flex:none; }
   .cust-name:hover{ background:linear-gradient(135deg, rgba(37,99,235,.14), rgba(13,148,136,.14)); box-shadow:0 4px 14px rgba(13,148,136,.18); }
   .cust-name:focus-visible{ outline:2px solid #0d9488; outline-offset:2px; }
   .cust-links{ flex:1 1 auto; min-width:0; display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
@@ -494,8 +494,9 @@
   // 新版：每个国家成「行」显示——行首为国家名（可点击展开/收起），其后紧跟可单独点选的各个子链接（客户文件）。
   // 子链接单行排不开时折叠并显示「▾ 更多」，点击国家名或「更多」即向下延展全部文件链接。
   function catTreeBlock(c, tree){
-    // 由 ISO2 自动生成国旗 emoji（Regional Indicator Symbols），覆盖所有国家，无需维护字典
-    function flagOf(iso2){ return iso2.toUpperCase().replace(/./g, function(ch){ return String.fromCodePoint(127397 + ch.charCodeAt(0)); }); }
+    // 由 ISO2 自动生成国旗图片（flagcdn CDN），覆盖所有国家，无需维护字典；
+    // 用图片而非 emoji，规避 Windows 不渲染国旗 emoji（只显示 JP/KR 字母）的问题
+    function flagImg(iso2, cnName){ const i = document.createElement('img'); i.className='flag'; i.loading='lazy'; i.alt=(cnName||iso2)+'国旗'; i.src='https://flagcdn.com/w40/'+iso2+'.png'; i.srcset='https://flagcdn.com/w80/'+iso2+'.png 2x'; return i; }
     const sec = document.createElement('section'); sec.className='cat';
     const head = document.createElement('div'); head.className='cat-head';
     head.innerHTML = '<span class="dot" style="background:'+c.color+'"></span><h2>'+c.name+'</h2>';
@@ -515,7 +516,7 @@
         const row = document.createElement('div'); row.className='cust-row';
         const name = document.createElement('button'); name.type='button'; name.className='cust-name';
         name.appendChild(document.createTextNode(co.name));
-        const fg = document.createElement('span'); fg.className='flag'; fg.textContent = flagOf(co.iso2);
+        const fg = flagImg(co.iso2, co.name);
         name.appendChild(fg);
         const links = document.createElement('div'); links.className='cust-links';
         if (files && files.length){
