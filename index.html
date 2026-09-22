@@ -80,7 +80,7 @@
   .cust-tree{ margin-top:4px; }
   .cust-g1{ font-size:15px; font-weight:700; color:#0f766e; margin:8px 0 4px; padding-left:2px; }
   .cust-region{ margin:4px 0 14px; }
-  .cust-region-h{ font-size:13px; font-weight:600; color:var(--muted); margin:2px 0 8px; padding-left:9px; border-left:3px solid var(--c-cust); }
+  .cust-region-h{ display:flex; align-items:center; font-size:13px; font-weight:600; color:var(--muted); margin:2px 0 8px; padding-left:9px; border-left:3px solid var(--c-cust); }
   .cust-grid .card .go{ color:var(--c-cust); }
   /* 国家节点下的「客户信息」子链接面板：跨整行、缩进、淡蓝左边线，形成层级感 */
   .cust-sub{ grid-column:1 / -1; margin:2px 0 8px; padding:6px 0 4px 16px; border-left:3px solid var(--c-cust); background:rgba(13,148,136,.04); border-radius:0 10px 10px 0; }
@@ -88,6 +88,11 @@
   .cust-sub .sub-card .go{ color:#0f766e; }
   /* 国家版块「成行」版式：行首国家名 + 紧跟可单独点选的子链接；排不开则折叠为「+N」，点击国家名向下延展成纵向列表 */
   .cust-rows{ display:flex; flex-direction:column; gap:12px; }
+  .cust-region-h .tri{ margin-left:auto; font-size:11px; line-height:1; color:var(--c-cust); transition:transform .2s ease; }
+  .cust-region.collapsed .cust-rows{ display:none; }
+  .cust-region.collapsed .cust-region-h .tri{ transform:rotate(-90deg); }
+  .cust-row{ cursor:pointer; }
+  .cust-row.selected{ background:#ecfdf5; border-color:#0d9488; box-shadow:0 6px 18px rgba(13,148,136,.20); transform:translateY(-1px); }
   .cust-row{
     display:flex; flex-wrap:wrap; align-items:flex-start; gap:12px 14px;
     padding:12px 16px 12px 14px;
@@ -98,7 +103,7 @@
     box-shadow:0 2px 10px rgba(15,23,42,.05);
     transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
-  .cust-row:hover{ background:#fef9c3; border-color:#0d9488; border-left-color:#0d9488; box-shadow:none; }
+  .cust-row:hover{ background:#f0fdfa; border-color:#0d9488; border-left-color:#0d9488; box-shadow:0 8px 20px rgba(13,148,136,.12); transform:translateY(-2px); }
   .cust-name{
     flex:0 0 auto; display:inline-flex; align-items:center; gap:9px;
     font:inherit; font-size:15px; font-weight:700; color:#0f172a;
@@ -556,6 +561,10 @@
         row.appendChild(name); row.appendChild(links); row.appendChild(more);
         rows.appendChild(row);
         allRows.push(row);
+        row.addEventListener('click', () => {
+          document.querySelectorAll('.cust-row.selected').forEach(r => { if (r !== row) r.classList.remove('selected'); });
+          row.classList.toggle('selected');
+        });
 
         function toggle(){
           row.classList.toggle('expanded');
