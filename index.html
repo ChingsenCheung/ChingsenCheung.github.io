@@ -117,6 +117,9 @@
   .cust-name .flag{ width:22px; height:15px; margin-left:0; border-radius:2px; box-shadow:0 1px 2px rgba(15,23,42,.25); vertical-align:middle; object-fit:cover; flex:none; }
   .cust-name:hover{ background:linear-gradient(135deg, rgba(13,148,136,.14), rgba(15,118,110,.14)); box-shadow:0 4px 14px rgba(15,118,110,.18); }
   .cust-name:focus-visible{ outline:2px solid #0d9488; outline-offset:2px; }
+  /* 子链接全部可见（无需展开）的行：国家名不参与展开交互，去掉可点提示与 hover 效果 */
+  .cust-row.no-expand .cust-name{ cursor:default; }
+  .cust-row.no-expand .cust-name:hover{ background:linear-gradient(135deg, rgba(13,148,136,.07), rgba(15,118,110,.07)); box-shadow:none; }
   .cust-links{ flex:1 1 0; min-width:0; display:flex; flex-wrap:nowrap; overflow:hidden; gap:9px; align-items:center; }
   .cust-row.expanded{ flex-wrap:wrap; }
   .cust-row.expanded .cust-links{ flex:1 1 100%; flex-wrap:wrap; overflow:visible; align-items:flex-start; gap:8px; }
@@ -565,6 +568,8 @@
         });
 
         function toggle(){
+          // 仅当该行确有余量放不下（有被隐藏的子链接）时才允许展开；全部可见的行点了也不展开
+          if (!row.classList.contains('expanded') && row.dataset.hasOverflow !== '1') return;
           row.classList.toggle('expanded');
           layoutRow(row);
         }
@@ -582,17 +587,21 @@
       if (row.classList.contains('expanded')){
         links.style.flexWrap=''; links.style.overflow='';
         all.forEach(a => a.style.display='');
+        row.classList.remove('no-expand'); row.dataset.hasOverflow='1';
         return;
       }
       // 收起态：单行，隐藏放不下的链接，保证整行只占一行
       all.forEach(a => a.style.display='');
       links.style.flexWrap='nowrap'; links.style.overflow='hidden';
-      const gap = 9; let avail = links.clientWidth;
+      const gap = 9; let avail = links.clientWidth; let hidden = 0;
       all.forEach(a => {
         const w = a.offsetWidth + gap;
         if (avail - w >= -2){ avail -= w; a.style.display=''; }
-        else { a.style.display='none'; }
+        else { a.style.display='none'; hidden++; }
       });
+      // 只有「确有子链接被隐藏(排不开)」的行才允许展开；全部可见的行不该有展开交互
+      row.classList.toggle('no-expand', hidden === 0);
+      row.dataset.hasOverflow = hidden > 0 ? '1' : '0';
     }
     requestAnimationFrame(() => allRows.forEach(layoutRow));
     window.addEventListener('resize', () => allRows.forEach(layoutRow), { passive:true });
