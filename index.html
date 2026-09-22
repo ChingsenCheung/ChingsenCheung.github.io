@@ -20,7 +20,7 @@
 <style>
   :root{
     --bg:#eef2f6; --panel:#fff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0d9488;
-    --c-bd:#059669; --c-cust:#16a34a; --c-fac:#d97706; --c-pop:#7c3aed; --danger:#dc2626;
+    --c-bd:#059669; --c-cust:#0d9488; --c-fac:#d97706; --c-pop:#7c3aed; --danger:#dc2626;
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
@@ -78,14 +78,14 @@
   .bd{ --accent:var(--c-bd); } .cust{ --accent:var(--c-cust); } .fac{ --accent:var(--c-fac); } .pop{ --accent:var(--c-pop); } .mine{ --accent:var(--brand); }
   /* 外贸客户分级导航 */
   .cust-tree{ margin-top:4px; }
-  .cust-g1{ font-size:15px; font-weight:700; color:#15803d; margin:8px 0 4px; padding-left:2px; }
+  .cust-g1{ font-size:15px; font-weight:700; color:#0f766e; margin:8px 0 4px; padding-left:2px; }
   .cust-region{ margin:4px 0 14px; }
   .cust-region-h{ font-size:13px; font-weight:600; color:var(--muted); margin:2px 0 8px; padding-left:9px; border-left:3px solid var(--c-cust); }
   .cust-grid .card .go{ color:var(--c-cust); }
   /* 国家节点下的「客户信息」子链接面板：跨整行、缩进、淡蓝左边线，形成层级感 */
-  .cust-sub{ grid-column:1 / -1; margin:2px 0 8px; padding:6px 0 4px 16px; border-left:3px solid var(--c-cust); background:rgba(37,99,235,.04); border-radius:0 10px 10px 0; }
-  .cust-sub .sub-card{ background:#f8fafc; border-left-color:#93c5fd; }
-  .cust-sub .sub-card .go{ color:#15803d; }
+  .cust-sub{ grid-column:1 / -1; margin:2px 0 8px; padding:6px 0 4px 16px; border-left:3px solid var(--c-cust); background:rgba(13,148,136,.04); border-radius:0 10px 10px 0; }
+  .cust-sub .sub-card{ background:#f8fafc; border-left-color:#5eead4; }
+  .cust-sub .sub-card .go{ color:#0f766e; }
   /* 国家版块「成行」版式：行首国家名 + 紧跟可单独点选的子链接；排不开则折叠为「+N」，点击国家名向下延展成纵向列表 */
   .cust-rows{ display:flex; flex-direction:column; gap:12px; }
   .cust-row{
@@ -98,37 +98,37 @@
     box-shadow:0 2px 10px rgba(15,23,42,.05);
     transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   }
-  .cust-row:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(15,23,42,.10); border-left-color:#15803d; }
+  .cust-row:hover{ background:#fef9c3; border-color:#0d9488; border-left-color:#0d9488; box-shadow:none; }
   .cust-name{
     flex:0 0 auto; display:inline-flex; align-items:center; gap:9px;
     font:inherit; font-size:15px; font-weight:700; color:#0f172a;
-    background:linear-gradient(135deg, rgba(22,163,74,.07), rgba(21,128,62,.07));
-    border:1px solid #bbf7d0; border-radius:11px;
+    background:linear-gradient(135deg, rgba(13,148,136,.07), rgba(15,118,110,.07));
+    border:1px solid #99f6e4; border-radius:11px;
     padding:9px 15px; cursor:pointer; white-space:nowrap;
     transition:background .18s, box-shadow .18s;
   }
   .cust-name .flag{ width:22px; height:15px; margin-left:5px; border-radius:2px; box-shadow:0 1px 2px rgba(15,23,42,.25); vertical-align:middle; object-fit:cover; flex:none; }
-  .cust-name:hover{ background:linear-gradient(135deg, rgba(22,163,74,.14), rgba(21,128,62,.14)); box-shadow:0 4px 14px rgba(21,128,62,.18); }
+  .cust-name:hover{ background:linear-gradient(135deg, rgba(13,148,136,.14), rgba(15,118,110,.14)); box-shadow:0 4px 14px rgba(15,118,110,.18); }
   .cust-name:focus-visible{ outline:2px solid #0d9488; outline-offset:2px; }
   .cust-links{ flex:1 1 auto; min-width:0; display:flex; flex-wrap:nowrap; overflow:hidden; gap:9px; align-items:center; }
   .cust-row.expanded .cust-links{ flex:1 1 100%; flex-wrap:wrap; overflow:visible; align-items:flex-start; gap:8px; }
   .cust-link{
-    font-size:13px; font-weight:600; color:#15803d;
-    background:#fff; border:1px solid #bbf7d0; border-radius:999px;
+    font-size:13px; font-weight:600; color:#0f766e;
+    background:#fff; border:1px solid #99f6e4; border-radius:999px;
     padding:7px 15px; text-decoration:none; cursor:pointer; white-space:nowrap;
     display:inline-flex; align-items:center; gap:6px;
     transition:background .18s, border-color .18s, color .18s, transform .18s, box-shadow .18s;
   }
   .cust-link::before{ content:'↗'; font-size:12px; opacity:.55; }
-  .cust-link:hover{ background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff; border-color:transparent; transform:translateY(-1px); box-shadow:0 6px 16px rgba(21,128,62,.32); }
+  .cust-link:hover{ background:linear-gradient(135deg,#14b8a6,#0d9488); color:#fff; border-color:transparent; transform:translateY(-1px); box-shadow:0 6px 16px rgba(15,118,110,.32); }
   .cust-link:hover::before{ opacity:1; }
   .cust-more{
-    flex:0 0 auto; font:inherit; font-size:12px; font-weight:600; color:#15803d;
-    background:rgba(22,163,74,.08); border:1px dashed #86efac; border-radius:999px;
+    flex:0 0 auto; font:inherit; font-size:12px; font-weight:600; color:#0f766e;
+    background:rgba(13,148,136,.08); border:1px dashed #5eead4; border-radius:999px;
     padding:7px 14px; cursor:pointer; white-space:nowrap;
     transition:background .18s, border-color .18s;
   }
-  .cust-more:hover{ background:rgba(22,163,74,.16); border-color:#16a34a; }
+  .cust-more:hover{ background:rgba(13,148,136,.16); border-color:#0d9488; }
   @media (max-width:600px){
     .cust-row{ flex-direction:column; align-items:stretch; gap:10px; }
     .cust-name{ align-self:flex-start; }
@@ -364,7 +364,7 @@
     ],
   };
   const CATS = [
-    { id:'cust', name:'外贸客户', color:'#16a34a', tree:CUST_TREE },
+    { id:'cust', name:'外贸客户', color:'#0d9488', tree:CUST_TREE },
     { id:'fac', name:'国产厂家文件', color:'#d97706' },
     { id:'pop', name:'科普文件', color:'#7c3aed' },
   ];
