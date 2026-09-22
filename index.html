@@ -496,6 +496,7 @@
   // 扁平版块（国产厂家/科普/上传）：行式——每行 = 标题 + 可单独点选的「打开↗」，视觉对齐外贸客户行式
   function catBlock(c, items, getUrl, kind, showOwner){
     const sec = document.createElement('section'); sec.className='cat';
+    if (c.color) sec.style.setProperty('--accent', c.color);
     const head = document.createElement('div'); head.className='cat-head';
     head.innerHTML = '<span class="dot" style="background:'+c.color+'"></span><h2>'+c.name+'</h2><span class="cnt">'+items.length+' 份</span>';
     sec.appendChild(head);
