@@ -114,6 +114,8 @@
   }
   .cust-name .cn-row{ display:inline-flex; align-items:center; gap:8px; }
   .cust-name .en-row{ font-size:10.5px; line-height:1.15; font-weight:600; color:#0f766e; opacity:.8; letter-spacing:.2px; }
+  /* 国家名占位容器：宽度由 JS 统一为「最宽国家名按钮」→ 子链接起点固定成一条竖线（按钮框本身不被拉伸，保持自然宽） */
+  .cust-name-cell{ flex:0 0 auto; display:inline-flex; align-items:center; }
   .cust-name .flag{ width:22px; height:15px; margin-left:0; border-radius:2px; box-shadow:0 1px 2px rgba(15,23,42,.25); vertical-align:middle; object-fit:cover; flex:none; }
   .cust-name:hover{ background:linear-gradient(135deg, rgba(13,148,136,.14), rgba(15,118,110,.14)); box-shadow:0 4px 14px rgba(15,118,110,.18); }
   .cust-name:focus-visible{ outline:2px solid #0d9488; outline-offset:2px; }
@@ -559,7 +561,9 @@
           a.addEventListener('click', (e) => { e.preventDefault(); openSection('./country.html?c='+co.iso2); });
           links.appendChild(a);
         }
-        row.appendChild(name); row.appendChild(links);
+        const nameCell = document.createElement('div'); nameCell.className='cust-name-cell';
+        nameCell.appendChild(name);
+        row.appendChild(nameCell); row.appendChild(links);
         rows.appendChild(row);
         allRows.push(row);
         row.addEventListener('click', () => {
@@ -608,11 +612,16 @@
     //  2) 子链接按钮按「字数」统一尺寸 → 相同字数 = 相同宽度（跨行、跨列一致）。
     function alignAll(){
       const names = allRows.map(r => r.querySelector('.cust-name'));
+      const cells = allRows.map(r => r.querySelector('.cust-name-cell'));
       const arrs = allRows.map(r => Array.prototype.slice.call(r.querySelectorAll('.cust-link')));
-      // 1) 国家名统一宽度
+      // 1) 国家名占位区统一宽度：按钮保持自然宽，仅占位统一 → 各行子链接从同一条竖线开始
       names.forEach(n => n.style.minWidth='');
-      const nameW = names.reduce((m,n) => Math.max(m, n.offsetWidth), 0);
-      names.forEach(n => { if (nameW) n.style.minWidth = nameW+'px'; });
+      cells.forEach(c => c.style.width='');
+      const cellW = cells.reduce((m,c) => {
+        const n = c.querySelector('.cust-name');
+        return Math.max(m, n ? n.offsetWidth : 0);
+      }, 0);
+      cells.forEach(c => { if (cellW) c.style.width = cellW+'px'; });
       // 2) 子链接按字数统一尺寸
       arrs.forEach(arr => arr.forEach(a => { a.style.minWidth=''; a.style.display=''; }));
       const byLen = {};
