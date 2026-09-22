@@ -86,6 +86,24 @@
   .cust-sub{ grid-column:1 / -1; margin:2px 0 8px; padding:6px 0 4px 16px; border-left:3px solid var(--c-cust); background:rgba(37,99,235,.04); border-radius:0 10px 10px 0; }
   .cust-sub .sub-card{ background:#f8fafc; border-left-color:#93c5fd; }
   .cust-sub .sub-card .go{ color:#2563eb; }
+  /* 国家版块「成行」新版式：行首国家名 + 紧邻可单独点选的子链接；排不开则折叠，点击国家名向下延展 */
+  .cust-rows{ display:flex; flex-direction:column; gap:9px; }
+  .cust-row{ display:flex; align-items:center; gap:12px; padding:9px 13px; background:#fff; border:1px solid var(--line); border-radius:10px; box-shadow:0 2px 8px rgba(15,23,42,.04); }
+  .cust-name{ flex:0 0 auto; font:inherit; font-size:14px; font-weight:700; color:#1e3a8a; background:rgba(37,99,235,.08); border:1px solid #bfdbfe; border-radius:8px; padding:7px 14px; cursor:pointer; white-space:nowrap; transition:background .15s, box-shadow .15s; }
+  .cust-name:hover{ background:rgba(37,99,235,.16); box-shadow:0 2px 8px rgba(37,99,235,.18); }
+  .cust-name:focus-visible{ outline:2px solid #2563eb; outline-offset:2px; }
+  .cust-links{ flex:1 1 auto; min-width:0; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .cust-row.collapsed .cust-links{ flex-wrap:nowrap; overflow:hidden; max-height:34px; }
+  .cust-row.expanded .cust-links{ flex-wrap:wrap; flex-direction:column; align-items:flex-start; max-height:none; overflow:visible; }
+  .cust-link{ font-size:13px; color:var(--c-cust); background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; padding:5px 13px; text-decoration:none; cursor:pointer; white-space:nowrap; transition:background .15s, border-color .15s, color .15s; }
+  .cust-link:hover{ background:#dbeafe; border-color:#93c5fd; color:#1d4ed8; }
+  .cust-more{ flex:0 0 auto; font:inherit; font-size:12px; color:var(--muted); background:#f8fafc; border:1px dashed #cbd5e1; border-radius:999px; padding:5px 12px; cursor:pointer; white-space:nowrap; }
+  .cust-more:hover{ background:#eef2f7; border-color:#94a3b8; }
+  @media (max-width:600px){
+    .cust-row{ flex-direction:column; align-items:stretch; gap:8px; }
+    .cust-name{ align-self:flex-start; }
+    .cust-row.collapsed .cust-links{ flex-wrap:wrap; overflow:visible; max-height:none; }
+  }
   /* 全站主题化光标：地图/贸易风格十字准星，进入页面即生效 */
   html, body{ cursor:default; }
   a, button, .card, .tool-btn, [role=button], .cat-head, .cust-region-h, .modal-bar button, .topbar button{ cursor:pointer; }
@@ -442,7 +460,8 @@
     const d = document.createElement('div'); d.className='empty'; d.textContent = msg; return d;
   }
   // 外贸客户分级导航：一级[外贸客户文件] → 二级大洲 → 三级国家；
-  // 有客户文件子链接的国家（如孟加拉）点击展开「客户信息」子链接面板；无文件国家点击直接打开该国主页
+  // 新版：每个国家成「行」显示——行首为国家名（可点击展开/收起），其后紧跟可单独点选的各个子链接（客户文件）。
+  // 子链接单行排不开时折叠并显示「▾ 更多」，点击国家名或「更多」即向下延展全部文件链接。
   function catTreeBlock(c, tree){
     const sec = document.createElement('section'); sec.className='cat';
     const head = document.createElement('div'); head.className='cat-head';
@@ -451,48 +470,69 @@
     const treeBox = document.createElement('div'); treeBox.className='cust-tree';
     const g1 = document.createElement('div'); g1.className='cust-g1'; g1.textContent = tree.name;
     treeBox.appendChild(g1);
+
+    const allRows = [];
     tree.regions.forEach(reg => {
       const rg = document.createElement('div'); rg.className='cust-region';
       const rh = document.createElement('div'); rh.className='cust-region-h'; rh.textContent = reg.name;
       rg.appendChild(rh);
-      const grid = document.createElement('div'); grid.className='grid cust-grid';
+      const rows = document.createElement('div'); rows.className='cust-rows';
       reg.countries.forEach(co => {
         const files = (CUST_FILES && CUST_FILES[co.iso2]) || co.files || null;
-        // 重点国家标记已取消（孟加拉 / 尼日利亚不再标黄/置顶）
-        const hot = false;
-        const card = document.createElement('div'); card.className='card cust'+(hot?' hot':'');
-        card.innerHTML = '<span class="t"></span>'+(hot?'<span class="badge">★ 重点</span>':'')+'<span class="go">'+(files && files.length ? '客户信息 ▾' : '客户信息 ↗')+'</span>';
-        card.querySelector('.t').textContent = co.name;
-        grid.appendChild(card);
-
+        const row = document.createElement('div'); row.className='cust-row';
+        const name = document.createElement('button'); name.type='button'; name.className='cust-name'; name.textContent = co.name;
+        const links = document.createElement('div'); links.className='cust-links';
         if (files && files.length){
-          // 展开子链接面板（子链接：逐份客户文件）
-          const sub = document.createElement('div'); sub.className='cust-sub'; sub.style.display='none';
-          const subGrid = document.createElement('div'); subGrid.className='grid cust-grid';
-          // 置顶项(pin)排序在最前，确保始终显示于子链接顶部
-          const ordered = files.slice().sort((a,b) => (b.pin?1:0) - (a.pin?1:0));
-          ordered.forEach(f => {
-            const fc = document.createElement('a'); fc.className='card cust sub-card'+(f.pin?' pin':''); fc.href='./base/'+f.file;
-            fc.innerHTML = '<span class="t"></span>'+(f.pin?'<span class="badge pin-badge">置顶</span>':'')+'<span class="go">打开 ↗</span>';
-            fc.querySelector('.t').textContent = f.title;
-            fc.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openSection('./base/'+f.file); });
-            subGrid.appendChild(fc);
-          });
-          sub.appendChild(subGrid);
-          grid.appendChild(sub);
-          card.addEventListener('click', () => {
-            sub.style.display = (sub.style.display === 'none') ? 'block' : 'none';
-            const go = card.querySelector('.go'); if (go) go.textContent = (sub.style.display === 'none') ? '客户信息 ▾' : '客户信息 ▴';
+          files.forEach(f => {
+            const a = document.createElement('a'); a.className='cust-link'; a.href='./base/'+f.file; a.textContent = f.title;
+            a.addEventListener('click', (e) => { e.preventDefault(); openSection('./base/'+f.file); });
+            links.appendChild(a);
           });
         } else {
-          // 无客户文件：点击直接打开该国客户信息主页
-          card.addEventListener('click', () => openSection('./country.html?c='+co.iso2));
+          const a = document.createElement('a'); a.className='cust-link'; a.href='./country.html?c='+co.iso2; a.textContent = '客户信息';
+          a.addEventListener('click', (e) => { e.preventDefault(); openSection('./country.html?c='+co.iso2); });
+          links.appendChild(a);
         }
+        const more = document.createElement('button'); more.type='button'; more.className='cust-more'; more.textContent='▾ 更多'; more.style.display='none';
+        row.appendChild(name); row.appendChild(links); row.appendChild(more);
+        rows.appendChild(row);
+        allRows.push(row);
+
+        function toggle(){
+          row.classList.toggle('expanded');
+          layoutRow(row);
+        }
+        name.addEventListener('click', toggle);
+        more.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
       });
-      rg.appendChild(grid);
+      rg.appendChild(rows);
       treeBox.appendChild(rg);
     });
     sec.appendChild(treeBox);
+
+    // 单行排得开 → 全部内联显示；排不开 → 折叠为单行 + 「更多」，点击国家名向下延展
+    function layoutRow(row){
+      const links = row.querySelector('.cust-links');
+      const more = row.querySelector('.cust-more');
+      if (row.classList.contains('expanded')){
+        row.classList.remove('collapsed');
+        more.style.display=''; more.textContent='▴ 收起';
+        return;
+      }
+      const prevWrap = links.style.flexWrap, prevOver = links.style.overflow;
+      links.style.flexWrap='nowrap'; links.style.overflow='visible';
+      const overflow = links.scrollWidth > links.clientWidth + 2;
+      links.style.flexWrap=prevWrap; links.style.overflow=prevOver;
+      if (overflow){
+        row.classList.add('collapsed');
+        more.style.display=''; more.textContent='▾ 更多';
+      } else {
+        row.classList.remove('collapsed');
+        more.style.display='none';
+      }
+    }
+    requestAnimationFrame(() => allRows.forEach(layoutRow));
+    window.addEventListener('resize', () => allRows.forEach(layoutRow), { passive:true });
     return sec;
   }
 
