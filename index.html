@@ -105,14 +105,16 @@
   }
   .cust-row:hover{ background:#f0fdfa; border-color:#0d9488; border-left-color:#0d9488; box-shadow:0 8px 20px rgba(13,148,136,.12); transform:translateY(-2px); }
   .cust-name{
-    flex:0 0 auto; display:inline-flex; align-items:center; gap:9px;
+    flex:0 0 auto; display:inline-flex; flex-direction:column; align-items:flex-start; gap:2px;
     font:inherit; font-size:15px; font-weight:700; color:#0f172a;
     background:linear-gradient(135deg, rgba(13,148,136,.07), rgba(15,118,110,.07));
     border:1px solid #99f6e4; border-radius:11px;
-    padding:9px 15px; cursor:pointer; white-space:nowrap;
+    padding:8px 15px; cursor:pointer; white-space:nowrap; text-align:left;
     transition:background .18s, box-shadow .18s;
   }
-  .cust-name .flag{ width:22px; height:15px; margin-left:5px; border-radius:2px; box-shadow:0 1px 2px rgba(15,23,42,.25); vertical-align:middle; object-fit:cover; flex:none; }
+  .cust-name .cn-row{ display:inline-flex; align-items:center; gap:9px; }
+  .cust-name .en-row{ font-size:11px; font-weight:600; color:#0f766e; opacity:.82; letter-spacing:.2px; }
+  .cust-name .flag{ width:22px; height:15px; margin-left:0; border-radius:2px; box-shadow:0 1px 2px rgba(15,23,42,.25); vertical-align:middle; object-fit:cover; flex:none; }
   .cust-name:hover{ background:linear-gradient(135deg, rgba(13,148,136,.14), rgba(15,118,110,.14)); box-shadow:0 4px 14px rgba(15,118,110,.18); }
   .cust-name:focus-visible{ outline:2px solid #0d9488; outline-offset:2px; }
   .cust-links{ flex:1 1 0; min-width:0; display:flex; flex-wrap:nowrap; overflow:hidden; gap:9px; align-items:center; }
@@ -128,13 +130,6 @@
   .cust-link::before{ content:'↗'; font-size:12px; opacity:.55; }
   .cust-link:hover{ background:linear-gradient(135deg,#14b8a6,#0d9488); color:#fff; border-color:transparent; transform:translateY(-1px); box-shadow:0 6px 16px rgba(15,118,110,.32); }
   .cust-link:hover::before{ opacity:1; }
-  .cust-more{
-    flex:0 0 auto; font:inherit; font-size:12px; font-weight:600; color:#0f766e;
-    background:rgba(13,148,136,.08); border:1px dashed #5eead4; border-radius:999px;
-    padding:7px 14px; cursor:pointer; white-space:nowrap;
-    transition:background .18s, border-color .18s;
-  }
-  .cust-more:hover{ background:rgba(13,148,136,.16); border-color:#0d9488; }
   @media (max-width:600px){
     .cust-row{ flex-direction:column; align-items:stretch; gap:10px; }
     .cust-name{ align-self:flex-start; }
@@ -294,29 +289,29 @@
     name: '外贸客户文件',                               // 一级
     regions: [
       { name:'亚洲', countries:[
-        { iso2:'bd', name:'孟加拉' },
-        { iso2:'th', name:'泰国' },
-        { iso2:'vn', name:'越南' },
-        { iso2:'in', name:'印度' },
-        { iso2:'la', name:'老挝' },
-        { iso2:'jp', name:'日本' },
-        { iso2:'kr', name:'韩国' },
-        { iso2:'kp', name:'朝鲜' },
-        { iso2:'my', name:'马来西亚' },
-        { iso2:'id', name:'印度尼西亚' },
-        { iso2:'pk', name:'巴基斯坦' },
+        { iso2:'bd', name:'孟加拉', en:'Bangladesh', code:'+880' },
+        { iso2:'th', name:'泰国', en:'Thailand', code:'+66' },
+        { iso2:'vn', name:'越南', en:'Vietnam', code:'+84' },
+        { iso2:'in', name:'印度', en:'India', code:'+91' },
+        { iso2:'la', name:'老挝', en:'Laos', code:'+856' },
+        { iso2:'jp', name:'日本', en:'Japan', code:'+81' },
+        { iso2:'kr', name:'韩国', en:'South Korea', code:'+82' },
+        { iso2:'kp', name:'朝鲜', en:'North Korea', code:'+850' },
+        { iso2:'my', name:'马来西亚', en:'Malaysia', code:'+60' },
+        { iso2:'id', name:'印度尼西亚', en:'Indonesia', code:'+62' },
+        { iso2:'pk', name:'巴基斯坦', en:'Pakistan', code:'+92' },
       ]},
       { name:'非洲', countries:[
-        { iso2:'ng', name:'尼日利亚' },
-        { iso2:'tz', name:'坦桑尼亚' },
-        { iso2:'ci', name:'科特迪瓦' },
+        { iso2:'ng', name:'尼日利亚', en:'Nigeria', code:'+234' },
+        { iso2:'tz', name:'坦桑尼亚', en:'Tanzania', code:'+255' },
+        { iso2:'ci', name:'科特迪瓦', en:"Côte d'Ivoire", code:'+225' },
       ]},
       { name:'美洲', countries:[
-        { iso2:'mx', name:'墨西哥' },
-        { iso2:'gt', name:'危地马拉' },
+        { iso2:'mx', name:'墨西哥', en:'Mexico', code:'+52' },
+        { iso2:'gt', name:'危地马拉', en:'Guatemala', code:'+502' },
       ]},
       { name:'欧洲', countries:[
-        { iso2:'ru', name:'俄罗斯' },
+        { iso2:'ru', name:'俄罗斯', en:'Russia', code:'+7' },
       ]},
     ]
   };
@@ -516,8 +511,8 @@
     const d = document.createElement('div'); d.className='empty'; d.textContent = msg; return d;
   }
   // 外贸客户分级导航：一级[外贸客户文件] → 二级大洲 → 三级国家；
-  // 新版：每个国家成「行」显示——行首为国家名（可点击展开/收起），其后紧跟可单独点选的各个子链接（客户文件）。
-  // 大洲标题右侧三角可一键展开/收纳该大洲全部国家；国家行始终单行，右侧 [展开更多] 按钮展开全部子链接。
+  // 新版：每个国家成「行」显示——行首国家名（下方小字英文名+电话区号，点击可展开/收起），其后紧跟可单独点选的各个子链接（客户文件）。
+  // 大洲名右侧三角可一键展开/收纳该大洲全部国家；国家行始终单行，放不下的子链接隐藏（无「展开更多」按钮）。
   function catTreeBlock(c, tree){
     // 由 ISO2 自动生成国旗图片（flagcdn CDN），覆盖所有国家，无需维护字典；
     // 用图片而非 emoji，规避 Windows 不渲染国旗 emoji（只显示 JP/KR 字母）的问题
@@ -542,9 +537,13 @@
         const files = (CUST_FILES && CUST_FILES[co.iso2]) || co.files || null;
         const row = document.createElement('div'); row.className='cust-row';
         const name = document.createElement('button'); name.type='button'; name.className='cust-name';
-        name.appendChild(document.createTextNode(co.name));
-        const fg = flagImg(co.iso2, co.name);
-        name.appendChild(fg);
+        const cnRow = document.createElement('span'); cnRow.className='cn-row';
+        cnRow.appendChild(document.createTextNode(co.name));
+        cnRow.appendChild(flagImg(co.iso2, co.name));
+        name.appendChild(cnRow);
+        const enRow = document.createElement('span'); enRow.className='en-row';
+        enRow.textContent = [co.en, co.code].filter(Boolean).join(' ');
+        if (enRow.textContent) name.appendChild(enRow);
         const links = document.createElement('div'); links.className='cust-links';
         if (files && files.length){
           files.forEach(f => {
@@ -557,8 +556,7 @@
           a.addEventListener('click', (e) => { e.preventDefault(); openSection('./country.html?c='+co.iso2); });
           links.appendChild(a);
         }
-        const more = document.createElement('button'); more.type='button'; more.className='cust-more'; more.textContent='[展开更多]';
-        row.appendChild(name); row.appendChild(links); row.appendChild(more);
+        row.appendChild(name); row.appendChild(links);
         rows.appendChild(row);
         allRows.push(row);
         row.addEventListener('click', () => {
@@ -571,23 +569,19 @@
           layoutRow(row);
         }
         name.addEventListener('click', toggle);
-        more.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
       });
       rg.appendChild(rows);
       treeBox.appendChild(rg);
     });
     sec.appendChild(treeBox);
 
-    // 国家行始终单行：收起态 links 单行(nowrap+overflow:hidden，多余的链接隐藏)；点 [展开更多]/国家名 → 展开显示全部链接
+    // 国家行始终单行：收起态 links 单行(nowrap+overflow:hidden，多余的链接隐藏)；点国家名 → 展开显示全部链接
     function layoutRow(row){
       const links = row.querySelector('.cust-links');
-      const more = row.querySelector('.cust-more');
       const all = Array.prototype.slice.call(links.querySelectorAll('.cust-link'));
-      more.style.display='';
       if (row.classList.contains('expanded')){
         links.style.flexWrap=''; links.style.overflow='';
         all.forEach(a => a.style.display='');
-        more.textContent='[收起]';
         return;
       }
       // 收起态：单行，隐藏放不下的链接，保证整行只占一行
@@ -599,7 +593,6 @@
         if (avail - w >= -2){ avail -= w; a.style.display=''; }
         else { a.style.display='none'; }
       });
-      more.textContent='[展开更多]';
     }
     requestAnimationFrame(() => allRows.forEach(layoutRow));
     window.addEventListener('resize', () => allRows.forEach(layoutRow), { passive:true });
