@@ -302,18 +302,9 @@
         { iso2:'jp', name:'日本', en:'Japan', code:'+81' },
         { iso2:'kr', name:'韩国', en:'South Korea', code:'+82' },
         { iso2:'kp', name:'朝鲜', en:'North Korea', code:'+850' },
-        { iso2:'my', name:'马来西亚', en:'Malaysia', code:'+60' },
-        { iso2:'id', name:'印度尼西亚', en:'Indonesia', code:'+62' },
-        { iso2:'pk', name:'巴基斯坦', en:'Pakistan', code:'+92' },
       ]},
       { name:'非洲', countries:[
         { iso2:'ng', name:'尼日利亚', en:'Nigeria', code:'+234' },
-        { iso2:'tz', name:'坦桑尼亚', en:'Tanzania', code:'+255' },
-        { iso2:'ci', name:'科特迪瓦', en:"Côte d'Ivoire", code:'+225' },
-      ]},
-      { name:'美洲', countries:[
-        { iso2:'mx', name:'墨西哥', en:'Mexico', code:'+52' },
-        { iso2:'gt', name:'危地马拉', en:'Guatemala', code:'+502' },
       ]},
       { name:'欧洲', countries:[
         { iso2:'ru', name:'俄罗斯', en:'Russia', code:'+7' },
@@ -538,8 +529,15 @@
       rh.addEventListener('click', () => rg.classList.toggle('collapsed'));
       rg.appendChild(rh);
       const rows = document.createElement('div'); rows.className='cust-rows';
+      // 只渲染「确有客户文件」的国家：无文件的国家不再出现（否则点了只是个空页面）。
+      // 该过滤同时兜底「洲内国家全无文件」的情况——整块大洲不渲染。
+      const valid = (reg.countries || []).filter(co => {
+        const f = (CUST_FILES && CUST_FILES[co.iso2]) || co.files || null;
+        return !!(f && f.length);
+      });
+      if (!valid.length) return;   // 该洲已无有效国家 → 整块跳过
       // 洲内国家按英文名首字母升序排列（忽略大小写与重音符号差异）
-      reg.countries.slice().sort((a, b) => {
+      valid.slice().sort((a, b) => {
         const ka = (a.en || a.name || '').toUpperCase();
         const kb = (b.en || b.name || '').toUpperCase();
         return ka < kb ? -1 : (ka > kb ? 1 : 0);
@@ -555,17 +553,12 @@
         enRow.textContent = [co.en, co.code].filter(Boolean).join(' ');
         if (enRow.textContent) name.appendChild(enRow);
         const links = document.createElement('div'); links.className='cust-links';
-        if (files && files.length){
-          files.forEach(f => {
-            const a = document.createElement('a'); a.className='cust-link'; a.href='./base/'+f.file; a.textContent = f.title;
-            a.addEventListener('click', (e) => { e.preventDefault(); openSection('./base/'+f.file); });
-            links.appendChild(a);
-          });
-        } else {
-          const a = document.createElement('a'); a.className='cust-link'; a.href='./country.html?c='+co.iso2; a.textContent = '经销商总表';
-          a.addEventListener('click', (e) => { e.preventDefault(); openSection('./country.html?c='+co.iso2); });
+        // 不再设「无文件」兜底按钮：无文件国家已在上面被过滤掉，避免出现点了只有空页面的按钮
+        files.forEach(f => {
+          const a = document.createElement('a'); a.className='cust-link'; a.href='./base/'+f.file; a.textContent = f.title;
+          a.addEventListener('click', (e) => { e.preventDefault(); openSection('./base/'+f.file); });
           links.appendChild(a);
-        }
+        });
         const nameCell = document.createElement('div'); nameCell.className='cust-name-cell';
         nameCell.appendChild(name);
         row.appendChild(nameCell); row.appendChild(links);
