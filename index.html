@@ -88,7 +88,7 @@
   .cust-sub .sub-card .go{ color:#0f766e; }
   /* 国家版块「成行」版式：行首国家名 + 紧跟可单独点选的子链接；排不开则折叠为「+N」，点击国家名向下延展成纵向列表 */
   .cust-rows{ display:flex; flex-direction:column; gap:12px; }
-  .cust-region-h .tri{ margin-left:auto; font-size:11px; line-height:1; color:var(--c-cust); transition:transform .2s ease; }
+  .cust-region-h .tri{ margin-left:auto; width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid var(--c-cust); transition:transform .2s ease; }
   .cust-region.collapsed .cust-rows{ display:none; }
   .cust-region.collapsed .cust-region-h .tri{ transform:rotate(-90deg); }
   .cust-row{ cursor:pointer; }
@@ -533,7 +533,7 @@
       const rg = document.createElement('div'); rg.className='cust-region';
       const rh = document.createElement('div'); rh.className='cust-region-h';
       rh.appendChild(document.createTextNode(reg.name));
-      const tri = document.createElement('span'); tri.className='tri'; tri.textContent='▾';
+      const tri = document.createElement('span'); tri.className='tri'; tri.setAttribute('aria-hidden','true');
       rh.appendChild(tri);
       rh.addEventListener('click', () => rg.classList.toggle('collapsed'));
       rg.appendChild(rh);
