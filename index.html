@@ -107,7 +107,7 @@
     padding:9px 15px; cursor:pointer; white-space:nowrap;
     transition:background .18s, box-shadow .18s;
   }
-  .cust-name::before{ content:''; width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg,#0ea5e9,#0d9488); box-shadow:0 0 0 3px rgba(13,148,136,.15); flex:none; }
+  .cust-name .flag{ font-size:17px; line-height:1; margin-left:3px; }
   .cust-name:hover{ background:linear-gradient(135deg, rgba(37,99,235,.14), rgba(13,148,136,.14)); box-shadow:0 4px 14px rgba(13,148,136,.18); }
   .cust-name:focus-visible{ outline:2px solid #0d9488; outline-offset:2px; }
   .cust-links{ flex:1 1 auto; min-width:0; display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
@@ -301,49 +301,49 @@
   // 原「孟加拉客户文件」版块的 9 份文件已全部迁移至此，作为 [孟加拉] 的「客户信息」子链接。
   const CUST_FILES = {
     bd: [
-      { file:'existing_customers.html', title:'孟加拉客户信息表' },
-      { file:'dhaka_private_hospitals.html', title:'达卡私立医院一览' },
-      { file:'bangladesh_bone_all.html', title:'孟加拉骨组织手术设备经销商·全量汇总' },
-      { file:'bangladesh_esu.html', title:'孟加拉 ESU 电刀及外科设备经销商' },
-      { file:'bangladesh_verified.html', title:'孟加拉已核实经销商名单' },
-      { file:'expo_list.html', title:'孟加拉医疗器械展会展商总表' },
-      { file:'buyer_profile.html', title:'电刀厂家外贸客户·买方详细档案' },
-      { file:'buyer_profile_compliant.html', title:'电刀厂家外贸客户·买方详细档案（合规版）' },
-      { file:'deep_compliant.html', title:'电刀厂家外贸客户·多源交叉验证版' },
-      { file:'report_multi.html', title:'电刀主机厂家外贸客户·多源交叉验证版' },
+      { file:'existing_customers.html', title:'客户信息表' },
+      { file:'dhaka_private_hospitals.html', title:'达卡私立医院' },
+      { file:'bangladesh_bone_all.html', title:'骨组织手术设备·汇总' },
+      { file:'bangladesh_esu.html', title:'ESU 电刀及外科设备' },
+      { file:'bangladesh_verified.html', title:'已核实经销商' },
+      { file:'expo_list.html', title:'展会总表' },
+      { file:'buyer_profile.html', title:'买方档案' },
+      { file:'buyer_profile_compliant.html', title:'买方档案·合规' },
+      { file:'deep_compliant.html', title:'多源交叉验证' },
+      { file:'report_multi.html', title:'主机多源验证' },
     ],
     ng: [
-      { file:'nigeria_customers.html', title:'尼日利亚客户信息表' },
+      { file:'nigeria_customers.html', title:'客户信息表' },
     ],
     th: [
-      { file:'thailand_customers.html', title:'泰国医疗器械经销商总表' },
-      { file:'thailand_hospitals.html', title:'泰国医院信息表' },
+      { file:'thailand_customers.html', title:'经销商总表' },
+      { file:'thailand_hospitals.html', title:'医院信息表' },
     ],
     vn: [
-      { file:'vietnam_customers.html', title:'越南医疗器械经销商总表' },
-      { file:'vietnam_hospitals.html', title:'越南医院信息表' },
+      { file:'vietnam_customers.html', title:'经销商总表' },
+      { file:'vietnam_hospitals.html', title:'医院信息表' },
     ],
     in: [
-      { file:'india_customers.html', title:'印度医疗器械经销商总表' },
+      { file:'india_customers.html', title:'经销商总表' },
     ],
     la: [
-      { file:'laos_customers.html', title:'老挝医疗器械经销商总表' },
-      { file:'laos_hospitals.html', title:'老挝医院信息表' },
+      { file:'laos_customers.html', title:'经销商总表' },
+      { file:'laos_hospitals.html', title:'医院信息表' },
     ],
     ru: [
-      { file:'russia_customers.html', title:'俄罗斯医疗器械经销商名录（合并版）' },
+      { file:'russia_customers.html', title:'经销商名录（合并）' },
     ],
     jp: [
-      { file:'japan_customers.html', title:'日本医疗器械经销商总表' },
-      { file:'japan_hospitals.html', title:'日本医院信息表' },
+      { file:'japan_customers.html', title:'经销商总表' },
+      { file:'japan_hospitals.html', title:'医院信息表' },
     ],
     kr: [
-      { file:'korea_customers.html', title:'韩国医疗器械经销商总表' },
-      { file:'korea_hospitals.html', title:'韩国医院信息表' },
+      { file:'korea_customers.html', title:'经销商总表' },
+      { file:'korea_hospitals.html', title:'医院信息表' },
     ],
     kp: [
-      { file:'northkorea_customers.html', title:'朝鲜医疗器械经销商总表' },
-      { file:'northkorea_hospitals.html', title:'朝鲜医院信息表' },
+      { file:'northkorea_customers.html', title:'经销商总表' },
+      { file:'northkorea_hospitals.html', title:'医院信息表' },
     ],
   };
   const CATS = [
@@ -494,6 +494,8 @@
   // 新版：每个国家成「行」显示——行首为国家名（可点击展开/收起），其后紧跟可单独点选的各个子链接（客户文件）。
   // 子链接单行排不开时折叠并显示「▾ 更多」，点击国家名或「更多」即向下延展全部文件链接。
   function catTreeBlock(c, tree){
+    // 由 ISO2 自动生成国旗 emoji（Regional Indicator Symbols），覆盖所有国家，无需维护字典
+    function flagOf(iso2){ return iso2.toUpperCase().replace(/./g, function(ch){ return String.fromCodePoint(127397 + ch.charCodeAt(0)); }); }
     const sec = document.createElement('section'); sec.className='cat';
     const head = document.createElement('div'); head.className='cat-head';
     head.innerHTML = '<span class="dot" style="background:'+c.color+'"></span><h2>'+c.name+'</h2>';
@@ -511,7 +513,10 @@
       reg.countries.forEach(co => {
         const files = (CUST_FILES && CUST_FILES[co.iso2]) || co.files || null;
         const row = document.createElement('div'); row.className='cust-row';
-        const name = document.createElement('button'); name.type='button'; name.className='cust-name'; name.textContent = co.name;
+        const name = document.createElement('button'); name.type='button'; name.className='cust-name';
+        name.appendChild(document.createTextNode(co.name));
+        const fg = document.createElement('span'); fg.className='flag'; fg.textContent = flagOf(co.iso2);
+        name.appendChild(fg);
         const links = document.createElement('div'); links.className='cust-links';
         if (files && files.length){
           files.forEach(f => {
