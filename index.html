@@ -227,6 +227,9 @@
         { iso2:'vn', name:'越南' },
         { iso2:'in', name:'印度' },
         { iso2:'la', name:'老挝' },
+        { iso2:'jp', name:'日本' },
+        { iso2:'kr', name:'韩国' },
+        { iso2:'kp', name:'朝鲜' },
         { iso2:'my', name:'马来西亚' },
         { iso2:'id', name:'印度尼西亚' },
         { iso2:'pk', name:'巴基斯坦' },
@@ -280,6 +283,18 @@
     ],
     ru: [
       { file:'russia_customers.html', title:'俄罗斯医疗器械经销商名录（合并版）' },
+    ],
+    jp: [
+      { file:'japan_customers.html', title:'日本医疗器械经销商总表' },
+      { file:'japan_hospitals.html', title:'日本医院信息表' },
+    ],
+    kr: [
+      { file:'korea_customers.html', title:'韩国医疗器械经销商总表' },
+      { file:'korea_hospitals.html', title:'韩国医院信息表' },
+    ],
+    kp: [
+      { file:'northkorea_customers.html', title:'朝鲜医疗器械经销商总表' },
+      { file:'northkorea_hospitals.html', title:'朝鲜医院信息表' },
     ],
   };
   const CATS = [
@@ -359,7 +374,7 @@
     if (h.startsWith('country=')) { iso2 = h.slice(8); mode = 'build'; }
     else if (h.startsWith('sec=')) { iso2 = h.slice(4); mode = 'sec'; }
     if (!iso2) { hint.className = 'country-hint'; hint.innerHTML = ''; return; }
-    const CN = { bd:'孟加拉', cn:'中国', in:'印度', jp:'日本', kr:'韩国', vn:'越南', th:'泰国', my:'马来西亚', sg:'新加坡', id:'印度尼西亚', ph:'菲律宾', pk:'巴基斯坦', lk:'斯里兰卡', mm:'缅甸', kh:'柬埔寨', la:'老挝', np:'尼泊尔', mn:'蒙古', kz:'哈萨克斯坦', uz:'乌兹别克斯坦', ir:'伊朗', iq:'伊拉克', sa:'沙特阿拉伯', ae:'阿联酋', tr:'土耳其', eg:'埃及', za:'南非', ng:'尼日利亚', br:'巴西', ar:'阿根廷', cl:'智利', pe:'秘鲁', mx:'墨西哥', us:'美国', ca:'加拿大', fr:'法国', de:'德国', it:'意大利', es:'西班牙', pt:'葡萄牙', nl:'荷兰', be:'比利时', ch:'瑞士', at:'奥地利', se:'瑞典', no:'挪威', dk:'丹麦', fi:'芬兰', ie:'爱尔兰', gb:'英国', pl:'波兰', ru:'俄罗斯', ua:'乌克兰', au:'澳大利亚', nz:'新西兰' };
+    const CN = { bd:'孟加拉', cn:'中国', in:'印度', jp:'日本', kr:'韩国', kp:'朝鲜', vn:'越南', th:'泰国', my:'马来西亚', sg:'新加坡', id:'印度尼西亚', ph:'菲律宾', pk:'巴基斯坦', lk:'斯里兰卡', mm:'缅甸', kh:'柬埔寨', la:'老挝', np:'尼泊尔', mn:'蒙古', kz:'哈萨克斯坦', uz:'乌兹别克斯坦', ir:'伊朗', iq:'伊拉克', sa:'沙特阿拉伯', ae:'阿联酋', tr:'土耳其', eg:'埃及', za:'南非', ng:'尼日利亚', br:'巴西', ar:'阿根廷', cl:'智利', pe:'秘鲁', mx:'墨西哥', us:'美国', ca:'加拿大', fr:'法国', de:'德国', it:'意大利', es:'西班牙', pt:'葡萄牙', nl:'荷兰', be:'比利时', ch:'瑞士', at:'奥地利', se:'瑞典', no:'挪威', dk:'丹麦', fi:'芬兰', ie:'爱尔兰', gb:'英国', pl:'波兰', ru:'俄罗斯', ua:'乌克兰', au:'澳大利亚', nz:'新西兰' };
     const label = CN[iso2] || iso2.toUpperCase();
     if (mode === 'sec') hint.innerHTML = '已定位板块：<b>'+label+'</b> 客户文件';
     else hint.innerHTML = '正在建设：<b>'+label+'</b> 国家专属板块（即将上线）';
