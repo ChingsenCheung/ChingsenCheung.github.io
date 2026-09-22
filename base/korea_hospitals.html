@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="YEsKvsMDiV1lYp7JqMaOx">
+<head data-page-node-id="daDxZdpAev7Sw9fZNae0Z">
+    <script data-xh-gate>
+(function(){
+  var TTL=8*60*60*1000;
+  try{var a=JSON.parse(localStorage.getItem('xh_auth')||'null');if(a&&a.u&&(Date.now()-a.ts)<TTL)return;}catch(e){}
+  var seg=location.pathname.split('/').filter(Boolean).length;
+  var prefix=seg>1?new Array(seg).join('../'):'./';
+  var next=location.pathname+(location.search||'');
+  location.replace(prefix+'login.html?next='+encodeURIComponent(next));
+})();
+</script>
+    <meta charset="UTF-8" data-page-node-id="2bVX9ypVIBnvMaHDMK0MQ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="FxiWtmRJDx6S5o66Mrr5i">
+    <title>韩国医院信息表</title>
+    <style>        * { margin: 0; padding: 0; box-sizing: border-box; }        body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }        h1 { text-align: center; color: #1a3a6b; font-size: 24px; margin-bottom: 5px; padding: 20px 0 10px; border-bottom: 3px solid #1a3a6b; }  .searchbar{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto 18px;}  .searchbar input{flex:1;padding:10px 14px;border:1px solid #c9d4e3;border-radius:8px;font-size:14px;outline:none;}  .searchbar input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);}  .search-count{font-size:13px;color:#666;white-space:nowrap;}        .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }        .stat-card { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; min-width: 140px; }        .stat-card .num { font-size: 28px; font-weight: 700; color: #1a3a6b; }        .stat-card .label { font-size: 12px; color: #888; }        .stat-card.total { border-top: 3px solid #27ae60; }        .stat-card.total .num { color: #27ae60; }        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-size: 13px; margin-bottom: 20px; }        thead { background: linear-gradient(135deg, #1a3a6b 0%, #2c5aa0 100%); color: #fff; }        th { padding: 12px 10px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }        td { padding: 10px 10px; border-bottom: 1px solid #eee; vertical-align: top; }        tr:hover { background: #f8f9fb; }        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; color:#fff; }        .badge-public { background: #2ecc71; }        .badge-private { background: #3498db; }        .badge-teaching { background: #f39c12; }        .badge-international { background: #9b59b6; }        .badge-military { background: #e74c3c; }        .badge-ngo { background: #1abc9c; }        .badge-joint { background: #e67e22; }        .badge-ot { background: #9b59b6; color: #fff; }        a { color: #2c5aa0; text-decoration: none; }        a:hover { text-decoration: underline; }        .company-name { font-weight: 600; color: #1a3a6b; }        .contact-info { font-size: 12px; color: #555; }        .contact-info div { margin-bottom: 2px; }.muted { color: #aaa; }        .footer { text-align: center; margin-top: 30px; padding: 20px; color: #888; font-size: 12px; }        .footer p { margin-bottom: 4px; }</style>
+</head>
+<body data-page-node-id="bzj3EzQnHRrVBFja8GWTG">
+<div class="container" data-page-node-id="krxIfaPLNnA7fuG7oVFp5">
+    <h1 data-page-node-id="YzasChSPjYE0uhx8MrP7I">韩国医院信息表</h1>
+    <div class="stats" data-page-node-id="iERMLkKeKosWNPF1pdb6z"><div class="stat-card total" data-page-node-id="ZST4LOjslWmoByjJTNxGq"><div class="num" data-page-node-id="mrElicxGttX10ZL4rrTLq">40</div><div class="label" data-page-node-id="IM2fclQP6oPknIhK90iPg">医院总数</div></div></div>
+      <div class="searchbar" data-page-node-id="p2vMRmTLBimmh3GP7XKZd">
+    <input id="custSearch" type="text" placeholder="🔍 搜索医院名称 / 城市 / 电话 / 官网 / 性质…" autocomplete="off" data-page-node-id="uuMhuSYuGb9fitmVdBH13">
+    <span class="search-count" id="custCount" data-page-node-id="ACwYzH78qgOhYKjFBzg6T"></span>
+  </div>
+<table data-page-node-id="2qPLI9nzZGRvz0uBKUvE4">
+        <thead data-page-node-id="OdV4tWbH1AqI2LZfjg7yh">
+            <tr data-page-node-id="UiNFqCLWA8CqgI8rNIW1d">
+                <th style="width:30px;" data-page-node-id="7srT6s21KihRmvQkaCCWM">#</th>
+                <th style="width:230px;" data-page-node-id="MwH6vo6SCmi9HQNS060QL">医院名称</th>
+                <th style="width:110px;" data-page-node-id="hUbcqOKxd9cVycclZwSx8">城市</th>
+                <th style="width:250px;" data-page-node-id="QmqMDgG0ZsSjwN0MOwWDo">联系方式（电话/邮箱/地址/床位）</th>
+                <th style="width:170px;" data-page-node-id="FUQH2npIltMmdH6J9qiIX">官网</th>
+                <th style="width:120px;" data-page-node-id="L8NQxcZvqE6757nCnoqFL">性质</th>
+                </tr>
+        </thead>
+        <tbody data-page-node-id="i9MER4S07W0WAL9qJrYQX">
+<tr data-page-node-id="PK1KmR5x4NH4Dk08es4DJ">
+  <td data-page-node-id="wtjQ8psySp6izAO9cnemb">1</td>
+  <td class='company-name' data-page-node-id="YXkB0LFywj9HQpGq6Jq2o">Asan Medical Center (서울아산병원)</td>
+  <td data-page-node-id="WI8T1MB7y66wfcPDNJyCZ">Seoul</td>
+  <td class='contact-info' data-page-node-id="JQLwEx5nnlakEf0q0iGXj">
+    <div data-page-node-id="58Qo9jUZGGSu9SnA4uJPa">📍 88, Olympic-ro 43-gil, Songpa-gu, Seoul</div>
+    <div data-page-node-id="QFRAG0GCK9GxA6Gkfobn1">🛏 床位：2823</div>
+    <div class="muted" data-page-node-id="U15R1cIeZ9D3gE4eoWJYE">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="n3sjBqdKhMsSu47LS76YO">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="dnfEe54kvVHu0BZlgwR8W"><a href="https://eng.amc.seoul.kr/gb/lang/main.do" target="_blank" data-page-node-id="zJ8cKR50hqkSf7sivU2dW">https://eng.amc.seoul.kr/gb/lang/main.do</a></td>
+  <td data-page-node-id="bgx9fvUUKoWZxUfBcWcaa"><span class='badge badge-private' data-page-node-id="hOD5UYomxPmDLjmmvuvJE">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="n9UrumSzgq0a7PJHGyCCm">
+  <td data-page-node-id="vkbso0fdVoAz0W5kxhf98">2</td>
+  <td class='company-name' data-page-node-id="d1lBCu4iHUDzXlE3cyHSS">Severance Hospital (세브란스병원)</td>
+  <td data-page-node-id="GkkfyXK2YNUSGLInN1yNN">Seoul</td>
+  <td class='contact-info' data-page-node-id="AgUo9vea4OYlkRlqrEchh">
+    <div data-page-node-id="Oq5pRD7DTRA7ACswlJ5aR">📍 50-1, Yonsei-ro, Seodaemun-gu, Seoul</div>
+    <div data-page-node-id="aJcG3IihrCZfT0AXYYxJd">🛏 床位：2448</div>
+    <div class="muted" data-page-node-id="N5OdS95zWoJt8S5Qzh9qw">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="4Or1Qr8QW3z9qTzbtOSBD">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="UzvRYn4AYvVd2oMHW7Q6r"><a href="https://sev.severance.healthcare/sev-en/index.do" target="_blank" data-page-node-id="DWuTBj6NsWdzxlcaSMTKZ">https://sev.severance.healthcare/sev-en/index.do</a></td>
+  <td data-page-node-id="pG2kxlMehCKlpTYwP2ffu"><span class='badge badge-private' data-page-node-id="RCTf395QPhi5u9ivxxPkm">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="5v7Kw4weJOCjd115JakHv">
+  <td data-page-node-id="W6OsoLLWq079aLtlSt3vx">3</td>
+  <td class='company-name' data-page-node-id="4TwcgizRngl0jhDg1pw3F">Samsung Medical Center (삼성서울병원)</td>
+  <td data-page-node-id="exJDH7ZF7ZJMaM16ZqkrI">Seoul</td>
+  <td class='contact-info' data-page-node-id="BvR7spaS9xFf1oWiw29cK">
+    <div data-page-node-id="gYozWQAfY4mSPYhjnIvJU">🛏 床位：2054</div>
+    <div class="muted" data-page-node-id="skLHcu8dCH2fbyn4D4XHt">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="lK7rxywTc9ELR21ki47yL">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="aPHpvdkPUXgsP2KeJOaY5"><a href="https://www.samsunghospital.com/gb/language/english/main/index.do" target="_blank" data-page-node-id="jzU7apcUj5rKr1I9SXiSK">https://www.samsunghospital.com/gb/language/english/main/index.do</a></td>
+  <td data-page-node-id="Y4s9P045TVHGwzfWV37kX"><span class='badge badge-private' data-page-node-id="XEoWwPiwf7qikdYrPykAQ">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="yt2rSBlYaU22b8TlNZjD4">
+  <td data-page-node-id="r2XPlqb3ls1bJHikWYCDy">4</td>
+  <td class='company-name' data-page-node-id="OALQIGTHXvUo852ZF0K6t">Seoul National University Hospital (서울대학교병원)</td>
+  <td data-page-node-id="9e3G5nMhHvRcjR8Y7FpUR">Seoul</td>
+  <td class='contact-info' data-page-node-id="ttaqI0vsQnOHCHQ8SMRtQ">
+    <div data-page-node-id="sFB1zPxxHzgVFanRvCTJB">🛏 床位：1868</div>
+    <div class="muted" data-page-node-id="cYsrZ7zpy09rbCI8R5S55">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="5dDhhjc1CcylrLPY5KFdG">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="QyxfiYmN3uHAqhqLTi20s"><a href="http://www.snuh.org/global/en/main.do" target="_blank" data-page-node-id="gKGgOqOpd4lhZL856hZ3W">http://www.snuh.org/global/en/main.do</a></td>
+  <td data-page-node-id="HbVImvz9bYIoODL3AeNYV"><span class='badge badge-public' data-page-node-id="3sClt5KoOIMm8hRz3DgXZ">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="hebpeNaxLLaBPPChvr9lC">
+  <td data-page-node-id="PysIR8y1vlJtoMW2Jz4OE">5</td>
+  <td class='company-name' data-page-node-id="uGg9xfb6goOaRZv3kwb0a">Gachon University Gil Medical Center (가천대학교 길병원)</td>
+  <td data-page-node-id="0KnGSGH35OhLuS0Kg5Ng3">Incheon</td>
+  <td class='contact-info' data-page-node-id="9EywUtfkyZQHtWLuPgBjP">
+    <div data-page-node-id="DgKTR8IxzgYFTZM8zROP1">🛏 床位：1458</div>
+    <div class="muted" data-page-node-id="AevsHHIQ0CnDF8MDBGvGs">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="WJTffTQq5eSM879a5BXB4">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="gYRHOrFzsc4LvyosyTvHx"><a href="https://www.gilhospital.com/en_US/web/foreigner/home" target="_blank" data-page-node-id="SO3O1PiWZclKDh0h9zHms">https://www.gilhospital.com/en_US/web/foreigner/home</a></td>
+  <td data-page-node-id="YxQH4ziDWoPUVTdlbKam7"><span class='badge badge-private' data-page-node-id="ypNLlpi9ZgM9JXCqCYE2r">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="XkTDyWMXBSHybsOQLus9e">
+  <td data-page-node-id="FMA1gwIkjDmJF8FPdQZUL">6</td>
+  <td class='company-name' data-page-node-id="2AtQxcyHdh2cv7qE21NQd">Seoul National University Bundang Hospital (분당서울대학교병원)</td>
+  <td data-page-node-id="OOpP4Qu62JOYC9t9x8p1h">Seongnam (Gyeonggi-do)</td>
+  <td class='contact-info' data-page-node-id="Yg99eiYr8KUn4LSG5D38n">
+    <div data-page-node-id="1zR0KTCJi5o6CZFmE6Sjh">🛏 床位：1438</div>
+    <div class="muted" data-page-node-id="vnSK5QKZbbdWV9yj0F3ml">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="OMsInAWPqRcYJbExfXIrw">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="BXmvr0p1V0No91Zisayd1"><a href="https://www.snubh.org/dh/en/" target="_blank" data-page-node-id="CQnKfztgoWGPihWgtGlPB">https://www.snubh.org/dh/en/</a></td>
+  <td data-page-node-id="WbF71fMdb6dAt5E0Qf8bi"><span class='badge badge-public' data-page-node-id="4iUIVVPxoA2KgL09K5Ebm">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="f1SMTl8KNIznLpyWc6tvH">
+  <td data-page-node-id="ixf4RsxquLudTeIvS8ale">7</td>
+  <td class='company-name' data-page-node-id="zTzWxbiwWkViOug8smure">Seoul St. Mary's Hospital (서울성모병원)</td>
+  <td data-page-node-id="lqcytv0uwMQmiDhWMMKwo">Seoul</td>
+  <td class='contact-info' data-page-node-id="Dpw7TMA706m6fjggceZYm">
+    <div data-page-node-id="u8GnZzKTI5VEPR5tAkNKG">🛏 床位：1427</div>
+    <div class="muted" data-page-node-id="PBaLdgDnSZYSFfMzvgtuM">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="kpbgJdlqUWGwWXPSXjT27">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="SJ5mSjTxl7JeOyICNjPLo"><a href="https://www.cmcseoul.or.kr/en.common.main.main.sp" target="_blank" data-page-node-id="PSncZglUKmCTxR7APva9Q">https://www.cmcseoul.or.kr/en.common.main.main.sp</a></td>
+  <td data-page-node-id="W3U6htmdJ1Srnyhq45Xcx"><span class='badge badge-private' data-page-node-id="htRNfEHQVcs4LgG3TL8QS">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="HH7l1lmg55XVBx5oblOma">
+  <td data-page-node-id="UzPXin2ANe3wPZwTDrEjf">8</td>
+  <td class='company-name' data-page-node-id="8Tlu5lz7jwlBJHpsaNIsd">Chungnam National University Hospital (충남대학교병원)</td>
+  <td data-page-node-id="kyr5ho3HdB9sGZ9k5jkq7">Daejeon</td>
+  <td class='contact-info' data-page-node-id="uKk8rtwwjp9Cw1C5yHvQz">
+    <div data-page-node-id="35sIqRtxEeyFweyqDTvuf">🛏 床位：1409</div>
+    <div class="muted" data-page-node-id="x8VkwHByNFyC8Gvb31uI1">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="ad8KiAyom9MFrXlVqOLjw">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="p8p00BhWJQXqI5Tdlgb9R"><span class="muted" data-page-node-id="f5MzZOnFfQHxv5WzCzkgu">未公开（无独立官网）</span></td>
+  <td data-page-node-id="mOG413LR6Q1BNYZMDCqGN"><span class='badge badge-public' data-page-node-id="i3NMGNLwKgKjn6SKZRKnL">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="AALhS3iMjaX3wnZqzQtnz">
+  <td data-page-node-id="2EcvY5XfRqLyzRm104VTZ">9</td>
+  <td class='company-name' data-page-node-id="I9gXkgqTpFRlPe040LiuL">Pusan National University Yangsan Hospital (부산대학교양산병원)</td>
+  <td data-page-node-id="U49Sw48IlhcK7oztDNPY8">Yangsan (Gyeongsangnam-do)</td>
+  <td class='contact-info' data-page-node-id="TD8OhQxJILPB0G0XozqnS">
+    <div data-page-node-id="aQF6zdWfsEMMOshezM1fM">🛏 床位：1320</div>
+    <div class="muted" data-page-node-id="cin98yIlOGy4HHqdDgpFK">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="pmEBMiSY2QFSRajjOA1Yh">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="DAt57sx60hxNNjWBXSg70"><a href="https://www.pnuyh.or.kr/english/main/main.do?rbsIdx=1" target="_blank" data-page-node-id="j9Dtu7u07fr3o0KdHepbQ">https://www.pnuyh.or.kr/english/main/main.do?rbsIdx=1</a></td>
+  <td data-page-node-id="DokPnt3NKA5mxAgfrTUB5"><span class='badge badge-public' data-page-node-id="XzzQGCwrGcAjNT2GnNKV7">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="NQUduxoSJahv8L1VUD1Er">
+  <td data-page-node-id="6mFbYYQ6pUSjJf0aDq0u1">10</td>
+  <td class='company-name' data-page-node-id="hoAFEDjgKb0woODgQpf7z">Ajou University Hospital (아주대학교병원)</td>
+  <td data-page-node-id="iPsmPC5kDKBFSRG3B6ocG">Suwon (Gyeonggi-do)</td>
+  <td class='contact-info' data-page-node-id="MbFFpRRbdurVz5MBcgZQy">
+    <div data-page-node-id="LvXiG2qiCbzpUlhTffVJ9">🛏 床位：1256</div>
+    <div class="muted" data-page-node-id="sCjsIF4slsYckI6MDolQ0">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="mwAmcku4xUJ0JM4Y1HwDy">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="l9UpQtziV6BkDEswpjW4W"><a href="https://global.ajoumc.or.kr/Eng/Index.aspx" target="_blank" data-page-node-id="nMFaC9giymfBNpB6aULzR">https://global.ajoumc.or.kr/Eng/Index.aspx</a></td>
+  <td data-page-node-id="hzWnaqkXRgd9futizhfak"><span class='badge badge-private' data-page-node-id="7iLtRp3nT52YhBGTL9Dt1">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="YbP2l3u0WBIHBC1Pytxv4">
+  <td data-page-node-id="vnZiwPEd1k76HvV0bI4nO">11</td>
+  <td class='company-name' data-page-node-id="1ZrDsYpcWSuMDGcfMHp6r">Jeonbuk National University Hospital (전북대학교병원)</td>
+  <td data-page-node-id="i4RhWe9ofEWJ4TkvfqNSi">Jeonju (Jeollabuk-do)</td>
+  <td class='contact-info' data-page-node-id="KD3yaoDD8USBwKlE7rcrn">
+    <div data-page-node-id="BqG2Ep1esnBJtGSDub0hx">🛏 床位：1208</div>
+    <div class="muted" data-page-node-id="peLwI7coNcPCWIMeGGVhh">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="F6koOBrHhRMYysBeuqZW9">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="jkoRqx1DulSsqek7h0GYr"><span class="muted" data-page-node-id="sp8vEU3vSNjlnBKQ63ein">未公开（无独立官网）</span></td>
+  <td data-page-node-id="PjnJQNNJMrNiLKpRLE9Eu"><span class='badge badge-public' data-page-node-id="H3TDbTKn3IoiG0HvU04eJ">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="CrdRh1a35VpuXJEpBwE8w">
+  <td data-page-node-id="UElONRZ6NcdVEZ6RXu2lE">12</td>
+  <td class='company-name' data-page-node-id="eSSsM5KwLINCJsS5LilJK">Chonnam National University Hospital (전남대학교병원)</td>
+  <td data-page-node-id="148u6E2TwgcevasjMWfGP">Gwangju</td>
+  <td class='contact-info' data-page-node-id="XYryVYXPFv2pmDXk89BHK">
+    <div data-page-node-id="qsqbnYBgUsTGFLu2M7DDl">🛏 床位：1206</div>
+    <div class="muted" data-page-node-id="R6hyS1HSzZ3SoNqhfNOi5">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="sAHfcuA0uOet4s2hqdHvz">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="GFP60IhFGk39t63kRNDLw"><a href="https://www.cnuh.com/cnuh_eng/main.cs" target="_blank" data-page-node-id="oWNUJG5xBQUdwsg4sfaFK">https://www.cnuh.com/cnuh_eng/main.cs</a></td>
+  <td data-page-node-id="LaOwxHmbxaZS91Hrjlh3O"><span class='badge badge-public' data-page-node-id="ebk2qFkTk6DXHSSJBJ8cP">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="uJcOJ8etqliiruuyYx6fc">
+  <td data-page-node-id="wxnEMBY4DzccdDb4wjN8W">13</td>
+  <td class='company-name' data-page-node-id="MuJRFcZpwkgQCqvi2CXFF">Pusan National University Hospital (부산대학교병원)</td>
+  <td data-page-node-id="2GeZk32SmzGSNwrI6c6QW">Busan</td>
+  <td class='contact-info' data-page-node-id="RkliIVgK8KfjsJ6T49skj">
+    <div data-page-node-id="ieX0fgG00hWyaC94he6E8">🛏 床位：1203</div>
+    <div class="muted" data-page-node-id="xg7XX4QtmBoD0D7rXoOUv">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="qrioeUhHGVLi7nOidnZWf">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="iT77kRj1WmtNUYBFmm8yu"><a href="https://english.pnuh.or.kr/english/main/main.do?rbsIdx=1" target="_blank" data-page-node-id="A6hEPsektiEas4Gg9EgZ0">https://english.pnuh.or.kr/english/main/main.do?rbsIdx=1</a></td>
+  <td data-page-node-id="V6LzIx4euF6x6NZEyw6eD"><span class='badge badge-public' data-page-node-id="pQzcLdOBlmUuEP64GsRAU">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="m54bDPVbeA1AUxEEZ5PUi">
+  <td data-page-node-id="YHj6joRqifnQfg3xcBti4">14</td>
+  <td class='company-name' data-page-node-id="0IsEjyYtGu5MONBCqTpid">Korea University Guro Hospital (고려대학교 구로병원)</td>
+  <td data-page-node-id="wh54i8EqJPsjwBjqvSLCQ">Seoul</td>
+  <td class='contact-info' data-page-node-id="mVhX2DIOULAl4N1oZdIXL">
+    <div data-page-node-id="LAFigSott2xeYVBk1afVp">🛏 床位：1138</div>
+    <div class="muted" data-page-node-id="IhvslRsBRENMNxkoleL9O">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="fAckW5RHRUx6WdKeFjXPt">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="q6SbZLdEHsqgcJNDvGh35"><a href="http://guro.kumc.or.kr/language/ENG/main/index.do" target="_blank" data-page-node-id="ju384ZESGtMUfReoJtal3">http://guro.kumc.or.kr/language/ENG/main/index.do</a></td>
+  <td data-page-node-id="nvNh3P6geMXrgoTw9mtnM"><span class='badge badge-private' data-page-node-id="tRqIFJ7EWnDhrx306VcwN">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="JbABvO0GKhR5gA4XxUJv0">
+  <td data-page-node-id="UzE4KC3oITDy5ugOLWFOK">15</td>
+  <td class='company-name' data-page-node-id="SFjrhWWPmjQhZ8JLK8WFR">Ulsan University Hospital (울산대학교병원)</td>
+  <td data-page-node-id="xeF0b0wYrEZAH4WXOXWAc">Ulsan</td>
+  <td class='contact-info' data-page-node-id="bqeZdKOyG78kt9QiVnHFw">
+    <div data-page-node-id="nboXCacuGcdhxG3FuaZ7O">🛏 床位：1122</div>
+    <div class="muted" data-page-node-id="qEoVMQjrXNvMqDOHitR7C">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="Aj8FHiK7eZSwHKAl6GfW1">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="9X9u0xfsnS7rlNUeWA4xr"><span class="muted" data-page-node-id="lubMjeTffWdaAwbfmwwbr">未公开（无独立官网）</span></td>
+  <td data-page-node-id="2TQezetvaIj2w5LXk4Vlh"><span class='badge badge-public' data-page-node-id="pManjr23LQdGXXNdg6K4h">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="mhW5eWkAHfbk1E9V2UvYk">
+  <td data-page-node-id="mChjzKWtQzcjlI0yq4eg5">16</td>
+  <td class='company-name' data-page-node-id="7TYJVet9hqRQkcjwuaXOo">Soonchunhyang University Cheonan Hospital (순천향대학교 천안병원)</td>
+  <td data-page-node-id="0xMMU9p0YS60GYStTHuAI">Cheonan (Chungcheongnam-do)</td>
+  <td class='contact-info' data-page-node-id="ebjSRqTL5mSWDDBblLnV4">
+    <div data-page-node-id="4urO1phbw6yR1H4dw18fC">🛏 床位：1118</div>
+    <div class="muted" data-page-node-id="oeGkEzo7ys7IIKbJSwpG6">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="Wh4fDB7qWC0F8GdhK3Vre">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="6vCa8H2FJZWSU0jGZGCsA"><span class="muted" data-page-node-id="DlJ4xfpu23D1hZRSsXDgT">未公开（无独立官网）</span></td>
+  <td data-page-node-id="yD6lJ5NHIglTb2liIcDb1"><span class='badge badge-private' data-page-node-id="hFMRTt0QQB5cLFsvBOqD7">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="83WCcRfCtX65aEzr4asDj">
+  <td data-page-node-id="c97nubTsNPGzWuyOOrVtT">17</td>
+  <td class='company-name' data-page-node-id="YTsOBEuRXJeQFZmvfYWGz">Korea University Anam Hospital (고려대학교 안암병원)</td>
+  <td data-page-node-id="U9TYCBKBSsP4kXEfZdhTQ">Seoul</td>
+  <td class='contact-info' data-page-node-id="pojT22ZAzzh2vjTopx07o">
+    <div data-page-node-id="7UPfUf6illfNbG0vKa5Gu">🛏 床位：1115</div>
+    <div class="muted" data-page-node-id="b2V3WmKN7aQOo3XqudHch">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="afJbjnPIGpc3aqEpv98fY">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="MLIp2G2BqgJQaqhKaGXcF"><a href="http://anam.kumc.or.kr/language/ENG/main/index.do" target="_blank" data-page-node-id="ljXBhBKIsXhiUi2F84GuV">http://anam.kumc.or.kr/language/ENG/main/index.do</a></td>
+  <td data-page-node-id="sGBjOTAgv8udbNyOj3CfT"><span class='badge badge-private' data-page-node-id="X0Kig0h9oTpXQou7fB6cK">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="naltRE7ZDziSRlD1mrzHx">
+  <td data-page-node-id="Q6cNKLoZ0Rp4iQyvVwbnG">18</td>
+  <td class='company-name' data-page-node-id="Cu0eJXKY81edHMfaAhFDV">Keimyung University Dongsan Hospital (계명대학교 동산병원)</td>
+  <td data-page-node-id="CaiCQjq1Rh3h1Ys5CoH5U">Daegu</td>
+  <td class='contact-info' data-page-node-id="E3tb93wVbTymqwhDUyPvh">
+    <div data-page-node-id="G32GauUrAd5KsFLjVkdJm">🛏 床位：1104</div>
+    <div class="muted" data-page-node-id="1zCetnWkvJkr4BdEqyGgI">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="OweJWLP77LKWdPlRqZk4I">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="w9J257Vc6kpvrqoe87nrk"><span class="muted" data-page-node-id="AKIr0BaDXCDXUp3Dep2Vo">未公开（无独立官网）</span></td>
+  <td data-page-node-id="wm3vPDBwjfqthtAcUPMC1"><span class='badge badge-private' data-page-node-id="YdCn7kCCi87BXLVRvHiRs">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="potWdkiGEcZks6TA3WXpB">
+  <td data-page-node-id="WlWNuGGNT7XeqG5ZoztOS">19</td>
+  <td class='company-name' data-page-node-id="3OIHV49iU3cJRdNO5MR6X">CHA Bundang Medical Center (분당차병원)</td>
+  <td data-page-node-id="T2Gc4zbJNK9S5ECLhOtA3">Seongnam (Gyeonggi-do)</td>
+  <td class='contact-info' data-page-node-id="ArR8kLMpY32YqpmIoGKgz">
+    <div data-page-node-id="AFk1DHAy8xjiH4JXZeJGP">🛏 床位：1103</div>
+    <div class="muted" data-page-node-id="m1oKuxwB4zfNth60L1jT3">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="d4OkWGVnP7UhK0UVv2Cif">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="fPHZcNynQyqBEPxsMXmSf"><a href="http://bundang.chamc.co.kr/en/" target="_blank" data-page-node-id="6xbDT44z9BvN6zCWgXb5l">http://bundang.chamc.co.kr/en/</a></td>
+  <td data-page-node-id="prYZiUq1E2QN4rTMOQSgx"><span class='badge badge-private' data-page-node-id="Rp0oge6iE2E15CzQ6GvBL">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="wJiFyNErVE9tOQE2i8ASK">
+  <td data-page-node-id="xBVcIqxrgdrcB6DXgsLwp">20</td>
+  <td class='company-name' data-page-node-id="CSmj2uHVgwmIgocAf3SzV">Chilgok Kyungpook National University Hospital (경북대학교 칠곡병원)</td>
+  <td data-page-node-id="liv7q0BdUeqsDOQEm0Fp6">Daegu</td>
+  <td class='contact-info' data-page-node-id="TPCuA3XhVlCFOnyLXquo6">
+    <div data-page-node-id="a8pYnudyilMIruFq93QUC">🛏 床位：1049</div>
+    <div class="muted" data-page-node-id="rOcQbNTCNzcYa9NL61pSd">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="ZemYuoa0mM6wv2l1yZ6Eq">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="sIp0XelMKmzkBCWOWxUaM"><span class="muted" data-page-node-id="HLKoEc3VknOxCEIvsAWzA">未公开（无独立官网）</span></td>
+  <td data-page-node-id="DSDfgWOO8hFixn8v6scbb"><span class='badge badge-public' data-page-node-id="PXJ6hR5rtHvdaNl243pOd">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="uWJpYlQjYw2pirtQ3T25J">
+  <td data-page-node-id="RTzn3jvrsTjzLcZy7Xcbd">21</td>
+  <td class='company-name' data-page-node-id="lOCoQL7MzahTVuDoM5pim">Dankook University Hospital (단국대학교병원)</td>
+  <td data-page-node-id="6HtjYnYwpjSeN7HGkweca">Cheonan (Chungcheongnam-do)</td>
+  <td class='contact-info' data-page-node-id="Veg7ZpXN2TYsOCwOcWraf">
+    <div data-page-node-id="Ltc6GB46JxU0Qazahddgt">🛏 床位：1042</div>
+    <div class="muted" data-page-node-id="WZUPwGmfIaYRfrjQpZN8I">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="no2bPFC5ZrKGlTYsxKegG">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="ITai4OTELSW7J7QAMHZJu"><span class="muted" data-page-node-id="L50diivX93RqJnsTWWsVn">未公开（无独立官网）</span></td>
+  <td data-page-node-id="VVmwTGQwptrLx0vNj4Uq3"><span class='badge badge-private' data-page-node-id="toTe1PD7g9cfmp0vIdfoO">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="Y3rTkpb2j8J1eGEBjkkS4">
+  <td data-page-node-id="2EqljklmTWv1IrDVA5Cmk">22</td>
+  <td class='company-name' data-page-node-id="ydXrZgsxH2oCgRYwLadIG">Dong-A University Hospital (동아대학교병원)</td>
+  <td data-page-node-id="WQarQDnXoUWagURuSPxna">Busan</td>
+  <td class='contact-info' data-page-node-id="IuORZ9IdQNvPbh6QEvJRZ">
+    <div data-page-node-id="BTAvUocadckHzt8e7PFdy">🛏 床位：1019</div>
+    <div class="muted" data-page-node-id="z5Kif5kmCRShbnW5EEurx">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="OvxfXCDoar3W8dT84Bekd">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="X6bno54v7PFu52975jLUn"><a href="http://english.donga.ac.kr/sites/english/index.do" target="_blank" data-page-node-id="eFgZBYUoelKGi1RO4FUCq">http://english.donga.ac.kr/sites/english/index.do</a></td>
+  <td data-page-node-id="XaP5dQz3EYluwydywtJAb"><span class='badge badge-private' data-page-node-id="wDldlCQxt5nlkYFbq4Hot">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="TE82Il8Y3xn1Yjt0C4Z68">
+  <td data-page-node-id="QCLlezA1ZBEpt78GGifmQ">23</td>
+  <td class='company-name' data-page-node-id="yPxIC8VMOx6WP9CLbrkrC">Yeungnam University Hospital (영남대학교병원)</td>
+  <td data-page-node-id="p7JFRsu7gWexBJwnBZsZZ">Daegu</td>
+  <td class='contact-info' data-page-node-id="E7Mp4poAThDQWlcl5JQzm">
+    <div data-page-node-id="AzBGNHXcnzY0lyl4cKwGp">🛏 床位：1008</div>
+    <div class="muted" data-page-node-id="Wq37o5o8r50sxhICTp0om">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="uKGkioSA9pGvBkWmdUKyK">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="YgiD2SbfMmAbjGE83NBEd"><span class="muted" data-page-node-id="fi80YOThybd0Zxa1wEhZb">未公开（无独立官网）</span></td>
+  <td data-page-node-id="ptlWVFHeIV2DqW6ubgXd4"><span class='badge badge-private' data-page-node-id="Z5A5DEIwAkYgvNpRcU4jd">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="PQKuvbQweaqrTPPnv8g4v">
+  <td data-page-node-id="hIzCjMg0X3GnpLkHyv4ad">24</td>
+  <td class='company-name' data-page-node-id="r5WzCxdbtFVyMDMlQXPwp">Kyungpook National University Hospital (경북대학교병원)</td>
+  <td data-page-node-id="GBIt7tGDal3NOM8A4YL7n">Daegu</td>
+  <td class='contact-info' data-page-node-id="Kr1GFvgO6BDXdyxLf6LMM">
+    <div data-page-node-id="3SzEcUXZu4lmyXAcwXidh">🛏 床位：1003</div>
+    <div class="muted" data-page-node-id="N44Ajt9xWac49KKRb3ZTK">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="gGpS2gbh2QQ4S7Xac2bAn">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="woyYs89SM8o6oKWoO7JKc"><a href="http://global.knuh.kr/eng/" target="_blank" data-page-node-id="5lGlK6PCftl8IwlalUqRf">http://global.knuh.kr/eng/</a></td>
+  <td data-page-node-id="PFQHO5IwHoqaCSw0vErSn"><span class='badge badge-public' data-page-node-id="5AEDdVbOLuVPmpy2g6NgC">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="2fu8EVMoUlDFkCbQFaCyx">
+  <td data-page-node-id="f7jhODeQR1giWjadMwEfJ">25</td>
+  <td class='company-name' data-page-node-id="aMSobnkJfCROFHJqoU4oR">Inha University Hospital (인하대학교병원)</td>
+  <td data-page-node-id="WAyDDSXJRdi2d9hSmv4rc">Incheon</td>
+  <td class='contact-info' data-page-node-id="iFpdeW5zA42ZmpXQ8MHb8">
+    <div data-page-node-id="jB4SvTkBA8IlOPkyicCBQ">🛏 床位：1001</div>
+    <div class="muted" data-page-node-id="qbAV0aEDJU6P5MbVeLmAX">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="WAhpRsRrCT8AGcROPjBGN">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="uMn2XNFgS5vhXWVBDzXyo"><a href="https://eng.inha.ac.kr/eng/index.do" target="_blank" data-page-node-id="LXw74GLP3sX4BGs3Q1wLU">https://eng.inha.ac.kr/eng/index.do</a></td>
+  <td data-page-node-id="SIRXYMyCQ0RxpvxOsIQmC"><span class='badge badge-private' data-page-node-id="RNVYfRGcu2etzaewloIVE">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="pWkncSraX2nJYrDgo9Mrt">
+  <td data-page-node-id="MiiUw8ph0TIVz0dDvh01Y">26</td>
+  <td class='company-name' data-page-node-id="FXnCeUCkMYBWcm9VXxhqr">Ewha Womans University Seoul Hospital (이화여자대학교 서울병원)</td>
+  <td data-page-node-id="AD2Tlv3aNZdJNXdfUSvCj">Seoul</td>
+  <td class='contact-info' data-page-node-id="flDqsp3YZW5D1mI4olLvs">
+    <div data-page-node-id="zmbWM0m9O80BtyKGhHI2h">🛏 床位：997</div>
+    <div class="muted" data-page-node-id="NyFUXtJiFcsCNNPqIUzUm">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="k2q0CliBM34u4qYGmYVbQ">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="MFISnyaAfk2AlxxFBpKpo"><span class="muted" data-page-node-id="in0gi7zteOgpHokriZ7J5">未公开（无独立官网）</span></td>
+  <td data-page-node-id="VB79kJ59jLpNEG8bso4k1"><span class='badge badge-private' data-page-node-id="FSFxkwW5tw8piWwM5qJFL">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="NeI79OwQYlatLnPKqAJra">
+  <td data-page-node-id="tu8x8cAXBfRZywl7bTIlo">27</td>
+  <td class='company-name' data-page-node-id="SVAemrMqQDMj72HUJAUZh">Inje University Haeundae Paik Hospital (인제대학교 해운대백병원)</td>
+  <td data-page-node-id="uP48Ag7fQcflNUvEK7i8A">Busan</td>
+  <td class='contact-info' data-page-node-id="oq6JF62XKTGPm92FaIQqT">
+    <div data-page-node-id="SuY5eKkzapmdg75f04LkM">🛏 床位：995</div>
+    <div class="muted" data-page-node-id="L914lYHewVVYcoei337Gk">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="bv2ML9KHZbJVFKALMRp6c">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="QrV9E9XYRb4px6E8wcAf7"><span class="muted" data-page-node-id="yV7D54aZqftYLFHOiyCLY">未公开（无独立官网）</span></td>
+  <td data-page-node-id="wNhIyhTMc78swywiy9Qaq"><span class='badge badge-private' data-page-node-id="DZxQACc31Gw2iEMr3Np2g">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="89JtMMxL5g1pcKyUPu7FA">
+  <td data-page-node-id="eW6cOjFXsLRTijwuPpSdx">28</td>
+  <td class='company-name' data-page-node-id="eeQYozsJL7F443toax7qg">Konyang University Hospital (건양대학교병원)</td>
+  <td data-page-node-id="W8LDw9ygVyx3hjikzu9bi">Daejeon</td>
+  <td class='contact-info' data-page-node-id="L30dMs4S5pOZveSGioH0C">
+    <div data-page-node-id="UjKgfKHLxdjQjeqeERbi4">🛏 床位：994</div>
+    <div class="muted" data-page-node-id="qPL9HwF1hWRLLEEfSLL1q">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="KpqBLCoipRAiSO6w7rGOo">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="rMCnedjGO4ICKjHVx8dWl"><span class="muted" data-page-node-id="9QF5I51qZfECzrKQYH286">未公开（无独立官网）</span></td>
+  <td data-page-node-id="ROqo396LTRIaHXpVwzA4Y"><span class='badge badge-private' data-page-node-id="pdSH8tlkl8spe649urniB">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="cG3415eFA9zFmHQgnTRpT">
+  <td data-page-node-id="AQVmgue50gNeBtRqZbxgq">29</td>
+  <td class='company-name' data-page-node-id="UqrDhL1RqSETT5cFY8Wrk">Gyeongsang National University Hospital (경상대학교병원)</td>
+  <td data-page-node-id="VzJCjxxWNCwWhqldaWORF">Jinju (Gyeongsangnam-do)</td>
+  <td class='contact-info' data-page-node-id="4FKcfb7nf8Qi1LRiCejHf">
+    <div data-page-node-id="nBVvX9jM87PpCBfgZYjhN">🛏 床位：983</div>
+    <div class="muted" data-page-node-id="Zn4H4OMAEU4OBUoQqVYPR">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="SbLfByik7xaKTnGtDTIOX">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="7DTL71dRzcuUMJ3H53Oki"><span class="muted" data-page-node-id="diwOPEVVgXtobvh3TFWoQ">未公开（无独立官网）</span></td>
+  <td data-page-node-id="PltNMFSfTB5mdwLvbfzRx"><span class='badge badge-public' data-page-node-id="8NCK4tP9QRpqotl6jrPdf">公立、教学</span></td>
+</tr>
+<tr data-page-node-id="8fdz4CEhtoespcI3FQViQ">
+  <td data-page-node-id="1gXotsuK1q54HBMdrFOih">30</td>
+  <td class='company-name' data-page-node-id="mGa2e7FXMMK1Vljzlv9yr">Hallym University Sacred Heart Hospital (한림대학교 성심병원)</td>
+  <td data-page-node-id="uHksJRP6kxaHESKARvxfR">Anyang (Gyeonggi-do)</td>
+  <td class='contact-info' data-page-node-id="3wlJtvoE47lX2Cxwdhwjb">
+    <div data-page-node-id="thOtKSlJpqI5Eeyto80nf">🛏 床位：982</div>
+    <div class="muted" data-page-node-id="hoHXHSohbapDLkpbIAN5H">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="PmuAPjTlKMhws1OeD6I6z">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="BQd41CLF0Cnvq1RUxeCtV"><span class="muted" data-page-node-id="6QgV5phLroelRi9vHVO51">未公开（无独立官网）</span></td>
+  <td data-page-node-id="s2h8rIMdCD7ku5es0kBvV"><span class='badge badge-private' data-page-node-id="9hzV2EXLsTnCMTUkXFjV6">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="YbPLhZsLrnPx7oWaFstfw">
+  <td data-page-node-id="T2FT89dNigk6G9fJdpYJZ">31</td>
+  <td class='company-name' data-page-node-id="xRxJrZlGmk6SUUP2K2JgO">Daegu Catholic University Medical Center (대구가톨릭대학교병원)</td>
+  <td data-page-node-id="ErHLbyWqDEapetklJDGhM">Daegu</td>
+  <td class='contact-info' data-page-node-id="W9gnHjycffisRZ7MKokIw">
+    <div data-page-node-id="3bs37a8Bv3LkqV6ZHiBmJ">🛏 床位：969</div>
+    <div class="muted" data-page-node-id="fHCQbdMR2QIIkvdr6CXLT">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="p5tZOXwUguz2afeokPGc6">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="4aS3KMaxFSMvyq1l2Rpmy"><a href="http://global.cu.ac.kr/home/us/" target="_blank" data-page-node-id="1bf47h7IUaxFfE3odMP9B">http://global.cu.ac.kr/home/us/</a></td>
+  <td data-page-node-id="7eM8JjVwWDhRurAY5hBnu"><span class='badge badge-private' data-page-node-id="17Zy3rLBdP0h1Mxl3DUVf">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="Cygb9SkjcKBDL9mAxivUA">
+  <td data-page-node-id="BuKq5U9hnhlSFG1x0TrOQ">32</td>
+  <td class='company-name' data-page-node-id="Z6eZjV58dt0EQYhJgTXNX">Kosin University Gospel Hospital (고신대학교 복음병원)</td>
+  <td data-page-node-id="C9ujDZ4Qn0OxkQ3h37WYx">Busan</td>
+  <td class='contact-info' data-page-node-id="l91DLcsUsIVwcCDIanHZ8">
+    <div data-page-node-id="NIQIgvHMBoYYJ7bqhm3ml">🛏 床位：958</div>
+    <div class="muted" data-page-node-id="iY8aoJXVP7jG1RHVqe37m">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="ZGkbfnHiUWfqFRkTqPlMX">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="VzYnCKd05Mu83Qxnkepzd"><span class="muted" data-page-node-id="1NatIiho8JM1o1bjQnIXd">未公开（无独立官网）</span></td>
+  <td data-page-node-id="yof2cRdfWWvpoBjaScXoG"><span class='badge badge-private' data-page-node-id="sACaIxiVl3PjVNjjUTDQ8">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="h0JQxfLcm2jlaU01fquXn">
+  <td data-page-node-id="w3LUGxamgsGTgMLRwY83Q">33</td>
+  <td class='company-name' data-page-node-id="NrmcROA5aSKmQH6uw45Xb">Soonchunhyang University Bucheon Hospital (순천향대학교 부천병원)</td>
+  <td data-page-node-id="0blL6Gmyrxl4JxqRWIUXw">Bucheon (Gyeonggi-do)</td>
+  <td class='contact-info' data-page-node-id="P2uXH8VjK4qSSy8ZiFpWW">
+    <div data-page-node-id="rchSkohEDskSrpIP3pxEL">🛏 床位：952</div>
+    <div class="muted" data-page-node-id="zuuDRrPwnG6q7gi1SBnwz">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="CPH6Rhe7s8ozRA1hDpj4F">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="RtjjfO7fFK9grk4K7R7ob"><span class="muted" data-page-node-id="GtagdhyR0zP8uQmTuavSj">未公开（无独立官网）</span></td>
+  <td data-page-node-id="BcGRmYG4c9Bx4jY3TC6z6"><span class='badge badge-private' data-page-node-id="kRTYejQho5u5MG2WJZ9Xh">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="EheceStN30DrXQNXK2EeU">
+  <td data-page-node-id="0Q571QYsztw0E6j05mdlX">34</td>
+  <td class='company-name' data-page-node-id="tNomRrcPEXJaEJ9F3eYVM">Yonsei University Wonju Severance Christian Hospital (연세대학교 원주세브란스기독병원)</td>
+  <td data-page-node-id="Skata2MagZfLwrwo1Cgpw">Wonju (Gangwon-do)</td>
+  <td class='contact-info' data-page-node-id="VSOgh7rD63XDyIvMbdkF1">
+    <div data-page-node-id="LZiTr4QRKa7kKnjb2IcVp">🛏 床位：951</div>
+    <div class="muted" data-page-node-id="RzkfkA9X8xpOOKlvBmkgb">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="G6uEKhY8r7JBIYgomwZU7">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="lr51NOOOHdUbDnswkxncA"><span class="muted" data-page-node-id="M9SoSuQ4r36qQU45sV6Pp">未公开（无独立官网）</span></td>
+  <td data-page-node-id="z9QxOcndSI0ijLSqKljz5"><span class='badge badge-private' data-page-node-id="4WeeoXQLBxJJl0a5P16az">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="9Ere41svT12UCBLAuBhks">
+  <td data-page-node-id="b9b7bEWW72OxMUHohgNYq">35</td>
+  <td class='company-name' data-page-node-id="PDEwthSL5Iv7uiHMT0xP0">Kyung Hee University Hospital (경희대학교병원)</td>
+  <td data-page-node-id="FR1miSPsN75mo37IpJUn4">Seoul</td>
+  <td class='contact-info' data-page-node-id="GOPVL4UW52xloSdBg7Fop">
+    <div data-page-node-id="nlrhdDGyYRc2jZOh3uAZs">🛏 床位：945</div>
+    <div class="muted" data-page-node-id="HLAOuSVxBpPETnqEmEb7W">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="48QakfymgFlI3GKtQ4ZnL">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="SU8SEOTM3hmbfj5YNN2AY"><a href="https://www.khmc.or.kr" target="_blank" data-page-node-id="jcJYLUTQwmme4kyq6ZnNZ">https://www.khmc.or.kr</a></td>
+  <td data-page-node-id="GrEIGEb5Py3V5z10pIbJP"><span class='badge badge-private' data-page-node-id="08Emc9rsBPHCJM21I8oSa">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="UmkJSlUah5jZaN43esqw2">
+  <td data-page-node-id="tLIS6MNxtTS09hbHE31WK">36</td>
+  <td class='company-name' data-page-node-id="QUHgNFkZ39w37z7KwwHlB">Chosun University Hospital (조선대학교병원)</td>
+  <td data-page-node-id="WUzCWy0pCCtYVwlrJhINo">Gwangju</td>
+  <td class='contact-info' data-page-node-id="lrdz6I2AwPqNhgfSS9VBE">
+    <div data-page-node-id="P7dEEXnjcTrWobAXCNGw7">🛏 床位：945</div>
+    <div class="muted" data-page-node-id="ar4cT8SK6kiuVXUBOO3qK">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="p9633ZwyeXn6u3pH7D5OZ">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="Gxp5rB1HfD043U78B7WEa"><span class="muted" data-page-node-id="yy8LX5Px8paaV0obEcSlV">未公开（无独立官网）</span></td>
+  <td data-page-node-id="XDuqTlbkOj13jU5gxNxlx"><span class='badge badge-private' data-page-node-id="u6Z3kM68AqWMKEuZlJPTz">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="C5XVn6ml3ZvEWUF9FJnW3">
+  <td data-page-node-id="cvj9QVqLUpUe7oT345o0Q">37</td>
+  <td class='company-name' data-page-node-id="XTZ4r9al51rzbZuvHwggf">Catholic University of Korea St. Vincent's Hospital (성빈센트병원)</td>
+  <td data-page-node-id="d06SDDZgyt9gtTvRjUKHC">Suwon (Gyeonggi-do)</td>
+  <td class='contact-info' data-page-node-id="EsQeyLX8Hf9qbwpND3eNo">
+    <div data-page-node-id="MWAkoAAxzWt0gPztfItei">🛏 床位：933</div>
+    <div class="muted" data-page-node-id="IlyfMgzv8sip3JzlpiHrf">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="HpLdFT3JII6QJeSD74GBd">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="WvnLYVhPUCYqZmWS1OzZj"><a href="https://www.cmcvincent.or.kr" target="_blank" data-page-node-id="QJbBDQeXsTiHlL7KkrbDl">https://www.cmcvincent.or.kr</a></td>
+  <td data-page-node-id="qj7MMr8IXFRdcVVJhq56j"><span class='badge badge-private' data-page-node-id="Gb8hblSuPBOnrblnVwxTe">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="z31cp8FRE4YkJuPlhghlB">
+  <td data-page-node-id="GR1c0OsxfMTUQHDGbU3jE">38</td>
+  <td class='company-name' data-page-node-id="G5eighlat26nxIFb7WPXu">Changwon Hanmaeum Hospital (창원한마음병원)</td>
+  <td data-page-node-id="PAEo9O5DcMeUBBWvBLmyT">Changwon (Gyeongsangnam-do)</td>
+  <td class='contact-info' data-page-node-id="nvIbM3ZY976ZYRl2ColH5">
+    <div data-page-node-id="lZSeiIHqPJl4c40t6jmr3">🛏 床位：932</div>
+    <div class="muted" data-page-node-id="ZR6ipvSWBQyUHhwedfVFL">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="NKuNdjRgfJBYy7S9AnBBm">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="XnVlJM6UiaAL09KGM4DmN"><span class="muted" data-page-node-id="lcuATbPPRGzArfPG48HQr">未公开（无独立官网）</span></td>
+  <td data-page-node-id="ERsW7S5HS43Q1NdO5Kc9H"><span class='badge badge-private' data-page-node-id="NgWzEKT8GmEHeI1fyBubp">私立</span></td>
+</tr>
+<tr data-page-node-id="4FDtdvKN6ZEVSS2JYbyGq">
+  <td data-page-node-id="Q0gyWJLvirlssvzUi1NO1">39</td>
+  <td class='company-name' data-page-node-id="Ni1tfFte6nssDPGiCjtWH">Hanyang University Hospital (한양대학교병원)</td>
+  <td data-page-node-id="X93fRdhhO0M2yTVSGiio3">Seoul</td>
+  <td class='contact-info' data-page-node-id="UfBGvf9fzfLz6j0RvaaJ3">
+    <div data-page-node-id="b0jbQY3j2DJTFD8V2ufwf">🛏 床位：927</div>
+    <div class="muted" data-page-node-id="ZrEqY8SdgABzSbGBKHVMi">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="Fbee8dl8yCxVyPGvYFfkw">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="J7ecv4F9E8eUDpd1uZJ5K"><span class="muted" data-page-node-id="wiXGzWQVPrWQpQlMAI35B">未公开（无独立官网）</span></td>
+  <td data-page-node-id="283YW8uyqmVbg5q0kC6HS"><span class='badge badge-private' data-page-node-id="5FL2tfTW0SS8TshqNUNgt">私立、教学</span></td>
+</tr>
+<tr data-page-node-id="S1Z52CA3YwIe4yPkcsTB5">
+  <td data-page-node-id="QFxjq0ru7DcNYrxIin1BH">40</td>
+  <td class='company-name' data-page-node-id="jUpoV6rv1FTP4ntApKmJP">Chungbuk National University Hospital (충북대학교병원)</td>
+  <td data-page-node-id="tj9lwbqikC63Ffy6vHD9L">Cheongju (Chungcheongbuk-do)</td>
+  <td class='contact-info' data-page-node-id="GMeVGKD44sEn1aKnscpZL">
+    <div data-page-node-id="BGIh7bNVNTpUQ3yi3L13U">🛏 床位：926</div>
+    <div class="muted" data-page-node-id="8PIyfV2UzX3IC9ZwTFZAb">🔗 来源：<a href="https://inue.org/en/sub04/sub01.php" target="_blank" data-page-node-id="pXS0S4u1drohypk14aSJC">https://inue.org/en/sub04/sub01.php</a></div>
+  </td>
+  <td data-page-node-id="zWzBYjcwfP6GCDxSN8mZZ"><a href="https://www.cbnuh.or.kr/lang_eng/" target="_blank" data-page-node-id="w7HlF3e0tCslzFCvFiRxz">https://www.cbnuh.or.kr/lang_eng/</a></td>
+  <td data-page-node-id="6CllJQ26zOrQOIKa6HFlT"><span class='badge badge-public' data-page-node-id="iE2d0bd7xvM9PAVZv2Kkl">公立、教学</span></td>
+</tr>
+</tbody></table>
+        <div class="footer" data-page-node-id="ifWqb3WR6mGhlEcHUbpCv"><p data-page-node-id="aIGIby93rYQWis3QQTWTj">📌 韩国医院信息表 · 共 40 家</p></div>
+</div>
+<script>
+(function(){
+  var input=document.getElementById('custSearch');
+  var count=document.getElementById('custCount');
+  if(!input) return;
+  function filter(){
+    var q=input.value.trim().toLowerCase();
+    var rows=document.querySelectorAll('table tbody tr');
+    var n=0;
+    rows.forEach(function(tr){
+      var hit = !q || tr.textContent.toLowerCase().indexOf(q)>=0;
+      tr.style.display = hit ? '' : 'none';
+      if(hit) n++;
+    });
+    if(count) count.textContent = q ? ('匹配 '+n+' / '+rows.length+' 家') : '';
+  }
+  input.addEventListener('input', filter);
+})();
+</script>
+<script>
+(function(){
+  var tb = document.querySelector('table tbody');
+  if(!tb) return;
+  var rows = tb.querySelectorAll('tr');
+  rows.forEach(function(tr,i){ var f=tr.querySelector('td'); if(f) f.textContent=(i+1); });
+  var total = rows.length;
+  var counts = {};
+  rows.forEach(function(tr){ var b=tr.querySelector('td:last-child .badge'); if(b){ var x=b.textContent.trim(); counts[x]=(counts[x]||0)+1; } });
+  var sw = document.querySelector('.stats');
+  if(sw){ var h='<div class="stat-card total"><div class="num">'+total+'</div><div class="label">医院总数</div></div>'; for(var k in counts){ h+='<div class="stat-card"><div class="num">'+counts[k]+'</div><div class="label">'+k+'</div></div>'; } sw.innerHTML=h; }
+  var foot=document.querySelector('.footer p');
+  if(foot) foot.textContent='📌 韩国医院信息表 · 共 '+total+' 家';
+})();
+</script>
+</body>
+</html>
