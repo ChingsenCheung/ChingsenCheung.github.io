@@ -127,7 +127,7 @@
     font-size:13px; font-weight:600; color:#0f766e;
     background:#fff; border:1px solid #99f6e4; border-radius:999px;
     padding:7px 15px; text-decoration:none; cursor:pointer; white-space:nowrap;
-    display:inline-flex; align-items:center; gap:6px;
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
     transition:background .18s, border-color .18s, color .18s, transform .18s, box-shadow .18s;
   }
   .cust-link::before{ content:'↗'; font-size:12px; opacity:.55; }
@@ -603,8 +603,17 @@
       row.classList.toggle('no-expand', hidden === 0);
       row.dataset.hasOverflow = hidden > 0 ? '1' : '0';
     }
-    requestAnimationFrame(() => allRows.forEach(layoutRow));
-    window.addEventListener('resize', () => allRows.forEach(layoutRow), { passive:true });
+    // 同一列（每行第 N 个子链接）宽度对齐：按列取最大宽统一，让各列纵向对齐成网格
+    function alignLinks(){
+      const arrs = allRows.map(r => Array.prototype.slice.call(r.querySelectorAll('.cust-link')));
+      // 先清掉上一轮的 minWidth/隐藏态，确保测量到按钮的固有宽度
+      arrs.forEach(arr => arr.forEach(a => { a.style.minWidth=''; a.style.display=''; }));
+      const colW = [];
+      arrs.forEach(arr => arr.forEach((a,i) => { colW[i] = Math.max(colW[i]||0, a.offsetWidth); }));
+      arrs.forEach(arr => arr.forEach((a,i) => { if (colW[i]) a.style.minWidth = colW[i]+'px'; }));
+    }
+    requestAnimationFrame(() => { alignLinks(); allRows.forEach(layoutRow); });
+    window.addEventListener('resize', () => { alignLinks(); allRows.forEach(layoutRow); }, { passive:true });
     return sec;
   }
 
