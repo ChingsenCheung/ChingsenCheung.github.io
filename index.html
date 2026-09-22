@@ -82,7 +82,7 @@
   .cust-region{ margin:4px 0 14px; }
   .cust-region-h{ display:flex; align-items:center; font-size:13px; font-weight:600; color:var(--muted); margin:2px 0 8px; padding-left:9px; border-left:3px solid var(--c-cust); }
   .cust-grid .card .go{ color:var(--c-cust); }
-  /* 国家节点下的「客户信息」子链接面板：跨整行、缩进、淡蓝左边线，形成层级感 */
+  /* 国家节点下的「经销商总表」子链接面板：跨整行、缩进、淡蓝左边线，形成层级感 */
   .cust-sub{ grid-column:1 / -1; margin:2px 0 8px; padding:6px 0 4px 16px; border-left:3px solid var(--c-cust); background:rgba(13,148,136,.04); border-radius:0 10px 10px 0; }
   .cust-sub .sub-card{ background:#f8fafc; border-left-color:#5eead4; }
   .cust-sub .sub-card .go{ color:#0f766e; }
@@ -321,10 +321,10 @@
     ]
   };
   // 各国客户文件「子链接」：点击外贸客户树中对应国家后展开。
-  // 原「孟加拉客户文件」版块的 9 份文件已全部迁移至此，作为 [孟加拉] 的「客户信息」子链接。
+  // 原「孟加拉客户文件」版块的 9 份文件已全部迁移至此，作为 [孟加拉] 的「经销商总表」子链接。
   const CUST_FILES = {
     bd: [
-      { file:'existing_customers.html', title:'客户信息表' },
+      { file:'existing_customers.html', title:'经销商总表' },
       { file:'dhaka_private_hospitals.html', title:'达卡私立医院' },
       { file:'bangladesh_bone_all.html', title:'骨组织手术设备·汇总' },
       { file:'bangladesh_esu.html', title:'ESU 电刀及外科设备' },
@@ -336,7 +336,7 @@
       { file:'report_multi.html', title:'主机多源验证' },
     ],
     ng: [
-      { file:'nigeria_customers.html', title:'客户信息表' },
+      { file:'nigeria_customers.html', title:'经销商总表' },
     ],
     th: [
       { file:'thailand_customers.html', title:'经销商总表' },
@@ -354,7 +354,7 @@
       { file:'laos_hospitals.html', title:'医院信息表' },
     ],
     ru: [
-      { file:'russia_customers.html', title:'经销商名录（合并）' },
+      { file:'russia_customers.html', title:'经销商总表' },
     ],
     jp: [
       { file:'japan_customers.html', title:'经销商总表' },
@@ -557,7 +557,7 @@
             links.appendChild(a);
           });
         } else {
-          const a = document.createElement('a'); a.className='cust-link'; a.href='./country.html?c='+co.iso2; a.textContent = '客户信息';
+          const a = document.createElement('a'); a.className='cust-link'; a.href='./country.html?c='+co.iso2; a.textContent = '经销商总表';
           a.addEventListener('click', (e) => { e.preventDefault(); openSection('./country.html?c='+co.iso2); });
           links.appendChild(a);
         }
