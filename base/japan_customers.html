@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="wjraHXYqszYfjBtsPsZMD">
+<head data-page-node-id="KMZ5fyRwGxeSqDp6FgpBL">
+    <script data-xh-gate>
+(function(){
+  var TTL=8*60*60*1000;
+  try{var a=JSON.parse(localStorage.getItem('xh_auth')||'null');if(a&&a.u&&(Date.now()-a.ts)<TTL)return;}catch(e){}
+  var seg=location.pathname.split('/').filter(Boolean).length;
+  var prefix=seg>1?new Array(seg).join('../'):'./';
+  var next=location.pathname+(location.search||'');
+  location.replace(prefix+'login.html?next='+encodeURIComponent(next));
+})();
+</script>
+    <meta charset="UTF-8" data-page-node-id="dvsni5GHYTKlnqSLgEPYa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="tPL7ypapvHFODf4kfUbHv">
+    <title>日本医疗器械经销商名录</title>
+    <style>        * { margin: 0; padding: 0; box-sizing: border-box; }        body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }        h1 { text-align: center; color: #1a3a6b; font-size: 24px; margin-bottom: 5px; padding: 20px 0 10px; border-bottom: 3px solid #1a3a6b; }  .searchbar{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto 18px;}  .searchbar input{flex:1;padding:10px 14px;border:1px solid #c9d4e3;border-radius:8px;font-size:14px;outline:none;}  .searchbar input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);}  .search-count{font-size:13px;color:#666;white-space:nowrap;}        .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }        .stat-card { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; min-width: 140px; }        .stat-card .num { font-size: 28px; font-weight: 700; color: #1a3a6b; }        .stat-card .label { font-size: 12px; color: #888; }        .stat-card.total { border-top: 3px solid #27ae60; }        .stat-card.total .num { color: #27ae60; }        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-size: 13px; margin-bottom: 20px; }        thead { background: linear-gradient(135deg, #1a3a6b 0%, #2c5aa0 100%); color: #fff; }        th { padding: 12px 10px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }        td { padding: 10px 10px; border-bottom: 1px solid #eee; vertical-align: top; }        tr:hover { background: #f8f9fb; }        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; }        .badge-electro { background: #f39c12; color: #fff; }        .badge-ortho { background: #3498db; color: #fff; }        .badge-surgical { background: #2ecc71; color: #fff; }        .badge-ot { background: #9b59b6; color: #fff; }        a { color: #2c5aa0; text-decoration: none; }        a:hover { text-decoration: underline; }        .company-name { font-weight: 600; color: #1a3a6b; }        .contact-info { font-size: 12px; color: #555; }        .contact-info div { margin-bottom: 2px; }.muted { color: #aaa; }        .footer { text-align: center; margin-top: 30px; padding: 20px; color: #888; font-size: 12px; }        .footer p { margin-bottom: 4px; }</style>
+</head>
+<body data-page-node-id="obM9Bs9zYrYdkvxuCyXAP">
+<div class="container" data-page-node-id="dRwlsOJdmJRMHYfdVBmEU">
+    <h1 data-page-node-id="xaKUgYQk1gu3izvzqH8D8">日本医疗器械经销商名录</h1>
+    <div class="stats" data-page-node-id="sYA2oDv1S1XMEPpP717cm"><div class="stat-card total" data-page-node-id="1AOyhmbqwQRXlOXZQG1vJ"><div class="num" data-page-node-id="F9WlUe5Li2SHrrR7uLedv">32</div><div class="label" data-page-node-id="iBrPxdepRtxI6IYueulYK">经销商总数</div></div></div>
+      <div class="searchbar" data-page-node-id="1MBFoDqOeSnPRV9Oru65o">
+    <input id="custSearch" type="text" placeholder="🔍 搜索公司名称 / 城市 / 电话 / 官网 / 方向…" autocomplete="off" data-page-node-id="sJOdogfj3XkONybVniPTk">
+    <span class="search-count" id="custCount" data-page-node-id="vpyF4Pp4UbcAgSH40CEJS"></span>
+  </div>
+<table data-page-node-id="2iaaLZ6XryaYuFJIMCCfx">
+        <thead data-page-node-id="PnJv7rNPnMm3NzUssdRlc">
+            <tr data-page-node-id="mlHzm6fdxSzjQiySFOzhL">
+                <th style="width:30px;" data-page-node-id="jQtxUrQ1qIlefqX3fqx2N">#</th>
+                <th style="width:200px;" data-page-node-id="G06ScecKTRk17cP63sb25">公司名称</th>
+                <th style="width:110px;" data-page-node-id="BvL4HTHdewvl4GcU9THca">城市</th>
+                <th style="width:230px;" data-page-node-id="hSZrxBQIsqkjXIRfqCc12">联系方式（电话/WhatsApp/邮箱/地址）</th>
+                <th style="width:170px;" data-page-node-id="T1hhPtDFBoVNnUmYn3u5F">官网 / 店铺</th>
+                <th style="width:120px;" data-page-node-id="Nq9hjWChKeTKlHlbrMlAw">方向</th>
+                </tr>
+        </thead>
+        <tbody data-page-node-id="bq03Nx2V93MZliDmmBKgw">
+<tr data-page-node-id="SWmOH2MBZJ3kkLxa9VSrb">
+  <td data-page-node-id="E8J2s2ODEjAMwzFSGNe2I">1</td>
+  <td class='company-name' data-page-node-id="pBZASboBgYwALSFSQwrfY">Century Medical, Inc.（センチュリーメディカル株式会社）</td>
+  <td data-page-node-id="hQCiKlwLQk6E0qjS6Esj9">Tokyo (Shinagawa-ku)</td>
+  <td class='contact-info' data-page-node-id="jReRSFJJVZ0zaDybCC02j">
+    <div data-page-node-id="nirtRZdZ2V0erOmYn4VSU">📞 +81-3-3491-0161</div>
+    <div data-page-node-id="l0myBYmknfjVlQoSGbCiG">📧 <a href="mailto:postmaster@cmi.co.jp" data-page-node-id="eSKBRYXsL7wu2hI3T5FAZ">postmaster@cmi.co.jp</a></div>
+    <div data-page-node-id="LUjCqwUer6MB30R0R0Goe">📍 22F Gate City Ohsaki East Tower, 1-11-2 Osaki, Shinagawa-ku, Tokyo 141-8588</div>
+    <div class="muted" data-page-node-id="Dfwk4awYqE15dkhqZuHhZ">🔗 来源：<a href="https://www.cmi.co.jp/company/about/" target="_blank" data-page-node-id="meaCVbEJM9gDGINbZY1k9">https://www.cmi.co.jp/company/about/</a></div>
+  </td>
+  <td data-page-node-id="RFcFhNKp9Wyzyu8wtZgSp"><a href="https://www.cmi.co.jp" target="_blank" data-page-node-id="P3upiZmzwkTCAvAQNRzAj">https://www.cmi.co.jp</a></td>
+  <td data-page-node-id="aPcAJ3xf4n3jYYXzH8x6M"><span class='badge badge-ot' data-page-node-id="OTRbLVM6dJjAdTulduFkq">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="WJPZLgwzNw8vD9Tat804w">
+  <td data-page-node-id="jp2AiQf0NT66dJ4N05DLB">2</td>
+  <td class='company-name' data-page-node-id="AVEANdY1U8KjW8SzgmOLw">Gadelius Medical K.K.（ガデリウス・メディカル株式会社）</td>
+  <td data-page-node-id="ZrNybozh1e13v2SHjhQaT">Tokyo (Minato-ku)</td>
+  <td class='contact-info' data-page-node-id="zphtxvcd6gDS2eB8AGL0P">
+    <div data-page-node-id="ofHPt5YJTRAdmpghS4g2f">📞 +81-3-5414-8753</div>
+    <div data-page-node-id="eETtwheF36ecEnJAQI9v4">📍 Aoyama-yasuda Bldg. 4F, 7-1-1 Akasaka, Minato-ku, Tokyo 107-0052</div>
+    <div class="muted" data-page-node-id="ZX7k6MEPUp4eOTOgIBmQT">🔗 来源：<a href="https://www.gadeliusmedical.com/en/company/outline.html" target="_blank" data-page-node-id="ZNbIraCh2nGldhQHkzQZo">https://www.gadeliusmedical.com/en/company/outline.html</a></div>
+  </td>
+  <td data-page-node-id="5Y1GPFQQMZEd6WV6WguGE"><a href="https://www.gadeliusmedical.com" target="_blank" data-page-node-id="xL8X1a8y4t0PiKEv9bKQ8">https://www.gadeliusmedical.com</a></td>
+  <td data-page-node-id="XnEfTC8aGtxZsKgRARSjb"><span class='badge badge-ot' data-page-node-id="SCrwEAc7CUwYjs4PDw7iC">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="q77RMh5pQnsq2otOMj7yj">
+  <td data-page-node-id="qysfHhdsT3wJVu5fwrIXd">3</td>
+  <td class='company-name' data-page-node-id="lOEDqWY50GkxwbdBAov7c">TOKIBO Co., Ltd.（東機貿）</td>
+  <td data-page-node-id="tH9dQCko9mXrQ1mME1iH4">Tokyo (Minato-ku)</td>
+  <td class='contact-info' data-page-node-id="wuvlWw4f2lHrjuTXHb1em">
+    <div data-page-node-id="npRa8VYWG3qeOeNS8fGMz">📞 +81-3-3586-1421</div>
+    <div data-page-node-id="b6GrwZAVNbYXTJOVRQraB">📍 3-4, Higashi-Azabu 2-chome, Minato-ku, Tokyo 106-0044</div>
+    <div class="muted" data-page-node-id="40kix6NdgMJEdmM4M7RHa">🔗 来源：<a href="https://www.japanyello.com/company/12580/Tokibo_Co_Ltd" target="_blank" data-page-node-id="uXWppmzW8xn0vWiqESYlo">https://www.japanyello.com/company/12580/Tokibo_Co_Ltd</a></div>
+  </td>
+  <td data-page-node-id="IDP7RYlb8MiLRYDHX3Xn0"><a href="https://www.tokibo.co.jp" target="_blank" data-page-node-id="fwiNzMsNc6YV2llKnIDDB">https://www.tokibo.co.jp</a></td>
+  <td data-page-node-id="MGSD7EmjdCM3pdDdyChBm"><span class='badge badge-ot' data-page-node-id="TzfO2K7fM2zMX97yTQwtd">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="F0vGeZ6OxNygHqLRrSpXF">
+  <td data-page-node-id="y072JopVERAgaTZQ8HQzY">4</td>
+  <td class='company-name' data-page-node-id="i4sE4Ywi524BFYPfNdM4t">SUMIC INTERNATIONAL INC.（株式会社サミック・インターナショナル）</td>
+  <td data-page-node-id="XIS63SXA6wNbIEguU1K6W">Tokyo (Bunkyo-ku)</td>
+  <td class='contact-info' data-page-node-id="hDPhy0Jq6N6bGh5jI0GVT">
+    <div data-page-node-id="kErPamkrTy1nu65OeybH7">📞 +81-3-3818-6716</div>
+    <div data-page-node-id="XVJjucIAGWlNeNOXq3wWx">📍 Homei Bldg. 3F, 1-28-36 Hongo, Bunkyo-ku, Tokyo</div>
+    <div class="muted" data-page-node-id="qQU6XRGgL60wabiqEbkwa">🔗 来源：<a href="http://sumic.com/CorpGuide.htm" target="_blank" data-page-node-id="aPHR0DOXZWIMgiOtbPU2B">http://sumic.com/CorpGuide.htm</a></div>
+  </td>
+  <td data-page-node-id="LgLWeG88DuJCntbui0BVr"><a href="http://sumic.com" target="_blank" data-page-node-id="TAZs0akogF2L2U6Tlgcil">http://sumic.com</a></td>
+  <td data-page-node-id="Stg6ksI1l29viddUbapiF"><span class='badge badge-ot' data-page-node-id="mwfV7pEtSgJ4Pff0ORCER">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="Gq1VshKbDjMv2hcRvG7ED">
+  <td data-page-node-id="nhi9bkADsE2wN1zLovI2T">5</td>
+  <td class='company-name' data-page-node-id="IC40TPgaHgWIccBqObR8b">MURANAKA MEDICAL INSTRUMENTS CO., LTD.（村中医療器械株式会社）</td>
+  <td data-page-node-id="71CGwiQLM4P1wunawrSAe">Osaka (Izumi-shi)</td>
+  <td class='contact-info' data-page-node-id="dwDaXr9eH0mmsLLDVibhw">
+    <div data-page-node-id="jnGjIIGglUYwTrOz0h1mK">📞 +81-725-53-5546</div>
+    <div data-page-node-id="6QWuveWz6UHx7c09bXDcj">📧 <a href="mailto:muranaka_hpnew@muranaka.co.jp" data-page-node-id="5emTF3URZt8WPDEnhJI1H">muranaka_hpnew@muranaka.co.jp</a></div>
+    <div data-page-node-id="qvJq9NvsBTsbAp9eVww63">📍 2-8-2 Ayumino, Izumi-shi, Osaka 594-1157</div>
+    <div class="muted" data-page-node-id="9AeoRI1YwDvxx5zzNQWdT">🔗 来源：<a href="https://www.swann-morton.com/distributors/Far-East--Asia/Japan" target="_blank" data-page-node-id="OTx9kQ2v0qC1r0JRy43x2">https://www.swann-morton.com/distributors/Far-East--Asia/Japan</a></div>
+  </td>
+  <td data-page-node-id="ujZmYAwCQ5SAp64WCm16h"><a href="https://www.muranaka.co.jp" target="_blank" data-page-node-id="KwQIOJEFYkt80q8UbmFMO">https://www.muranaka.co.jp</a></td>
+  <td data-page-node-id="YtJ6lH316RRBwqZvBCfHW"><span class='badge badge-ot' data-page-node-id="rxI2M4ikdm050ZCwmiCJn">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="0Hwydguh4WaEE8sSVn8qL">
+  <td data-page-node-id="YBgIsIsaXbvO6fCAoAj82">6</td>
+  <td class='company-name' data-page-node-id="PY7obkw53puZltGrQbwTP">IMI CO., LTD.（IMI株式会社）</td>
+  <td data-page-node-id="l0p7XmykkpkFx4CPsa2Tu">Saitama (Koshigaya-shi)</td>
+  <td class='contact-info' data-page-node-id="xxtojVktseJXCgY1APMf3">
+    <div data-page-node-id="edJkmcpPbaW8pM485MCta">📍 3-3-12 Ryutsu-danchi, Koshigaya-shi, Saitama</div>
+    <div class="muted" data-page-node-id="9HYsq06BRv1PHbD6k88dg">🔗 来源：<a href="https://www.imimed.co.jp/en/company/profile" target="_blank" data-page-node-id="UaRNdCk2QKbXGVr74JtaL">https://www.imimed.co.jp/en/company/profile</a></div>
+  </td>
+  <td data-page-node-id="oNei8FLeIGJHLDnJ1PNpP"><a href="https://www.imimed.co.jp" target="_blank" data-page-node-id="rmbqYU3uRSDpIWkABsPb1">https://www.imimed.co.jp</a></td>
+  <td data-page-node-id="uZaR1QZtZyYCGiU6wtdM1"><span class='badge badge-ot' data-page-node-id="KO6liIxAkURGkY63Kb5no">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="P7zDfTn8H53VbI9GLobP4">
+  <td data-page-node-id="dZNeDaHTzF28BUQVeV4Nr">7</td>
+  <td class='company-name' data-page-node-id="8RK8Nm3hEt9V1Af3GLaRh">Kurihara Medical Instruments Co., Ltd.（株式会社栗原医療器械店）</td>
+  <td data-page-node-id="bbhds0eU8L0S76390ASZf">Gunma (Ota-shi)</td>
+  <td class='contact-info' data-page-node-id="rmaCZ0XKHXAeiIRvt2Stc">
+    <div data-page-node-id="SdbylbwiX2iAKM8na4ZDX">📞 +81-276-37-8181</div>
+    <div data-page-node-id="OqaMLZqLhEI7PcbNAwMQH">📍 4-6 Kiyohara-cho, Ota-shi, Gunma 373-8557</div>
+    <div class="muted" data-page-node-id="UM8VxNcm7jAq9uARWESRE">🔗 来源：<a href="https://www.kuribara.co.jp/company" target="_blank" data-page-node-id="Lc0dk4huCUjAQ1KaauGID">https://www.kuribara.co.jp/company</a></div>
+  </td>
+  <td data-page-node-id="6TWT8HPCFHcXPsl5zvAQy"><a href="https://www.kuribara.co.jp" target="_blank" data-page-node-id="QcFANtVAArN6g6zLPIZOy">https://www.kuribara.co.jp</a></td>
+  <td data-page-node-id="pe4YZ7AYdmGNTHxp5JQ0Y"><span class='badge badge-ot' data-page-node-id="aCTFI3u6knH2rKN5Fs8Ok">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="QbKqbg4tFAENNaL1ywYTE">
+  <td data-page-node-id="1T4YtY2jXRY52Gl2tegcn">8</td>
+  <td class='company-name' data-page-node-id="R2e9FcmGpps4uEfRTuCUG">OLBA HEALTHCARE HOLDINGS, Inc.（オルバヘルスケアホールディングス株式会社）</td>
+  <td data-page-node-id="WdODEUYaYi3gb2sJJpRiR">Tokyo</td>
+  <td class='contact-info' data-page-node-id="CuWmGzWvX9OtnG44D9ix8">
+    <div class="muted" data-page-node-id="VBG1Dujji1yX2eTpui6MD">🔗 来源：<a href="https://hk.finance.yahoo.com/quote/2689.T/profile" target="_blank" data-page-node-id="VmBhIMWCVbHXl8Tf1ZmvQ">https://hk.finance.yahoo.com/quote/2689.T/profile</a></div>
+  </td>
+  <td data-page-node-id="S1UyKd8nJOD4wJx15SMrH"><a href="https://olba.co.jp" target="_blank" data-page-node-id="8rrod2rdQr55514ASfpJv">https://olba.co.jp</a></td>
+  <td data-page-node-id="81aMuldFPIU3owlVWuCfW"><span class='badge badge-surgical' data-page-node-id="M5w4IDdelfLhsDuVQkt3z">骨科·创伤器械</span></td>
+</tr>
+<tr data-page-node-id="OLXgsEjrHm0wmGKWqY53g">
+  <td data-page-node-id="V1TwrMwfoaj1c1BmEZLke">9</td>
+  <td class='company-name' data-page-node-id="GNhFQEG9e1iMTPZyIFbRz">Nikkou Medical Instruments Co., Ltd.（日光医科器械株式会社）</td>
+  <td data-page-node-id="N0XHanNxrNLGsDEMCQxSy">Osaka / Nara</td>
+  <td class='contact-info' data-page-node-id="njhG6MaX2mmlkd7SL0tWJ">
+    <div class="muted" data-page-node-id="ELFn3pk5foBktdf437dRa">🔗 来源：<a href="https://www.kawanishi-md.co.jp/group_hd/group/nikkou_01.php" target="_blank" data-page-node-id="MdkJtPGDCzesJQyjzzvrB">https://www.kawanishi-md.co.jp/group_hd/group/nikkou_01.php</a></div>
+  </td>
+  <td data-page-node-id="RBGzDgRqcAA4paMmVkiKN"><a href="https://www.kawanishi-md.co.jp/group_hd/group/nikkou_01.php" target="_blank" data-page-node-id="Px0ifdS1Fk34iYOa1T4o6">https://www.kawanishi-md.co.jp/group_hd/group/nikkou_01.php</a></td>
+  <td data-page-node-id="sjSuwcKjife00CujGzo56"><span class='badge badge-surgical' data-page-node-id="HTUgKBvL6ebzbb0OLxNyu">骨科·创伤器械</span></td>
+</tr>
+<tr data-page-node-id="MG3x2cKb7ivGHLybRcyGl">
+  <td data-page-node-id="GIoAbL0nj374NZbQUuLbX">10</td>
+  <td class='company-name' data-page-node-id="zAMn4Gp0UvqQaboSFlSLd">Yayoi Co., Ltd.（株式会社やよい）</td>
+  <td data-page-node-id="p4ykIQBaGd6rrKTglnGAd">未公开</td>
+  <td class='contact-info' data-page-node-id="TFxgC25KnacbA57URPUqu">
+    <div class="muted" data-page-node-id="FEy78ySIvH3SXVBNCmHUh">🔗 来源：<a href="http://www.kk-yayoi.co.jp/total_support/" target="_blank" data-page-node-id="7jPIz64ks0Z2NdmnOis1Z">http://www.kk-yayoi.co.jp/total_support/</a></div>
+  </td>
+  <td data-page-node-id="4Snu9wkbJTE5apQazh5gb"><a href="http://www.kk-yayoi.co.jp" target="_blank" data-page-node-id="bOBNDScLdvvr4vU6MaGm4">http://www.kk-yayoi.co.jp</a></td>
+  <td data-page-node-id="Mr3Fc5H854EbXt9QkHexu"><span class='badge badge-surgical' data-page-node-id="TtfVyUlQ77G0JUUI0jolB">骨科·创伤器械</span></td>
+</tr>
+<tr data-page-node-id="sZlqw1ZQNTzfBBKNLvK8i">
+  <td data-page-node-id="pSjREZ0Cm0ziYWqZcB23J">11</td>
+  <td class='company-name' data-page-node-id="F9Jj1UnY03UMhq1e5QmbV">Yamamura Medical Instruments Co., Ltd.（株式会社山村医科器械）</td>
+  <td data-page-node-id="GUCEPiXtLM3LBJlhuJeM3">Kyoto (Sakyo-ku)</td>
+  <td class='contact-info' data-page-node-id="F7kb6NL1OqmprTtFT0jU0">
+    <div data-page-node-id="zQ5xCcixq3EsHXh9PNMx4">📍 京都市左京区吉田河原町15-5</div>
+    <div class="muted" data-page-node-id="8t3iypqddnRdo2LXwXTy9">🔗 来源：<a href="https://www.awi.co.jp/ja/business/news/news2923441101104016344/main/0/link/272a4f2ca467617e2a21c88777133490abbd924e.pdf" target="_blank" data-page-node-id="txtbvcmgt2Oy4OFdKoJmz">https://www.awi.co.jp/ja/business/news/news2923441101104016344/main/0/link/272a4f2ca467617e2a21c88777133490abbd924e.pdf</a></div>
+  </td>
+  <td data-page-node-id="3LP6TOA3grYNcfnh4P5Fg"><span class="muted" data-page-node-id="ZurhtxMjQanVZHiL9KOji">未公开（无独立官网）</span></td>
+  <td data-page-node-id="PmhK2Ns7XBdAdCdIqieCZ"><span class='badge badge-surgical' data-page-node-id="7ygJb2TEXTqepeHvKvrXL">骨科·创伤器械</span></td>
+</tr>
+<tr data-page-node-id="cwM3Hk9JvH5WPTO89tXTU">
+  <td data-page-node-id="bRC5fHw17n6ioEFxk6Wj6">12</td>
+  <td class='company-name' data-page-node-id="ZrXeDJJN8eO8c8uVdov2D">Rosper Medical Equipment（ロスパー医療機器）</td>
+  <td data-page-node-id="wGy8fF2wvzWBLDjP9YeqF">Chiba (Kashiwa-shi)</td>
+  <td class='contact-info' data-page-node-id="g4JgxtJ0Lv6W2cd5DOUth">
+    <div data-page-node-id="HbLCWAaq92jl49QZUtxlP">📞 +81-4-7199-7460</div>
+    <div data-page-node-id="9d8Lq6L5vmWOxh04lIfEv">📧 <a href="mailto:Info@fair-medical.jp" data-page-node-id="0oAWDEq7jz9SodLn8o6bD">Info@fair-medical.jp</a></div>
+    <div data-page-node-id="hjVph6Ehg9lZy1eEisYSU">📍 1215 Izumi, Kashiwa-shi, Chiba 270-1456</div>
+    <div class="muted" data-page-node-id="Wtzi10lwcX88MKEhBZCt1">🔗 来源：<a href="http://rosper.co.jp/aboutus.html" target="_blank" data-page-node-id="QCI2camSVm4ADTpFlImyb">http://rosper.co.jp/aboutus.html</a></div>
+  </td>
+  <td data-page-node-id="XoZ5nSK9RwUtg5iG9LQLG"><a href="http://rosper.co.jp" target="_blank" data-page-node-id="ATgHBLpvkhzCzF96RF0eB">http://rosper.co.jp</a></td>
+  <td data-page-node-id="VoKAuFcCTnb8WjGYvTVfX"><span class='badge badge-ot' data-page-node-id="H0p6KdTzYtvuah9NOM9aZ">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="CAV5FcIWujho1wZfV777Y">
+  <td data-page-node-id="fpP5q1nCNSTuHlX1JUuQj">13</td>
+  <td class='company-name' data-page-node-id="FW3HoDI96zQcTBjOCFnXX">Bond Japan Co., Ltd.（株式会社ボンドジャパン）</td>
+  <td data-page-node-id="2ivRW5ILP9zb6jdarZWsQ">Osaka (Takaishi-shi)</td>
+  <td class='contact-info' data-page-node-id="t1JPnLmPc6yEMwG1yeX70">
+    <div data-page-node-id="VdK6GOlKxn6QbN3MTZYdW">📞 0120-18-3162</div>
+    <div data-page-node-id="KEgx4KuGzZC1Kri5w9YW6">📍 〒592-0012 大阪府高石市西取石8-2-14</div>
+    <div class="muted" data-page-node-id="kbJ24v43KT672rVdLomme">🔗 来源：<a href="https://medicallives.com/product/bondjapan" target="_blank" data-page-node-id="ApLrhFsJMolNbB6vSvZSh">https://medicallives.com/product/bondjapan</a></div>
+  </td>
+  <td data-page-node-id="djZSm5Ih2sPZPV0bBfq4m"><a href="https://medicallives.com/product/bondjapan" target="_blank" data-page-node-id="jrmzhwTJAxlSzYdZjnQ8Q">https://medicallives.com/product/bondjapan</a></td>
+  <td data-page-node-id="ZwAWaPGucfpHJzYvjEkl4"><span class='badge badge-ot' data-page-node-id="OBJlqyNWm0aeE1tCCVVPj">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="Ycp1CUJnxJkU1rB1BelC5">
+  <td data-page-node-id="tyiiWV2zZUSBe3eLy1U03">14</td>
+  <td class='company-name' data-page-node-id="CCX8b5vOWQbpNpbailFjz">FUJITA Co., Ltd.（株式会社FUJITA）</td>
+  <td data-page-node-id="5COwRbw9PFmAW5eeD1Og0">Tokyo (Chiyoda-ku)</td>
+  <td class='contact-info' data-page-node-id="Ba2HriZNqEvfFArafTX0s">
+    <div data-page-node-id="8uGDmZtWBuojWn0EAh4kr">📞 +81-3-6256-8525</div>
+    <div data-page-node-id="sWuji9TqCG2hwFkjdqiga">📍 〒102-0083 東京都千代田区麹町五丁目1番地1 住友不動産麹町ガーデンタワー</div>
+    <div class="muted" data-page-node-id="aBzcxGEEBuvlj8CKTJvAc">🔗 来源：<a href="https://www.ume-fujita.com/assets/pdf/fujita_companyprofile.pdf" target="_blank" data-page-node-id="Aa4PsLED04yLwFZ79e3AB">https://www.ume-fujita.com/assets/pdf/fujita_companyprofile.pdf</a></div>
+  </td>
+  <td data-page-node-id="rFzVjA21y3ZsmxPwk5WS6"><a href="https://ume-fujita.com" target="_blank" data-page-node-id="tq9Sri6sQ60zk6ybXKAQb">https://ume-fujita.com</a></td>
+  <td data-page-node-id="pagaubylOqkOas7zZTdyz"><span class='badge badge-ot' data-page-node-id="Il8ZYUYTFoYUyLuNeLCPR">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="GsEazAPh9mA9iOJYr8wBx">
+  <td data-page-node-id="9aZ5Ef2YtOgplloCxxQhb">15</td>
+  <td class='company-name' data-page-node-id="ZZi9PmdtdX55DkeSxzkmD">Miyuki Giken Co., Ltd.（ミユキ器械株式会社）</td>
+  <td data-page-node-id="pEJAgrrxiRzH7sF99qxjY">Tokyo (Bunkyo-ku)</td>
+  <td class='contact-info' data-page-node-id="XUIvQBfvXGwkEHYpANQAA">
+    <div data-page-node-id="DJKhh0yWeJi9M9k8wzo3U">📞 +81-3-3818-8631</div>
+    <div data-page-node-id="uuLFYxr2iYMGuPNFKpX3x">📧 <a href="mailto:miyuki@miyuki-net.co.jp" data-page-node-id="ScUusRe4Pu78z6RIZxx9z">miyuki@miyuki-net.co.jp</a></div>
+    <div data-page-node-id="xhnt3OYnoeqhuNRmT3Sd5">📍 Fujiyamiura Building 6F, 2-2-6 Yushima, Bunkyo-ku, Tokyo 113-0034</div>
+    <div class="muted" data-page-node-id="OnQhwfcHG29VFlkOlPkQd">🔗 来源：<a href="https://soterixmedical.com/research/support/distributors" target="_blank" data-page-node-id="DxQ4b3BFIuXpnczNk5hfh">https://soterixmedical.com/research/support/distributors</a></div>
+  </td>
+  <td data-page-node-id="iEp70hg2IREN9lWpCdoK7"><span class="muted" data-page-node-id="PK4a6aEq7vEOeWmoCqmbL">未公开（无独立官网）</span></td>
+  <td data-page-node-id="5jlrB5wZJtX08Ld8GaZer"><span class='badge badge-electro' data-page-node-id="0qAX52PF8Mr12xoq71NHF">电外科设备</span></td>
+</tr>
+<tr data-page-node-id="8kfzFuo8mLYJm4xRHy7wa">
+  <td data-page-node-id="Ncd0qSZuToT5LNofxbzcK">16</td>
+  <td class='company-name' data-page-node-id="652xpjDsVpPacxrsYxQw4">Suzuken Co., Ltd.（株式会社スズケン）</td>
+  <td data-page-node-id="WkXF28VElWpSUjtaUhqm8">Aichi (Nagoya-shi)</td>
+  <td class='contact-info' data-page-node-id="xbBFycnBE4nvqIPEpJTDu">
+    <div data-page-node-id="td7OPZCvrw68ezGT3lryl">📞 +81-52-961-2331</div>
+    <div data-page-node-id="HFowozbFA8i5JjVoPr5k5">📍 〒461-8701 愛知県名古屋市東区東片端町8番地</div>
+    <div class="muted" data-page-node-id="3KfFC8bzcDxjmXNmYAgiX">🔗 来源：<a href="https://www.suzuken.co.jp/company/about.html" target="_blank" data-page-node-id="HwMKiH9PqIcrE5lXqurKt">https://www.suzuken.co.jp/company/about.html</a></div>
+  </td>
+  <td data-page-node-id="4d2JL7oqLnJXNtPCD9pCX"><a href="https://www.suzuken.co.jp" target="_blank" data-page-node-id="ZkSDIhHPuEctT9l5IjcTz">https://www.suzuken.co.jp</a></td>
+  <td data-page-node-id="6UiDuLAvnagEkR0qd7fB0"><span class='badge badge-ot' data-page-node-id="ArncL0Y22Z0cm5OoQ90Be">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="SlN9g0x8osuZuNdSTQ7Fb">
+  <td data-page-node-id="uL2ITt41BqXyvHarHY5rB">17</td>
+  <td class='company-name' data-page-node-id="BcLiaaIQpi5ffJnXeW4jO">Mutoh Co., Ltd.（株式会社ムトウ）</td>
+  <td data-page-node-id="2Qg0T8adrLvixWSCNzEqB">Hokkaido (Sapporo-shi)</td>
+  <td class='contact-info' data-page-node-id="UsSdEcOJ5WOU3aZIkQLyW">
+    <div data-page-node-id="0CGogEapqTxnQEoIXiHas">📞 +81-11-746-5111</div>
+    <div data-page-node-id="FMZwz3xQo81lJU8wlYdnA">📍 Kita 11-jo Nishi 4-chome, Kita-ku, Sapporo, Hokkaido</div>
+    <div class="muted" data-page-node-id="DeAxqoQp07sstizfq66Vb">🔗 来源：<a href="https://www.medical-aid.co.jp/en/company/dairiten/medical.html" target="_blank" data-page-node-id="BzcCO9DAsGu83sni8KZu7">https://www.medical-aid.co.jp/en/company/dairiten/medical.html</a></div>
+  </td>
+  <td data-page-node-id="Nuh5fdm77HUltonmpi4ch"><span class="muted" data-page-node-id="vsYxtddJhi3CYaAeXyNm2">未公开（无独立官网）</span></td>
+  <td data-page-node-id="scSrHlyjzS8xSMkn25Ngw"><span class='badge badge-ot' data-page-node-id="olq1ADUry2McAg3L9AawE">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="7vZKnCqCdQEuPurcVPqX3">
+  <td data-page-node-id="gOElYNhdVsMMXeQebwxzT">18</td>
+  <td class='company-name' data-page-node-id="A6FwpNspAzNkEA1x34xjU">Yagami Co., Ltd.（八神製作所）</td>
+  <td data-page-node-id="qyg4doiqKQbhq0F7OTEzJ">Aichi (Nagoya-shi)</td>
+  <td class='contact-info' data-page-node-id="USGzbdugdmC58L6l09c4I">
+    <div data-page-node-id="pzsJv4tjNNKmYy4YjTAPD">📞 0120-876-650</div>
+    <div data-page-node-id="xLPvvr8difI3e3MSDRN2s">📍 2-16-30 Chiyoda, Naka-ku, Nagoya, Aichi</div>
+    <div class="muted" data-page-node-id="wy91moePtsgju7ISXP8P2">🔗 来源：<a href="https://www.medical-aid.co.jp/en/company/dairiten/medical.html" target="_blank" data-page-node-id="6UFMKO98FR0V4MM0bZGyJ">https://www.medical-aid.co.jp/en/company/dairiten/medical.html</a></div>
+  </td>
+  <td data-page-node-id="xGGidFiJorxFBhlj0xBEq"><span class="muted" data-page-node-id="0YJdSVn1esNd5gvpSvVVK">未公开（无独立官网）</span></td>
+  <td data-page-node-id="gS3Bl9qUth95N41KsrAe8"><span class='badge badge-ot' data-page-node-id="6OH2j9nm2HPaoGtnkmjpi">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="eeFgJ2oBwzT4WzbCXdF4U">
+  <td data-page-node-id="aTlIaqszuMXnluSuL92VL">19</td>
+  <td class='company-name' data-page-node-id="HjIM4TFS3ll5BB0MSJN9z">Konishi Medical Instruments Co., Ltd.（小西医療器株式会社）</td>
+  <td data-page-node-id="wFhoCn1ZxmT7wPab20F5B">Osaka (Chuo-ku)</td>
+  <td class='contact-info' data-page-node-id="meBZlm7TrPttGg5yyPHQI">
+    <div data-page-node-id="Q7eXpxHz1RPrDCjCeiT1b">📞 +81-6-4805-7231</div>
+    <div data-page-node-id="fSsKXaZKJh8QvZUCTpWeg">📍 2-1-5 Uchitawamachi, Chuo-ku, Osaka</div>
+    <div class="muted" data-page-node-id="zC0JOLzHznCbMHY4kF9Vd">🔗 来源：<a href="https://www.medical-aid.co.jp/en/company/dairiten/medical.html" target="_blank" data-page-node-id="whwcrbxvoMiRIGtgELWoD">https://www.medical-aid.co.jp/en/company/dairiten/medical.html</a></div>
+  </td>
+  <td data-page-node-id="bjdM9LnEQiHUzZsN0DsMz"><span class="muted" data-page-node-id="JXOGmkq9UM5OKLj2E9hwD">未公开（无独立官网）</span></td>
+  <td data-page-node-id="AXs5b6fDiWzJXS9uQz69R"><span class='badge badge-ot' data-page-node-id="Fm6jBoksPcIQVGGFqUZhW">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="NEW2zJGmpqomQcO5eju7h">
+  <td data-page-node-id="BnkrAct6RPMYlJ5jqUCRb">20</td>
+  <td class='company-name' data-page-node-id="NxybIvwFhgHmtdIGnF7Ba">West Japan Medical Link Co., Ltd.（中日本メディカルリンク）</td>
+  <td data-page-node-id="iMJnez0Uny97W6GjvDOov">Okayama-shi</td>
+  <td class='contact-info' data-page-node-id="s3Ukc1UOjk6qmd6PurdYt">
+    <div data-page-node-id="6hOJiLQNgWVeTWJRm8m1I">📞 +81-86-241-0231</div>
+    <div data-page-node-id="tyMoc04kM0HdO9NeQbyla">📍 114-2 Nishiichi, Minami-ku, Okayama</div>
+    <div class="muted" data-page-node-id="yqWM4ck0J57u7Jq0Yzkb2">🔗 来源：<a href="https://www.medical-aid.co.jp/en/company/dairiten/medical.html" target="_blank" data-page-node-id="BEOsB8iOCHhVJtJEE9XzF">https://www.medical-aid.co.jp/en/company/dairiten/medical.html</a></div>
+  </td>
+  <td data-page-node-id="96rKAcdypZdsHGti7qcXC"><span class="muted" data-page-node-id="uc7SaHRL7RKAR1GKn061Y">未公开（无独立官网）</span></td>
+  <td data-page-node-id="3PJ37VTwYWTDoGdov5fLd"><span class='badge badge-ot' data-page-node-id="xS6a2dZm7sCpzUA5l77NY">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="8oYBeZ7nVj4mS1ycHYKAm">
+  <td data-page-node-id="ArfRNrkfQ20P2F7oURX0c">21</td>
+  <td class='company-name' data-page-node-id="IrYpyqcNwbBqHkGOsGSNz">Okazaki Medical Co., Ltd.（岡崎医療株式会社）</td>
+  <td data-page-node-id="fW9vzem6bqLfZitc6Dfit">Yamagata (Yamagata-shi)</td>
+  <td class='contact-info' data-page-node-id="wl08cTm76Ze2VJ1RhG1dk">
+    <div data-page-node-id="Q6wrCEyTkJcXVbM4p63fn">📞 +81-23-623-0546</div>
+    <div data-page-node-id="nmhJEDuYKK0vcKjIzAbfa">📍 山形県山形市あこや町3丁目4-3</div>
+    <div class="muted" data-page-node-id="Ov0IBOe4Mz7CnzQG471Yw">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/tohoku" target="_blank" data-page-node-id="HOHRovl3EkcqAuw79Gbok">https://www.as-1.co.jp/agent/hospital/tohoku</a></div>
+  </td>
+  <td data-page-node-id="oAmfRkwjBMqG5UxaVKgSz"><a href="http://www.okazaki-iryo.jp/" target="_blank" data-page-node-id="aU8ICLOqRdSvCwTzYgEQx">http://www.okazaki-iryo.jp/</a></td>
+  <td data-page-node-id="awb8oXK26Aygc1xsH2Er1"><span class='badge badge-ot' data-page-node-id="gEAKI5eqlybUu7z1nan7B">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="2AIUZAerY3z0xxuUqLwqE">
+  <td data-page-node-id="geHH7jZfEobKHwuvQU6Fl">22</td>
+  <td class='company-name' data-page-node-id="3fL1a72nfyMBVdaXpmAHR">Shibata Intec Co., Ltd.（株式会社シバタインテック）</td>
+  <td data-page-node-id="RKlukjcP5MHXG6rmGisYD">Yamagata (Yamagata-shi)</td>
+  <td class='contact-info' data-page-node-id="TtPZFeixtOCaPA394caUU">
+    <div data-page-node-id="JIGoyEBrj7mXiEAArlTe7">📞 +81-23-642-8153</div>
+    <div data-page-node-id="iPAlu3WXISRAtuzSsyaQI">📍 山形県山形市桜田東2-1-21</div>
+    <div class="muted" data-page-node-id="7VfJAWb5DnABQ9B6sQ1jJ">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/tohoku" target="_blank" data-page-node-id="y401dciQCU7CNt5eDb5Pd">https://www.as-1.co.jp/agent/hospital/tohoku</a></div>
+  </td>
+  <td data-page-node-id="ImlvwkKRGStHLNYEN45gr"><a href="http://www.shibataintech.co.jp" target="_blank" data-page-node-id="YeHuyypQQf2pm92SUQeCb">http://www.shibataintech.co.jp</a></td>
+  <td data-page-node-id="y5EXlW1CwZZOHX9Qpqfql"><span class='badge badge-ot' data-page-node-id="FXX7q9vSnvkPAlDNOFKjd">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="v7Rg2OdMlOAUJpYc4FmEt">
+  <td data-page-node-id="DwnUEA0OLumDoj3fQh2l9">23</td>
+  <td class='company-name' data-page-node-id="bZLIyph6rNOXjxxHfqp7s">Sansei Iki Co., Ltd.（サンセイ医機株式会社）</td>
+  <td data-page-node-id="EbLKe5dlvtsFbmnAN1rDi">Fukushima (Koriyama-shi)</td>
+  <td class='contact-info' data-page-node-id="J5dBc1ftp9EB1JVfsUMu1">
+    <div data-page-node-id="P2u4tHuIg6c0pvcuTm8bB">📞 +81-24-944-1127</div>
+    <div data-page-node-id="6nufDoep1L9bt2Hn7VdM5">📍 福島県郡山市昭和2-11-5</div>
+    <div class="muted" data-page-node-id="FSeQdB5J83s9vk0lGf285">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/tohoku" target="_blank" data-page-node-id="K8QVBOAhfMTxCwilIfzq7">https://www.as-1.co.jp/agent/hospital/tohoku</a></div>
+  </td>
+  <td data-page-node-id="J3T3wKgXfOCXcsAptRoaP"><a href="http://www.sansei-iki.co.jp/" target="_blank" data-page-node-id="7aBndo9Qw5AvPf5NwdHEf">http://www.sansei-iki.co.jp/</a></td>
+  <td data-page-node-id="Asbujvgsam2qfgpYSrGah"><span class='badge badge-ot' data-page-node-id="TM1bVbRqvsRwLc86Fni9C">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="r0rtMpfRl6F7nR9N8A1Zu">
+  <td data-page-node-id="MhP19pnVOhMNxOsB572Lq">24</td>
+  <td class='company-name' data-page-node-id="DFNAj2mVUEb5jK1UK95NQ">Asaka Ika Kikai Co., Ltd.（安積医科器械株式会社）</td>
+  <td data-page-node-id="xLwuIeAZ6QBvJbD93PdlH">Fukushima (Koriyama-shi)</td>
+  <td class='contact-info' data-page-node-id="hnZ36a7IlTis9X0XO2IKf">
+    <div data-page-node-id="EvexHyY23iZ8WpjBkgGC8">📞 +81-24-945-6612</div>
+    <div data-page-node-id="bctqH0mycG60XdLwsrZVF">📍 福島県郡山市安積2-91</div>
+    <div class="muted" data-page-node-id="Ujjfc9DBk1q3txoOXRwpv">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/tohoku" target="_blank" data-page-node-id="96FQlGV85zZAZuTYWmxbE">https://www.as-1.co.jp/agent/hospital/tohoku</a></div>
+  </td>
+  <td data-page-node-id="2KryOgnfqIAAT654i1rpH"><a href="http://asaka-ika.com/" target="_blank" data-page-node-id="rn5r3vXyvsk8xmGAmvb8F">http://asaka-ika.com/</a></td>
+  <td data-page-node-id="yoqWp0P192HWJftEXoeq4"><span class='badge badge-ot' data-page-node-id="qaVEHIZMC606IqhMjSoh3">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="VzKYY7p5lQgCUk4nEQ9wK">
+  <td data-page-node-id="C1hNOIzNWQcbltIDdq6aO">25</td>
+  <td class='company-name' data-page-node-id="QgqsVP0DlQStLDQhOmUQp">Nakagawa Medical Instruments Co., Ltd.（株式会社中川医療器械）</td>
+  <td data-page-node-id="cz4LpFidzTwcZnMFvl2w4">Toyama (Toyama-shi)</td>
+  <td class='contact-info' data-page-node-id="AHHbIiFK8dinjjA7s9ZP1">
+    <div data-page-node-id="PhUXoySZzQ3jr8Thfpwuq">📞 +81-76-424-2456</div>
+    <div data-page-node-id="m8oR2S03jyJ7uja80wlQh">📍 富山県富山市下堀58-7</div>
+    <div class="muted" data-page-node-id="bIE8k8DCYo2jgPp3AASFJ">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/hokuriku" target="_blank" data-page-node-id="NkRlrq2FGfvMlJuKk7fQc">https://www.as-1.co.jp/agent/hospital/hokuriku</a></div>
+  </td>
+  <td data-page-node-id="aHwjN3Sed7ldjWqumdC4A"><a href="http://www.nakagawa-iryou.co.jp/" target="_blank" data-page-node-id="xdG7CTwZJRow1IJsUya7b">http://www.nakagawa-iryou.co.jp/</a></td>
+  <td data-page-node-id="F9VmeNmhfqkQnpH2zj7Ht"><span class='badge badge-ot' data-page-node-id="SdWLN1S2JPttSdTidBw6K">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="UzVINT8UTz0nveRDWaOe1">
+  <td data-page-node-id="URYwZCEVsl1EPTWLoZGKB">26</td>
+  <td class='company-name' data-page-node-id="FnVRTF0BxarruFwh1B8dO">Nagata Medical Co., Ltd.（株式会社永田メディカル）</td>
+  <td data-page-node-id="PaQt70gE1MelmHy7vePIp">Toyama (Toyama-shi)</td>
+  <td class='contact-info' data-page-node-id="x4Pgp9d2DdN6a8XCzdMWR">
+    <div data-page-node-id="pdZSCKzlTAQOFviJIjqu0">📞 +81-76-421-8801</div>
+    <div data-page-node-id="b7tTmK3VjHKMzXbNjzHk2">📍 富山県富山市太郎丸西町1-3-3</div>
+    <div class="muted" data-page-node-id="M4Kkr01ZWEXGNDMWa2f6E">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/hokuriku" target="_blank" data-page-node-id="ps9BuE9AHP9BRWcRxgw5N">https://www.as-1.co.jp/agent/hospital/hokuriku</a></div>
+  </td>
+  <td data-page-node-id="iE3N5CweLbMBMhbJNbCSX"><a href="http://nagata-medical.com/" target="_blank" data-page-node-id="wXHv8m3KN7SlnkwVYEiy4">http://nagata-medical.com/</a></td>
+  <td data-page-node-id="EpqY25yVtzK9Crw1Dn2dP"><span class='badge badge-ot' data-page-node-id="GqBIWzdIw3jbzlFmU3hr7">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="AYBIYw2mnYQ6UYvCFj4PB">
+  <td data-page-node-id="izbdPB9mc0P32LxXdC6pM">27</td>
+  <td class='company-name' data-page-node-id="byXf3UYQrcaNVTW4AN6IW">Central Medical Co., Ltd.（セントラルメディカル株式会社）</td>
+  <td data-page-node-id="aPuScNNzLMnrVu49RGDFo">Ishikawa (Kanazawa-shi)</td>
+  <td class='contact-info' data-page-node-id="JOjj2CJZ1gJ6cCIRBFY6s">
+    <div data-page-node-id="dzKgoVmwzhJmq8caF5ZDP">📞 +81-76-262-1111</div>
+    <div data-page-node-id="HZCeZyAwFVObIJ4hBnVVy">📍 石川県金沢市西念3-1-5</div>
+    <div class="muted" data-page-node-id="peOvKziCyignBwbp0T16u">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/hokuriku" target="_blank" data-page-node-id="MXFOvNozuiNQgsWwodVkn">https://www.as-1.co.jp/agent/hospital/hokuriku</a></div>
+  </td>
+  <td data-page-node-id="vsa5UI7g10YIjLCbMEBPm"><a href="https://www.centralmedical.co.jp/" target="_blank" data-page-node-id="ypQGKWe1ESQYytpvaJg1v">https://www.centralmedical.co.jp/</a></td>
+  <td data-page-node-id="yez1bfquiO4DG5PWCerOc"><span class='badge badge-ot' data-page-node-id="ekfoHedrntljcBq4Lxdcf">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="cIhEvYFwEx7YoDDYMvaYu">
+  <td data-page-node-id="CbSSnbPaoynRZVKRmbtud">28</td>
+  <td class='company-name' data-page-node-id="wgHnrb2PeVCbbENSe2mOn">Tomiki Medical Instruments Co., Ltd.（冨木医療器株式会社）</td>
+  <td data-page-node-id="cuNosQSESCoE7x8oZOD6j">Ishikawa (Kanazawa-shi)</td>
+  <td class='contact-info' data-page-node-id="JK88IgnqEfcfM8YIDBWtH">
+    <div data-page-node-id="bxE0qh11ZOnhg6cr5AMty">📞 +81-762-37-5555</div>
+    <div data-page-node-id="nOf4B0vxmnNc06BuLeN0n">📍 石川県金沢市問屋町2-46</div>
+    <div class="muted" data-page-node-id="qXbNlTcZAC35KzEFJ80fT">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/hokuriku" target="_blank" data-page-node-id="kDSnXZT8nK9RCPELTCfb3">https://www.as-1.co.jp/agent/hospital/hokuriku</a></div>
+  </td>
+  <td data-page-node-id="8oyvyDg9o1rLlDjoEozRZ"><a href="https://tomiki.co.jp/" target="_blank" data-page-node-id="SP7PSdrQHcSKVKnVti9M5">https://tomiki.co.jp/</a></td>
+  <td data-page-node-id="Ux4ompd9alACeDsIF3a72"><span class='badge badge-ot' data-page-node-id="FYqH2UIzN85SCXgzOrCn5">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="4EPPpftsNja8AynzQMLZr">
+  <td data-page-node-id="ZH6cKOganfeofMzkyHf9K">29</td>
+  <td class='company-name' data-page-node-id="N2YzEnGVNS8JXyBwIOCL3">Ito Medical Instruments Co., Ltd.（伊藤医療器株式会社）</td>
+  <td data-page-node-id="cqx3Ja6EhgBwkda97iMyk">Fukui (Fukui-shi)</td>
+  <td class='contact-info' data-page-node-id="l5Brj051Wmfj6eSJXcPPL">
+    <div data-page-node-id="Llpq69pupg5wgBXsc0fKM">📞 +81-776-21-6100</div>
+    <div data-page-node-id="e72LqQHdBu6949xK2rBRU">📍 福井県福井市大宮4丁目11-5</div>
+    <div class="muted" data-page-node-id="nFS3q4fRbWMySXlO0IEjR">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/hokuriku" target="_blank" data-page-node-id="Uk3snPLa2eSslQjKaTmAU">https://www.as-1.co.jp/agent/hospital/hokuriku</a></div>
+  </td>
+  <td data-page-node-id="fXmXsUzMtS4oYwEYihQz7"><a href="http://www.itou-iryouki.com/" target="_blank" data-page-node-id="QiIuSwtg8SN2qssyTsHOZ">http://www.itou-iryouki.com/</a></td>
+  <td data-page-node-id="SqjEwDMbVCIAI6l8rKISv"><span class='badge badge-ot' data-page-node-id="XycJVqnV66vSuVlXfHUlP">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="jWxLFlgjW0cCcQm8Z5S4q">
+  <td data-page-node-id="tQjWkbViDg46RVyKM2cJL">30</td>
+  <td class='company-name' data-page-node-id="dsKdZ1tWjN9Lp2Gc0g2mS">MITAS Inc.（株式会社ミタス）</td>
+  <td data-page-node-id="EtQ5ziZuNYUA1ITWcu7cq">Fukui (Fukui-shi)</td>
+  <td class='contact-info' data-page-node-id="5JDNYVFnBajZP7MaYxREW">
+    <div data-page-node-id="kINIATsxbddxp3vj9B44z">📞 +81-776-24-0500</div>
+    <div data-page-node-id="9INpaloDq5jOx4CdsaJM7">📍 福井県福井市問屋町4丁目901番地</div>
+    <div class="muted" data-page-node-id="vbWjlXaag85naf5S0R1Th">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/hokuriku" target="_blank" data-page-node-id="CP7VRBayKf3b1yFsVWngN">https://www.as-1.co.jp/agent/hospital/hokuriku</a></div>
+  </td>
+  <td data-page-node-id="1286rxvRFcb8aXDzwTX7c"><a href="https://www.mitas-inc.co.jp/" target="_blank" data-page-node-id="suLLM7Y4NmbcBcVKHEM7q">https://www.mitas-inc.co.jp/</a></td>
+  <td data-page-node-id="5otw4PTyZkLWtJ3VAERcK"><span class='badge badge-ot' data-page-node-id="a46pippvohD1yAiblVV1P">综合外科设备</span></td>
+</tr>
+<tr data-page-node-id="lcIBGqlyjPC54qvyZgfp3">
+  <td data-page-node-id="V3F8FcyuqbnQfeu5XkSAb">31</td>
+  <td class='company-name' data-page-node-id="6cLqvMTVk8Ci6SmOFfts9">Ortho Edge Japan Co., Ltd.（オルソエッジジャパン株式会社）</td>
+  <td data-page-node-id="qaA9Z2AIfFk4mtQVtPgOr">Tokyo (Chuo-ku)</td>
+  <td class='contact-info' data-page-node-id="6A7WvWC3qAQH0G5M92Xrs">
+    <div data-page-node-id="xpqD97Zqqbhw1wBtYFZ7f">📍 3-9-1 Nihonbashi, Chuo-ku, Tokyo (Nihonbashi 3-chome Square 4F)</div>
+    <div class="muted" data-page-node-id="VVYNNgkNaqjuCaEMS6ELV">🔗 来源：<a href="https://www.medius.co.jp/company/group/?lang=en" target="_blank" data-page-node-id="6NnB7tH20TwJkemfMTQq3">https://www.medius.co.jp/company/group/?lang=en</a></div>
+  </td>
+  <td data-page-node-id="QJRWKHDgQKHxkIOUk7vo5"><span class="muted" data-page-node-id="xxb9NmvN3raJIfveXZJIM">未公开（无独立官网）</span></td>
+  <td data-page-node-id="Y7KngRntWOlHgMVDRwX3M"><span class='badge badge-surgical' data-page-node-id="1wkMbp1n5fFzudo142OBN">骨科·创伤器械</span></td>
+</tr>
+<tr data-page-node-id="LQXWlHtlN8Z0Jca1A06rA">
+  <td data-page-node-id="Q9dtmt1LIh0GB4fBvxwcP">32</td>
+  <td class='company-name' data-page-node-id="G9V156umIYYN8eZJVLsbJ">Medical Net Co., Ltd.（株式会社メディカルネット）</td>
+  <td data-page-node-id="X8xELtPJ8hF7BqpLQv4Uk">Fukushima (Koriyama-shi)</td>
+  <td class='contact-info' data-page-node-id="sk8vA14bb0K38kHdYtZ2u">
+    <div data-page-node-id="8Jb6Jg6aRs9wsQO3ql5fF">📞 +81-24-922-3100</div>
+    <div data-page-node-id="2E4gWZlGRdEW2yhtrjKF2">📍 福島県郡山市八山田4丁目98番地</div>
+    <div class="muted" data-page-node-id="AHelga3LJe1wSpLE2O19v">🔗 来源：<a href="https://www.as-1.co.jp/agent/hospital/tohoku" target="_blank" data-page-node-id="xFCcyMJEisr1SNHNAZ3On">https://www.as-1.co.jp/agent/hospital/tohoku</a></div>
+  </td>
+  <td data-page-node-id="n7Mb0yXTxk2eruIx1bJzA"><a href="http://www.t-medicalnet.com" target="_blank" data-page-node-id="RhoV68E6z3VV4jRzPR8OV">http://www.t-medicalnet.com</a></td>
+  <td data-page-node-id="jQEvWVrx9mcP6I1E35hQj"><span class='badge badge-ot' data-page-node-id="wz52YkUShUJLR16IqnPsL">综合外科设备</span></td>
+</tr>
+</tbody></table>
+        <div class="footer" data-page-node-id="tadPx3Bs4cWZTRBV97S3T"><p data-page-node-id="KfNXB2Rwy4MACFshxLbFI">📌 日本医疗器械经销商名录 · 共 32 家</p></div>
+</div>
+<script>
+(function(){
+  var input=document.getElementById('custSearch');
+  var count=document.getElementById('custCount');
+  if(!input) return;
+  function filter(){
+    var q=input.value.trim().toLowerCase();
+    var rows=document.querySelectorAll('table tbody tr');
+    var n=0;
+    rows.forEach(function(tr){
+      var hit = !q || tr.textContent.toLowerCase().indexOf(q)>=0;
+      tr.style.display = hit ? '' : 'none';
+      if(hit) n++;
+    });
+    if(count) count.textContent = q ? ('匹配 '+n+' / '+rows.length+' 家') : '';
+  }
+  input.addEventListener('input', filter);
+})();
+</script>
+<script>
+(function(){
+  var tb = document.querySelector('table tbody');
+  if(!tb) return;
+  var rows = tb.querySelectorAll('tr');
+  rows.forEach(function(tr,i){ var f=tr.querySelector('td'); if(f) f.textContent=(i+1); });
+  var total = rows.length;
+  var counts = {};
+  rows.forEach(function(tr){ var b=tr.querySelector('td:last-child .badge'); if(b){ var x=b.textContent.trim(); counts[x]=(counts[x]||0)+1; } });
+  var sw = document.querySelector('.stats');
+  if(sw){ var h='<div class="stat-card total"><div class="num">'+total+'</div><div class="label">经销商总数</div></div>'; for(var k in counts){ h+='<div class="stat-card"><div class="num">'+counts[k]+'</div><div class="label">'+k+'</div></div>'; } sw.innerHTML=h; }
+  var foot=document.querySelector('.footer p');
+  if(foot) foot.textContent='📌 日本医疗器械经销商名录 · 共 '+total+' 家';
+})();
+</script>
+</body>
+</html>
