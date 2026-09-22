@@ -110,9 +110,8 @@
   .cust-name .flag{ width:22px; height:15px; margin-left:5px; border-radius:2px; box-shadow:0 1px 2px rgba(15,23,42,.25); vertical-align:middle; object-fit:cover; flex:none; }
   .cust-name:hover{ background:linear-gradient(135deg, rgba(22,163,74,.14), rgba(21,128,62,.14)); box-shadow:0 4px 14px rgba(21,128,62,.18); }
   .cust-name:focus-visible{ outline:2px solid #0d9488; outline-offset:2px; }
-  .cust-links{ flex:1 1 auto; min-width:0; display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
-  .cust-row.collapsed .cust-links{ flex-wrap:nowrap; overflow:hidden; }
-  .cust-row.expanded .cust-links{ flex:1 1 100%; flex-wrap:wrap; flex-direction:column; align-items:flex-start; gap:8px; }
+  .cust-links{ flex:1 1 auto; min-width:0; display:flex; flex-wrap:nowrap; overflow:hidden; gap:9px; align-items:center; }
+  .cust-row.expanded .cust-links{ flex:1 1 100%; flex-wrap:wrap; overflow:visible; align-items:flex-start; gap:8px; }
   .cust-link{
     font-size:13px; font-weight:600; color:#15803d;
     background:#fff; border:1px solid #bbf7d0; border-radius:999px;
@@ -511,7 +510,7 @@
   }
   // 外贸客户分级导航：一级[外贸客户文件] → 二级大洲 → 三级国家；
   // 新版：每个国家成「行」显示——行首为国家名（可点击展开/收起），其后紧跟可单独点选的各个子链接（客户文件）。
-  // 子链接单行排不开时折叠并显示「▾ 更多」，点击国家名或「更多」即向下延展全部文件链接。
+  // 大洲标题右侧三角可一键展开/收纳该大洲全部国家；国家行始终单行，右侧 [展开更多] 按钮展开全部子链接。
   function catTreeBlock(c, tree){
     // 由 ISO2 自动生成国旗图片（flagcdn CDN），覆盖所有国家，无需维护字典；
     // 用图片而非 emoji，规避 Windows 不渲染国旗 emoji（只显示 JP/KR 字母）的问题
@@ -527,7 +526,11 @@
     const allRows = [];
     tree.regions.forEach(reg => {
       const rg = document.createElement('div'); rg.className='cust-region';
-      const rh = document.createElement('div'); rh.className='cust-region-h'; rh.textContent = reg.name;
+      const rh = document.createElement('div'); rh.className='cust-region-h';
+      rh.appendChild(document.createTextNode(reg.name));
+      const tri = document.createElement('span'); tri.className='tri'; tri.textContent='▾';
+      rh.appendChild(tri);
+      rh.addEventListener('click', () => rg.classList.toggle('collapsed'));
       rg.appendChild(rh);
       const rows = document.createElement('div'); rows.className='cust-rows';
       reg.countries.forEach(co => {
@@ -549,7 +552,7 @@
           a.addEventListener('click', (e) => { e.preventDefault(); openSection('./country.html?c='+co.iso2); });
           links.appendChild(a);
         }
-        const more = document.createElement('button'); more.type='button'; more.className='cust-more'; more.textContent='▾ 更多'; more.style.display='none';
+        const more = document.createElement('button'); more.type='button'; more.className='cust-more'; more.textContent='[展开更多]';
         row.appendChild(name); row.appendChild(links); row.appendChild(more);
         rows.appendChild(row);
         allRows.push(row);
@@ -566,37 +569,28 @@
     });
     sec.appendChild(treeBox);
 
-    // 单行排得开 → 全部内联；排不开 → 隐藏溢出项 + 显示「▾ +N」，绝不断字；点击国家名 → 向下延展成纵向列表
+    // 国家行始终单行：收起态 links 单行(nowrap+overflow:hidden，多余的链接隐藏)；点 [展开更多]/国家名 → 展开显示全部链接
     function layoutRow(row){
       const links = row.querySelector('.cust-links');
       const more = row.querySelector('.cust-more');
       const all = Array.prototype.slice.call(links.querySelectorAll('.cust-link'));
+      more.style.display='';
       if (row.classList.contains('expanded')){
         links.style.flexWrap=''; links.style.overflow='';
         all.forEach(a => a.style.display='');
-        more.style.display=''; more.textContent='▴ 收起';
+        more.textContent='[收起]';
         return;
       }
-      // 临时全显 + nowrap，测是否横向溢出
+      // 收起态：单行，隐藏放不下的链接，保证整行只占一行
       all.forEach(a => a.style.display='');
-      links.style.flexWrap='nowrap'; links.style.overflow='visible';
-      const overflow = links.scrollWidth > links.clientWidth + 2;
-      if (overflow){
-        row.classList.add('collapsed');
-        links.style.flexWrap='nowrap'; links.style.overflow='hidden';
-        const gap = 9; let avail = links.clientWidth; let count = 0;
-        all.forEach(a => {
-          const w = a.offsetWidth + gap;
-          if (avail - w >= -2){ avail -= w; a.style.display=''; count++; }
-          else { a.style.display='none'; }
-        });
-        more.style.display=''; more.textContent = '▾ +' + (all.length - count);
-      } else {
-        row.classList.remove('collapsed');
-        links.style.flexWrap=''; links.style.overflow='';
-        all.forEach(a => a.style.display='');
-        more.style.display='none';
-      }
+      links.style.flexWrap='nowrap'; links.style.overflow='hidden';
+      const gap = 9; let avail = links.clientWidth;
+      all.forEach(a => {
+        const w = a.offsetWidth + gap;
+        if (avail - w >= -2){ avail -= w; a.style.display=''; }
+        else { a.style.display='none'; }
+      });
+      more.textContent='[展开更多]';
     }
     requestAnimationFrame(() => allRows.forEach(layoutRow));
     window.addEventListener('resize', () => allRows.forEach(layoutRow), { passive:true });
