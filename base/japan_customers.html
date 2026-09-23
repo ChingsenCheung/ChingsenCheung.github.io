@@ -14,12 +14,45 @@
     <meta charset="UTF-8" data-page-node-id="dvsni5GHYTKlnqSLgEPYa">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="tPL7ypapvHFODf4kfUbHv">
     <title>日本医疗器械经销商名录</title>
-    <style>        * { margin: 0; padding: 0; box-sizing: border-box; }        body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }        h1 { text-align: center; color: #1a3a6b; font-size: 24px; margin-bottom: 5px; padding: 20px 0 10px; border-bottom: 3px solid #1a3a6b; }  .searchbar{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto 18px;}  .searchbar input{flex:1;padding:10px 14px;border:1px solid #c9d4e3;border-radius:8px;font-size:14px;outline:none;}  .searchbar input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);}  .search-count{font-size:13px;color:#666;white-space:nowrap;}        .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }        .stat-card { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; min-width: 140px; }        .stat-card .num { font-size: 28px; font-weight: 700; color: #1a3a6b; }        .stat-card .label { font-size: 12px; color: #888; }        .stat-card.total { border-top: 3px solid #27ae60; }        .stat-card.total .num { color: #27ae60; }        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-size: 13px; margin-bottom: 20px; }        thead { background: linear-gradient(135deg, #1a3a6b 0%, #2c5aa0 100%); color: #fff; }        th { padding: 12px 10px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }        td { padding: 10px 10px; border-bottom: 1px solid #eee; vertical-align: top; }        tr:hover { background: #f8f9fb; }        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; }        .badge-electro { background: #f39c12; color: #fff; }        .badge-ortho { background: #3498db; color: #fff; }        .badge-surgical { background: #2ecc71; color: #fff; }        .badge-ot { background: #9b59b6; color: #fff; }        a { color: #2c5aa0; text-decoration: none; }        a:hover { text-decoration: underline; }        .company-name { font-weight: 600; color: #1a3a6b; }        .contact-info { font-size: 12px; color: #555; }        .contact-info div { margin-bottom: 2px; }.muted { color: #aaa; }        .footer { text-align: center; margin-top: 30px; padding: 20px; color: #888; font-size: 12px; }        .footer p { margin-bottom: 4px; }</style>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; color: #1a3a6b; font-size: 24px; margin-bottom: 5px; padding: 20px 0 10px; border-bottom: 3px solid #1a3a6b; }
+  .searchbar{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto 18px;}
+  .searchbar input{flex:1;padding:10px 14px;border:1px solid #c9d4e3;border-radius:8px;font-size:14px;outline:none;}
+  .searchbar input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+  .search-count{font-size:13px;color:#666;white-space:nowrap;}
+        .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .stat-card { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; min-width: 140px; }
+        .stat-card .num { font-size: 28px; font-weight: 700; color: #1a3a6b; }
+        .stat-card .label { font-size: 12px; color: #888; }
+        .stat-card.total { border-top: 3px solid #27ae60; }
+        .stat-card.total .num { color: #27ae60; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-size: 13px; margin-bottom: 20px; }
+        thead { background: linear-gradient(135deg, #1a3a6b 0%, #2c5aa0 100%); color: #fff; }
+        th { padding: 12px 10px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+        td { padding: 10px 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+        tr:hover { background: #f8f9fb; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; }
+        .badge-electro { background: #f39c12; color: #fff; }
+        .badge-ortho { background: #3498db; color: #fff; }
+        .badge-surgical { background: #2ecc71; color: #fff; }
+        .badge-ot { background: #9b59b6; color: #fff; }
+        a { color: #2c5aa0; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .company-name { font-weight: 600; color: #1a3a6b; }
+        .contact-info { font-size: 12px; color: #555; }
+        .contact-info div { margin-bottom: 2px; }
+.muted { color: #aaa; }
+        .footer { text-align: center; margin-top: 30px; padding: 20px; color: #888; font-size: 12px; }
+        .footer p { margin-bottom: 4px; }
+</style>
 </head>
 <body data-page-node-id="obM9Bs9zYrYdkvxuCyXAP">
 <div class="container" data-page-node-id="dRwlsOJdmJRMHYfdVBmEU">
     <h1 data-page-node-id="xaKUgYQk1gu3izvzqH8D8">日本医疗器械经销商名录</h1>
-    <div class="stats" data-page-node-id="sYA2oDv1S1XMEPpP717cm"><div class="stat-card total" data-page-node-id="1AOyhmbqwQRXlOXZQG1vJ"><div class="num" data-page-node-id="F9WlUe5Li2SHrrR7uLedv">70</div><div class="label" data-page-node-id="iBrPxdepRtxI6IYueulYK">经销商总数</div></div></div>
+    <div class="stats" data-page-node-id="sYA2oDv1S1XMEPpP717cm"><div class="stat-card total"><div class="num">70</div><div class="label">经销商总数</div></div><div class="stat-card"><div class="num">64</div><div class="label">综合外科设备</div></div><div class="stat-card"><div class="num">1</div><div class="label">电外科设备</div></div><div class="stat-card"><div class="num">5</div><div class="label">骨科·创伤器械</div></div></div>
       <div class="searchbar" data-page-node-id="1MBFoDqOeSnPRV9Oru65o">
     <input id="custSearch" type="text" placeholder="🔍 搜索公司名称 / 城市 / 电话 / 官网 / 方向…" autocomplete="off" data-page-node-id="sJOdogfj3XkONybVniPTk">
     <span class="search-count" id="custCount" data-page-node-id="vpyF4Pp4UbcAgSH40CEJS"></span>
@@ -1004,7 +1037,7 @@
   <td data-page-node-id="0nJs50V5Efx3QkFugX3Mv"><span class='badge badge-ot' data-page-node-id="dJNO0ZZ0TM8NSr3D2lpuM">综合外科设备</span></td>
 </tr>
 </tbody></table>
-        <div class="footer" data-page-node-id="tadPx3Bs4cWZTRBV97S3T"><p data-page-node-id="KfNXB2Rwy4MACFshxLbFI">📌 日本医疗器械经销商名录 · 共 32 家</p></div>
+        <div class="footer" data-page-node-id="tadPx3Bs4cWZTRBV97S3T"><p data-page-node-id="KfNXB2Rwy4MACFshxLbFI">📌 日本医疗器械经销商名录 · 共 70 家</p></div>
 </div>
 <script>
 (function(){
@@ -1037,7 +1070,7 @@
   var sw = document.querySelector('.stats');
   if(sw){ var h='<div class="stat-card total"><div class="num">'+total+'</div><div class="label">经销商总数</div></div>'; for(var k in counts){ h+='<div class="stat-card"><div class="num">'+counts[k]+'</div><div class="label">'+k+'</div></div>'; } sw.innerHTML=h; }
   var foot=document.querySelector('.footer p');
-  if(foot) foot.textContent='📌 日本医疗器械经销商名录 · 共 '+total+' 家';
+  if(foot) foot.textContent='📌 日本医疗器械经销商名录 · '+total+' 家';
 })();
 </script>
 </body>
