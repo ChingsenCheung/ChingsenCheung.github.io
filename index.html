@@ -16,7 +16,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>新华健康外贸客户管理系统</title>
+<title>外贸信息查询</title>
 <style>
   :root{
     --bg:#eef2f6; --panel:#fff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0; --brand:#0d9488;
@@ -140,7 +140,7 @@
     .cust-name{ align-self:flex-start; }
     .cust-row.expanded .cust-links{ flex:1 1 100%; }
   }
-  /* 扁平版块（国产厂家/科普/上传）行式：每行 = 标题 + 可点「打开↗」，视觉对齐国家行 */
+  /* 扁平版块（国产厂家/发展史一览/上传）行式：每行 = 标题 + 可点「打开↗」，视觉对齐国家行 */
   .row-item{
     display:flex; align-items:center; gap:14px;
     padding:13px 16px; background:var(--panel);
@@ -249,7 +249,7 @@
       </div>
       <div class="chinaclock" id="chinaclock">--:--:--</div>
     </div>
-    <h1>新华健康外贸客户管理系统</h1>
+    <h1>外贸信息查询</h1>
   </header>
   <div class="wrap">
     <nav class="topbar">
@@ -268,7 +268,7 @@
       <div id="cats" class="cats"></div>
     </div>
   </div>
-  <footer>新华健康外贸客户管理系统</footer>
+  <footer>新华健康外贸业务信息查询</footer>
   <button id="toTop" type="button" aria-label="回到顶部" title="回到顶部">
     <svg class="tt-icon" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12 20 V5"/>
@@ -301,7 +301,6 @@
         { iso2:'la', name:'老挝', en:'Laos', code:'+856' },
         { iso2:'jp', name:'日本', en:'Japan', code:'+81' },
         { iso2:'kr', name:'韩国', en:'South Korea', code:'+82' },
-        { iso2:'kp', name:'朝鲜', en:'North Korea', code:'+850' },
       ]},
       { name:'非洲', countries:[
         { iso2:'ng', name:'尼日利亚', en:'Nigeria', code:'+234' },
@@ -355,15 +354,11 @@
       { file:'korea_customers.html', title:'经销商总表' },
       { file:'korea_hospitals.html', title:'医院信息表' },
     ],
-    kp: [
-      { file:'northkorea_customers.html', title:'经销商总表' },
-      { file:'northkorea_hospitals.html', title:'医院信息表' },
-    ],
   };
   const CATS = [
     { id:'cust', name:'外贸客户', color:'#0d9488', tree:CUST_TREE },
     { id:'fac', name:'国产厂家文件', color:'#d97706' },
-    { id:'pop', name:'科普文件', color:'#7c3aed' },
+    { id:'pop', name:'发展史一览', color:'#7c3aed' },
   ];
   // 基础资料清单（与后端 BASE_META 一致）
   const BASE_META = [
@@ -437,7 +432,7 @@
     if (h.startsWith('country=')) { iso2 = h.slice(8); mode = 'build'; }
     else if (h.startsWith('sec=')) { iso2 = h.slice(4); mode = 'sec'; }
     if (!iso2) { hint.className = 'country-hint'; hint.innerHTML = ''; return; }
-    const CN = { bd:'孟加拉', cn:'中国', in:'印度', jp:'日本', kr:'韩国', kp:'朝鲜', vn:'越南', th:'泰国', my:'马来西亚', sg:'新加坡', id:'印度尼西亚', ph:'菲律宾', pk:'巴基斯坦', lk:'斯里兰卡', mm:'缅甸', kh:'柬埔寨', la:'老挝', np:'尼泊尔', mn:'蒙古', kz:'哈萨克斯坦', uz:'乌兹别克斯坦', ir:'伊朗', iq:'伊拉克', sa:'沙特阿拉伯', ae:'阿联酋', tr:'土耳其', eg:'埃及', za:'南非', ng:'尼日利亚', br:'巴西', ar:'阿根廷', cl:'智利', pe:'秘鲁', mx:'墨西哥', us:'美国', ca:'加拿大', fr:'法国', de:'德国', it:'意大利', es:'西班牙', pt:'葡萄牙', nl:'荷兰', be:'比利时', ch:'瑞士', at:'奥地利', se:'瑞典', no:'挪威', dk:'丹麦', fi:'芬兰', ie:'爱尔兰', gb:'英国', pl:'波兰', ru:'俄罗斯', ua:'乌克兰', au:'澳大利亚', nz:'新西兰' };
+    const CN = { bd:'孟加拉', cn:'中国', in:'印度', jp:'日本', kr:'韩国', vn:'越南', th:'泰国', my:'马来西亚', sg:'新加坡', id:'印度尼西亚', ph:'菲律宾', pk:'巴基斯坦', lk:'斯里兰卡', mm:'缅甸', kh:'柬埔寨', la:'老挝', np:'尼泊尔', mn:'蒙古', kz:'哈萨克斯坦', uz:'乌兹别克斯坦', ir:'伊朗', iq:'伊拉克', sa:'沙特阿拉伯', ae:'阿联酋', tr:'土耳其', eg:'埃及', za:'南非', ng:'尼日利亚', br:'巴西', ar:'阿根廷', cl:'智利', pe:'秘鲁', mx:'墨西哥', us:'美国', ca:'加拿大', fr:'法国', de:'德国', it:'意大利', es:'西班牙', pt:'葡萄牙', nl:'荷兰', be:'比利时', ch:'瑞士', at:'奥地利', se:'瑞典', no:'挪威', dk:'丹麦', fi:'芬兰', ie:'爱尔兰', gb:'英国', pl:'波兰', ru:'俄罗斯', ua:'乌克兰', au:'澳大利亚', nz:'新西兰' };
     const label = CN[iso2] || iso2.toUpperCase();
     if (mode === 'sec') hint.innerHTML = '已定位板块：<b>'+label+'</b> 客户文件';
     else hint.innerHTML = '正在建设：<b>'+label+'</b> 国家专属板块（即将上线）';
@@ -484,7 +479,7 @@
       else if (role !== 'admin' && role !== 'vip') cats.appendChild(emptyBlock('你还没有上传文件（静态版不支持上传，请使用本地后端版本）。'));
     }
   }
-  // 扁平版块（国产厂家/科普/上传）：行式——每行 = 标题 + 可单独点选的「打开↗」，视觉对齐外贸客户行式
+  // 扁平版块（国产厂家/发展史一览/上传）：行式——每行 = 标题 + 可单独点选的「打开↗」，视觉对齐外贸客户行式
   function catBlock(c, items, getUrl, kind, showOwner){
     const sec = document.createElement('section'); sec.className='cat';
     if (c.color) sec.style.setProperty('--accent', c.color);
