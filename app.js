@@ -1747,14 +1747,7 @@ window.addEventListener("unhandledrejection", function(e){
       applyHideUnselectedHosp();   // 选中态变化后同步“隐藏未选医院”：仅保留高亮红点，隐藏其余
     }
     function loadHospitals(){
-      // 医院数据仅限孟加拉达卡市：非孟加拉国家地图不加载、不绘制、不进检索栏、不进路线规划
-      if (iso2 !== 'bd'){
-        window.__hospList = [];
-        _hospLoaded = true;
-        if ($('hospCount')) $('hospCount').textContent = '0 家';
-        if (_activeTab === 'hosp') renderHospitals([]);
-        return;
-      }
+      // 医院数据按 iso2 过滤落图：孟加拉达卡 + 泰国/越南/日本/韩国等已导入国家均可绘制红点
       fetch('hospitals.json').then(r => r.json()).then(data => {
         const all = (data && data.records) || [];
         const list = all.filter(r => (r.iso2 || '').toLowerCase() === iso2);   // 仅当前国（孟加拉达卡）医院落此国家地图
