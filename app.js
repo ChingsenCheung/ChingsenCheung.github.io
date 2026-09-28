@@ -41,7 +41,7 @@ window.addEventListener("unhandledrejection", function(e){
     function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
-    const APP_CACHE_VER = '202609281400';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
+    const APP_CACHE_VER = '202609281210';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -264,8 +264,8 @@ window.addEventListener("unhandledrejection", function(e){
     // 懒加载名单（方案 A）：这些大国 ADM2 体量大，进图不预载，点击"显示二级行政区域"时才拉（IndexedDB 缓存，二次秒开）
     const LAZY_ADM2 = new Set(['ru', 'au']);
     let _adm2Lazy = LAZY_ADM2.has(iso2);   // 当前国是否启用懒加载
-    // 仅一级行政区国家：日本只展示都道府县（1 都・1 道・2 府・43 县）；韩国只展示广域地方自治团体（17 个 시도：1 特别市・6 广域市・1 特别自治市・9 道/特别自治道），均不细分二级行政区域
-    const NO_ADM2 = new Set(['jp', 'kr']);
+    // 仅一级行政区国家：日本只展示都道府县（1 都・1 道・2 府・43 县）；韩国只展示广域地方自治团体（17 个 시도：1 特别市・6 广域市・1 特别自治市・9 道/特别自治道）；泰国只展示府（จังหวัด changwat，76 个普通府 + 曼谷府级直辖市，合计 77 个）。均不细分二级行政区域
+    const NO_ADM2 = new Set(['jp', 'kr', 'th']);
     let _noAdm2 = NO_ADM2.has(iso2);
     let _zoom = null;  // 地图 zoom 行为（renderProvinces 内赋值），供点击客户检索行时自动放大定位到一级区域
   let _gEmboss = null, _curK = 1, _curT = null;  // 3D 浮雕层引用与当前缩放比（浮雕高度随缩放反比，保持屏幕高度恒定）；_curT 同处声明，避免泄漏到 window 全局（非严格模式下静默成全局变量，一旦加 'use strict' 即崩）
@@ -299,6 +299,8 @@ window.addEventListener("unhandledrejection", function(e){
           $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（1 都・1 道・2 府・43 县），本图仅显示一级行政区（都道府县），边界数据：dataofjapan / 日本国土地理院`;
         } else if (iso2 === 'kr'){
           $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（1 特别市・6 广域市・1 特别自治市・9 道/特别自治道，合计 17 个广域地方自治团体 시도），本图仅显示一级行政区，边界数据：GADM / 韩国统计厅(KOSTAT)`;
+        } else if (iso2 === 'th'){
+          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（府 / จังหวัด changwat：76 个普通府 + 曼谷府级直辖市，合计 77 个），本图仅显示一级行政区（府），边界数据：GADM / 泰国政府行政区划`;
         } else {
           $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域，本图仅显示一级行政区`;
         }
