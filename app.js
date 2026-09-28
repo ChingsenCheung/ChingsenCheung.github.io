@@ -41,7 +41,7 @@ window.addEventListener("unhandledrejection", function(e){
     function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
-    const APP_CACHE_VER = '202609281210';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
+    const APP_CACHE_VER = '202609281212';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -1784,8 +1784,9 @@ window.addEventListener("unhandledrejection", function(e){
         _hospLoaded = true;
         if ($('hospCount')) $('hospCount').textContent = list.length + ' 家';
         drawHospitalPointsOnMap(list);
+        assignRegions();   // 补全医院 __adm1/__adm2 归属，供一级行政区点击筛选医院检索栏（与经销商对称）
         updateCustStat();
-        if (_activeTab === 'hosp') renderHospitals(list);
+        if (_activeTab === 'hosp') applyListFilter();   // 改用 applyListFilter：若已选中区域则同步按区域过滤医院
       }).catch(() => { /* 无 hospitals.json 不影响客户功能（其它国家地图本就无医院数据） */ });
     }
     function renderHospitals(list){
@@ -1800,12 +1801,18 @@ window.addEventListener("unhandledrejection", function(e){
       body.querySelectorAll('tr').forEach(tr => { tr.onclick = () => highlightHospital(+tr.dataset.id); });
       _hlHospIds.forEach(id => { const rr = body.querySelector('tr[data-id="'+id+'"]'); if (rr) rr.classList.add('sel'); });
     }
-    // 列表筛选分发：客户 tab → 区域+搜索；医院 tab → 搜索（医院暂不做行政区筛选，因全部位于达卡）
+    // 列表筛选分发：客户 tab → 区域+搜索；医院 tab → 区域+搜索（医院同样按所属一级/二级行政区过滤，与经销商对称）
     function applyListFilter(){
       if (_activeTab === 'hosp'){
         const list = window.__hospList || [];
+        const regions = _selectedRegions();
+        let flt = list;
+        if (regions.length){
+          if (list.some(r => r.__adm1 == null)) assignRegions();   // 异步加载兜底：确保医院已按经纬度归入区域（与经销商同款缓存机制）
+          flt = list.filter(r => regions.some(rg => (rg.type === 'adm1' ? r.__adm1 : r.__adm2) === rg.name));
+        }
         const q = ($('custSearch').value || '').trim().toLowerCase();
-        const flt = q ? list.filter(r => [r.hospital, r.cn, r.area, r.address, r.phone].some(v => (v||'').toLowerCase().includes(q))) : list;
+        if (q) flt = flt.filter(r => [r.hospital, r.cn, r.area, r.address, r.phone].some(v => (v||'').toLowerCase().includes(q)));
         renderHospitals(flt);
       } else {
         applyRegionFilter();
@@ -1845,23 +1852,25 @@ window.addEventListener("unhandledrejection", function(e){
         _adm1CustMap.get(nm).push(m);
       });
     }
-    // —— 区域筛选：把每个客户关联到所属一级(ADM1)/二级(ADM2)行政区域（按经纬度 geoContains）——
+    // —— 区域筛选：把每个客户/医院关联到所属一级(ADM1)/二级(ADM2)行政区域（按经纬度 geoContains）——
     function assignRegions(){
-      const list = window.__custList || [];
-      if (!list.length) return;
+      const cl = window.__custList || [];
+      const hl = window.__hospList || [];
+      if (!cl.length && !hl.length) return;   // 客户与医院都无数据才跳过（仅医院无客户时也需给医院算区域归属）
       // 缓存 ADM2 GeoJSON 反序列化结果：只算一次（774 个多边形反序列化是重活，避免每次调用都重建）
       if (!assignRegions._fc2){
         assignRegions._fc2 = (_topo2 && _topo2.type === 'Topology') ? topojson.feature(_topo2, _topo2.objects[Object.keys(_topo2.objects)[0]]) : (_topo2 || null);
       }
       const fc2 = assignRegions._fc2;
-      list.forEach(r => {
-        if (r.__adm1 && r.__adm2) return;   // 已算过则跳过（增量）：首次全量后所有客户都有缓存，后续调用零成本
+      const geocode = (list) => list.forEach(r => {
+        if (r.__adm1 && r.__adm2) return;   // 已算过则跳过（增量）：首次全量后所有记录都有缓存，后续调用零成本
         if (r.lat != null && r.lng != null){
           const ll = [+r.lng, +r.lat];
           if (!r.__adm1 && _features){ for (const f of _features){ try { if (d3.geoContains(f, ll)){ r.__adm1 = f.properties.shapeName || f.properties.name; break; } } catch(e){} } }
           if (!r.__adm2 && fc2 && fc2.features){ for (const f of fc2.features){ try { if (d3.geoContains(f, ll)){ r.__adm2 = f.properties.shapeName || f.properties.name; break; } } catch(e){} } }
         }
       });
+      geocode(cl); geocode(hl);   // 客户 + 医院 都按经纬度归入一级/二级行政区域（医院点击一级行政区时同步过滤检索栏）
       buildAdm1CustMap();   // 省→客户分组始终构建（仅依赖已加载的 ADM1，与 ADM2 是否就绪无关）→ 悬停省时位点可抬升
       if (!_adm2Chunked) buildAdm2CustMap();   // 非分块国：全量重建预分组；分块国改为增量 ensureAdm2CustForState（避免每次 assignRegions 清空已增量补全的归属）
     }
