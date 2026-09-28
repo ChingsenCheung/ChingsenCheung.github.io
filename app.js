@@ -853,7 +853,11 @@ window.addEventListener("unhandledrejection", function(e){
       _custEls.forEach(m => { m.lifted = false; m.liftC = null; });
       items.forEach(it => {
         const nm = it.feature.properties ? (it.feature.properties.shapeName || it.feature.properties.name) : null;
-        const list = (_adm2CustMap && nm) ? (_adm2CustMap.get(nm) || []) : _custEls;
+        // 同时查「省分组(_adm1CustMap)」与「二级分组(_adm2CustMap)」：悬停省(ADM1)或二级(ADM2)都抬升其内客户点（与医院点对称）
+        // 旧逻辑仅查 _adm2CustMap → 悬停省时 _adm2CustMap.get(省名) 为空，黄点永不抬升（即“不跟随浮雕”）
+        const list = (_adm1CustMap && _adm1CustMap.get(nm)) ? _adm1CustMap.get(nm)
+                    : (_adm2CustMap && _adm2CustMap.get(nm)) ? _adm2CustMap.get(nm)
+                    : ((_adm1CustMap || _adm2CustMap) ? [] : _custEls);
         list.forEach(m => {
           const rec = m.rec;
           if (rec && rec.lng != null && rec.lat != null && d3.geoContains(it.feature, [+rec.lng, +rec.lat])){
@@ -1047,6 +1051,7 @@ window.addEventListener("unhandledrejection", function(e){
     // 修复：① 投影按“投影签名(W×H)”失效，仅在窗口尺寸变化(投影变)时重算；② 774 个 path 分帧(rAF)批量创建，单帧 ≤16ms 不卡；
     //       ③ 首次构建后隐藏只切 display:none 保留 DOM，再次开启瞬时显示；④ 进图后在浏览器空闲(requestIdleCallback)预构建隐藏层，首次点击即开即显。
     let _adm2Fc = null, _adm2ProjKey = null, _adm2BuildGen = 0, _adm2Building = false, _adm2CustMap = null;
+    let _adm1CustMap = null;   // 一级(省)→客户点分组：renderEmboss 悬停省(ADM1)时按此抬升位点（与医院点对称，修复“黄点不随省浮雕升起”）
     // —— B 级 LOD 分级（仅大体量国，如 mx=2457 市区）：低缩放只显示省界，放大越过阈值才细化市区 ——
     // 简化轮廓在渲染期派生（Douglas-Peucker，容差 = 恒定屏幕误差 / k），绝不入库/改 _topo2，守住“数据保真”铁律。
     let _lodAdm2 = false;            // 当前国是否启用 LOD（ADM2 市区数 > 800 自动启用，按国独立，不牵连他国）
@@ -1809,6 +1814,14 @@ window.addEventListener("unhandledrejection", function(e){
         _adm2CustMap.get(nm).push(m);
       });
     }
+    function buildAdm1CustMap(){
+      _adm1CustMap = new Map();
+      _custEls.forEach(m => {
+        const nm = m.rec && (m.rec.__adm1); if (!nm) return;
+        if (!_adm1CustMap.has(nm)) _adm1CustMap.set(nm, []);
+        _adm1CustMap.get(nm).push(m);
+      });
+    }
     // —— 区域筛选：把每个客户关联到所属一级(ADM1)/二级(ADM2)行政区域（按经纬度 geoContains）——
     function assignRegions(){
       const list = window.__custList || [];
@@ -1826,6 +1839,7 @@ window.addEventListener("unhandledrejection", function(e){
           if (!r.__adm2 && fc2 && fc2.features){ for (const f of fc2.features){ try { if (d3.geoContains(f, ll)){ r.__adm2 = f.properties.shapeName || f.properties.name; break; } } catch(e){} } }
         }
       });
+      buildAdm1CustMap();   // 省→客户分组始终构建（仅依赖已加载的 ADM1，与 ADM2 是否就绪无关）→ 悬停省时位点可抬升
       if (!_adm2Chunked) buildAdm2CustMap();   // 非分块国：全量重建预分组；分块国改为增量 ensureAdm2CustForState（避免每次 assignRegions 清空已增量补全的归属）
     }
     function applyRegionFilter(){
