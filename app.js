@@ -266,8 +266,8 @@ window.addEventListener("unhandledrejection", function(e){
     // 懒加载名单（方案 A）：这些大国 ADM2 体量大，进图不预载，点击"显示二级行政区域"时才拉（IndexedDB 缓存，二次秒开）
     const LAZY_ADM2 = new Set(['ru', 'au']);
     let _adm2Lazy = LAZY_ADM2.has(iso2);   // 当前国是否启用懒加载
-    // 仅一级行政区国家：日本只展示都道府县（1 都・1 道・2 府・43 县）；韩国只展示广域地方自治团体（17 个 시도：1 特别市・6 广域市・1 特别自治市・9 道/特别自治道）；泰国只展示府（จังหวัด changwat，76 个普通府 + 曼谷府级直辖市，合计 77 个）。均不细分二级行政区域
-    const NO_ADM2 = new Set(['jp', 'kr', 'th']);
+    // 仅一级行政区国家：日本只展示都道府县（1 都・1 道・2 府・43 县）；韩国只展示广域地方自治团体（17 个 시도：1 特别市・6 广域市・1 特别自治市・9 道/特别自治道）；泰国只展示府（จังหวัด changwat，76 个普通府 + 曼谷府级直辖市，合计 77 个）；印度只展示一级行政区域（28 邦 + 8 联邦属地，合计 36 个），不细分二级行政区域（县/区约 750 个，体量过大）。均不细分二级行政区域
+    const NO_ADM2 = new Set(['jp', 'kr', 'th', 'in']);
     let _noAdm2 = NO_ADM2.has(iso2);
     let _zoom = null;  // 地图 zoom 行为（renderProvinces 内赋值），供点击客户检索行时自动放大定位到一级区域
   let _gEmboss = null, _curK = 1, _curT = null;  // 3D 浮雕层引用与当前缩放比（浮雕高度随缩放反比，保持屏幕高度恒定）；_curT 同处声明，避免泄漏到 window 全局（非严格模式下静默成全局变量，一旦加 'use strict' 即崩）
@@ -374,9 +374,9 @@ window.addEventListener("unhandledrejection", function(e){
       // 1) 省填充（底层，承载 hover 提示）
       const pf = g.selectAll('path.prov-fill').data(features).enter().append('path')
         .attr('d', path).attr('class','prov-fill')
-        .on('mousemove', (e,d) => { showTip(e, d.properties.shapeName || d.properties.name || ''); hoverRegion(d, 'adm1'); })
+        .on('mousemove', (e,d) => { showTip(e, (d.properties.cnName || d.properties.shapeName || d.properties.name) || ''); hoverRegion(d, 'adm1'); })
         .on('mouseleave', (e,d) => { hideTip(e,d); unhoverRegion(); })
-        .on('click', (e,d) => setRegionFilter('adm1', d.properties.shapeName || d.properties.name, d.properties.shapeName || d.properties.name, e.currentTarget, d));
+        .on('click', (e,d) => setRegionFilter('adm1', d.properties.shapeName || d.properties.name, (d.properties.cnName || d.properties.shapeName || d.properties.name), e.currentTarget, d));
       _provFill = pf.nodes();
       // 2) 二级行政区域（中间层，按所属一级区域单独裁剪，避免跨区域交叉）
       _gAdm2 = g.append('g');
@@ -409,7 +409,7 @@ window.addEventListener("unhandledrejection", function(e){
       // 3) 省轮廓（最上层，描边清晰，市区线不压过省界）
       const pl = g.selectAll('path.prov-line').data(features).enter().append('path')
         .attr('d', path).attr('class','prov-line')
-        .on('mousemove', (e,d) => { showTip(e, d.properties.shapeName || d.properties.name || ''); hoverRegion(d, 'adm1'); })
+        .on('mousemove', (e,d) => { showTip(e, (d.properties.cnName || d.properties.shapeName || d.properties.name) || ''); hoverRegion(d, 'adm1'); })
         .on('mouseleave', (e,d) => { hideTip(e,d); unhoverRegion(); });
       _provLine = pl.nodes();
       // 二次构建国家轮廓：由一级行政区域(ADM1)并集溶解内部边界，得到国家外边界；
