@@ -41,7 +41,7 @@ window.addEventListener("unhandledrejection", function(e){
     function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
-    const APP_CACHE_VER = '202607241650';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
+    const APP_CACHE_VER = '202609281200';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -264,6 +264,9 @@ window.addEventListener("unhandledrejection", function(e){
     // 懒加载名单（方案 A）：这些大国 ADM2 体量大，进图不预载，点击"显示二级行政区域"时才拉（IndexedDB 缓存，二次秒开）
     const LAZY_ADM2 = new Set(['ru', 'au']);
     let _adm2Lazy = LAZY_ADM2.has(iso2);   // 当前国是否启用懒加载
+    // 仅一级行政区国家：日本只展示都道府县（1 都・1 道・2 府・43 县），不细分二级行政区域
+    const NO_ADM2 = new Set(['jp']);
+    let _noAdm2 = NO_ADM2.has(iso2);
     let _zoom = null;  // 地图 zoom 行为（renderProvinces 内赋值），供点击客户检索行时自动放大定位到一级区域
   let _gEmboss = null, _curK = 1, _curT = null;  // 3D 浮雕层引用与当前缩放比（浮雕高度随缩放反比，保持屏幕高度恒定）；_curT 同处声明，避免泄漏到 window 全局（非严格模式下静默成全局变量，一旦加 'use strict' 即崩）
   let _hoverRegion = null;        // 悬停(瞬时)区域 {feature,type,name} 或 null
@@ -290,6 +293,8 @@ window.addEventListener("unhandledrejection", function(e){
     // 地图说明：统一使用“一级行政区域 / 二级行政区域”表述，不硬编码省/州/市/区
     function setStatus(adm2N){
       const adm1N = _adm1Total || (_features ? _features.length : 0);
+      // 仅一级行政区国家（如日本）：不细分二级行政区域，说明栏明确提示
+      if (_noAdm2){ $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（1 都・1 道・2 府・43 县），本图仅显示一级行政区（都道府县），边界数据：dataofjapan / 日本国土地理院`; return; }
       let adm2Str;
       if (typeof adm2N === 'number') adm2Str = adm2N + ' 个';
       else if (adm2N === 'loading') adm2Str = '加载中…';
@@ -1301,6 +1306,12 @@ window.addEventListener("unhandledrejection", function(e){
         }
         if (!topo){ $('mapStatus').textContent = '该国暂无可用的 一级行政区域 边界数据'; return; }
         _topo = topo; renderProvinces(src);
+        // 仅一级行政区国家（如日本）：禁用二级行政区域加载与切换按钮，只展示都道府县
+        if (_noAdm2){
+          const tb = $('adm2toggle'); if (tb) tb.style.display = 'none';
+          setStatus();   // 仅显示一级行政区域说明（不细分二级）
+          return;
+        }
         // ADM2：默认隐藏；懒加载国（ru/au 等大体量）进图不预载，点击按钮时才拉取（IndexedDB 缓存二次秒开）
         if (_adm2Lazy){
           const b = $('adm2toggle'); b.classList.remove('active');
@@ -1379,6 +1390,7 @@ window.addEventListener("unhandledrejection", function(e){
       return _adm2Promise;
     }
     $('adm2toggle').onclick = async function(){
+      if (_noAdm2) return;   // 仅一级行政区国家（如日本）：禁用二级行政区域切换
       showAdm2 = !showAdm2;
       this.classList.toggle('active', showAdm2);
       if (!_gAdm2) return;
