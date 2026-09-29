@@ -433,9 +433,9 @@ window.addEventListener("unhandledrejection", function(e){
       // 3D 浮雕突出层：悬停一级/二级行政区域时整块「从平面探出」，置于 g 内最上（随缩放同步）
       const gEmboss = g.append('g').attr('class','emboss-layer');
       _gEmboss = gEmboss;
-      _gCust = g.append('g').attr('class','cust-layer');  // 客户点图层（顶层）：置于标志层之上，永不被机场/首都图标遮挡；随地图平移/缩放自动同步，绝不会漂移/消失
-      _gHosp = g.append('g').attr('class','hosp-layer');  // 医院点图层（最顶层）：红点+红十字，置于客户点之上，随地图同步（不漂移/不消失）
-      _gMark = g.insert('g', '.cust-layer');  // 标志层（机场/首都）置于客户点之下、省图层之上：不遮挡客户点；随 g 变换自动跟随，尺寸由 updateMarkers 反向 scale 恒定屏幕大小
+      _gHosp = g.append('g').attr('class','hosp-layer');  // 医院点图层：红点+红十字，置于客户黄点之下（默认客户黄点最顶层、不被红点覆盖）；随地图同步（不漂移/不消失）
+      _gMark = g.insert('g', '.hosp-layer');  // 标志层（机场/首都）置于医院层之下、省图层之上：不遮挡客户黄点、也不遮挡医院红点；随 g 变换自动跟随，尺寸由 updateMarkers 反向 scale 恒定屏幕大小
+      _gCust = g.append('g').attr('class','cust-layer');  // 客户点图层（最顶层）：黄点默认绘制于医院红点之上，永不被红点覆盖；也置于标志层之上，随地图平移/缩放自动同步，绝不会漂移/消失
       reapplyRegionSel();
       drawMarkers();
       updateMarkers(d3.zoomIdentity);
