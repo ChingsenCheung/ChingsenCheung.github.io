@@ -263,7 +263,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 4. 一级/二级行政区域地图 + 首都★ + 机场✈ ——
     let _topo=null, _topo2=null, PROJ=null, FC1=null, _svg=null, _gProv=null, _gAdm2=null, _gMark=null, _gCust=null, _custEls=[], _custVisible=true, _CUST_R=3.8, _hlIds=new Set(), _multiTrack=false, showAdm2=false, _adm2Loading=false, _adm2Promise=null, _features=null, _path=null, _markEls=[], _provFill=[], _provLine=[], _adm1Total=0, _adm2Paths=[], _pendingHl = (_urlHl != null && _urlHl !== '') ? parseInt(_urlHl, 10) : null;
-    let _gHosp=null, _hospEls=[], _hospVisible=true, _hlHospIds=new Set(), _activeTab='cust', _hospLoaded=false;  // 医院位点图层状态（红点+红十字，区别于客户绿点）
+    let _gHosp=null, _hospEls=[], _hospVisible=false, _hlHospIds=new Set(), _activeTab='cust', _hospLoaded=false;  // 医院位点图层状态（红点+红十字，区别于客户绿点）；默认隐藏，点「所有医院位点」才显示
     // 懒加载名单（方案 A）：这些大国 ADM2 体量大，进图不预载，点击"显示二级行政区域"时才拉（IndexedDB 缓存，二次秒开）
     const LAZY_ADM2 = new Set(['ru', 'au']);
     let _adm2Lazy = LAZY_ADM2.has(iso2);   // 当前国是否启用懒加载
@@ -678,6 +678,7 @@ window.addEventListener("unhandledrejection", function(e){
           if (!_custVisible){ clearCustomerHighlight(); _embossRemoveBySource('customer'); }
         }
         if (_gRoute) _gRoute.style('display', (_routeOn && (_custVisible || _hospVisible)) ? null : 'none');
+        if (_custVisible) { _gCust && _gCust.raise(); }   // 显示客户 → 客户黄点层置顶（后选中的图层在最上）
         applyHideUnselected();   // 按"总开关+选中"逐个控制点位可见性：总开关关→仅选中点亮起；开→正常/保留模式
       };
       // [医院位点]：默认显示。医院点 = 圆内红十字，区别于客户绿点
@@ -695,6 +696,7 @@ window.addEventListener("unhandledrejection", function(e){
           if (!_hospVisible){ clearHospitalHighlight(); }
         }
         if (_gRoute) _gRoute.style('display', (_routeOn && (_custVisible || _hospVisible)) ? null : 'none');
+        if (_hospVisible) { _gHosp && _gHosp.raise(); }   // 显示医院 → 医院红点层置顶（后选中的图层在最上）
         applyHideUnselectedHosp();   // 按"总开关+选中"逐个控制医院点可见性：总开关关→仅选中点亮起；开→正常/保留模式
       };
       // [客户检索 / 医院检索 切换]
@@ -1572,8 +1574,8 @@ window.addEventListener("unhandledrejection", function(e){
     // 设计（用户 2026-07-25）：初始(k=1)全图时客户点是「像素粒」(小、坐标绝对准确、同坐标重合点自然堆叠成一粒不可见重叠)；
     // 随放大(k→ZOOM_FULL)逐步变成「清晰圆点」并把去重叠铺开量同步放大，使圆点能代表其准确位置时再铺开。
     // 关键：_gCust 已置于 zoom 组 g 内，坐标随 g 变换自动跟随（不可能漂移/消失）；此函数只调「半径」与「铺开量」。
-    const GRAIN_R = 1.4;            // 初始像素粒半径（屏幕 px）
-    const DOT_R   = 2.6;            // 放大后清晰圆点半径（屏幕 px）
+    const GRAIN_R = 1.9;            // 初始像素粒半径（屏幕 px）；略大于医院初始粒(1.8)，避免黄点被红环包裹
+    const DOT_R   = 3.8;            // 放大后清晰圆点半径（屏幕 px）；略大于医院红点(3.4)，确保黄点视觉上完整压在红点之上、不被红环干扰
     const ZOOM_FULL = 3;            // 缩放到此倍率时完全变成圆点 + 完全铺开
     const ZOOM_MAX  = 9;            // d3.zoom scaleExtent 上限 = 最大化尺寸地图（保留常量；清单排序现直接复用 _routeOrder，不再用它做基准）
     const CUST_HIT_PX = 10;         // 透明命中区：恒定屏幕尺寸(px)，不随缩放放大 → 放大到最大也不会出现超大盲区误触发 hover
@@ -1633,7 +1635,7 @@ window.addEventListener("unhandledrejection", function(e){
         return;
       }
       drawCustomerPointsOnMap._tries = 0;
-      _CUST_R = 2.6;  // 去重叠铺开用半径（=DOT_R）；computeOffsets 据此算恒定屏幕偏移 off（一次性）。实际屏幕半径由 updateCustZoom 按缩放在 GRAIN_R↔DOT_R 间动态插值
+      _CUST_R = 3.8;  // 去重叠铺开用半径（=DOT_R）；computeOffsets 据此算恒定屏幕偏移 off（一次性）。实际屏幕半径由 updateCustZoom 按缩放在 GRAIN_R↔DOT_R 间动态插值
       _gCust.selectAll('g.cust-pt-g').remove();
       _custEls = [];
       const pts = (list || []).filter(r => r.lat != null && r.lng != null);
@@ -1783,6 +1785,7 @@ window.addEventListener("unhandledrejection", function(e){
         const rec = (window.__hospList || []).find(x => x.__id === id);
         if (rec && rec.lat != null && rec.lng != null) zoomToPoint(rec.lat, rec.lng);
       }
+      if (!nowHl) { _gHosp && _gHosp.raise(); }   // 选中医院 → 红点层置顶（后选中的图层在最上）
       applyHideUnselectedHosp();   // 选中态变化后同步“隐藏未选医院”：仅保留高亮红点，隐藏其余
     }
     function loadHospitals(){
@@ -2538,6 +2541,7 @@ window.addEventListener("unhandledrejection", function(e){
       if (node){
         sel.classed('cust-hl', !nowHl);   // 仅在 黄↔绿 之间切换；半径/位置始终不变（绿点尺寸=黄点）
         if (!nowHl) sel.raise();          // 选中(变绿)的客户点置顶：同坐标(达卡 59 家)叠加时，确保绿点始终绘制在最上层，不会被后绘制的邻点黄点覆盖/误认成邻点
+        if (!nowHl) { _gCust && _gCust.raise(); }   // 选中客户 → 客户黄点层置顶（后选中的图层在最上）
       }
       if (!nowHl) _hlIds.add(id); else _hlIds.delete(id);
       // 该客户所属区域（优先 ADM1，无则 ADM2）同步 3D 浮雕显示：黄点所在区域随浮雕一起探出（单点替换/多点追踪累积，与黄点保持同步）
