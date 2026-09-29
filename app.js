@@ -262,7 +262,7 @@ window.addEventListener("unhandledrejection", function(e){
     function fmt(n){ return (n==null || isNaN(n)) ? '—' : Number(n).toLocaleString('zh-CN', {maximumFractionDigits:4}); }
 
     // —— 4. 一级/二级行政区域地图 + 首都★ + 机场✈ ——
-    let _topo=null, _topo2=null, PROJ=null, FC1=null, _svg=null, _gProv=null, _gAdm2=null, _gMark=null, _gCust=null, _custEls=[], _custVisible=true, _CUST_R=3.8, _hlIds=new Set(), _multiTrack=false, showAdm2=false, _adm2Loading=false, _adm2Promise=null, _features=null, _path=null, _markEls=[], _provFill=[], _provLine=[], _adm1Total=0, _adm2Paths=[], _pendingHl = (_urlHl != null && _urlHl !== '') ? parseInt(_urlHl, 10) : null;
+    let _topo=null, _topo2=null, PROJ=null, FC1=null, _svg=null, _gProv=null, _gAdm2=null, _gMark=null, _gCust=null, _custEls=[], _custVisible=true, _CUST_R=2.4, _hlIds=new Set(), _multiTrack=false, showAdm2=false, _adm2Loading=false, _adm2Promise=null, _features=null, _path=null, _markEls=[], _provFill=[], _provLine=[], _adm1Total=0, _adm2Paths=[], _pendingHl = (_urlHl != null && _urlHl !== '') ? parseInt(_urlHl, 10) : null;
     let _gHosp=null, _hospEls=[], _hospVisible=false, _hlHospIds=new Set(), _activeTab='cust', _hospLoaded=false;  // 医院位点图层状态（红点+红十字，区别于客户绿点）；默认隐藏，点「所有医院位点」才显示
     // 懒加载名单（方案 A）：这些大国 ADM2 体量大，进图不预载，点击"显示二级行政区域"时才拉（IndexedDB 缓存，二次秒开）
     const LAZY_ADM2 = new Set(['ru', 'au']);
@@ -1575,7 +1575,7 @@ window.addEventListener("unhandledrejection", function(e){
     // 随放大(k→ZOOM_FULL)逐步变成「清晰圆点」并把去重叠铺开量同步放大，使圆点能代表其准确位置时再铺开。
     // 关键：_gCust 已置于 zoom 组 g 内，坐标随 g 变换自动跟随（不可能漂移/消失）；此函数只调「半径」与「铺开量」。
     const GRAIN_R = 1.9;            // 初始像素粒半径（屏幕 px）；略大于医院初始粒(1.8)，避免黄点被红环包裹
-    const DOT_R   = 3.8;            // 放大后清晰圆点半径（屏幕 px）；略大于医院红点(3.4)，确保黄点视觉上完整压在红点之上、不被红环干扰
+    const DOT_R   = 2.4;            // 放大后清晰圆点半径（屏幕 px）；与医院红点统一为 2.4px
     const ZOOM_FULL = 3;            // 缩放到此倍率时完全变成圆点 + 完全铺开
     const ZOOM_MAX  = 9;            // d3.zoom scaleExtent 上限 = 最大化尺寸地图（保留常量；清单排序现直接复用 _routeOrder，不再用它做基准）
     const CUST_HIT_PX = 10;         // 透明命中区：恒定屏幕尺寸(px)，不随缩放放大 → 放大到最大也不会出现超大盲区误触发 hover
@@ -1635,7 +1635,7 @@ window.addEventListener("unhandledrejection", function(e){
         return;
       }
       drawCustomerPointsOnMap._tries = 0;
-      _CUST_R = 3.8;  // 去重叠铺开用半径（=DOT_R）；computeOffsets 据此算恒定屏幕偏移 off（一次性）。实际屏幕半径由 updateCustZoom 按缩放在 GRAIN_R↔DOT_R 间动态插值
+      _CUST_R = 2.4;  // 去重叠铺开用半径（=DOT_R=2.4）；computeOffsets 据此算恒定屏幕偏移 off（一次性）。实际屏幕半径由 updateCustZoom 按缩放在 GRAIN_R↔DOT_R 间动态插值
       _gCust.selectAll('g.cust-pt-g').remove();
       _custEls = [];
       const pts = (list || []).filter(r => r.lat != null && r.lng != null);
@@ -1696,7 +1696,7 @@ window.addEventListener("unhandledrejection", function(e){
     // —— 6. 医院位点（hospitals.json，达卡市私立医院，红点+红十字，区别于客户绿点）——
     const _HOSP_GA = 2.399963229728653;     // 黄金角：重合点均匀扇开（与客户去重叠同款）
     const HOSP_GRAIN_R = 1.8;               // 初始像素粒半径（屏幕 px）
-    const HOSP_DOT_R = 3.4;                 // 放大后清晰圆点半径（略大于客户圆点，给红十字留空间）
+    const HOSP_DOT_R = 2.4;                 // 放大后清晰圆点半径（与黄点统一为 2.4px）
     const HOSP_HIT_PX = 11;                 // 透明命中区：恒定屏幕尺寸(px)
 
     function drawHospitalPointsOnMap(list){
