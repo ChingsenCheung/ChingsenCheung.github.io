@@ -1075,15 +1075,8 @@ window.addEventListener("error", function(e){
   function showCustTip(e, d, cnt){
     tipCountry.hidden = true; tipCust.hidden = false;
     tipCn.textContent = (cnt && cnt > 1) ? ((d.company || '') + ' 等 ' + cnt + ' 家') : (d.company || '');
-    const cn = (d.country || (ISO2CN[(d.iso2 || '').toLowerCase()]) || (d.iso2 || ''));
-    tipEn.textContent = cn + (cnt && cnt > 1 ? (' · ' + cnt + ' 个客户分布点') : ' · 客户分布点');
-    const rows = [];
-    if (d.city) rows.push(['城市', d.city]);
-    if (d.address) rows.push(['地址', d.address]);
-    if (d.phone) rows.push(['电话', d.phone]);
-    if (d.web) rows.push(['官网', d.web]);
-    rows.push(['提示', '点击查看国家客户检索']);
-    tipCust.innerHTML = rows.map(r => '<div class="row"><span class="k">' + escTip(r[0]) + '</span><span class="v">' + escTip(r[1]) + '</span></div>').join('');
+    tipEn.textContent = '';
+    tipCust.innerHTML = d.city ? ('<div class="row"><span class="k">城市</span><span class="v">' + escTip(d.city) + '</span></div>') : '';
     tip.classList.add('show');
     const pad = 16, tw = (_tipW || tip.offsetWidth), th = (_tipH || tip.offsetHeight);
     let x = e.clientX + pad, y = e.clientY + pad;
