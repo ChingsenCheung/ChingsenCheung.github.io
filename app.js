@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091130';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091335';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -455,7 +455,7 @@ window.addEventListener("unhandledrejection", function(e){
       drawMarkers();
       updateMarkers(d3.zoomIdentity);
       _curT = d3.zoomIdentity;
-      const zoom = d3.zoom().scaleExtent([1, 9]).filter((event) => !_staticLock && (!event.ctrlKey || event.type === 'wheel') && !event.button)
+      const zoom = d3.zoom().scaleExtent([1, 24]).filter((event) => !_staticLock && (!event.ctrlKey || event.type === 'wheel') && !event.button)
         .on('zoom', ev => {
           g.attr('transform', ev.transform);
           updateCustZoom(ev.transform.k);  // 客户点大小/铺开随缩放动态变化；位置随 g 变换自动跟随（不漂移、不消失）
@@ -1076,6 +1076,31 @@ window.addEventListener("unhandledrejection", function(e){
              .on('mouseleave', () => label.style('display','none'));
         _markEls.push({ el: outer, inner, base: p });
       }
+      // 省级前几机场：按省循环标注（中国地图专属；数据 PROVINCE_AIRPORTS，坐标经 geoContains 校验归属省份，根除“机场跑到别的省”）
+      const PA = (window.PROVINCE_AIRPORTS && PROVINCE_AIRPORTS[iso2]) || null;
+      if (PA && FC1){
+        const natIata = (AIR && AIR.iata) || null;
+        for (const f of FC1.features){
+          const sn = (f.properties && (f.properties.shapeName || f.properties.name)) || null;
+          const list = sn ? PA[sn] : null;
+          if (!list || !list.length) continue;
+          for (const ap of list){
+            if (natIata && ap.iata && ap.iata === natIata) continue;   // 与国家级机场去重（如北京 PEK）
+            const p = PROJ([ap.lon, ap.lat]);
+            const outer = _gMark.append('g').attr('class','marker-plane-prov-g').attr('transform', `translate(${p[0]},${p[1]})`);
+            const inner = outer.append('g');
+            inner.append('g').attr('transform','scale(0.5) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
+              .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','1.4');
+            inner.append('text').attr('class','marker-air-iata').attr('x',8).attr('y',3).text(ap.iata || '');   // 常驻极简三字码
+            const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-12).style('display','none');
+            label.append('tspan').attr('x',0).attr('dy',0).text((ap.iata ? ap.iata + ' ' : '') + (ap.name || '机场'));
+            label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(ap.cn || '');
+            outer.on('mouseenter', () => label.style('display','block'))
+                 .on('mouseleave', () => label.style('display','none'));
+            _markEls.push({ el: outer, inner, base: p });
+          }
+        }
+      }
     }
     // 缩放时：标志图标随 g 变换自动平移（outer 已固定在地理坐标，g 负责位置），
     // 仅用 inner 反向 scale(1/k) 抵消 g 的放大，保持图标/标签恒定屏幕尺寸（不随放大变大、且位于客户点下层不遮挡）
@@ -1592,7 +1617,7 @@ window.addEventListener("unhandledrejection", function(e){
     const GRAIN_R = 1.9;            // 初始像素粒半径（屏幕 px）；略大于医院初始粒(1.8)，避免黄点被红环包裹
     const DOT_R   = 2.4;            // 放大后清晰圆点半径（屏幕 px）；与医院红点统一为 2.4px
     const ZOOM_FULL = 3;            // 缩放到此倍率时完全变成圆点 + 完全铺开
-    const ZOOM_MAX  = 9;            // d3.zoom scaleExtent 上限 = 最大化尺寸地图（保留常量；清单排序现直接复用 _routeOrder，不再用它做基准）
+    const ZOOM_MAX  = 24;           // d3.zoom scaleExtent 上限 = 最大化尺寸地图（中国地图高精度边界，放宽到 24 以看清省级细节）
     const CUST_HIT_PX = 10;         // 透明命中区：恒定屏幕尺寸(px)，不随缩放放大 → 放大到最大也不会出现超大盲区误触发 hover
     function zoomFactor(k){ return Math.max(0, Math.min(1, (k - 1) / (ZOOM_FULL - 1))); }
     // —— 统一位点显示坐标（客户与医院共用同一套数学，仅各自 lifted/liftC/off 字段驱动）：
@@ -2497,7 +2522,7 @@ window.addEventListener("unhandledrejection", function(e){
       const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
       const pad = 0.82;  // 省份占视口 82%，留出边距
       let scale = pad / Math.max(dx / W, dy / H);
-      scale = Math.max(1, Math.min(9, scale));   // 受 zoom.scaleExtent([1,9]) 约束
+      scale = Math.max(1, Math.min(24, scale));   // 受 zoom.scaleExtent([1,24]) 约束
       const cur = d3.zoomTransform(node);
       const hasPt = !!(rec && rec.lat != null && rec.lng != null);
       // 当前放大倍数已大于本次目标倍数 → 保持当前倍数不变，仅把选中客户真实坐标点平滑居中（不缩小）
@@ -2517,7 +2542,7 @@ window.addEventListener("unhandledrejection", function(e){
       const node = _svg.node();
       const W = node.clientWidth || ($('map') && $('map').clientWidth) || 800;
       const H = node.clientHeight || ($('map') && $('map').clientHeight) || 480;
-      const targetScale = Math.max(1, Math.min(9, 6));   // 固定放大到合适级别，便于看清落点
+      const targetScale = Math.max(1, Math.min(24, 6));   // 固定放大到合适级别，便于看清落点
       const cur = d3.zoomTransform(node);
       const effScale = cur.k > targetScale ? cur.k : targetScale;   // 当前已更放大则保持当前倍数
       const t = d3.zoomIdentity.translate(W/2 - effScale * p[0], H/2 - effScale * p[1]).scale(effScale);
