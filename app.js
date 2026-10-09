@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091335';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091355';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -275,6 +275,9 @@ window.addEventListener("unhandledrejection", function(e){
   let _gEmboss = null, _curK = 1, _curT = null;  // 3D 浮雕层引用与当前缩放比（浮雕高度随缩放反比，保持屏幕高度恒定）；_curT 同处声明，避免泄漏到 window 全局（非严格模式下静默成全局变量，一旦加 'use strict' 即崩）
   let _hoverRegion = null;        // 悬停(瞬时)区域 {feature,type,name} 或 null
   let _staticLock = false;        // 静态锁图：默认关闭。开启 → 禁用悬停高亮/3D浮雕 + 锁住地图(无滚轮缩放/拖拽)
+  // 机场飞机图标：基准尺寸已放大；随地图缩放温和放大但封顶（只作用于机场 marker，不影响首都★恒定尺寸）
+  const MARK_GROW_POW = 0.45;   // 放大幂次：k^0.45，温和增长
+  const MARK_GROW_CAP = 2.4;    // 屏幕尺寸封顶倍数（相对基准），避免无限制大
   let _hideUnselected = false;   // 隐藏未选客户：默认关闭。开启 → 仅显示已选中(绿点)客户，隐藏其余所有黄点
   let _hideUnselectedHosp = false;   // 隐藏未选医院：默认关闭。开启 → 仅显示已选中(高亮)医院，隐藏其余所有红点
   let _routeOn = false;          // 路线规划：默认关闭。开启 → 在可见客户点间以虚线连成一条「闭合最短」路线（Closed TSP）
@@ -1066,15 +1069,16 @@ window.addEventListener("unhandledrejection", function(e){
         }
         const outer = _gMark.append('g').attr('class','marker-plane-g').attr('transform', `translate(${p[0]},${p[1]})`);
         const inner = outer.append('g');
-        inner.append('g').attr('transform','scale(0.8) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
+        inner.append('g').attr('transform','scale(1.05) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
           .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','0.9');
         const cnName = AIR.cn || ((META.ISO2_TO_CN[iso2] || '') + (facts && facts.capital ? ' · ' + facts.capital : ''));
+        const airName = AIR.cn || AIR.name || '机场';
         const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-14);
-        label.append('tspan').attr('x',0).attr('dy',0).text((AIR.iata ? AIR.iata + ' ' : '') + (AIR.name || '机场'));
-        label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(cnName);
+        label.append('tspan').attr('x',0).attr('dy',0).text((AIR.iata ? AIR.iata + ' ' : '') + airName);
+        if (iso2 !== 'cn') label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(cnName);
         outer.on('mouseenter', () => label.style('display','block'))
              .on('mouseleave', () => label.style('display','none'));
-        _markEls.push({ el: outer, inner, base: p });
+        _markEls.push({ el: outer, inner, base: p, grow: true });
       }
       // 省级前几机场：按省循环标注（中国地图专属；数据 PROVINCE_AIRPORTS，坐标经 geoContains 校验归属省份，根除“机场跑到别的省”）
       const PA = (window.PROVINCE_AIRPORTS && PROVINCE_AIRPORTS[iso2]) || null;
@@ -1089,15 +1093,14 @@ window.addEventListener("unhandledrejection", function(e){
             const p = PROJ([ap.lon, ap.lat]);
             const outer = _gMark.append('g').attr('class','marker-plane-prov-g').attr('transform', `translate(${p[0]},${p[1]})`);
             const inner = outer.append('g');
-            inner.append('g').attr('transform','scale(0.5) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
+            inner.append('g').attr('transform','scale(0.85) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
               .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','1.4');
             inner.append('text').attr('class','marker-air-iata').attr('x',8).attr('y',3).text(ap.iata || '');   // 常驻极简三字码
             const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-12).style('display','none');
-            label.append('tspan').attr('x',0).attr('dy',0).text((ap.iata ? ap.iata + ' ' : '') + (ap.name || '机场'));
-            label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(ap.cn || '');
+            label.append('tspan').attr('x',0).attr('dy',0).text((ap.iata ? ap.iata + ' ' : '') + (ap.cn || ap.name || '机场'));
             outer.on('mouseenter', () => label.style('display','block'))
                  .on('mouseleave', () => label.style('display','none'));
-            _markEls.push({ el: outer, inner, base: p });
+            _markEls.push({ el: outer, inner, base: p, grow: true });
           }
         }
       }
@@ -1106,8 +1109,14 @@ window.addEventListener("unhandledrejection", function(e){
     // 仅用 inner 反向 scale(1/k) 抵消 g 的放大，保持图标/标签恒定屏幕尺寸（不随放大变大、且位于客户点下层不遮挡）
     function updateMarkers(t){
       if (!_gMark) return;
-      const s = 1 / t.k;
-      _markEls.forEach(m => { if (m.inner) m.inner.attr('transform', `scale(${s})`); });
+      const k = t.k;
+      const sConst = 1 / k;                                                          // 首都★：恒定屏幕尺寸（不随放大变大）
+      const sGrow  = Math.min(MARK_GROW_CAP, Math.pow(k, MARK_GROW_POW)) / k;          // 机场✈：随缩放温和放大，封顶 MARK_GROW_CAP 倍
+      _markEls.forEach(m => {
+        if (!m.inner) return;
+        const s = (m.grow ? sGrow : sConst);
+        m.inner.attr('transform', `scale(${s})`);
+      });
     }
     function provinceAt(lonlat){
       if (!FC1) return null;
