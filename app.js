@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091531';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091535';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -372,13 +372,13 @@ window.addEventListener("unhandledrejection", function(e){
       // 仅一级行政区国家（日本 / 韩国）：不细分二级行政区域，说明栏明确提示
       if (_noAdm2){
         if (iso2 === 'jp'){
-          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（1 都・1 道・2 府・43 县），本图仅显示一级行政区（都道府县），边界数据：dataofjapan / 日本国土地理院`;
+          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（1 都・1 道・2 府・43 县），边界数据：dataofjapan / 日本国土地理院`;
         } else if (iso2 === 'kr'){
-          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（1 特别市・6 广域市・1 特别自治市・9 道/特别自治道，合计 17 个广域地方自治团体 시도），本图仅显示一级行政区，边界数据：GADM / 韩国统计厅(KOSTAT)`;
+          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（1 特别市・6 广域市・1 特别自治市・9 道/特别自治道，合计 17 个广域地方自治团体 시도），边界数据：GADM / 韩国统计厅(KOSTAT)`;
         } else if (iso2 === 'th'){
-          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（府 / จังหวัด changwat：76 个普通府 + 曼谷府级直辖市，合计 77 个），本图仅显示一级行政区（府），边界数据：GADM / 泰国政府行政区划`;
+          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域（府 / จังหวัด changwat：76 个普通府 + 曼谷府级直辖市，合计 77 个），边界数据：GADM / 泰国政府行政区划`;
         } else {
-          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域，本图仅显示一级行政区`;
+          $('mapStatus').textContent = `该国家有 ${adm1N} 个一级行政区域`;
         }
         return;
       }
