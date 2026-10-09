@@ -10,3 +10,740 @@ window.SUBREGION = window.SUBREGION || {};
 window.SUBREGION.ci = "西非";
 window.SUBREGION.tz = "东非";
 window.SUBREGION.gt = "中美洲";
+window.PROVINCE_AIRPORTS = {
+"cn": {
+"Taiwan Province": [
+{
+"name": "Kaohsiung International Airport",
+"lat": 22.5771007538,
+"lon": 120.3499984741,
+"iata": "KHH",
+"cn": ""
+},
+{
+"name": "Taiwan Taoyuan International Airport",
+"lat": 25.0776996613,
+"lon": 121.233001709,
+"iata": "TPE",
+"cn": ""
+},
+{
+"name": "Chiayi Airport",
+"lat": 23.4617996216,
+"lon": 120.3929977417,
+"iata": "CYI",
+"cn": ""
+}
+],
+"Fujian Province": [
+{
+"name": "Fuzhou Changle International Airport",
+"lat": 25.9351005554,
+"lon": 119.6630020142,
+"iata": "FOC",
+"cn": ""
+},
+{
+"name": "Xiamen Gaoqi International Airport",
+"lat": 24.5440006256,
+"lon": 118.1279983521,
+"iata": "XMN",
+"cn": ""
+},
+{
+"name": "Kinmen Airport",
+"lat": 24.4279003143,
+"lon": 118.3590011597,
+"iata": "KNH",
+"cn": ""
+}
+],
+"Hong Kong Special Administrative Region": [
+{
+"name": "Chek Lap Kok International Airport",
+"lat": 22.3089008331,
+"lon": 113.915000916,
+"iata": "HKG",
+"cn": ""
+}
+],
+"Macau Special Administrative Region": [
+{
+"name": "Macau International Airport",
+"lat": 22.1495990753,
+"lon": 113.5920028687,
+"iata": "MFM",
+"cn": ""
+}
+],
+"Beijing Municipality": [
+{
+"name": "Beijing Capital International Airport",
+"lat": 40.0801010132,
+"lon": 116.5849990845,
+"iata": "PEK",
+"cn": ""
+},
+{
+"name": "Beijing Daxing International Airport",
+"lat": 39.509167,
+"lon": 116.410556,
+"iata": "PKX",
+"cn": ""
+},
+{
+"name": "Beijing Nanyuan Airport",
+"lat": 39.7827987671,
+"lon": 116.3880004883,
+"iata": "NAY",
+"cn": ""
+}
+],
+"Inner Mongolia Autonomous Region": [
+{
+"name": "Baita International Airport",
+"lat": 40.851398468,
+"lon": 111.823997498,
+"iata": "HET",
+"cn": ""
+},
+{
+"name": "Erenhot Saiwusu International Airport",
+"lat": 43.4225,
+"lon": 112.096666667,
+"iata": "ERL",
+"cn": ""
+},
+{
+"name": "Aershan Yiershi Airport",
+"lat": 47.310556,
+"lon": 119.911944,
+"iata": "YIE",
+"cn": ""
+}
+],
+"Hebei Province": [
+{
+"name": "Shijiazhuang Daguocun International Airport",
+"lat": 38.2807006836,
+"lon": 114.6969985962,
+"iata": "SJW",
+"cn": ""
+},
+{
+"name": "Chengde Puning Airport",
+"lat": 41.122919,
+"lon": 118.071339,
+"iata": "CDE",
+"cn": ""
+},
+{
+"name": "Handan Airport",
+"lat": 36.5258333333,
+"lon": 114.425555556,
+"iata": "HDG",
+"cn": ""
+}
+],
+"Shanxi Province": [
+{
+"name": "Changzhi Airport",
+"lat": 36.2475013733,
+"lon": 113.1259994507,
+"iata": "CIH",
+"cn": ""
+},
+{
+"name": "Datong Airport",
+"lat": 40.0602989197,
+"lon": 113.4820022583,
+"iata": "DAT",
+"cn": ""
+},
+{
+"name": "Shuozhou Zirun Airport",
+"lat": 39.273056,
+"lon": 112.691111,
+"iata": "SZH",
+"cn": ""
+}
+],
+"Guangxi Zhuang Autonomous Region": [
+{
+"name": "Guilin Liangjiang International Airport",
+"lat": 25.2180995941,
+"lon": 110.0390014648,
+"iata": "KWL",
+"cn": ""
+},
+{
+"name": "Bailian Airport",
+"lat": 24.2075004578,
+"lon": 109.3909988403,
+"iata": "LZH",
+"cn": ""
+},
+{
+"name": "Beihai Airport",
+"lat": 21.5394001007,
+"lon": 109.2939987183,
+"iata": "BHY",
+"cn": ""
+}
+],
+"Tianjin Municipality": [
+{
+"name": "Tianjin Binhai International Airport",
+"lat": 39.1244010925,
+"lon": 117.346000671,
+"iata": "TSN",
+"cn": ""
+}
+],
+"Hunan Province": [
+{
+"name": "Changde Airport",
+"lat": 28.9188995361,
+"lon": 111.63999939,
+"iata": "CGD",
+"cn": ""
+},
+{
+"name": "Changsha Huanghua Airport",
+"lat": 28.1891994476,
+"lon": 113.2200012207,
+"iata": "CSX",
+"cn": ""
+},
+{
+"name": "Chenzhou Beihu Airport",
+"lat": 25.75321388063848,
+"lon": 112.8449630582255,
+"iata": "HCZ",
+"cn": ""
+}
+],
+"Guangdong Province": [
+{
+"name": "Guangzhou Baiyun International Airport",
+"lat": 23.3924007416,
+"lon": 113.2990036011,
+"iata": "CAN",
+"cn": ""
+},
+{
+"name": "Shenzhen Bao'an International Airport",
+"lat": 22.6392993927,
+"lon": 113.8109970093,
+"iata": "SZX",
+"cn": ""
+},
+{
+"name": "Foshan Shadi Airport",
+"lat": 23.0832996368,
+"lon": 113.069999695,
+"iata": "FUO",
+"cn": ""
+}
+],
+"Henan Province": [
+{
+"name": "Anyang Airport",
+"lat": 36.1338996887,
+"lon": 114.34400177,
+"iata": "AYN",
+"cn": ""
+},
+{
+"name": "Luoyang Airport",
+"lat": 34.7411003113,
+"lon": 112.388000488,
+"iata": "LYA",
+"cn": ""
+},
+{
+"name": "Nanyang Airport",
+"lat": 32.9808006287,
+"lon": 112.6149978638,
+"iata": "NNY",
+"cn": ""
+}
+],
+"Hubei Province": [
+{
+"name": "Wuhan Tianhe International Airport",
+"lat": 30.7838001251,
+"lon": 114.2080001831,
+"iata": "WUH",
+"cn": ""
+},
+{
+"name": "Enshi Airport",
+"lat": 30.3202991486,
+"lon": 109.48500061,
+"iata": "ENH",
+"cn": ""
+},
+{
+"name": "Ezhou Huahu Airport",
+"lat": 30.342856,
+"lon": 115.029611,
+"iata": "EHU",
+"cn": ""
+}
+],
+"Hainan Province": [
+{
+"name": "Haikou Meilan International Airport",
+"lat": 19.9349002838,
+"lon": 110.4589996338,
+"iata": "HAK",
+"cn": ""
+},
+{
+"name": "Sanya Phoenix International Airport",
+"lat": 18.3029003143,
+"lon": 109.4120025635,
+"iata": "SYX",
+"cn": ""
+},
+{
+"name": "Qionghai Boao Airport",
+"lat": 19.140556,
+"lon": 110.458889,
+"iata": "BAR",
+"cn": ""
+}
+],
+"Shaanxi Province": [
+{
+"name": "Xi'an Xianyang International Airport",
+"lat": 34.447101593,
+"lon": 108.7519989014,
+"iata": "XIY",
+"cn": ""
+},
+{
+"name": "Ankang Airport",
+"lat": 32.7080993652,
+"lon": 108.9309997559,
+"iata": "AKA",
+"cn": ""
+},
+{
+"name": "Hanzhong Airport",
+"lat": 33.0635986328,
+"lon": 107.0080032349,
+"iata": "HZG",
+"cn": ""
+}
+],
+"Gansu Province": [
+{
+"name": "Dunhuang Airport",
+"lat": 40.1610984802,
+"lon": 94.8091964722,
+"iata": "DNH",
+"cn": ""
+},
+{
+"name": "Jiayuguan Airport",
+"lat": 39.8568992615,
+"lon": 98.3414001465,
+"iata": "JGN",
+"cn": ""
+},
+{
+"name": "Jinchuan Airport",
+"lat": 38.5422222222,
+"lon": 102.348333333,
+"iata": "JIC",
+"cn": ""
+}
+],
+"Qinghai Province": [
+{
+"name": "Delingha Airport",
+"lat": 37.125,
+"lon": 97.268611,
+"iata": "HXD",
+"cn": ""
+},
+{
+"name": "Golmud Airport",
+"lat": 36.4006004333,
+"lon": 94.7861022949,
+"iata": "GOQ",
+"cn": ""
+},
+{
+"name": "Haibei Qilian Airport",
+"lat": 38.012,
+"lon": 100.644,
+"iata": "HBQ",
+"cn": ""
+}
+],
+"Ningxia Ningxia Hui Autonomous Region": [
+{
+"name": "Guyuan Liupanshan Airport",
+"lat": 36.0788888889,
+"lon": 106.216944444,
+"iata": "GYU",
+"cn": ""
+},
+{
+"name": "Yinchuan Airport",
+"lat": 38.4818992615,
+"lon": 106.0090026855,
+"iata": "INC",
+"cn": ""
+},
+{
+"name": "Zhongwei Shapotou Airport",
+"lat": 37.572778,
+"lon": 105.154444,
+"iata": "ZHY",
+"cn": ""
+}
+],
+"Yunnan Province": [
+{
+"name": "Kunming Wujiaba International Airport",
+"lat": 24.9923992157,
+"lon": 102.7440032959,
+"iata": "KMG",
+"cn": ""
+},
+{
+"name": "Baoshan Yunduan Airport",
+"lat": 25.0533008575,
+"lon": 99.168296814,
+"iata": "BSD",
+"cn": ""
+},
+{
+"name": "Dali Airport",
+"lat": 25.6494007111,
+"lon": 100.3190002441,
+"iata": "DLU",
+"cn": ""
+}
+],
+"Anhui Province": [
+{
+"name": "Hefei Xinqiao International Airport",
+"lat": 31.98898,
+"lon": 116.9638,
+"iata": "HFE",
+"cn": ""
+},
+{
+"name": "Tunxi International Airport",
+"lat": 29.7332992554,
+"lon": 118.2559967041,
+"iata": "TXN",
+"cn": ""
+},
+{
+"name": "Anqing Airport",
+"lat": 30.5821990967,
+"lon": 117.0500030518,
+"iata": "AQG",
+"cn": ""
+}
+],
+"Jiangsu Province": [
+{
+"name": "Sunan Shuofang International Airport",
+"lat": 31.4944000244,
+"lon": 120.429000854,
+"iata": "WUX",
+"cn": ""
+},
+{
+"name": "Changzhou Airport",
+"lat": 31.9197006226,
+"lon": 119.7789993286,
+"iata": "CZX",
+"cn": ""
+},
+{
+"name": "Guangfu Airport",
+"lat": 31.2630996704,
+"lon": 120.4010009766,
+"iata": "SZV",
+"cn": ""
+}
+],
+"Jiangxi Province": [
+{
+"name": "Nanchang Changbei International Airport",
+"lat": 28.8649997711,
+"lon": 115.9000015259,
+"iata": "KHN",
+"cn": ""
+},
+{
+"name": "Ganzhou Airport",
+"lat": 25.825799942,
+"lon": 114.912002563,
+"iata": "KOW",
+"cn": ""
+},
+{
+"name": "Jingdezhen Airport",
+"lat": 29.3386001587,
+"lon": 117.176002502,
+"iata": "JDZ",
+"cn": ""
+}
+],
+"Shandong Province": [
+{
+"name": "Qingdao Jiaodong International Airport",
+"lat": 36.361944,
+"lon": 120.088333,
+"iata": "TAO",
+"cn": ""
+},
+{
+"name": "Dongying Shengli Airport",
+"lat": 37.5085983276,
+"lon": 118.788002014,
+"iata": "DOY",
+"cn": ""
+},
+{
+"name": "Jining Da'an Airport",
+"lat": 35.64745649849834,
+"lon": 116.74408951599126,
+"iata": "JNG",
+"cn": ""
+}
+],
+"Zhejiang Province": [
+{
+"name": "Hangzhou Xiaoshan International Airport",
+"lat": 30.2294998169,
+"lon": 120.4339981079,
+"iata": "HGH",
+"cn": ""
+},
+{
+"name": "Ningbo Lishe International Airport",
+"lat": 29.8267002106,
+"lon": 121.4619979858,
+"iata": "NGB",
+"cn": ""
+},
+{
+"name": "Huangyan Luqiao Airport",
+"lat": 28.5622005463,
+"lon": 121.4290008545,
+"iata": "HYN",
+"cn": ""
+}
+],
+"Shanghai Municipality": [
+{
+"name": "Shanghai Hongqiao International Airport",
+"lat": 31.1979007721,
+"lon": 121.3359985352,
+"iata": "SHA",
+"cn": ""
+},
+{
+"name": "Shanghai Pudong International Airport",
+"lat": 31.1434001923,
+"lon": 121.8050003052,
+"iata": "PVG",
+"cn": ""
+}
+],
+"Tibet Autonomous Region": [
+{
+"name": "Ali Pulan Airport",
+"lat": 30.390976,
+"lon": 81.138039,
+"iata": "APJ",
+"cn": ""
+},
+{
+"name": "Lhasa Gonggar Airport",
+"lat": 29.2978000641,
+"lon": 90.9119033813,
+"iata": "LXA",
+"cn": ""
+},
+{
+"name": "Ngari Gunsa Airport",
+"lat": 32.1,
+"lon": 80.0530555556,
+"iata": "NGQ",
+"cn": ""
+}
+],
+"Guizhou Province": [
+{
+"name": "Anshun Huangguoshu Airport",
+"lat": 26.2605555556,
+"lon": 105.873333333,
+"iata": "AVA",
+"cn": ""
+},
+{
+"name": "Bijie Feixiong Airport",
+"lat": 27.266667,
+"lon": 105.479167,
+"iata": "BFJ",
+"cn": ""
+},
+{
+"name": "Kaili Huangping Airport",
+"lat": 26.97482,
+"lon": 107.98695,
+"iata": "KJH",
+"cn": ""
+}
+],
+"Sichuan Province": [
+{
+"name": "Chengdu Shuangliu International Airport",
+"lat": 30.5785007477,
+"lon": 103.9469985962,
+"iata": "CTU",
+"cn": ""
+},
+{
+"name": "Chengdu Tianfu International Airport",
+"lat": 30.319,
+"lon": 104.445,
+"iata": "TFU",
+"cn": ""
+},
+{
+"name": "Bazhong Enyang Airport",
+"lat": 31.738,
+"lon": 106.645,
+"iata": "BZX",
+"cn": ""
+}
+],
+"Chongqing Municipality": [
+{
+"name": "Chongqing Jiangbei International Airport",
+"lat": 29.7192001343,
+"lon": 106.641998291,
+"iata": "CKG",
+"cn": ""
+},
+{
+"name": "Liangping Airport",
+"lat": 30.6793994904,
+"lon": 107.7860031128,
+"iata": "LIA",
+"cn": ""
+},
+{
+"name": "Qianjiang Wulingshan Airport",
+"lat": 29.514559,
+"lon": 108.83371499999998,
+"iata": "JIQ",
+"cn": ""
+}
+],
+"Xinjiang Uyghur Autonomous Region": [
+{
+"name": "Urumqi Diwopu International Airport",
+"lat": 43.9071006775,
+"lon": 87.4741973877,
+"iata": "URC",
+"cn": ""
+},
+{
+"name": "Aksu Airport",
+"lat": 41.2625007629,
+"lon": 80.2917022705,
+"iata": "AKU",
+"cn": ""
+},
+{
+"name": "Alashankou Bole (Bortala) airport",
+"lat": 44.895,
+"lon": 82.3,
+"iata": "BPL",
+"cn": ""
+}
+],
+"Liaoning Province": [
+{
+"name": "Anshan Air Base",
+"lat": 41.1053009033,
+"lon": 122.8539962769,
+"iata": "AOG",
+"cn": ""
+},
+{
+"name": "Chaoyang Airport",
+"lat": 41.5381011963,
+"lon": 120.4349975586,
+"iata": "CHG",
+"cn": ""
+},
+{
+"name": "Dandong Airport",
+"lat": 40.0247001648,
+"lon": 124.286003113,
+"iata": "DDG",
+"cn": ""
+}
+],
+"Jilin Province": [
+{
+"name": "Baishan Changbaishan Airport",
+"lat": 42.066389,
+"lon": 127.606667,
+"iata": "NBS",
+"cn": ""
+},
+{
+"name": "Jilin Airport",
+"lat": 44.0022010803,
+"lon": 126.3960037231,
+"iata": "JIL",
+"cn": ""
+},
+{
+"name": "Longjia Airport",
+"lat": 43.9962005615,
+"lon": 125.684997559,
+"iata": "CGQ",
+"cn": ""
+}
+],
+"Heilongjiang Province": [
+{
+"name": "Mudanjiang Hailang International Airport",
+"lat": 44.5241012573,
+"lon": 129.569000244,
+"iata": "MDG",
+"cn": ""
+},
+{
+"name": "Gu-Lian Airport",
+"lat": 52.9127777778,
+"lon": 122.43,
+"iata": "OHE",
+"cn": ""
+},
+{
+"name": "Heihe Airport",
+"lat": 50.1716209371,
+"lon": 127.308883667,
+"iata": "HEK",
+"cn": ""
+}
+]
+}
+};
