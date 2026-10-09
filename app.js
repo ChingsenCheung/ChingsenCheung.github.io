@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091501';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091531';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -1135,7 +1135,7 @@ window.addEventListener("unhandledrejection", function(e){
           .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','0.9');
         const cnName = AIR.cn || ((META.ISO2_TO_CN[iso2] || '') + (facts && facts.capital ? ' · ' + facts.capital : ''));
         const airName = AIR.cn || AIR.name || '机场';
-        const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-14);
+        const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-14).style('display','none');
         label.append('tspan').attr('x',0).attr('dy',0).text(airName);
         if (iso2 !== 'cn') label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(cnName);
         outer.on('mouseenter', () => { outer.raise(); label.style('display','block'); })
@@ -1171,6 +1171,9 @@ window.addEventListener("unhandledrejection", function(e){
     // 仅用 inner 反向 scale(1/k) 抵消 g 的放大，保持图标/标签恒定屏幕尺寸（不随放大变大、且位于客户点下层不遮挡）
     function updateMarkers(t){
       if (!_gMark) return;
+      // 缩放/平移会移动标记而指针不动 → mouseleave 不触发（wheel 非 mousemove、拖拽被 pointer-capture 抑制），
+      // 残留的悬停标签在此统一清除；再次悬停（mousemove）会重新触发 mouseenter 显示。
+      _gMark.selectAll('.marker-air-label').style('display','none');
       const k = t.k;
       const sConst = 1 / k;                                                          // 首都★：恒定屏幕尺寸（不随放大变大）
       const sGrow  = Math.min(MARK_GROW_CAP, Math.pow(k, MARK_GROW_POW)) / k;          // 机场✈：随缩放温和放大，封顶 MARK_GROW_CAP 倍
