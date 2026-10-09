@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091535';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091542';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -1129,7 +1129,7 @@ window.addEventListener("unhandledrejection", function(e){
         // 机场标志绘制在机场真实坐标（绝不外推）：外推会把标记推到邻省（如北京首都机场被推入河北），故移除 SEP。
         // 若与首都★过近，改为把★做小偏移（首都在省中心，偏移不会越省界）。
         let p = PROJ([AIR.lon, AIR.lat]);
-        const outer = _gMark.append('g').attr('class','marker-plane-g').attr('transform', `translate(${p[0]},${p[1]})`);
+        const outer = _gMark.append('g').attr('class','marker-plane-g').attr('data-prov', provinceAt([AIR.lon, AIR.lat]) || '').attr('transform', `translate(${p[0]},${p[1]})`);
         const inner = outer.append('g');
         inner.append('g').attr('transform','scale(1.05) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
           .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','0.9');
@@ -1139,7 +1139,7 @@ window.addEventListener("unhandledrejection", function(e){
         label.append('tspan').attr('x',0).attr('dy',0).text(airName);
         if (iso2 !== 'cn') label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(cnName);
         outer.on('mouseenter', () => { outer.raise(); label.style('display','block'); })
-             .on('mouseleave', () => label.style('display','none'));
+             .on('mouseleave', () => syncAirportLabels());
         _markEls.push({ el: outer, inner, base: p, grow: true });
       }
       // 省级前几机场：按省循环标注（中国地图专属；数据 PROVINCE_AIRPORTS，坐标经 geoContains 校验归属省份，根除“机场跑到别的省”）
@@ -1153,7 +1153,7 @@ window.addEventListener("unhandledrejection", function(e){
           for (const ap of list){
             if (natIata && ap.iata && ap.iata === natIata) continue;   // 与国家级机场去重（如北京 PEK）
             const p = PROJ([ap.lon, ap.lat]);
-            const outer = _gMark.append('g').attr('class','marker-plane-prov-g').attr('transform', `translate(${p[0]},${p[1]})`);
+            const outer = _gMark.append('g').attr('class','marker-plane-prov-g').attr('data-prov', sn).attr('transform', `translate(${p[0]},${p[1]})`);
             const inner = outer.append('g');
             inner.append('g').attr('transform','scale(0.85) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
               .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','1.4');
@@ -1161,7 +1161,7 @@ window.addEventListener("unhandledrejection", function(e){
             const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-12).style('display','none');
             label.append('tspan').attr('x',0).attr('dy',0).text(ap.cn || ap.name || '机场');
             outer.on('mouseenter', () => { outer.raise(); label.style('display','block'); })
-                 .on('mouseleave', () => label.style('display','none'));
+                 .on('mouseleave', () => syncAirportLabels());
             _markEls.push({ el: outer, inner, base: p, grow: true });
           }
         }
@@ -1182,11 +1182,32 @@ window.addEventListener("unhandledrejection", function(e){
         const s = (m.grow ? sGrow : sConst);
         m.inner.attr('transform', `scale(${s})`);
       });
+      syncAirportLabels();   // 缩放/平移每帧：清除残留悬停标签后，重新点亮“选中省”的全部机场名（常显）
     }
     function provinceAt(lonlat){
       if (!FC1) return null;
       for (const f of FC1.features){ try { if (d3.geoContains(f, lonlat)) return f.properties.shapeName || f.properties.name; } catch(e){} }
       return null;
+    }
+    // 点亮(选中)某个省 → 显示该省全部机场名（常显，不随缩放消失）；取消点亮 → 恢复悬停-only。
+    // 所有选中变更都会流经 renderEmboss → updateMarkers，故在 updateMarkers 末尾统一同步即可（缩放/平移同路径）。
+    function syncAirportLabels(){
+      if (!_gMark) return;
+      // 先全部隐藏（已显示者由下方“点亮省”逻辑重新点亮；未点亮省仍按 mouseenter/mouseleave 控制）
+      _gMark.selectAll('.marker-plane-g, .marker-plane-prov-g').each(function(){
+        d3.select(this).select('.marker-air-label').style('display','none');
+      });
+      // 再对当前点亮(选中)的省(可多个，多点追踪)显示其全部机场名并置顶
+      const sels = _selectedRegions();
+      for (const r of sels){
+        const name = r.name || '';
+        if (!name) continue;
+        _gMark.selectAll('[data-prov="' + name + '"]').each(function(){
+          const g = d3.select(this);
+          g.select('.marker-air-label').style('display','block');
+          g.raise();   // 选中省机场名置顶，避免被其它标记/常驻三字码盖住
+        });
+      }
     }
     // —— ADM2 二级行政区域：增量构建 + 分帧渲染 + 缓存（消除“开启二级区域”瞬时卡顿，零精度/细节损失）——
     // 根因：原 renderAdm2 在点击瞬间同步投影 774 个市区 + 算每个市区所属省(pi：geoCentroid/geoContains 兜底) + 创建 774 个 <path>，
