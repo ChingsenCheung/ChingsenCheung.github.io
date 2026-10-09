@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091355';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091402';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -260,6 +260,63 @@ window.addEventListener("unhandledrejection", function(e){
         }).catch(() => { $('fxBody').innerHTML = '<span class="err">汇率加载失败（网络受限）</span>'; });
     }
     function fmt(n){ return (n==null || isNaN(n)) ? '—' : Number(n).toLocaleString('zh-CN', {maximumFractionDigits:4}); }
+    // 中国地图专用汇率面板：仅展示 1 美元 / 1 港币 / 1 欧元 / 1 英镑 → 元(人民币)
+    // 美元兑人民币采用 fx_rate.json（央行在岸价，与价格页同源同值）；港/欧/英镑采用欧洲央行 ECB 官方参考价（frankfurter，央行口径）。
+    function renderFX_CN(usdCny, others, date){
+      const d = date || '';
+      let html = '';
+      html += `<div class="row top"><span>1 美元 ≈</span><b>${fmt(usdCny)} 元(人民币)</b></div>`;
+      if (others.HKD != null) html += `<div class="row"><span>1 港币 ≈</span><b>${fmt(others.HKD)} 元(人民币)</b></div>`;
+      if (others.EUR != null) html += `<div class="row"><span>1 欧元 ≈</span><b>${fmt(others.EUR)} 元(人民币)</b></div>`;
+      if (others.GBP != null) html += `<div class="row"><span>1 英镑 ≈</span><b>${fmt(others.GBP)} 元(人民币)</b></div>`;
+      const srcLine = `来源：央行在岸价(美元兑人民币)${d ? ' · ' + d : ''} ｜ 港/欧/英镑：央行参考价(欧洲央行 ECB)`;
+      html += `<span class="fx-update">${srcLine}</span>`;
+      $('fxBody').innerHTML = html;
+    }
+    function loadFX_CN(){
+      fetch('fx_rate.json', { cache: 'no-store' })
+        .then(r => r.json()).then(j => {
+          const usdCny = (j && j.usdCny != null) ? j.usdCny : null;
+          if (usdCny == null){ $('fxBody').innerHTML = '<span class="err">汇率加载失败</span>'; return; }
+          const d = j.date ? j.date : new Date().toISOString().slice(0,10);
+          renderFX_CN(usdCny, {}, d);   // 先渲染美元兑人民币（立即可见）
+          // 港/欧/英镑：欧洲央行 ECB 官方参考价（frankfurter，CNY 为基准，取倒数得 1 外币 ≈ ? 元）
+          const frankUrl = `https://api.frankfurter.app/latest?from=CNY&to=HKD,EUR,GBP`;
+          fetch(frankUrl, { cache: 'no-store' })
+            .then(r => r.ok ? r.json() : null)
+            .then(k => {
+              const rates = (k && k.rates) ? k.rates : null;
+              if (rates && (rates.HKD != null || rates.EUR != null || rates.GBP != null)){
+                const others = {};
+                ['HKD','EUR','GBP'].forEach(c => { if (rates[c] != null) others[c] = 1 / rates[c]; });
+                const ecbDate = (k && k.date) ? k.date : '';
+                renderFX_CN(usdCny, others, d + (ecbDate ? ' / ECB ' + ecbDate : ''));
+                return;
+              }
+              // ECB 未覆盖 → 回退 er-api 市场参考价（明确标注市场，不冒充央行价）
+              return fetch('https://open.er-api.com/v6/latest/CNY')
+                .then(r => r.json()).then(m => {
+                  const rates2 = (m && m.rates) ? m.rates : null;
+                  if (rates2){
+                    const others = {};
+                    ['HKD','EUR','GBP'].forEach(c => { if (rates2[c] != null) others[c] = 1 / rates2[c]; });
+                    renderFX_CN(usdCny, others, d + ' ｜ 港/欧/英镑：参考市场价(er-api)');
+                  }
+                }).catch(() => {});
+            })
+            .catch(() => {
+              fetch('https://open.er-api.com/v6/latest/CNY')
+                .then(r => r.json()).then(m => {
+                  const rates2 = (m && m.rates) ? m.rates : null;
+                  if (rates2){
+                    const others = {};
+                    ['HKD','EUR','GBP'].forEach(c => { if (rates2[c] != null) others[c] = 1 / rates2[c]; });
+                    renderFX_CN(usdCny, others, d + ' ｜ 港/欧/英镑：参考市场价(er-api)');
+                  }
+                }).catch(() => {});
+            });
+        }).catch(() => { $('fxBody').innerHTML = '<span class="err">汇率加载失败（网络受限）</span>'; });
+    }
 
     // —— 4. 一级/二级行政区域地图 + 首都★ + 机场✈ ——
     let _topo=null, _topo2=null, PROJ=null, FC1=null, _svg=null, _gProv=null, _gAdm2=null, _gMark=null, _gCust=null, _custEls=[], _custVisible=true, _CUST_R=2.4, _hlIds=new Set(), _multiTrack=false, showAdm2=false, _adm2Loading=false, _adm2Promise=null, _features=null, _path=null, _markEls=[], _provFill=[], _provLine=[], _adm1Total=0, _adm2Paths=[], _pendingHl = (_urlHl != null && _urlHl !== '') ? parseInt(_urlHl, 10) : null;
@@ -2618,7 +2675,7 @@ window.addEventListener("unhandledrejection", function(e){
       tip.style.display = 'block';
     }
 
-    loadHolidays(); loadFX(); loadProvinces(); loadCustomers(); loadHospitals();
+    loadHolidays(); (iso2 === 'cn' ? loadFX_CN() : loadFX()); loadProvinces(); loadCustomers(); loadHospitals();
     // 工具栏下拉分组：点一级按钮展开子按钮，点外部/其它分组收起；点子按钮不收起（便于连续切换）
     (function bindToolbarMenus(){
       const groups = Array.prototype.slice.call(document.querySelectorAll('.tb-group'));
