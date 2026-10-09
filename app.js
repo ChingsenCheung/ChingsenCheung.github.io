@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202609301639';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091045';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -264,11 +264,12 @@ window.addEventListener("unhandledrejection", function(e){
     // —— 4. 一级/二级行政区域地图 + 首都★ + 机场✈ ——
     let _topo=null, _topo2=null, PROJ=null, FC1=null, _svg=null, _gProv=null, _gAdm2=null, _gMark=null, _gCust=null, _custEls=[], _custVisible=true, _CUST_R=2.4, _hlIds=new Set(), _multiTrack=false, showAdm2=false, _adm2Loading=false, _adm2Promise=null, _features=null, _path=null, _markEls=[], _provFill=[], _provLine=[], _adm1Total=0, _adm2Paths=[], _pendingHl = (_urlHl != null && _urlHl !== '') ? parseInt(_urlHl, 10) : null;
     let _gHosp=null, _hospEls=[], _hospVisible=false, _hlHospIds=new Set(), _activeTab='cust', _hospLoaded=false;  // 医院位点图层状态（红点+红十字，区别于客户绿点）；默认隐藏，点「所有医院位点」才显示
-    // 懒加载名单（方案 A）：这些大国 ADM2 体量大，进图不预载，点击"显示二级行政区域"时才拉（IndexedDB 缓存，二次秒开）
-    const LAZY_ADM2 = new Set(['ru', 'au']);
+    // 懒加载名单（方案 A）：原 ru/au 等大国 ADM2 体量大，进图不预载。现 ru/au 等 9 大国已整体纳入 NO_ADM2（关闭二级），故本集合为空；保留机制供未来非 NO_ADM2 的大体量国按需启用
+    const LAZY_ADM2 = new Set([]);
     let _adm2Lazy = LAZY_ADM2.has(iso2);   // 当前国是否启用懒加载
     // 仅一级行政区国家：日本只展示都道府县（1 都・1 道・2 府・43 县）；韩国只展示广域地方自治团体（17 个 시도：1 特别市・6 广域市・1 特别自治市・9 道/特别自治道）；泰国只展示府（จังหวัด changwat，76 个普通府 + 曼谷府级直辖市，合计 77 个）；印度只展示一级行政区域（28 邦 + 8 联邦属地，合计 36 个），不细分二级行政区域（县/区约 750 个，体量过大）。均不细分二级行政区域
-    const NO_ADM2 = new Set(['jp', 'kr', 'th', 'in', 'mx']);
+    // 大国（洲级/大经济体）不细分二级行政区域：日/韩/泰/印/墨 + 澳/巴/美/俄/阿/哥/智/印尼/新西兰。二级数据文件已从仓库删除，本集合确保渲染端彻底关闭其 ADM2 加载与切换按钮（_noAdm2 在 ensureAdm2 前短路，绝不拉取已删文件）
+    const NO_ADM2 = new Set(['jp', 'kr', 'th', 'in', 'mx', 'au', 'br', 'us', 'ru', 'ar', 'co', 'cl', 'id', 'nz']);
     let _noAdm2 = NO_ADM2.has(iso2);
     let _zoom = null;  // 地图 zoom 行为（renderProvinces 内赋值），供点击客户检索行时自动放大定位到一级区域
   let _gEmboss = null, _curK = 1, _curT = null;  // 3D 浮雕层引用与当前缩放比（浮雕高度随缩放反比，保持屏幕高度恒定）；_curT 同处声明，避免泄漏到 window 全局（非严格模式下静默成全局变量，一旦加 'use strict' 即崩）
