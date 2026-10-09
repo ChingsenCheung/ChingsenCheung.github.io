@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091402';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091414';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -312,10 +312,22 @@ window.addEventListener("unhandledrejection", function(e){
                     const others = {};
                     ['HKD','EUR','GBP'].forEach(c => { if (rates2[c] != null) others[c] = 1 / rates2[c]; });
                     renderFX_CN(usdCny, others, d + ' ｜ 港/欧/英镑：参考市场价(er-api)');
-                  }
-                }).catch(() => {});
+                  } else { fxCrossFallback(usdCny, d); }
+                }).catch(() => { fxCrossFallback(usdCny, d); });
             });
         }).catch(() => { $('fxBody').innerHTML = '<span class="err">汇率加载失败（网络受限）</span>'; });
+    }
+    // 同域兜底：外部汇率 API（ECB frankfurter / er-api）均不可达时，用仓库内置近期 ECB 参考价，保证 4 行始终可显示
+    function fxCrossFallback(usdCny, d){
+      fetch('fx_cross.json', { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : null)
+        .then(x => {
+          if (!x || !x.rates) return;
+          const others = {};
+          ['HKD','EUR','GBP'].forEach(c => { if (x.rates[c] != null) others[c] = 1 / x.rates[c]; });
+          const xd = (x.date ? x.date : '');
+          renderFX_CN(usdCny, others, d + (xd ? ' ｜ 港/欧/英镑：参考值(近期 ECB ' + xd + ')' : ' ｜ 港/欧/英镑：参考值(近期 ECB)'));
+        }).catch(() => {});
     }
 
     // —— 4. 一级/二级行政区域地图 + 首都★ + 机场✈ ——
