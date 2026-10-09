@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091414';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091451';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -1120,22 +1120,15 @@ window.addEventListener("unhandledrejection", function(e){
         // inner：反向 scale(1/k) 抵消 g 的缩放，使图标/标签保持恒定屏幕尺寸（不随放大变大）
         const outer = _gMark.append('g').attr('transform', `translate(${pCap[0]},${pCap[1]})`);
         const inner = outer.append('g');
-        inner.append('g').attr('class','marker-cap-star').attr('transform','scale(0.95)').attr('filter','url(#relief)')
+        inner.append('g').attr('class','marker-cap-star').attr('transform','scale(0.95) translate(-14,-12)').attr('filter','url(#relief)')
           .append('path').attr('d', STAR).attr('fill','url(#gradCap)').attr('stroke','#7c4a03').attr('stroke-width','0.8');
         inner.append('text').attr('class','marker-label').attr('x',0).attr('y',-12).text(capCnName || (CAP.name||'首都'));
         _markEls.push({ el: outer, inner, base: pCap });
       }
       if (AIR && AIR.lat != null){
+        // 机场标志绘制在机场真实坐标（绝不外推）：外推会把标记推到邻省（如北京首都机场被推入河北），故移除 SEP。
+        // 若与首都★过近，改为把★做小偏移（首都在省中心，偏移不会越省界）。
         let p = PROJ([AIR.lon, AIR.lat]);
-        // 与首都标志做防重叠错位：两者过近时把机场标志沿径向外推到安全间距
-        if (pCap){
-          const dx = p[0]-pCap[0], dy = p[1]-pCap[1], dist = Math.hypot(dx,dy), SEP = 22;
-          if (dist < SEP){
-            let ux, uy;
-            if (dist < 0.01){ ux = 0.7071; uy = -0.7071; } else { ux = dx/dist; uy = dy/dist; }
-            p = [pCap[0] + ux*SEP, pCap[1] + uy*SEP];
-          }
-        }
         const outer = _gMark.append('g').attr('class','marker-plane-g').attr('transform', `translate(${p[0]},${p[1]})`);
         const inner = outer.append('g');
         inner.append('g').attr('transform','scale(1.05) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
@@ -1143,9 +1136,9 @@ window.addEventListener("unhandledrejection", function(e){
         const cnName = AIR.cn || ((META.ISO2_TO_CN[iso2] || '') + (facts && facts.capital ? ' · ' + facts.capital : ''));
         const airName = AIR.cn || AIR.name || '机场';
         const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-14);
-        label.append('tspan').attr('x',0).attr('dy',0).text((AIR.iata ? AIR.iata + ' ' : '') + airName);
+        label.append('tspan').attr('x',0).attr('dy',0).text(airName);
         if (iso2 !== 'cn') label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(cnName);
-        outer.on('mouseenter', () => label.style('display','block'))
+        outer.on('mouseenter', () => { outer.raise(); label.style('display','block'); })
              .on('mouseleave', () => label.style('display','none'));
         _markEls.push({ el: outer, inner, base: p, grow: true });
       }
@@ -1166,8 +1159,8 @@ window.addEventListener("unhandledrejection", function(e){
               .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','1.4');
             inner.append('text').attr('class','marker-air-iata').attr('x',8).attr('y',3).text(ap.iata || '');   // 常驻极简三字码
             const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-12).style('display','none');
-            label.append('tspan').attr('x',0).attr('dy',0).text((ap.iata ? ap.iata + ' ' : '') + (ap.cn || ap.name || '机场'));
-            outer.on('mouseenter', () => label.style('display','block'))
+            label.append('tspan').attr('x',0).attr('dy',0).text(ap.cn || ap.name || '机场');
+            outer.on('mouseenter', () => { outer.raise(); label.style('display','block'); })
                  .on('mouseleave', () => label.style('display','none'));
             _markEls.push({ el: outer, inner, base: p, grow: true });
           }
