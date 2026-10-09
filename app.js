@@ -331,7 +331,7 @@ window.addEventListener("unhandledrejection", function(e){
     }
 
     // —— 4. 一级/二级行政区域地图 + 首都★ + 机场✈ ——
-    let _topo=null, _topo2=null, PROJ=null, FC1=null, _svg=null, _gProv=null, _gAdm2=null, _gMark=null, _gCust=null, _custEls=[], _custVisible=true, _CUST_R=2.4, _hlIds=new Set(), _multiTrack=false, showAdm2=false, _adm2Loading=false, _adm2Promise=null, _features=null, _path=null, _markEls=[], _provFill=[], _provLine=[], _adm1Total=0, _adm2Paths=[], _pendingHl = (_urlHl != null && _urlHl !== '') ? parseInt(_urlHl, 10) : null;
+    let _topo=null, _topo2=null, PROJ=null, FC1=null, _svg=null, _gProv=null, _gAdm2=null, _gMark=null, _gCust=null, _gMarkTop=null, _capLabelInner=null, _custEls=[], _custVisible=true, _CUST_R=2.4, _hlIds=new Set(), _multiTrack=false, showAdm2=false, _adm2Loading=false, _adm2Promise=null, _features=null, _path=null, _markEls=[], _provFill=[], _provLine=[], _adm1Total=0, _adm2Paths=[], _pendingHl = (_urlHl != null && _urlHl !== '') ? parseInt(_urlHl, 10) : null;
     let _gHosp=null, _hospEls=[], _hospVisible=false, _hlHospIds=new Set(), _activeTab='cust', _hospLoaded=false;  // 医院位点图层状态（红点+红十字，区别于客户绿点）；默认隐藏，点「所有医院位点」才显示
     // 懒加载名单（方案 A）：原 ru/au 等大国 ADM2 体量大，进图不预载。现 ru/au 等 9 大国已整体纳入 NO_ADM2（关闭二级），故本集合为空；保留机制供未来非 NO_ADM2 的大体量国按需启用
     const LAZY_ADM2 = new Set([]);
@@ -523,7 +523,8 @@ window.addEventListener("unhandledrejection", function(e){
       _gEmboss = gEmboss;
       _gHosp = g.append('g').attr('class','hosp-layer');  // 医院点图层：红点+红十字，置于客户黄点之下（默认客户黄点最顶层、不被红点覆盖）；随地图同步（不漂移/不消失）
       _gMark = g.insert('g', '.hosp-layer');  // 标志层（机场/首都）置于医院层之下、省图层之上：不遮挡客户黄点、也不遮挡医院红点；随 g 变换自动跟随，尺寸由 updateMarkers 反向 scale 恒定屏幕大小
-      _gCust = g.append('g').attr('class','cust-layer');  // 客户点图层（最顶层）：黄点默认绘制于医院红点之上，永不被红点覆盖；也置于标志层之上，随地图平移/缩放自动同步，绝不会漂移/消失
+      _gCust = g.append('g').attr('class','cust-layer');  // 客户点图层：黄点默认绘制于医院红点之上，永不被红点覆盖；也置于标志层之上，随地图平移/缩放自动同步，绝不会漂移/消失
+      _gMarkTop = g.append('g').attr('class','mark-lbl-layer');  // 标志名称层（机场名/首都名文字）置于最顶层：永不被客户黄点/医院红点/路线等覆盖
       reapplyRegionSel();
       drawMarkers();
       updateMarkers(d3.zoomIdentity);
@@ -1145,7 +1146,9 @@ window.addEventListener("unhandledrejection", function(e){
     function drawMarkers(){
       if (!_gMark || !PROJ) return;
       _gMark.selectAll('*').remove();
+      if (_gMarkTop) _gMarkTop.selectAll('*').remove();
       _markEls = [];
+      _capLabelInner = null;
       // 五角星（外半径9，居中原点，机头朝上）
       const STAR = "M0,-9 L2.12,-2.91 L8.56,-2.78 L3.42,1.11 L5.29,7.28 L0,3.6 L-5.29,7.28 L-3.42,1.11 L-8.56,-2.78 L-2.12,-2.91 Z";
       // 飞机（24x24 俯视，机头朝上，rotate(45)后指向东北=东偏北45°）
@@ -1154,33 +1157,40 @@ window.addEventListener("unhandledrejection", function(e){
       let pCap = null;
       if (CAP && CAP.lat != null){
         pCap = PROJ([CAP.lng, CAP.lat]);
-        // outer：定位到投影坐标（k=1）；g 的缩放变换负责平移/缩放位置；
-        // inner：反向 scale(1/k) 抵消 g 的缩放，使图标/标签保持恒定屏幕尺寸（不随放大变大）
+        // 首都★ 留在标志层(_gMark，位于客户/医院点之下 → 图标不遮挡位点)
         const outer = _gMark.append('g').attr('transform', `translate(${pCap[0]},${pCap[1]})`);
         const inner = outer.append('g');
         inner.append('g').attr('class','marker-cap-star').attr('transform','scale(0.95) translate(-14,-12)').attr('filter','url(#relief)')
           .append('path').attr('d', STAR).attr('fill','url(#gradCap)').attr('stroke','#7c4a03').attr('stroke-width','0.8');
-        inner.append('text').attr('class','marker-label').attr('x',0).attr('y',-12).text(capCnName || (CAP.name||'首都'));
-        _markEls.push({ el: outer, inner, base: pCap });
+        _markEls.push({ el: outer, inner, base: pCap, grow:false });
+        // 首都名 → 最顶层(永不被客户黄点/医院红点覆盖)
+        const lblG = _gMarkTop.append('g').attr('transform', `translate(${pCap[0]},${pCap[1]})`);
+        const lblInner = lblG.append('g');
+        lblInner.append('text').attr('class','marker-label').attr('x',0).attr('y',-12).text(capCnName || (CAP.name||'首都'));
+        _capLabelInner = lblInner;
       }
       if (AIR && AIR.lat != null){
-        // 机场标志绘制在机场真实坐标（绝不外推）：外推会把标记推到邻省（如北京首都机场被推入河北），故移除 SEP。
-        // 若与首都★过近，改为把★做小偏移（首都在省中心，偏移不会越省界）。
+        // 机场标志绘制在机场真实坐标（绝不外推）；若与首都★过近，把★做小偏移
         let p = PROJ([AIR.lon, AIR.lat]);
-        const outer = _gMark.append('g').attr('class','marker-plane-g').attr('data-prov', provinceAt([AIR.lon, AIR.lat]) || '').attr('transform', `translate(${p[0]},${p[1]})`);
+        const prov = provinceAt([AIR.lon, AIR.lat]) || '';
+        // 机场图标 → 标志层(不遮挡位点)
+        const outer = _gMark.append('g').attr('class','marker-plane-g').attr('data-prov', prov).attr('transform', `translate(${p[0]},${p[1]})`);
         const inner = outer.append('g');
         inner.append('g').attr('transform','scale(1.05) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
           .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','0.9');
-        const cnName = AIR.cn || ((META.ISO2_TO_CN[iso2] || '') + (facts && facts.capital ? ' · ' + facts.capital : ''));
+        // 机场名标签 → 最顶层
+        const lblG = _gMarkTop.append('g').attr('class','marker-plane-lbl-g').attr('data-prov', prov).attr('transform', `translate(${p[0]},${p[1]})`);
+        const lblInner = lblG.append('g');
+        const label = lblInner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-14).style('display','none');
         const airName = AIR.cn || AIR.name || '机场';
-        const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-14).style('display','none');
         label.append('tspan').attr('x',0).attr('dy',0).text(airName);
+        const cnName = AIR.cn || ((META.ISO2_TO_CN[iso2] || '') + (facts && facts.capital ? ' · ' + facts.capital : ''));
         if (iso2 !== 'cn') label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(cnName);
         outer.on('mouseenter', () => { outer.raise(); label.attr('y', -14).style('display','block'); })
              .on('mouseleave', () => syncAirportLabels());
-        _markEls.push({ el: outer, inner, base: p, grow: true });
+        _markEls.push({ el: outer, inner, base: p, grow: true, lblG, lblInner, label });
       }
-      // 省级前几机场：按省循环标注（中国地图专属；数据 PROVINCE_AIRPORTS，坐标经 geoContains 校验归属省份，根除“机场跑到别的省”）
+      // 省级前几机场：按省循环标注（中国地图专属；坐标经 geoContains 校验归属省份，根除“机场跑到别的省”）
       const PA = (window.PROVINCE_AIRPORTS && PROVINCE_AIRPORTS[iso2]) || null;
       if (PA && FC1){
         const natIata = (AIR && AIR.iata) || null;
@@ -1196,30 +1206,35 @@ window.addEventListener("unhandledrejection", function(e){
             inner.append('g').attr('transform','scale(0.85) rotate(45) translate(-12,-12)').attr('filter','url(#relief)')
               .append('path').attr('d', PLANE).attr('fill','#38bdf8').attr('stroke','#075985').attr('stroke-width','1.4');
             inner.append('text').attr('class','marker-air-iata').attr('x',8).attr('y',3).text(ap.iata || '');   // 常驻极简三字码
-            const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-12).style('display','none');
+            // 机场名标签 → 最顶层
+            const lblG = _gMarkTop.append('g').attr('class','marker-plane-lbl-g').attr('data-prov', sn).attr('transform', `translate(${p[0]},${p[1]})`);
+            const lblInner = lblG.append('g');
+            const label = lblInner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-12).style('display','none');
             label.append('tspan').attr('x',0).attr('dy',0).text(ap.cn || ap.name || '机场');
             outer.on('mouseenter', () => { outer.raise(); label.attr('y', -14).style('display','block'); })
                  .on('mouseleave', () => syncAirportLabels());
-            _markEls.push({ el: outer, inner, base: p, grow: true });
+            _markEls.push({ el: outer, inner, base: p, grow: true, lblG, lblInner, label });
           }
         }
       }
     }
     // 缩放时：标志图标随 g 变换自动平移（outer 已固定在地理坐标，g 负责位置），
-    // 仅用 inner 反向 scale(1/k) 抵消 g 的放大，保持图标/标签恒定屏幕尺寸（不随放大变大、且位于客户点下层不遮挡）
+    // 仅用 inner 反向 scale(1/k) 抵消 g 的放大，保持图标/标签恒定屏幕尺寸（不随放大变大）
     function updateMarkers(t){
       if (!_gMark) return;
       // 缩放/平移会移动标记而指针不动 → mouseleave 不触发（wheel 非 mousemove、拖拽被 pointer-capture 抑制），
       // 残留的悬停标签在此统一清除；再次悬停（mousemove）会重新触发 mouseenter 显示。
-      _gMark.selectAll('.marker-air-label').style('display','none');
+      if (_gMarkTop) _gMarkTop.selectAll('.marker-air-label').style('display','none');
       const k = t.k;
-      const sConst = 1 / k;                                                          // 首都★：恒定屏幕尺寸（不随放大变大）
-      const sGrow  = Math.min(MARK_GROW_CAP, Math.pow(k, MARK_GROW_POW)) / k;          // 机场✈：随缩放温和放大，封顶 MARK_GROW_CAP 倍
+      const sConst = 1 / k;                                                          // 首都★/首都名：恒定屏幕尺寸（不随放大变大）
+      const sGrow  = Math.min(MARK_GROW_CAP, Math.pow(k, MARK_GROW_POW)) / k;          // 机场✈/机场名：随缩放温和放大，封顶 MARK_GROW_CAP 倍
       _markEls.forEach(m => {
         if (!m.inner) return;
         const s = (m.grow ? sGrow : sConst);
         m.inner.attr('transform', `scale(${s})`);
+        if (m.lblInner) m.lblInner.attr('transform', `scale(${s})`);   // 名称标签同缩放 → 恒定屏幕尺寸
       });
+      if (_capLabelInner) _capLabelInner.attr('transform', `scale(${sConst})`);
       syncAirportLabels();   // 缩放/平移每帧：清除残留悬停标签后，重新点亮“选中省”的全部机场名（常显）
     }
     function provinceAt(lonlat){
@@ -1230,26 +1245,26 @@ window.addEventListener("unhandledrejection", function(e){
     // 点亮(选中)某个省 → 显示该省全部机场名（常显，不随缩放消失）；取消点亮 → 恢复悬停-only。
     // 所有选中变更都会流经 renderEmboss → updateMarkers，故在 updateMarkers 末尾统一同步即可（缩放/平移同路径）。
     function syncAirportLabels(){
-      if (!_gMark) return;
+      if (!_gMarkTop) return;
       // 先全部隐藏（已显示者由下方“点亮省”逻辑重新点亮；未点亮省仍按 mouseenter/mouseleave 控制）
-      _gMark.selectAll('.marker-plane-g, .marker-plane-prov-g').each(function(){
-        d3.select(this).select('.marker-air-label').style('display','none');
-      });
-      // 再对当前点亮(选中)的省(可多个，多点追踪)显示其全部机场名并置顶
+      _gMarkTop.selectAll('.marker-plane-lbl-g .marker-air-label').style('display','none');
+      // 再对当前点亮(选中)的省(可多个，多点追踪)显示其全部机场名并置于最顶层
       const sels = _selectedRegions();
       for (const r of sels){
         const name = r.name || '';
         if (!name) continue;
-        // 收集该省全部机场标记，按文档顺序交替“上/下”，避免两个机场名在图标上方重叠
+        // 收集该省全部机场名标签，按文档顺序交替“上/下”，避免两个机场名在图标上方重叠
         const marks = [];
-        _gMark.selectAll('[data-prov="' + name + '"]').each(function(){ marks.push(d3.select(this)); });
+        _gMarkTop.selectAll('.marker-plane-lbl-g').each(function(){
+          if (this.getAttribute('data-prov') === name) marks.push(d3.select(this));
+        });
         marks.forEach((g, i) => {
           const label = g.select('.marker-air-label');
           if (label.empty()) return;
           const below = (i % 2 === 1);                 // 第1个(偶数)在图标上方，第2个(奇数)在图标下方
           label.attr('y', below ? 22 : -14);
           label.style('display','block');
-          g.raise();   // 选中省机场名置顶，避免被其它标记/常驻三字码盖住
+          g.raise();   // 已在最顶层，仅排序彼此，避免名/名重叠时后绘制者压住前者
         });
       }
     }
