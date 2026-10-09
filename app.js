@@ -44,7 +44,7 @@ window.addEventListener("unhandledrejection", function(e){
 
     // —— 离线缓存层：IndexedDB 缓存地图边界 JSON，重复访问秒开（任何失败自动回退网络，功能不变）——
     const APP_CACHE_VER = '202609290916';   // 每次部署改动数据/脚本时递增，自动失效旧缓存
-    const _DATA_VER = '202610091550';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
+    const _DATA_VER = '202610091603';       // 数据文件(?v=)缓存戳：province/customers/hospitals 部署后 bump，强制 CDN/浏览器取新
     const _IDB_NAME = 'mapCacheDB', _IDB_STORE = 'files';
     function _openIDB(){
       return new Promise((resolve, reject) => {
@@ -1176,7 +1176,7 @@ window.addEventListener("unhandledrejection", function(e){
         const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-14).style('display','none');
         label.append('tspan').attr('x',0).attr('dy',0).text(airName);
         if (iso2 !== 'cn') label.append('tspan').attr('class','cn').attr('x',0).attr('dy',13).text(cnName);
-        outer.on('mouseenter', () => { outer.raise(); label.style('display','block'); })
+        outer.on('mouseenter', () => { outer.raise(); label.attr('y', -14).style('display','block'); })
              .on('mouseleave', () => syncAirportLabels());
         _markEls.push({ el: outer, inner, base: p, grow: true });
       }
@@ -1198,7 +1198,7 @@ window.addEventListener("unhandledrejection", function(e){
             inner.append('text').attr('class','marker-air-iata').attr('x',8).attr('y',3).text(ap.iata || '');   // 常驻极简三字码
             const label = inner.append('text').attr('class','marker-air-label').attr('x',0).attr('y',-12).style('display','none');
             label.append('tspan').attr('x',0).attr('dy',0).text(ap.cn || ap.name || '机场');
-            outer.on('mouseenter', () => { outer.raise(); label.style('display','block'); })
+            outer.on('mouseenter', () => { outer.raise(); label.attr('y', -14).style('display','block'); })
                  .on('mouseleave', () => syncAirportLabels());
             _markEls.push({ el: outer, inner, base: p, grow: true });
           }
@@ -1240,9 +1240,15 @@ window.addEventListener("unhandledrejection", function(e){
       for (const r of sels){
         const name = r.name || '';
         if (!name) continue;
-        _gMark.selectAll('[data-prov="' + name + '"]').each(function(){
-          const g = d3.select(this);
-          g.select('.marker-air-label').style('display','block');
+        // 收集该省全部机场标记，按文档顺序交替“上/下”，避免两个机场名在图标上方重叠
+        const marks = [];
+        _gMark.selectAll('[data-prov="' + name + '"]').each(function(){ marks.push(d3.select(this)); });
+        marks.forEach((g, i) => {
+          const label = g.select('.marker-air-label');
+          if (label.empty()) return;
+          const below = (i % 2 === 1);                 // 第1个(偶数)在图标上方，第2个(奇数)在图标下方
+          label.attr('y', below ? 22 : -14);
+          label.style('display','block');
           g.raise();   // 选中省机场名置顶，避免被其它标记/常驻三字码盖住
         });
       }
