@@ -190,16 +190,16 @@
     vector-effect:non-scaling-stroke;
     filter:drop-shadow(0 0 1.2px #05080f) drop-shadow(0 0 1.2px #05080f); }
   /* 偏远海外领地小窗（参照中国南海诸岛做法）：玻璃质感面板，独立投影绘制各领地 */
-  .map-inset{ position:absolute; right:14px; top:14px; width:232px; background:rgba(10,18,32,.82);
-    border:1px solid var(--line); border-radius:12px; padding:8px 8px 6px; z-index:6; backdrop-filter:blur(8px);
-    box-shadow:0 8px 24px rgba(0,0,0,.35); }
+  .map-inset{ position:absolute; right:14px; top:14px; width:232px; background:rgba(10,18,32,.78);
+    border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:6px 6px 5px; z-index:6; backdrop-filter:blur(8px);
+    box-shadow:0 4px 14px rgba(0,0,0,.3); }
   .map-inset-title{ font-size:11px; color:var(--accent); font-weight:700; letter-spacing:.5px; margin-bottom:4px; text-align:center; }
   .map-inset-svg{ display:block; }
   .inset-shape{ fill:rgba(56,189,248,.20); stroke:#eaf2fb; stroke-width:1; pointer-events:all; cursor:url('assets/cursors/LoLHover.png') 1 2, pointer; transition:fill .15s; vector-effect:non-scaling-stroke; }
   .inset-shape:hover{ fill:rgba(56,189,248,.48); }
   .inset-label{ fill:#cfe3f5; font-size:8px; text-anchor:middle; font-weight:600; pointer-events:none; }
   /* 中国专属：南海诸岛右下角小地图（大陆为主体，南海诸岛以小插图呈现，参照官方中国地图惯例） */
-  .map-inset-scs{ top:auto; bottom:12px; right:12px; width:214px; }
+  .map-inset-scs{ top:auto; bottom:64px; right:12px; width:162px; }
   .scs-sea{ fill:rgba(13,38,66,.55); }
   .scs-dash{ fill:none; stroke:#eaf2fb; stroke-width:1.4; stroke-dasharray:4 3; stroke-linecap:round; vector-effect:non-scaling-stroke; }
   .scs-island{ fill:#fde047; stroke:#7a5b00; stroke-width:.6; }
@@ -461,6 +461,6 @@
   <script defer src="d3.v7.min.js"></script>
   <script defer src="topojson-client.min.js"></script>
   <script defer src="country_meta.js?v=202610091615"></script>
-  <script defer src="app.js?v=202610091700"></script>
+  <script defer src="app.js?v=202610121016"></script>
 </body>
 </html>
