@@ -198,12 +198,6 @@
   .inset-shape{ fill:rgba(56,189,248,.20); stroke:#eaf2fb; stroke-width:1; pointer-events:all; cursor:url('assets/cursors/LoLHover.png') 1 2, pointer; transition:fill .15s; vector-effect:non-scaling-stroke; }
   .inset-shape:hover{ fill:rgba(56,189,248,.48); }
   .inset-label{ fill:#cfe3f5; font-size:8px; text-anchor:middle; font-weight:600; pointer-events:none; }
-  /* 中国专属：南海诸岛右下角小地图（大陆为主体，南海诸岛以小插图呈现，参照官方中国地图惯例） */
-  .map-inset-scs{ top:auto; bottom:64px; right:12px; width:162px; }
-  .scs-sea{ fill:rgba(13,38,66,.55); }
-  .scs-dash{ fill:none; stroke:#eaf2fb; stroke-width:1.4; stroke-dasharray:4 3; stroke-linecap:round; vector-effect:non-scaling-stroke; }
-  .scs-island{ fill:#fde047; stroke:#7a5b00; stroke-width:.6; }
-  .scs-island-label{ fill:#eaf2fb; font-size:8px; font-weight:600; pointer-events:none; }
   /* 二级行政区域(ADM2)虚线：下层弱化纹理，dasharray + 更淡更细避免与省界重叠混乱 */
   /* ADM2 fill 用 rgba(0,0,0,0) 而非 none：painted but invisible → fill area 在所有浏览器中可靠拦截指针事件，
      杜绝点击 ADM2 透明内部时穿透到底层 ADM1 prov-fill 选中一级行政区域（根因：fill:none 的 fill area 不拦截事件） */
@@ -408,7 +402,6 @@
       </div>
       <div id="map"><div id="depotOverlay" style="display:none;position:absolute;inset:0;z-index:4;cursor:crosshair"></div></div>
       <div id="inset" class="map-inset" style="display:none;"></div>
-      <div id="scsInset" class="map-inset map-inset-scs" style="display:none;"></div>
       <div class="map-ctrl">
         <button id="zin" title="放大">＋</button>
         <button id="zout" title="缩小">－</button>
@@ -461,6 +454,6 @@
   <script defer src="d3.v7.min.js"></script>
   <script defer src="topojson-client.min.js"></script>
   <script defer src="country_meta.js?v=202610091615"></script>
-  <script defer src="app.js?v=202610121016"></script>
+  <script defer src="app.js?v=202610121030"></script>
 </body>
 </html>
