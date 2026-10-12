@@ -1120,7 +1120,7 @@ window.addEventListener("unhandledrejection", function(e){
       title.className = 'map-inset-title';
       title.textContent = data.title || '南海诸岛';
       box.appendChild(title);
-      const W = 200, H = 170, pad = 6;
+      const W = 150, H = 128, pad = 5;
       const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
       svg.setAttribute('width', W); svg.setAttribute('height', H);
       svg.setAttribute('class','map-inset-svg');
