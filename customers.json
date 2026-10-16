@@ -10525,6 +10525,504 @@
    "located": true
   },
   {
+   "company": "OSAKO (ТОО «ОСАКО»)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://osako.kz/en",
+   "name": "",
+   "address": "ул. Аршалы 80Б, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://osako.kz/en"
+   ],
+   "note": "综合外科设备；制氧机/轮椅/康复器械批发零售，覆盖8城市自有仓储（官网）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "ALMATY MEDICAL PRODUCT LLP",
+   "phone": "8 727 271 2041",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=Astana+Zdorovie+2012&group=A",
+    "https://ermolov-konf.ru/sponsors_en"
+   ],
+   "note": "眼科设备；CIBA Vision/Reichert/D.O.R.C./Medicontur 官方代理（展会名录/会议赞助页）；主营：眼科",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "ASPASIA LTD LLP (АСПАСИЯ)",
+   "phone": "+7 727 394 72 12",
+   "email": "未公开",
+   "web": "https://aspasia.kz/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2018"
+   ],
+   "note": "骨科/创伤/康复设备、灭菌器；KIHE 展商（展会名录）；主营：骨科·创伤器械",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "MEDIAL GROUP LLP",
+   "phone": "+7 (727) 313-15-10",
+   "email": "info@medialgroup.kz",
+   "web": "https://medialgroup.kz/company-eng",
+   "name": "",
+   "address": "Satpaeva str. 30/8, office 143, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://medialgroup.kz/company-eng"
+   ],
+   "note": "医疗设备及耗材批发（240+品牌），11个国内代表处，生产救护车（官网）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "Global Medical",
+   "phone": "+7 771 780 9543",
+   "email": "info@globalmedical.kz",
+   "web": "https://globalmedical.kz/",
+   "name": "",
+   "address": "ул. Талдыарал 4, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://globalmedical.kz/",
+    "https://tg4g.com/listing/globalmedical-kz"
+   ],
+   "note": "Mindray/Dirui/Lifotronic/Wondfo/Aeonmed/SIUI 等代理，含安装培训售后（官网）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "KAZMEDEQUIPMENT (KAZMEDEQ.KZ)",
+   "phone": "7 7172 222-500",
+   "email": "未公开",
+   "web": "https://kazmedeq.kz/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://kazmedeq.kz/",
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2018"
+   ],
+   "note": "外科/复苏/超声/内镜/灭菌12条线；A.M.I(奥地利)等独家代理，KIHE 参展（官网/展会）；主营：综合外科设备",
+   "lat": 51.1605,
+   "lng": 71.4704,
+   "city": "Astana",
+   "located": true
+  },
+  {
+   "company": "KAZMEDPRIBOR HOLDING LLP (КАЗМЕДПРИБОР)",
+   "phone": "7 7252 44 21 22",
+   "email": "未公开",
+   "web": "https://kazmedpribor.kz/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2018",
+    "https://www.iedexpo.com/sys-pd/124.html"
+   ],
+   "note": "哈国首家/唯一医疗设备生产商(2005起)；X光/手术床/无影灯/家具，兼医疗机构整体装备（展会/IED）；主营：综合外科设备",
+   "lat": 42.3417,
+   "lng": 69.5906,
+   "city": "Shymkent",
+   "located": true
+  },
+  {
+   "company": "ADAL MEDICA KAZAKHSTAN (АДАЛ МЕДИКА)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://adalmedica.kz/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://adalmedica.kz/"
+   ],
+   "note": "诊断/实验室/医疗设备销售安装售后，全国供货（官网）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "MED STOM KZ",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://medstom.kz/",
+   "name": "",
+   "address": "1/1A Alimkhan Yermekov St, basement, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://medstom.kz/",
+    "https://www.dentadevice.com/dental-company/id/2248.html"
+   ],
+   "note": "牙科设备与材料供应商(2014起)，DENU/Olident/Sani/Coxo/Fomos 等（官网/牙科目录）；主营：牙科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "AK Medical Enterprises",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://ak-med.com/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://ak-med.com/"
+   ],
+   "note": "Pentax Medical 内镜代理，独联体综合供应商，哈/乌/吉代表处（官网）；主营：内镜",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "MedHouse Kazakhstan (МедХаус)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://beya.hh.ru/employer/885706"
+   ],
+   "note": "欧洲品牌(Dr. Frei/Gamma/MedTextile 等)进口分销，15个区域代表处+服务中心（招聘页）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "TOM HOLDING (ТОО)",
+   "phone": "未公开",
+   "email": "ceo@tomholding.kz",
+   "web": "https://tomholding.kz/",
+   "name": "",
+   "address": "пр. Р. Қошқарбаев 46/1, Astana",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://tomholding.kz/"
+   ],
+   "note": "放射影像(MRI/CT/超声)国际供应商(2024起)，工厂直采+安装售后（官网）；主营：影像",
+   "lat": 51.1605,
+   "lng": 71.4704,
+   "city": "Astana",
+   "located": true
+  },
+  {
+   "company": "PharmProvide",
+   "phone": "+7 (727) 247-11-35",
+   "email": "info-ala@pharmprovide.kz",
+   "web": "https://pharmprovide.kz/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://pharmprovide.kz/",
+    "http://www.vvmob.com/russia_casia_medical_distributor_report_20260527.html"
+   ],
+   "note": "20+年，4000+客户，5城仓储；B.Braun(Perfusor)/AGFA/BAIHE 直接分销（官网/行业报告）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "TOO Did Medica (Didamedica.kz)",
+   "phone": "+7 778 237 71 30",
+   "email": "未公开",
+   "web": "http://didamedica.kz/",
+   "name": "",
+   "address": "ул. Zerdeli 25, Shymkent",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "http://didamedica.kz/",
+    "https://www.volza.com/company-profile/too-did-medica-71010456/"
+   ],
+   "note": "大型进口商(931票进口，HSN9018/9019)；喉镜/复苏袋/复苏套装/秤（官网/Volza海关）；主营：综合外科设备",
+   "lat": 42.3417,
+   "lng": 69.5906,
+   "city": "Shymkent",
+   "located": true
+  },
+  {
+   "company": "TOO Novirs (Новирс)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://www.volza.com/p/endoscope/buyers/buyers-in-kazakhstan",
+    "https://www.eximpedia.app/companies/novirs-llp/63620682"
+   ],
+   "note": "哈国内镜进口龙头(514票，Volza称占45%市场)；Olympus EVIS EXERA/4K 内镜系统（Volza/Eximpedia）；主营：内镜",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "TOO KARL STORZ ENDOSCOPY Kazakhstan",
+   "phone": "+7 7172 55 25 49",
+   "email": "info@karlstorz.kz",
+   "web": "https://www.karlstorz.com/de/en/kazakhstan-astana.htm",
+   "name": "",
+   "address": "Mangilik el 63B, 020000, Astana",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://www.karlstorz.com/de/en/kazakhstan-astana.htm"
+   ],
+   "note": "KARL STORZ 哈国官方贸易代表处(2008起)，内镜销售/实施/售后（官网）；主营：内镜",
+   "lat": 51.1605,
+   "lng": 71.4704,
+   "city": "Astana",
+   "located": true
+  },
+  {
+   "company": "TOO Endostar (EndoStar)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://kihe.kz/en/press-center/news/news-blog/1301-endo-star-modern-solutions-for-the-comprehensive-equipment-of-medical-institutions",
+    "https://52wmb.com/supplier/185238938"
+   ],
+   "note": "12年市场，KIHE 2026展商；Merivaara(手术台)/Mespa(床)/Midea，大型医疗设备进口商（KIHE/52wmb）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "OPTONIC (ОПТОНИК)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://optonic.kz/about?lang=en",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://optonic.kz/about?lang=en"
+   ],
+   "note": "欧洲厂商(Philips/Terumo BCT/ThermoFisher)代理；输血/创伤/骨科项目（官网）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "ИНТЕРМЕДИКА АЛМАТЫ ТОО (Intermedica Almaty)",
+   "phone": "+7 727 352 79 70",
+   "email": "info@intermedica.kz",
+   "web": "http://intermedica.kz/",
+   "name": "",
+   "address": "ул. Земнухова 19а, 050026, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "http://www.eurastech.com/media/uploads/euraweb/web1708/zdorovie/1_2016_astana_zdorovie_official_catalogue_with_exhibitors_list.pdf"
+   ],
+   "note": "临床检验/功能诊断/兽医诊所装备；分析仪/显微镜/超声/离心机（展会目录）；主营：实验室设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "KAZ VITA-MED LTD",
+   "phone": "+7 727 2436002",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=Astana+Zdorovie+2014&group=K"
+   ],
+   "note": "血液净化/过滤系统医用耗材；Astana Zdorovie 2014展商（展会名录）；主营：血液净化",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "MEDICUS EURASIA LLP (Медикус Евразия)",
+   "phone": "+7 727 2500015",
+   "email": "info@medeurasia.kz",
+   "web": "https://medeurasia.kz/",
+   "name": "",
+   "address": "59 Zheltoksan St, 050004, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2011&group=M",
+    "https://www.yumpu.com/en/document/view/6109702/caspian-world-index-of/77"
+   ],
+   "note": "哈国最大放射/诊断/设备耗材供应商之一；电外科/内镜/影像/除颤（展会/Yumpu）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "EurasiaMed (ЕвразияМед)",
+   "phone": "+7 (706) 401 41 47",
+   "email": "office@eurasiamed.kz",
+   "web": "https://www.eurasiamed.kz/",
+   "name": "",
+   "address": "оф. 232, бл. 5 ЖК «Эстет», ул. Тажибаева 218, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://www.eurasiamed.kz/",
+    "https://www.dentadevice.com/dental-company/id/2268.html"
+   ],
+   "note": "牙科设备进口分销(2015起)，Sirona/Ajax/Fona；3D打印/CAD-CAM/内镜（官网/牙科目录）；主营：牙科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "R Optics Medical (Р Оптикс)",
+   "phone": "+7 727 232-15-29",
+   "email": "未公开",
+   "web": "https://r-optics.kz/en/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://r-optics.kz/en/",
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2015&group=%d0%a0"
+   ],
+   "note": "Leica Microsystems/OCULUS/Quantel Medical/Topcon/Plasmapp 代理，眼科中心整体装备（官网/展会）；主营：眼科",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "Ophthalmology Service LLP",
+   "phone": "+7 (701) 720 60 07",
+   "email": "info@ophthalmology.kz",
+   "web": "https://ophthalmology.kz/",
+   "name": "",
+   "address": "ул. Спартака 3-15, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://ermolov-konf.ru/sponsors_en"
+   ],
+   "note": "Johnson & Johnson Vision/Sonomed Escalon/Topcon 官方代理(2016注册)（会议赞助页）；主营：眼科",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "«Farmaks-2» LLP (Фармакс-2)",
+   "phone": "+7 705 503 61 82",
+   "email": "未公开",
+   "web": "https://farmaks2.kz/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://bbs.fobshanghai.com/company/17q3u7zq98459s8.html"
+   ],
+   "note": "AGFA/B.Braun/KARL STORZ Endoscopy/Assomedica 授权分销，各大城市分支，KIHE 2023/2024展商（FOBShanghai）；主营：综合外科设备",
+   "lat": 53.2142,
+   "lng": 63.6246,
+   "city": "Kostanay",
+   "located": true
+  },
+  {
+   "company": "Relief HealthTech LLP",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://reg.iteca.kz/list/exponent/en/auth.aspx?ExhCode=KIHE+2026"
+   ],
+   "note": "miraDry 系统独联体/中亚官方独家代理，KIHE 2026展商（展会名录）；主营：综合外科设备",
+   "lat": 51.1605,
+   "lng": 71.4704,
+   "city": "Astana",
+   "located": true
+  },
+  {
+   "company": "Medilux LLP (Медилакс)",
+   "phone": "+7 727 2611482",
+   "email": "info@medilux.kz",
+   "web": "https://medilux.kz/",
+   "name": "",
+   "address": "48a Kurmangazy St, оф. 407/409, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://www.yumpu.com/en/document/view/6109702/caspian-world-index-of/77"
+   ],
+   "note": "德国 Seca(新生儿/儿童/成人秤、身高计)官方代理，KIHE 2010展商（Yumpu）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
    "company": "AFTER MEDICAL LLC",
    "phone": "+998 71 235 60 48",
    "email": "info@aftermedical.uz",
@@ -10770,6 +11268,751 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Diatech S.A. (Представительство DIATECH S.A.)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://diatech.uz/",
+   "name": "",
+   "address": "ул. Зульфияхонум, 21, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.tendata.com/en/buyer/pryedstavityel-stvo-diatech-s-a-UZBIfdfe434b23299a33acf715db777659d0.html",
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "GE HealthCare/Olympus/Fresenius/FibroScan/Dornier/Alma Lasers 乌国官方分销（Tendata/目录）；主营：影像/综合设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "angio.uz",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Katta Qa'ni, 19, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "介入心脏病/腹腔镜；Medtronic/Boston Scientific/Covidien/Stryker/Ethicon/Karl Storz（目录）；主营：介入/腹腔镜",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "CVS-Medical",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Чиланзар, 10 квартал, д. 3/1, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "心脏与脊柱产品供应（目录）；主营：心脏/脊柱",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "AGM Store Avantgarde Medico (AGM.STORE AVANTGARDE MEDICO JV LTD)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Юнусабад, пр. Ш.Рашидова, блок Кашгар, 20А, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "Terumo/Occlutech 官方分销（黄页）；主营：介入/血管内",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Albatros Health Care LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Юнусабад, ул. Халкабад, 17, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "体外诊断设备分销（黄页）；主营：IVD/体外诊断",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Alphamedica LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Мирзо-Улугбек, 7-й пр. Сайрам, 50, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "实验室设备官方分销（黄页）；主营：实验室设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Amico Tashkent LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Юнусабад, ул. Чингиза Айтматова, 26А, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "X光设备销售与售后（黄页）；主营：影像",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Ansor-Med LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Алмазар, ул. Фароби, 3Б, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "医疗设备官方分销（黄页）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "AG-Med / Avtogruz LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Шайхантахур, пр. Навои, 30, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "妇科设备供应（黄页）；主营：妇科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Ab Form Sistem LTD",
+   "phone": "未公开",
+   "email": "contacts@abform.uz",
+   "web": "https://abform.uz/",
+   "name": "",
+   "address": "Яшнабад, ул. Олтинтепа, 229А, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/company?Id=53750",
+    "https://abform.uz/",
+    "https://www.top.uz/uslugi/distillyatory"
+   ],
+   "note": "20+年，外科/影像/复苏/康复设备(Bitmos/EME/DR Gem)（黄页/官网）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Medical Instrument Service LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Яшнабад, блок Тузель-2, 9/28, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/company?Id=74043"
+   ],
+   "note": "医疗设备销售/制造/医疗机构整体装备（黄页）；主营：实验室/综合",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Foton Medical Quality FE LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Чиланзар, пр. Бунёдкор, 4, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/company/?Id=84383&CatId=1373"
+   ],
+   "note": "生产/销售高频电外科装置、凝血器、手术床（黄页）；主营：电外科",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Distrilab (Distrilab Central Asia OOO)",
+   "phone": "未公开",
+   "email": "info@distrilab.uz",
+   "web": "https://distritech.kz/",
+   "name": "",
+   "address": "Мирабад, ул. Афросиаб, 4Б, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.top.uz/uslugi/distillyatory"
+   ],
+   "note": "医疗与实验室设备供应（top.uz）；主营：医疗/实验室",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Life Science and Technology LLC (LST / Skyseven)",
+   "phone": "未公开",
+   "email": "info@lst.uz",
+   "web": "https://lst.uz/",
+   "name": "",
+   "address": "Мирзо-Улугбек, ул. Буюк Ипак Йули, 160, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.cnchemshop.com/comdetail/216915.html"
+   ],
+   "note": "贸易分销公司，进口+售后医疗/实验室设备与试剂（cnchemshop）；主营：医疗/实验室",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Medicover",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "1-й пр. Олмачи, 27, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "Medtronic 乌国官方分销（目录）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Tiva Medical LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Юнусабад, пр. Рашидова, блок Кашгар C-4, 20А, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "医疗设备供应商（目录）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Emicro.uz",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://emicro.uz/",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "外科/牙科/实验室显微镜供应+维修保养（目录）；主营：外科/牙科/实验室显微镜",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Arash Medical",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Мирабад, ул. Мирабад, 12, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "Candela/Euromi/Exciplex/Zimmer 等设备分销（目录）；主营：医美/外科",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Fortek",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "ул. Сайрам, 6-й пр., 13А, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "医疗与实验室设备批发（目录）；主营：医疗/实验室",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Med Shop Uz",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Мирзо-Улугбек, ул. Аккурганская, 21, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.findglocal.com/UZ/Tashkent/242895-23/genre/124907487582838/Medical+Supplies"
+   ],
+   "note": "Medtronic/Abbott/Boston Scientific/Biosensors/Meril 冠脉支架与耗材（目录）；主营：冠脉支架/耗材",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Dentmed Technology LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Чиланзар, ул. Лутфи, блок Чиланзар-7, 33, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "医疗/牙科设备销售与制造(亦生产商)；灭菌器/消毒锅/RG设备（黄页）；主营：牙科/医疗",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Endo-Systems LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Чиланзар, ул. Кичик Халка Йули, 45, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "全球厂商医疗设备官方分销，影像与复苏（黄页）；主营：综合/影像/复苏",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Denis Med LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Алмазар, ул. Кичик Халка Йули, 16/3, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "医疗与实验室设备供应，在乌卫生部注册（黄页）；主营：医疗/实验室",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "SKYMED-TECHNOLOGIES MChJ",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://skymed.uz/",
+   "name": "",
+   "address": "Мирзо-Улугбек, ул. Чуст, 9/17, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://bizkim.uz/cn/org/18038-skymed-technologies",
+    "https://skymed.uz/"
+   ],
+   "note": "诊所整体装备，内镜/放射/复苏手术设备（bizkim/官网）；主营：内镜/影像/外科",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "IXORA (Ixoramed)",
+   "phone": "+998 90 829-28-32",
+   "email": "info@ixoramed.com",
+   "web": "https://ixoramed.uz/",
+   "name": "",
+   "address": "Мирзо-Улугбек, ул. Равнак, 21, 21а, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "http://ixoramed.uz/"
+   ],
+   "note": "实验室设备(组织学/肿瘤诊断/微生物)世界领先厂商官方代理（官网）；主营：实验室/病理/分子诊断",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Medical Online Services (MEDOL)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "http://medol.uz/",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "http://medol.uz/"
+   ],
+   "note": "Johnson & Johnson/Aesculap(BBraun)/Getinge/Ortho Clinical Diagnostics 官方代表（官网）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Pro-Tech",
+   "phone": "+998 78 555-55-35",
+   "email": "info@pro-tech.uz",
+   "web": "https://pro-tech.uz/",
+   "name": "",
+   "address": "ул. Мукими, 20А, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://pro-tech.uz/"
+   ],
+   "note": "国际品牌医疗器械可靠分销（官网）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "GLOBALMED LLC (MEDICOM TM)",
+   "phone": "+998 98 3656611",
+   "email": "info@medicom.uz",
+   "web": "https://medicom.uz/",
+   "name": "",
+   "address": "Алмазар, ул. Ходжалик, 3, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://yellowpages.uz/en/company/medicom-tm",
+    "https://medicom.uz/"
+   ],
+   "note": "CT/MRI/X光/超声及手术床供应（黄页/官网）；主营：影像",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "TECHNOBIOMEDIKAL LLC",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Шайхантахур, ул. Турккургон, 9, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://en.yellowpages.uz/company/technobiomedikal-llc"
+   ],
+   "note": "医疗与实验室设备销售，外国公司代表处（黄页）；主营：医疗/实验室",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "MST",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "1-я ул. Мирабад, 43, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.bizkim.uz/en/org/18652-mst"
+   ],
+   "note": "医疗与美容设备世界厂商官方分销(2007起)（bizkim）；主营：医疗/医美",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "XPmed",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://xpmed.uz/about-us",
+   "name": "",
+   "address": "Шайхантахур, пр. Бунёдкор, 8В, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://bizkim.uz/en/org/20061-xpmed",
+    "https://xpmed.uz/about-us"
+   ],
+   "note": "骨科/创伤/神经外科植入物与耗材独家分销(ConMed/Synimed/Double Medical)（bizkim/官网）；主营：骨科·创伤器械",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Medical Technologies Company (Medtech)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://medtech.uz/en/about-us",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://medtech.uz/en/about-us"
+   ],
+   "note": "1995起，已供4000+设备；Philips/Dräger 背景，5城区域办公室（官网）；主营：综合高端设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Chirana Asia (СП ООО)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.zowexpo.com/news/201941.html"
+   ],
+   "note": "UzMedExpo 2024 乌国展商（展会新闻）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Iron Tehno Med (OOO)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.zowexpo.com/news/201941.html"
+   ],
+   "note": "UzMedExpo 2024 乌国展商（展会新闻）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Medprotect Technology (ЧП)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.zowexpo.com/news/201941.html"
+   ],
+   "note": "UzMedExpo 2024 乌国展商（展会新闻）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Dentals Pharma (LLC)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.zowexpo.com/news/201941.html"
+   ],
+   "note": "UzMedExpo 2024 乌国展商（展会新闻）；主营：牙科/医疗",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "Nozomi Medical",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://www.nozomimedical.uz?p=14/",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.nozomimedical.uz?p=14/"
+   ],
+   "note": "2017起，日本 Hope Medical 子公司，CT(MRI)供应与安装（官网）；主营：影像",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "BYORK GROUP (бывш. Orient Med LLC)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://byork.uz/",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://worldyellowpages.com/s/byork-group-c5be7d7228",
+    "https://www.pubrio.com/zh-HK/companies/ae5f927e-8bf8-4176-b3d4-8bec967215b5"
+   ],
+   "note": "2015起，中国进口高科技医疗设备贸易与售后（worldyellowpages/pubrio）；主营：实验室/医疗设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "WISEMED LLC",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://samarkand.hh.uz/employer/11538553"
+   ],
+   "note": "2021起撒马尔罕，向乌诊所供应高科技外科设备（招聘页）；主营：高科技外科设备",
+   "lat": 39.6542,
+   "lng": 66.9597,
+   "city": "Samarkand",
+   "located": true
+  },
+  {
+   "company": "Adjama LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Наманган, ул. Ислама Каримова, 1А",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "纳曼干区域医疗设备进口商（黄页）；主营：综合外科设备",
+   "lat": 41.0,
+   "lng": 71.66,
+   "city": "Namangan",
+   "located": true
+  },
+  {
+   "company": "Aleks LTD",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "Фергана обл., Коканд, блок Хуканди, 132",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.goldenpages.uz/en/rubrics/?Id=1373"
+   ],
+   "note": "费尔干纳州(浩罕)区域医疗设备供应商（黄页）；主营：综合外科设备",
+   "lat": 40.5167,
+   "lng": 70.9333,
+   "city": "Fergana",
    "located": true
   }
  ]
