@@ -10315,7 +10315,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": "新华基础手术器械"
   },
   {
    "company": "«DELRUS RK» LLP",
@@ -10334,7 +10335,8 @@
    "lat": 51.1605,
    "lng": 71.4704,
    "city": "Astana",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "NANOPHARM LLP (ТОО «Нанофарм»)",
@@ -10352,7 +10354,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Medico-Innovative Technologies (ТОО)",
@@ -10370,7 +10373,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": "爱尔博电刀、俄产骨科电钻"
   },
   {
    "company": "MedioArtLab (ТОО)",
@@ -10389,7 +10393,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ТОО \"ADICom\"",
@@ -10407,7 +10412,8 @@
    "lat": 51.1605,
    "lng": 71.4704,
    "city": "Astana",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ТОО \"Медэкс Плюс\" (Medex Plus)",
@@ -10426,7 +10432,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": "爱尔博电刀"
   },
   {
    "company": "ТОО \"Tarlan International\"",
@@ -10445,26 +10452,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
-  },
-  {
-   "company": "DAMUMED (ТОО «Дамумед»)",
-   "phone": "+7 7172 54 21 81",
-   "email": "未公开",
-   "web": "https://damumed.kz/",
-   "name": "",
-   "address": "未公开",
-   "country": "哈萨克斯坦",
-   "iso2": "kz",
-   "source": [
-    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2014&group=%D0%94",
-    "https://en.52wmb.com/supplier/120472353"
-   ],
-   "note": "综合外科设备；阿斯塔纳医疗设备供应商，参展 KIHE，海关提单买方(2026年68票)（展会名录/52wmb）；主营：综合外科设备",
-   "lat": 51.1605,
-   "lng": 71.4704,
-   "city": "Astana",
-   "located": true
+   "located": true,
+   "hl": "鸿鹄动力系统、Bowa电刀、蛇牌手术器械"
   },
   {
    "company": "MC Med-Continent KZ (ТОО)",
@@ -10483,7 +10472,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ТОО \"Медкор\" (Medcor)",
@@ -10502,7 +10492,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "OrdaMed Corporation",
@@ -10522,7 +10513,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "OSAKO (ТОО «ОСАКО»)",
@@ -10540,7 +10532,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ALMATY MEDICAL PRODUCT LLP",
@@ -10559,7 +10552,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ASPASIA LTD LLP (АСПАСИЯ)",
@@ -10577,7 +10571,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MEDIAL GROUP LLP",
@@ -10595,7 +10590,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Global Medical",
@@ -10614,7 +10610,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "KAZMEDEQUIPMENT (KAZMEDEQ.KZ)",
@@ -10633,7 +10630,8 @@
    "lat": 51.1605,
    "lng": 71.4704,
    "city": "Astana",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "KAZMEDPRIBOR HOLDING LLP (КАЗМЕДПРИБОР)",
@@ -10652,7 +10650,8 @@
    "lat": 42.3417,
    "lng": 69.5906,
    "city": "Shymkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ADAL MEDICA KAZAKHSTAN (АДАЛ МЕДИКА)",
@@ -10670,7 +10669,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MED STOM KZ",
@@ -10689,7 +10689,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "AK Medical Enterprises",
@@ -10707,7 +10708,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MedHouse Kazakhstan (МедХаус)",
@@ -10725,7 +10727,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "TOM HOLDING (ТОО)",
@@ -10743,7 +10746,8 @@
    "lat": 51.1605,
    "lng": 71.4704,
    "city": "Astana",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "PharmProvide",
@@ -10762,7 +10766,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "TOO Did Medica (Didamedica.kz)",
@@ -10781,7 +10786,8 @@
    "lat": 42.3417,
    "lng": 69.5906,
    "city": "Shymkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "TOO Novirs (Новирс)",
@@ -10800,7 +10806,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "TOO KARL STORZ ENDOSCOPY Kazakhstan",
@@ -10818,7 +10825,8 @@
    "lat": 51.1605,
    "lng": 71.4704,
    "city": "Astana",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "TOO Endostar (EndoStar)",
@@ -10837,7 +10845,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "OPTONIC (ОПТОНИК)",
@@ -10855,7 +10864,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ИНТЕРМЕДИКА АЛМАТЫ ТОО (Intermedica Almaty)",
@@ -10873,7 +10883,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "KAZ VITA-MED LTD",
@@ -10891,7 +10902,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MEDICUS EURASIA LLP (Медикус Евразия)",
@@ -10910,7 +10922,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "EurasiaMed (ЕвразияМед)",
@@ -10929,7 +10942,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "R Optics Medical (Р Оптикс)",
@@ -10948,7 +10962,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Ophthalmology Service LLP",
@@ -10966,7 +10981,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "«Farmaks-2» LLP (Фармакс-2)",
@@ -10984,7 +11000,8 @@
    "lat": 53.2142,
    "lng": 63.6246,
    "city": "Kostanay",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Relief HealthTech LLP",
@@ -11002,7 +11019,8 @@
    "lat": 51.1605,
    "lng": 71.4704,
    "city": "Astana",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Medilux LLP (Медилакс)",
@@ -11020,7 +11038,8 @@
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "AFTER MEDICAL LLC",
@@ -11039,7 +11058,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "OOO PRO MED TECH",
@@ -11058,7 +11078,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "LLC \"Avikon-Tex\" (AVIKONTEX)",
@@ -11077,7 +11098,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MEDTEXNO TRADE LTD (ООО \"MEDTEXNO\")",
@@ -11096,7 +11118,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MEDITECH (NAZAR Group)",
@@ -11115,7 +11138,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "INTERMED INNOVATION (ООО «Интермед Инновация»)",
@@ -11134,7 +11158,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "TRUST MEDICAL EQUIPMENT LLC",
@@ -11153,7 +11178,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "EQUIMED LLC",
@@ -11173,7 +11199,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MEDSPACE SOLUTIONS",
@@ -11192,7 +11219,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MONGOOSE ENGINEERING INC",
@@ -11211,7 +11239,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "HI-TECH ORIENT MEDICAL",
@@ -11230,7 +11259,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "ABONEMED Medical Equipment LLC",
@@ -11249,7 +11279,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "SUN GATE INTERNATIONAL MChJ",
@@ -11268,7 +11299,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Diatech S.A. (Представительство DIATECH S.A.)",
@@ -11287,7 +11319,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "angio.uz",
@@ -11305,7 +11338,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "CVS-Medical",
@@ -11323,7 +11357,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "AGM Store Avantgarde Medico (AGM.STORE AVANTGARDE MEDICO JV LTD)",
@@ -11341,7 +11376,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Albatros Health Care LTD",
@@ -11359,7 +11395,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Alphamedica LTD",
@@ -11377,7 +11414,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Amico Tashkent LTD",
@@ -11395,7 +11433,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Ansor-Med LTD",
@@ -11413,7 +11452,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "AG-Med / Avtogruz LTD",
@@ -11431,7 +11471,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Ab Form Sistem LTD",
@@ -11451,7 +11492,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Medical Instrument Service LTD",
@@ -11469,7 +11511,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Foton Medical Quality FE LTD",
@@ -11487,7 +11530,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Distrilab (Distrilab Central Asia OOO)",
@@ -11505,7 +11549,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Life Science and Technology LLC (LST / Skyseven)",
@@ -11523,7 +11568,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Medicover",
@@ -11541,7 +11587,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Tiva Medical LTD",
@@ -11559,7 +11606,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Emicro.uz",
@@ -11577,7 +11625,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Arash Medical",
@@ -11595,7 +11644,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Fortek",
@@ -11613,7 +11663,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Med Shop Uz",
@@ -11631,7 +11682,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Dentmed Technology LTD",
@@ -11649,7 +11701,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Endo-Systems LTD",
@@ -11667,7 +11720,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Denis Med LTD",
@@ -11685,7 +11739,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "SKYMED-TECHNOLOGIES MChJ",
@@ -11704,7 +11759,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "IXORA (Ixoramed)",
@@ -11722,7 +11778,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Medical Online Services (MEDOL)",
@@ -11740,7 +11797,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Pro-Tech",
@@ -11758,7 +11816,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "GLOBALMED LLC (MEDICOM TM)",
@@ -11777,7 +11836,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "TECHNOBIOMEDIKAL LLC",
@@ -11795,7 +11855,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "MST",
@@ -11813,7 +11874,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "XPmed",
@@ -11832,7 +11894,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Medical Technologies Company (Medtech)",
@@ -11850,7 +11913,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Chirana Asia (СП ООО)",
@@ -11868,7 +11932,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Iron Tehno Med (OOO)",
@@ -11886,7 +11951,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Medprotect Technology (ЧП)",
@@ -11904,7 +11970,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Dentals Pharma (LLC)",
@@ -11922,7 +11989,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Nozomi Medical",
@@ -11940,7 +12008,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "BYORK GROUP (бывш. Orient Med LLC)",
@@ -11959,7 +12028,8 @@
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "WISEMED LLC",
@@ -11977,7 +12047,8 @@
    "lat": 39.6542,
    "lng": 66.9597,
    "city": "Samarkand",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Adjama LTD",
@@ -11995,7 +12066,8 @@
    "lat": 41.0,
    "lng": 71.66,
    "city": "Namangan",
-   "located": true
+   "located": true,
+   "hl": ""
   },
   {
    "company": "Aleks LTD",
@@ -12013,7 +12085,8 @@
    "lat": 40.5167,
    "lng": 70.9333,
    "city": "Fergana",
-   "located": true
+   "located": true,
+   "hl": ""
   }
  ]
 }
