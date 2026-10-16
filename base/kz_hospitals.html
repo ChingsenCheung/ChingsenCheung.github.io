@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script data-xh-gate>
+(function(){
+  var TTL=8*60*60*1000;
+  try{var a=JSON.parse(localStorage.getItem('xh_auth')||'null');if(a&&a.u&&(Date.now()-a.ts)<TTL)return;}catch(e){}
+  var seg=location.pathname.split('/').filter(Boolean).length;
+  var prefix=seg>1?new Array(seg).join('../'):'./';
+  var next=location.pathname+(location.search||'');
+  location.replace(prefix+'login.html?next='+encodeURIComponent(next));
+})();
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>哈萨克斯坦医院信息表</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Yu Gothic', 'Meiryo', 'Malgun Gothic', 'Leelawadee UI', 'Noto Sans CJK SC', 'Noto Sans Thai', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; color: #1a3a6b; font-size: 24px; margin-bottom: 5px; padding: 20px 0 10px; border-bottom: 3px solid #1a3a6b; }
+  .searchbar{display:flex;align-items:center;gap:12px;max-width:720px;margin:0 auto 18px;}
+  .searchbar input{flex:1;padding:10px 14px;border:1px solid #c9d4e3;border-radius:8px;font-size:14px;outline:none;}
+  .searchbar input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+  .search-count{font-size:13px;color:#666;white-space:nowrap;}
+        .stats { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .stat-card { background: #fff; border-radius: 8px; padding: 12px 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; min-width: 140px; }
+        .stat-card .num { font-size: 28px; font-weight: 700; color: #1a3a6b; }
+        .stat-card .label { font-size: 12px; color: #888; }
+        .stat-card.total { border-top: 3px solid #27ae60; }
+        .stat-card.total .num { color: #27ae60; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.1); font-size: 13px; margin-bottom: 20px; }
+        thead { background: linear-gradient(135deg, #1a3a6b 0%, #2c5aa0 100%); color: #fff; }
+        th { padding: 12px 10px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+        td { padding: 10px 10px; border-bottom: 1px solid #eee; vertical-align: top; line-height: 1.55; }
+        tr:hover { background: #f8f9fb; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin: 1px; color:#fff; }
+        .badge-public { background: #2ecc71; }
+        .badge-private { background: #3498db; }
+        .badge-teaching { background: #f39c12; }
+        .badge-international { background: #9b59b6; }
+        .badge-military { background: #e74c3c; }
+        .badge-ngo { background: #1abc9c; }
+        .badge-joint { background: #e67e22; }
+        a { color: #2c5aa0; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .company-name { font-weight: 600; color: #1a3a6b; line-height: 1.4; }
+        .contact-info { font-size: 12px; color: #555; }
+        .contact-info div { margin-bottom: 2px; line-height: 1.5; }
+.muted { color: #aaa; }
+        .footer { text-align: center; margin-top: 30px; padding: 20px; color: #888; font-size: 12px; }
+        .footer p { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>哈萨克斯坦医院信息表</h1>
+    <div class="stats"></div>
+      <div class="searchbar">
+    <input id="custSearch" type="text" placeholder="🔍 搜索医院名称 / 城市 / 电话 / 官网 / 性质…" autocomplete="off">
+    <span class="search-count" id="custCount"></span>
+  </div>
+<table>
+        <thead>
+            <tr>
+                <th style="width:30px;">#</th>
+                <th style="width:230px;">医院名称</th>
+                <th style="width:110px;">城市</th>
+                <th style="width:250px;">联系方式（电话/邮箱/地址/床位/来源）</th>
+                <th style="width:170px;">官网</th>
+                <th style="width:120px;">性质</th>
+                </tr>
+        </thead>
+        <tbody><tr>
+  <td></td>
+  <td class="company-name">National Research Center for Cardiac Surgery / 国家心脏外科研究中心</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：400</div><div class="muted">📝 心外/心肺移植旗舰中心，400+床</div><div class="muted">🔗 来源：<a href="https://www.bestheartsurgery.com/blog/a-comprehensive-guide-to-hospitals-in-the-kazakhstan-myhospitalnow/" target="_blank">bestheartsurgery.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">National Research Oncology Center / 国家肿瘤研究中心</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：300</div><div class="muted">📝 肿瘤/放疗/外科肿瘤，300+床</div><div class="muted">🔗 来源：<a href="https://enests.co/blog/top-10-best-hospitals-in-kazakhstan" target="_blank">enests.co</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">Almaty City Clinical Hospital No. 7 / 阿拉木图市第七临床医院</td>
+  <td>Almaty</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：700</div><div class="muted">📝 阿拉木图最大综合多学科医院，27科室，年手术1.1万+</div><div class="muted">🔗 来源：<a href="https://www.enbekshiqazaq.kz/en/news/10640-the-minister-of-health-met-with-the.html" target="_blank">enbekshiqazaq.kz</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">Republican Scientific and Practical Center of Emergency Medical Aid / 共和急诊医学科学与实践中心</td>
+  <td>Almaty</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：500</div><div class="muted">📝 创伤/急诊/神经外科急重症，500+床</div><div class="muted">🔗 来源：<a href="https://www.surgeryplanet.com/blog?p=931" target="_blank">surgeryplanet.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">National Scientific Medical Center / 国家科学医学中心</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：500</div><div class="muted">📝 总统级综合/研究，国际合作</div><div class="muted">🔗 来源：<a href="https://www.bestheartsurgery.com/blog/a-comprehensive-guide-to-hospitals-in-the-kazakhstan-myhospitalnow/" target="_blank">bestheartsurgery.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">University Medical Center / 阿斯塔纳医科大学医学中心</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：600</div><div class="muted">📝 大学附属多学科医院</div><div class="muted">🔗 来源：<a href="https://enests.co/blog/top-10-best-hospitals-in-kazakhstan" target="_blank">enests.co</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-teaching">公立教学</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">National Research Center for Maternal and Child Health / 国家妇幼健康研究中心</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：350</div><div class="muted">📝 儿科/围产旗舰</div><div class="muted">🔗 来源：<a href="https://www.expatexchange.com/article/27867/Healthcare-in-Kazakhstan-Top-Hospitals-in-Kazakhstan-by-Specialty" target="_blank">expatexchange.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">National Center for Neurosurgery / 国家神经外科中心</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div class="muted">📝 脑/脊髓手术区域领先</div><div class="muted">🔗 来源：<a href="https://www.expatexchange.com/article/27867/Healthcare-in-Kazakhstan-Top-Hospitals-in-Kazakhstan-by-Specialty" target="_blank">expatexchange.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">National Research Center for Traumatology and Orthopedics / 国家创伤与骨科研究中心</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div class="muted">📝 骨科/关节置换/复杂创伤，骨科强院（对口骨科动力设备）</div><div class="muted">🔗 来源：<a href="https://www.enests.co/blog/top-10-best-hospitals-in-kazakhstan" target="_blank">enests.co</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">Almaty Regional Clinical Hospital / 阿拉木图州临床医院</td>
+  <td>Almaty</td>
+  <td class="contact-info"><div class="contact-info"><div class="muted">📝 区域综合，心外/儿科/产科</div><div class="muted">🔗 来源：<a href="https://www.bestheartsurgery.com/blog/a-comprehensive-guide-to-hospitals-in-the-kazakhstan-myhospitalnow/" target="_blank">bestheartsurgery.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">City Hospital No.1 (Almaty) / 阿拉木图第一市立医院</td>
+  <td>Almaty</td>
+  <td class="contact-info"><div class="contact-info"><div>📞 +7 (727) 272-72-15</div><div>📍 пр. Абая 14, Almaty</div><div class="muted">📝 综合公立，24h急诊，国际患者部</div><div class="muted">🔗 来源：<a href="https://ctripindex.com/cn/tour/asia/kazakhstan.php" target="_blank">ctripindex.com</a></div></div></td>
+  <td><a href="https://hospital1.kz/" target="_blank">https://hospital1.kz/</a></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">Central Clinical Hospital (Astana) / 阿斯塔纳中央临床医院</td>
+  <td>Astana</td>
+  <td class="contact-info"><div class="contact-info"><div>📞 +7 (7172) 70-11-11</div><div>📍 Шымкентская 10, Astana</div><div class="muted">📝 总统府指定医院，VIP国际部</div><div class="muted">🔗 来源：<a href="https://ctripindex.com/cn/tour/asia/kazakhstan.php" target="_blank">ctripindex.com</a></div></div></td>
+  <td><a href="https://cch.kz/" target="_blank">https://cch.kz/</a></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">Kazakh Institute of Oncology and Radiology / 哈萨克肿瘤与放射研究所</td>
+  <td>Almaty</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：300</div><div class="muted">📝 肿瘤诊断/治疗旗舰，300+床</div><div class="muted">🔗 来源：<a href="https://www.surgeryplanet.com/blog?p=931" target="_blank">surgeryplanet.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-public">公立</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">International Medical Center / 阿拉木图国际医疗中心</td>
+  <td>Almaty</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：350</div><div class="muted">📝 私立国际，急诊/手术/儿科</div><div class="muted">🔗 来源：<a href="https://www.bestdentalhospitals.com/blog/best-hospitals-in-kazakhstan-your-insiders-guide-to-finding-the-best-hospital-in-kazakhstan" target="_blank">bestdentalhospitals.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-international">私立国际</span></td>
+</tr>
+<tr>
+  <td></td>
+  <td class="company-name">Mediker Group Hospitals / Mediker集团医院(网络)</td>
+  <td>Almaty</td>
+  <td class="contact-info"><div class="contact-info"><div>🛏 床位：300</div><div class="muted">📝 最大私立医院网络，西方标准</div><div class="muted">🔗 来源：<a href="https://www.bestheartsurgery.com/blog/a-comprehensive-guide-to-hospitals-in-the-kazakhstan-myhospitalnow/" target="_blank">bestheartsurgery.com</a></div></div></td>
+  <td><span class="muted">未公开</span></td>
+  <td><span class="badge badge-private">私立</span></td>
+</tr></tbody>
+</table>
+        <div class="footer"><p></p></div>
+    </div>
+<script>
+(function(){
+  var input=document.getElementById('custSearch');
+  var count=document.getElementById('custCount');
+  if(!input) return;
+  function filter(){
+    var q=input.value.trim().toLowerCase();
+    var rows=document.querySelectorAll('table tbody tr');
+    var n=0;
+    rows.forEach(function(tr){
+      var hit = !q || tr.textContent.toLowerCase().indexOf(q)>=0;
+      tr.style.display = hit ? '' : 'none';
+      if(hit) n++;
+    });
+    if(count) count.textContent = q ? ('匹配 '+n+' / '+rows.length+' 家') : '';
+  }
+  input.addEventListener('input', filter);
+})();
+</script>
+<script>
+(function(){
+  var tb = document.querySelector('table tbody');
+  if(!tb) return;
+  var rows = tb.querySelectorAll('tr');
+  rows.forEach(function(tr,i){ var f=tr.querySelector('td'); if(f) f.textContent=(i+1); });
+  var total = rows.length;
+  var counts = {};
+  rows.forEach(function(tr){ var b=tr.querySelector('td:last-child .badge'); if(b){ var x=b.textContent.trim(); counts[x]=(counts[x]||0)+1; } });
+  var sw = document.querySelector('.stats');
+  if(sw){ var h='<div class="stat-card total"><div class="num">'+total+'</div><div class="label">医院总数</div></div>'; for(var k in counts){ h+='<div class="stat-card"><div class="num">'+counts[k]+'</div><div class="label">'+k+'</div></div>'; } sw.innerHTML=h; }
+  var foot=document.querySelector('.footer p');
+  if(foot) foot.textContent='📌 哈萨克斯坦医院信息表 · 共 '+total+' 家';
+})();
+</script>
+</body>
+</html>
