@@ -10298,56 +10298,57 @@
    "located": true
   },
   {
-   "company": "MC Med-Continent KZ (ТОО)",
-   "phone": "未公开",
-   "email": "未公开",
-   "web": "https://med-continent.kz/",
+   "company": "DANA ESTRELLA LLP (ТОО «Дана Эстрелла»)",
+   "phone": "+7 727 244 63 33",
+   "email": "info@danaestrella.kz",
+   "web": "https://danaestrella.kz/",
    "name": "",
-   "address": "Office 20, 39 Kommunalnaya St, Almaty 050016",
+   "address": "Office 101, 89A Gogol St, Almaty 050002",
    "country": "哈萨克斯坦",
    "iso2": "kz",
    "source": [
-    "https://www.dentadevice.com/dental-company/id/2247.html",
-    "https://med-continent.kz/"
+    "https://danaestrella.kz/en/about-us/",
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2014&group=%D0%94"
    ],
-   "note": "综合外科设备；经销创伤/神经/ENT手术器械，俄MIZT、巴SURGIWELOMED授权经销商（厂家自述）；主营：综合外科设备",
+   "note": "综合外科设备；2004年起医疗贸易公司，普外/创伤骨科/电外科设备，阿拉木图总部+阿斯塔纳/奇姆肯特分支（厂家自述）；主营：综合外科设备",
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
    "located": true
   },
   {
-   "company": "ТОО \"Медкор\" (Medcor)",
-   "phone": "未公开",
+   "company": "«DELRUS RK» LLP",
+   "phone": "+7 7172 319 807",
    "email": "未公开",
-   "web": "未公开",
+   "web": "https://delrus-rk.kz/",
    "name": "",
-   "address": "40 Turysbekova St, Almaty",
+   "address": "Astana（分支：阿斯塔纳/阿拉木图/巴甫洛达尔/阿克托别）",
    "country": "哈萨克斯坦",
    "iso2": "kz",
    "source": [
-    "https://medicalsdir.com/listing/%D1%82%D0%BE%D0%BE-%D0%BC%D0%B5%D0%B4%D0%BA%D0%BE%D1%80"
+    "https://delrus-rk.kz/",
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2014&group=%D0%94"
    ],
-   "note": "心脏外科设备经销商；Edwards Lifesciences、Medistim等独家代理（厂家自述）；主营：综合外科设备",
-   "lat": 43.222,
-   "lng": 76.8512,
-   "city": "Almaty",
+   "note": "综合外科设备；Delrus集团成员国(2008起)，手术/麻醉/内镜等独家代理，哈国最大医疗设备供应商之一（厂家自述）；主营：综合外科设备",
+   "lat": 51.1605,
+   "lng": 71.4704,
+   "city": "Astana",
    "located": true
   },
   {
-   "company": "OrdaMed Corporation",
-   "phone": "未公开",
-   "email": "未公开",
-   "web": "https://ordamed.com/",
+   "company": "NANOPHARM LLP (ТОО «Нанофарм»)",
+   "phone": "+7 (727) 302 60 11",
+   "email": "info@nanopharm.kz",
+   "web": "https://nanopharm.kz/",
    "name": "",
-   "address": "25 Duisenov St, Almaty",
+   "address": "050042, Almaty, Auezovsky district, Dzhandosova 98, of.405",
    "country": "哈萨克斯坦",
    "iso2": "kz",
    "source": [
-    "https://www.listcompany.org/Ordamed_Info.html",
-    "https://ordamed.com/"
+    "https://nanopharm.kz/?p=17",
+    "https://aprfd.kz/index.php/sobytiya/item/2403-too-nanofarm"
    ],
-   "note": "哈国大型医疗设备供应商(2006起)；手术器械、内窥镜；在乌兹别克等有分公司（厂家自述）；主营：综合外科设备",
+   "note": "综合外科设备；KOGENT SURGICAL(美)、TEKNO-MEDICAL(德)等手术设备代理，含电外科设备与自有服务团队（厂家自述）；主营：综合外科设备",
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
@@ -10365,7 +10366,7 @@
    "source": [
     "https://sales.medico-intech.kz/en/"
    ],
-   "note": "哈国最大医疗设备供应商之一；骨科/关节镜、神经外科、手术机器人；Brainlab、Mindray、Leica独家代理（厂家自述）；主营：骨科设备",
+   "note": "骨科设备；哈国最大供应商之一，Brainlab/Leica/Mindray独家代理，骨科·关节镜/神经外科/手术机器人（厂家自述）；主营：骨科设备",
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
@@ -10383,7 +10384,7 @@
    "source": [
     "http://medioartlab.kz/main"
    ],
-   "note": "多学科医疗设备经销商(2007起)，服务300+机构（厂家自述）；主营：综合外科设备",
+   "note": "综合外科设备；多学科医疗设备经销商(2007起)，服务300+机构（厂家自述）；主营：综合外科设备",
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
@@ -10401,7 +10402,7 @@
    "source": [
     "https://adicomltd.kz/"
    ],
-   "note": "手术设备经销商(2017起)；手术床/无影灯/电凝器；覆盖新生儿至精密诊断（厂家自述）；主营：电外科",
+   "note": "电外科；手术设备经销商(2017起)，手术床/无影灯/电凝器/内镜（厂家自述）；主营：电外科",
    "lat": 51.1605,
    "lng": 71.4704,
    "city": "Astana",
@@ -10420,7 +10421,7 @@
     "https://medexplus.kz/",
     "https://medexplus.kz/koagulyator-erbe-vio-300d"
    ],
-   "note": "电外科高频设备经销商(2001起)；ERBE VIO 300D/3电凝器、体外循环；手术室整体方案（厂家自述）；主营：电外科",
+   "note": "电外科；ERBE VIO 300D/3 电外科高频电凝器、体外循环，手术室整体方案(2001起)（厂家自述）；主营：电外科",
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
@@ -10438,7 +10439,82 @@
    "source": [
     "https://zamishevo.hh.ru/employer/6030384"
    ],
-   "note": "大型医疗设备经销商(2005起)；MRI/CT/血管机；Bowa、B.Braun、Medtronic、Terumo等代理（厂家自述）；主营：综合外科设备",
+   "note": "综合外科设备；大型经销商(2005起)，MRI/CT/血管机；Bowa/B.Braun/Medtronic/Terumo代理（厂家自述）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "DAMUMED (ТОО «Дамумед»)",
+   "phone": "+7 7172 54 21 81",
+   "email": "未公开",
+   "web": "https://damumed.kz/",
+   "name": "",
+   "address": "未公开",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://damumed.kz/",
+    "https://reg.iteca.kz/list/en/auth.aspx?ExhCode=KIHE+2014&group=%D0%94"
+   ],
+   "note": "综合外科设备；阿斯塔纳医疗设备供应商，参展 KIHE（厂家自述/展会名录）；主营：综合外科设备",
+   "lat": 51.1605,
+   "lng": 71.4704,
+   "city": "Astana",
+   "located": true
+  },
+  {
+   "company": "MC Med-Continent KZ (ТОО)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://med-continent.kz/",
+   "name": "",
+   "address": "Office 20, 39 Kommunalnaya St, Almaty 050016",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://www.dentadevice.com/dental-company/id/2247.html",
+    "https://med-continent.kz/"
+   ],
+   "note": "骨科·创伤器械；经销创伤/神经/ENT手术器械，俄MIZT、巴SURGIWELOMED授权经销商（厂家自述）；主营：骨科·创伤器械",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "ТОО \"Медкор\" (Medcor)",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "40 Turysbekova St, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://medicalsdir.com/listing/%D1%82%D0%BE%D0%BE-%D0%BC%D0%B5%D0%B4%D0%BA%D0%BE%D1%80"
+   ],
+   "note": "综合外科设备；心脏外科设备经销商，Edwards Lifesciences、Medistim等独家代理（厂家自述）；主营：综合外科设备",
+   "lat": 43.222,
+   "lng": 76.8512,
+   "city": "Almaty",
+   "located": true
+  },
+  {
+   "company": "OrdaMed Corporation",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://ordamed.com/",
+   "name": "",
+   "address": "25 Duisenov St, Almaty",
+   "country": "哈萨克斯坦",
+   "iso2": "kz",
+   "source": [
+    "https://www.listcompany.org/Ordamed_Info.html",
+    "https://ordamed.com/"
+   ],
+   "note": "综合外科设备；哈国大型医疗设备供应商(2006起)，手术器械/内窥镜，在乌兹别克等有分公司（厂家自述）；主营：综合外科设备",
    "lat": 43.222,
    "lng": 76.8512,
    "city": "Almaty",
@@ -10457,7 +10533,7 @@
     "https://www.cnchemshop.com/comdetail/216670.html",
     "https://aftermedical.uz/"
    ],
-   "note": "医疗器械贸易/经销商；手术器械、电外科单元、麻醉机（厂家自述）；主营：电外科",
+   "note": "电外科；医疗器械贸易/经销商，手术器械、电外科单元、麻醉机（厂家自述）；主营：电外科",
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
@@ -10476,7 +10552,7 @@
     "https://www.cnchemshop.com/comdetail/218890.html",
     "https://promedtech.uz/"
    ],
-   "note": "医疗器械贸易/经销商；手术器械、影像设备、耗材（厂家自述）；主营：综合外科设备",
+   "note": "综合外科设备；医疗器械贸易/经销商，手术器械、影像设备、耗材（厂家自述）；主营：综合外科设备",
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
@@ -10485,16 +10561,17 @@
   {
    "company": "LLC \"Avikon-Tex\" (AVIKONTEX)",
    "phone": "未公开",
-   "email": "未公开",
-   "web": "未公开",
+   "email": "info@avikontex.uz",
+   "web": "https://avikontex.uz/",
    "name": "",
    "address": "Shaykhontokhur district, Zulfiyakhonim St 10A, Tashkent",
    "country": "乌兹别克斯坦",
    "iso2": "uz",
    "source": [
-    "https://bizkim.uz/en/org/6516-avikontex"
+    "https://bizkim.uz/en/org/6516-avikontex",
+    "https://avikontex.uz/"
    ],
-   "note": "实验与手术器械批发商(20年+)；欧洲/中国/土耳其厂商代理（厂家自述）；主营：综合外科设备",
+   "note": "综合外科设备；实验与手术器械批发商(20年+)，欧洲/中国/土耳其厂商代理（厂家自述）；主营：综合外科设备",
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
@@ -10513,7 +10590,7 @@
     "https://www.goldenpages.uz/en/company/?Id=94277&CatId=104331",
     "https://medtexno.uz/"
    ],
-   "note": "官方经销商；电外科高频设备(电凝器)、手术床、麻醉机、监护（厂家自述）；主营：电外科",
+   "note": "电外科；官方经销商，电外科高频设备(电凝器)/手术床/麻醉机/监护（厂家自述）；主营：电外科",
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
@@ -10531,7 +10608,155 @@
    "source": [
     "https://bizkim.uz/en/org/8406-meditech"
    ],
-   "note": "NAZAR集团成员；进口医疗器械/耗材/器械(2016起)，含售后注册（厂家自述）；主营：综合外科设备",
+   "note": "综合外科设备；NAZAR集团成员，进口医疗器械/耗材/器械(2016起)，含售后注册（厂家自述）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "INTERMED INNOVATION (ООО «Интермед Инновация»)",
+   "phone": "+998 78 148 22 88",
+   "email": "info@imed.uz",
+   "web": "https://imed.uz/",
+   "name": "",
+   "address": "10A Chinabad St / Amir Temur Ave, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://imed.uz/en/events/11-intermed-innovation-na-mezhdunarodnoj-vystavke-medicinskogo-oborudovaniya-v-expo-centr-2024",
+    "https://t.me/intermedtrade"
+   ],
+   "note": "综合外科设备；Mindray 乌兹别克独家经销商(2010起)，超声/诊断/手术设备（厂家自述/展会）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "TRUST MEDICAL EQUIPMENT LLC",
+   "phone": "+998 93 384 9949",
+   "email": "info@trustmed.uz",
+   "web": "https://trustmed.uz/",
+   "name": "",
+   "address": "Yakkasaray district, Kushbegi 23/51, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.yellowpages.uz/en/company/trust-medical-equipment",
+    "https://trustmed.uz/"
+   ],
+   "note": "综合外科设备；Deymed/Neusoft/Linear 等代理，CT/MRI/手术灯/内镜（厂家自述/黄页）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "EQUIMED LLC",
+   "phone": "+998 55 502 00 01",
+   "email": "info@equimed.uz",
+   "web": "https://equimed.uz/",
+   "name": "",
+   "address": "Yunusabad district, Shakhristan St 79, Tashkent",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://t.me/equimeduz",
+    "https://equimed.uz/"
+   ],
+   "note": "综合外科设备；乌主要医疗设备供应商之一，合作50家全球厂商(20家独代)（厂家自述/展会）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "MEDSPACE SOLUTIONS",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://medspace.uz/",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://t.me/s/IEGUz?before=392"
+   ],
+   "note": "综合外科设备；官方经销商，进口设备+安装维护+医疗机构整体方案（UzMedExpo 2024 展商）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "MONGOOSE ENGINEERING INC",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://t.me/s/IEGUz?before=392"
+   ],
+   "note": "综合外科设备；reimBERGEN Engineering/MedTeKo/Elamed/Zavod EMA/Technika 官方及独家经销商（UzMedExpo 2024 展商）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "HI-TECH ORIENT MEDICAL",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "未公开",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://t.me/s/IEGUz?before=379"
+   ],
+   "note": "综合外科设备；Wuhan Zoncare(2020起)/Shenzhen Lanmage(2023起)中亚(乌)独家经销商（UzMedExpo 2024 展商）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "ABONEMED Medical Equipment LLC",
+   "phone": "未公开",
+   "email": "未公开",
+   "web": "https://abonemed.com/",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://abonemed.com?p=3872/",
+    "https://abonemed.com/?p=350/"
+   ],
+   "note": "综合外科设备；医疗器械经销商(2008起)，ISO 9001:2015，手术/监护/影像/耗材（厂家自述）；主营：综合外科设备",
+   "lat": 41.2995,
+   "lng": 69.2401,
+   "city": "Tashkent",
+   "located": true
+  },
+  {
+   "company": "SUN GATE INTERNATIONAL MChJ",
+   "phone": "未公开",
+   "email": "info@sungate.uz",
+   "web": "https://sungate.uz/",
+   "name": "",
+   "address": "未公开",
+   "country": "乌兹别克斯坦",
+   "iso2": "uz",
+   "source": [
+    "https://www.yellowpages.uz/uz/teg/tibbiy-asbob-uskunalar"
+   ],
+   "note": "综合外科设备；医疗器械供应商，参与 UzMedExpo 2024（黄页/展会）；主营：综合外科设备",
    "lat": 41.2995,
    "lng": 69.2401,
    "city": "Tashkent",
