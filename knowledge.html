@@ -6,317 +6,6 @@
 <title>骨科与机加工图纸知识整合</title>
 <style>
 
-/* === 骨科科普 style === */
-
-  :root{
-    --bg:#0a0e1a;
-    --bg2:#0d1322;
-    --card:rgba(255,255,255,.045);
-    --card-strong:rgba(255,255,255,.07);
-    --line:rgba(255,255,255,.09);
-    --line-strong:rgba(255,255,255,.16);
-    --text:#e8ecf4;
-    --text-2:#a8b2c5;
-    --text-3:#6b7690;
-    --teal:#2dd4bf;
-    --teal-dim:rgba(45,212,191,.14);
-    --blue:#60a5fa;
-    --blue-dim:rgba(96,165,250,.14);
-    --amber:#fbbf24;
-    --amber-dim:rgba(251,191,36,.12);
-    --purple:#a78bfa;
-    --coral:#fb7185;
-    --radius:16px;
-    --font:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--font);
-    font-size:14px;
-    line-height:1.75;
-    overflow-x:hidden;
-  }
-  body::before{
-    content:"";position:fixed;inset:0;z-index:-2;
-    background:
-      radial-gradient(900px 500px at 12% -5%,rgba(45,212,191,.10),transparent 60%),
-      radial-gradient(800px 480px at 88% 8%,rgba(96,165,250,.10),transparent 60%),
-      radial-gradient(700px 600px at 50% 110%,rgba(167,139,250,.07),transparent 60%),
-      var(--bg);
-  }
-  ::selection{background:rgba(45,212,191,.3)}
-  ::-webkit-scrollbar{width:10px}
-  ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:6px}
-  ::-webkit-scrollbar-track{background:transparent}
-
-  .progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
-    background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .1s linear}
-
-  /* ============ HERO ============ */
-  .hero{padding:88px 48px 56px;max-width:1200px;margin:0 auto}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.18em;
-    color:var(--teal);text-transform:uppercase;margin-bottom:18px;
-    padding:6px 14px;border:1px solid rgba(45,212,191,.3);border-radius:99px;
-    background:var(--teal-dim);backdrop-filter:blur(8px)}
-  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal)}
-  .hero h1{font-size:clamp(30px,4.4vw,52px);font-weight:700;line-height:1.2;letter-spacing:.01em;
-    background:linear-gradient(120deg,#fff 30%,#9fe8dd 75%,#7db8f7);
-    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .hero .sub{margin-top:16px;max-width:760px;color:var(--text-2);font-size:15px}
-  .hero .sub b{color:var(--text);font-weight:600}
-  .badges{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-  .badge{padding:12px 18px;border-radius:14px;border:1px solid var(--line);
-    background:var(--card);backdrop-filter:blur(10px);min-width:150px}
-  .badge .num{font-size:24px;font-weight:700;color:var(--teal)}
-  .badge:nth-child(2) .num{color:var(--blue)}
-  .badge:nth-child(3) .num{color:var(--amber)}
-  .badge:nth-child(4) .num{color:var(--purple)}
-  .badge .lbl{font-size:12px;color:var(--text-3);margin-top:2px}
-
-  /* ============ LAYOUT ============ */
-  .layout{display:flex;max-width:1200px;margin:0 auto;padding:0 48px 80px;gap:40px;align-items:flex-start}
-  .sidenav{position:sticky;top:32px;flex:0 0 208px;padding:20px 14px;border-radius:var(--radius);
-    border:1px solid var(--line);background:var(--card);backdrop-filter:blur(14px)}
-  .sidenav .cap{font-size:11px;letter-spacing:.16em;color:var(--text-3);padding:0 10px 10px;text-transform:uppercase}
-  .sidenav a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;
-    color:var(--text-2);text-decoration:none;font-size:13px;transition:.2s;border:1px solid transparent}
-  .sidenav a .no{font-family:ui-monospace,monospace;font-size:11px;color:var(--text-3);width:20px}
-  .sidenav a:hover{color:var(--text);background:var(--card-strong)}
-  .sidenav a.active{color:var(--teal);background:var(--teal-dim);border-color:rgba(45,212,191,.25)}
-  .sidenav a.active .no{color:var(--teal)}
-  main{flex:1;min-width:0}
-
-  section{margin-bottom:64px;scroll-margin-top:24px}
-  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
-  .sec-head .no{font-family:ui-monospace,monospace;font-size:13px;color:var(--teal);
-    border:1px solid rgba(45,212,191,.35);border-radius:8px;padding:2px 8px;background:var(--teal-dim)}
-  .sec-head h2{font-size:24px;font-weight:700;letter-spacing:.01em}
-  .sec-desc{color:var(--text-2);margin-bottom:24px;max-width:820px}
-  .sec-desc b{color:var(--text);font-weight:600}
-
-  .callout{border-radius:14px;padding:16px 20px;margin:20px 0;font-size:13.5px;
-    border:1px solid rgba(251,191,36,.28);background:var(--amber-dim);color:#f8e3b0}
-  .callout.teal{border-color:rgba(45,212,191,.28);background:var(--teal-dim);color:#bdf3ea}
-  .callout.blue{border-color:rgba(96,165,250,.28);background:var(--blue-dim);color:#cfe4fd}
-  .callout b{font-weight:600}
-
-  .card{border-radius:var(--radius);border:1px solid var(--line);background:var(--card);
-    backdrop-filter:blur(12px);padding:24px;margin-bottom:20px}
-  .card h3{font-size:16px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-  .card h3 .dot{width:8px;height:8px;border-radius:50%;flex:none}
-  .card h4{font-size:13.5px;font-weight:600;color:var(--text-2);margin:18px 0 8px}
-
-  .tbl-wrap{border-radius:14px;border:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.02)}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  thead th{text-align:left;padding:11px 14px;font-size:12px;font-weight:600;letter-spacing:.04em;
-    color:var(--text-3);background:rgba(255,255,255,.045);border-bottom:1px solid var(--line-strong);white-space:nowrap}
-  tbody td{padding:12px 14px;border-bottom:1px solid var(--line);color:var(--text-2);vertical-align:top}
-  tbody tr:last-child td{border-bottom:none}
-  tbody tr{transition:background .15s}
-  tbody tr:hover{background:rgba(255,255,255,.035)}
-  tbody td:first-child{color:var(--text);font-weight:500}
-  .tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11.5px;font-weight:500;
-    border:1px solid var(--line-strong);color:var(--text-2);background:rgba(255,255,255,.05);white-space:nowrap}
-  .tag.t{color:var(--teal);border-color:rgba(45,212,191,.4);background:var(--teal-dim)}
-  .tag.b{color:var(--blue);border-color:rgba(96,165,250,.4);background:var(--blue-dim)}
-  .tag.a{color:var(--amber);border-color:rgba(251,191,36,.4);background:var(--amber-dim)}
-  .tag.p{color:var(--purple);border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.12)}
-  .en{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;color:var(--text-3)}
-
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  @media(max-width:960px){.grid2{grid-template-columns:1fr}}
-
-  .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:22px 0}
-  @media(max-width:1080px){.pillars{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.pillars{grid-template-columns:1fr}}
-  .pillar{border-radius:14px;border:1px solid rgba(45,212,191,.25);background:linear-gradient(160deg,rgba(45,212,191,.12),rgba(255,255,255,.02));
-    padding:18px 16px;backdrop-filter:blur(10px);transition:.25s}
-  .pillar:hover{transform:translateY(-3px);border-color:rgba(45,212,191,.5)}
-  .pillar .t{font-weight:700;font-size:15px;color:#bdf3ea}
-  .pillar .s{font-size:12px;color:var(--text-3);margin-top:2px}
-  .pillar ul{margin:10px 0 0 16px;font-size:12.5px;color:var(--text-2)}
-  .pillar li{margin-bottom:3px}
-
-  .fn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:1080px){.fn-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:640px){.fn-grid{grid-template-columns:1fr}}
-  .fn{border-radius:14px;border:1px solid rgba(96,165,250,.25);background:linear-gradient(160deg,rgba(96,165,250,.10),rgba(255,255,255,.02));
-    padding:16px;backdrop-filter:blur(10px);transition:.25s}
-  .fn:hover{transform:translateY(-3px);border-color:rgba(96,165,250,.5)}
-  .fn .t{font-weight:700;font-size:14.5px;color:#cfe4fd}
-  .fn .s{font-size:12px;color:var(--text-3);margin-top:1px}
-  .fn ul{margin:8px 0 0 16px;font-size:12.5px;color:var(--text-2)}
-  .fn li{margin-bottom:2px}
-
-  /* hardness bars */
-  .hbars{display:flex;flex-direction:column;gap:10px;margin-top:8px}
-  .hbar{display:grid;grid-template-columns:210px 1fr 92px;gap:14px;align-items:center;
-    padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.025);transition:.2s}
-  .hbar:hover{background:rgba(255,255,255,.05);border-color:var(--line-strong)}
-  .hbar .name{font-size:13px;font-weight:500}
-  .hbar .name small{display:block;font-size:11px;color:var(--text-3);font-weight:400}
-  .hbar .track{height:12px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
-  .hbar .fill{height:100%;border-radius:99px;width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
-  .hbar .val{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--text-2);text-align:right;white-space:nowrap}
-  .legend{display:flex;flex-wrap:wrap;gap:16px;margin:6px 0 14px;font-size:12px;color:var(--text-3)}
-  .legend span{display:inline-flex;align-items:center;gap:6px}
-  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
-  @media(max-width:720px){.hbar{grid-template-columns:150px 1fr 80px}}
-
-  /* stepper */
-  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}
-  @media(max-width:1080px){.steps{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.steps{grid-template-columns:1fr}}
-  .step{border-radius:14px;border:1px solid var(--line);background:var(--card);padding:16px;position:relative;transition:.25s;cursor:default}
-  .step:hover{border-color:rgba(45,212,191,.5);background:var(--card-strong);transform:translateY(-2px)}
-  .step .n{font-family:ui-monospace,monospace;font-size:11px;color:var(--teal);letter-spacing:.1em}
-  .step .t{font-weight:700;font-size:14.5px;margin:4px 0 6px}
-  .step .d{font-size:12.5px;color:var(--text-2);line-height:1.6}
-  .step .eg{margin-top:8px;font-size:11.5px;color:var(--text-3);border-top:1px dashed var(--line-strong);padding-top:8px}
-
-  .script{border-radius:14px;border:1px solid rgba(96,165,250,.3);background:rgba(96,165,250,.07);
-    padding:18px 20px;font-size:13.5px;color:#d7e8fd;line-height:2}
-  .script .hl{color:var(--amber);font-weight:600}
-  .script .en2{font-family:ui-monospace,monospace;font-size:12px;color:var(--text-3)}
-
-  /* THA flow */
-  .tha{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:8px}
-  @media(max-width:1080px){.tha{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.tha{grid-template-columns:1fr}}
-  .tha .cell{border-radius:12px;border:1px solid var(--line);background:var(--card);padding:12px;transition:.25s}
-  .tha .cell:hover{border-color:rgba(45,212,191,.45);background:var(--card-strong)}
-  .tha .st{font-size:11px;font-family:ui-monospace,monospace;color:var(--teal)}
-  .tha .nm{font-weight:700;font-size:13.5px;margin:2px 0 6px}
-  .tha ul{list-style:none;font-size:11.5px;color:var(--text-2)}
-  .tha li{padding:1px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
-  .tha li:last-child{border:none}
-  .tha .tip{margin-top:8px;font-size:11px;color:var(--amber);line-height:1.5}
-
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
-
-  footer{max-width:1200px;margin:0 auto;padding:36px 48px 64px;border-top:1px solid var(--line);
-    color:var(--text-3);font-size:12.5px;line-height:1.9}
-  footer b{color:var(--text-2)}
-  @media(max-width:960px){
-    .hero{padding:64px 20px 40px}
-    .layout{padding:0 20px 60px;flex-direction:column}
-    .sidenav{position:static;width:100%;flex:none;display:flex;flex-wrap:wrap;gap:4px}
-    .sidenav .cap{display:none}
-    footer{padding:28px 20px 48px}
-  }
-
-/* === 实战手册 style === */
-
-  :root{
-    --bg:#070a12; --bg2:#0c1120; --glass:rgba(255,255,255,.045);
-    --glass-strong:rgba(255,255,255,.07); --border:rgba(120,200,220,.16);
-    --teal:#23d3c8; --sky:#4ea7ff; --amber:#ffb454; --red:#ff6b6b; --grn:#5ee08a;
-    --txt:#e8eef6; --txt2:#9fb0c4; --txt3:#6b7d93;
-    --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
-    background:radial-gradient(1200px 700px at 80% -10%,rgba(35,211,200,.10),transparent 60%),
-               radial-gradient(900px 600px at 0% 10%,rgba(78,167,255,.08),transparent 55%),
-               var(--bg);
-    color:var(--txt); line-height:1.65; padding-bottom:80px;
-  }
-  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-  /* HERO */
-  header.hero{padding:64px 0 30px;text-align:center}
-  .badge{display:inline-block;font-size:12px;letter-spacing:3px;color:var(--teal);
-    border:1px solid var(--border);padding:5px 14px;border-radius:30px;margin-bottom:18px;
-    background:var(--glass)}
-  h1{font-size:34px;font-weight:800;letter-spacing:.5px;
-    background:linear-gradient(90deg,#fff,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{color:var(--txt2);margin-top:10px;font-size:15px}
-  /* constraint banner */
-  .banner{margin:26px 0;padding:16px 20px;border-radius:14px;
-    background:linear-gradient(90deg,rgba(255,107,107,.10),rgba(255,180,84,.06));
-    border:1px solid rgba(255,107,107,.28);font-size:13.5px;color:var(--txt2)}
-  .banner b{color:var(--amber)}
-  /* nav */
-  nav.sticky{position:sticky;top:0;z-index:50;background:rgba(7,10,18,.82);
-    backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:11px 0;margin-bottom:8px}
-  nav.sticky .wrap{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-  nav a{color:var(--txt2);text-decoration:none;font-size:13px;padding:5px 12px;border-radius:8px;
-    border:1px solid transparent;transition:.2s}
-  nav a:hover{color:var(--teal);border-color:var(--border);background:var(--glass)}
-  /* sections */
-  section{padding:34px 0 6px}
-  .sec-h{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-  .sec-h .num{font-family:var(--mono);font-size:13px;color:var(--teal);
-    border:1px solid var(--border);border-radius:8px;padding:3px 9px;background:var(--glass)}
-  h2{font-size:23px;font-weight:750}
-  .lead{color:var(--txt2);font-size:14.5px;margin:6px 0 20px;max-width:880px}
-  /* glass card */
-  .card{background:var(--glass);border:1px solid var(--border);border-radius:16px;
-    padding:20px 22px;margin:14px 0;backdrop-filter:blur(6px)}
-  .card h3{font-size:17px;margin-bottom:10px;color:#fff;display:flex;align-items:center;gap:9px}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
-  /* 9 steps grid */
-  .steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}
-  .step{background:var(--glass);border:1px solid var(--border);border-radius:13px;padding:14px 16px;
-    position:relative;overflow:hidden}
-  .step::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
-    background:linear-gradient(var(--teal),var(--sky))}
-  .step .k{font-family:var(--mono);font-size:12px;color:var(--teal)}
-  .step .t{font-weight:700;margin:3px 0 6px;color:#fff}
-  .step .d{font-size:13px;color:var(--txt2)}
-  .step .trap{font-size:12px;color:var(--amber);margin-top:7px;border-top:1px dashed rgba(255,180,84,.25);padding-top:6px}
-  /* source library cards */
-  .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
-  .src{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:16px 18px;
-    display:flex;flex-direction:column;gap:8px}
-  .src .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-  .src .name{font-weight:700;font-size:15px;color:#fff;line-height:1.4}
-  .tag{font-size:11px;padding:3px 9px;border-radius:20px;white-space:nowrap;font-family:var(--mono)}
-  .tag.pat{background:rgba(78,167,255,.16);color:var(--sky);border:1px solid rgba(78,167,255,.3)}
-  .tag.cad{background:rgba(35,211,200,.15);color:var(--teal);border:1px solid rgba(35,211,200,.3)}
-  .tag.std{background:rgba(255,180,84,.14);color:var(--amber);border:1px solid rgba(255,180,84,.3)}
-  .tag.cat{background:rgba(94,224,138,.13);color:var(--grn);border:1px solid rgba(94,224,138,.3)}
-  .src .meta{font-size:12.5px;color:var(--txt3);font-family:var(--mono);word-break:break-all}
-  .src .desc{font-size:13px;color:var(--txt2)}
-  .src .practice{font-size:12.5px;color:var(--teal);background:rgba(35,211,200,.06);
-    border-radius:8px;padding:7px 10px;border:1px solid rgba(35,211,200,.18)}
-  .src a{color:var(--sky);text-decoration:none;font-size:12.5px;word-break:break-all}
-  .src a:hover{text-decoration:underline}
-  /* exercise */
-  .ex{border-left:3px solid var(--amber);background:var(--glass);border-radius:0 14px 14px 0;
-    padding:16px 20px;margin:14px 0}
-  .ex .lv{font-family:var(--mono);font-size:12px;color:var(--amber);letter-spacing:1px}
-  .ex h4{font-size:16px;margin:4px 0 10px;color:#fff}
-  .ex ul{margin:6px 0 6px 18px;color:var(--txt2);font-size:13.5px}
-  .ex .ans{font-size:12.5px;color:var(--txt3);background:rgba(0,0,0,.25);border-radius:8px;
-    padding:9px 12px;margin-top:8px;border:1px dashed var(--border)}
-  .chk{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
-  .chk th,.chk td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
-  .chk th{background:var(--glass-strong);color:var(--teal);font-weight:700}
-  .chk td:first-child{color:var(--txt2);width:130px;font-family:var(--mono);font-size:12px}
-  /* worked example */
-  .work{background:linear-gradient(135deg,rgba(35,211,200,.08),rgba(78,167,255,.05));
-    border:1px solid var(--border);border-radius:16px;padding:22px;margin:16px 0}
-  .work h3{color:#fff;font-size:18px;margin-bottom:12px}
-  .spec{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0}
-  .spec .b{background:rgba(0,0,0,.28);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
-  .spec .b .l{font-size:11px;color:var(--txt3)}
-  .spec .b .v{font-family:var(--mono);font-size:16px;color:var(--teal);margin-top:2px}
-  /* svg diagram */
-  .diag{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:14px;
-    margin:12px 0;text-align:center}
-  .diag .cap{font-size:12px;color:var(--txt3);margin-top:6px}
-  .note{font-size:12px;color:var(--txt3);font-style:italic}
-  footer{margin-top:50px;padding:26px 0;border-top:1px solid var(--border);color:var(--txt3);font-size:12.5px}
-  .pill{display:inline-block;background:var(--glass);border:1px solid var(--border);border-radius:20px;
-    padding:3px 11px;font-size:11.5px;color:var(--txt2);margin:3px 4px 0 0;font-family:var(--mono)}
-  code{background:rgba(0,0,0,.35);padding:1px 6px;border-radius:5px;font-family:var(--mono);font-size:12.5px;color:var(--teal)}
-
 /* === 精简版 style(末位优先:暗色主题+符号/图库) === */
 
 
@@ -955,7 +644,15 @@
 </nav>
 <main>
 <header class="hero">
+  <span class="eyebrow">骨科 · 机加工 · 工程图</span>
   <h1>骨科与机加工图纸<br>知识整合</h1>
+  <p class="sub">从「植入物 vs 工具」坐标系出发，打通 <b>材料 — 硬度 — 术式 — 工程图</b> 全链路；配 28 张真实工程图与图纸符号图解，单文件离线可看。</p>
+  <div class="badges">
+    <div class="badge"><div class="num">11</div><div class="lbl">知识章节</div></div>
+    <div class="badge"><div class="num">5</div><div class="lbl">植入物大类</div></div>
+    <div class="badge"><div class="num">6</div><div class="lbl">工具功能类</div></div>
+    <div class="badge"><div class="num">28</div><div class="lbl">工程图库</div></div>
+  </div>
 </header>
 <section id="basics" class="reveal">
     <div class="sec-head"><span class="no">01</span><h2>先分清两个领域：植入物 vs 工具</h2></div>
@@ -1360,7 +1057,7 @@
   </section>
 
 <section id="six">
-  <div class="sec-head"><span class="no">10</span><h2>工程图六要素速览</h2><span class="sec-tag a">图纸基础</span></div>
+  <div class="sec-head"><span class="no">09</span><h2>工程图六要素速览</h2><span class="sec-tag a">图纸基础</span></div>
   <p class="sec-desc">一张正规零件图由六个要素构成，缺一则信息不闭环。下面是与九步法对应的「速查版」，先建立整体印象，再照九步逐格深挖。</p>
 
   <div class="callout teal"><b>① 图框与标题栏</b> — 图纸的「身份证」。图幅 A4~A0、比例（1:1 / 1:2 / 2:1…）、图号、名称、材料、数量、制图/审核/日期。先读标题栏，才知道在看什么件、用什么料。</div>
@@ -1419,7 +1116,7 @@
 </div>
 </section>
 <section id="live" class="reveal">
-    <div class="sec-head"><span class="no g2">11</span><h2>真实工程图库 · 28 张（内嵌离线可看）</h2><span class="sec-tag b">真实图</span></div>
+    <div class="sec-head"><span class="no g2">10</span><h2>真实工程图库 · 28 张（内嵌离线可看）</h2><span class="sec-tag b">真实图</span></div>
     <div class="gal-filter">
       <button class="gf on" data-f="all">全部 28</button>
       <button class="gf" data-f="shaft">轴盘套 7</button>
