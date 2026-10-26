@@ -700,16 +700,18 @@
   .partpill .arrow{opacity:.6}
 
   .layout{display:flex;max-width:1240px;margin:0 auto;padding:28px 48px 80px;gap:40px;align-items:flex-start}
-  .sidenav{position:sticky;top:24px;flex:0 0 218px;padding:18px 12px;border-radius:var(--radius);border:1px solid var(--line);background:var(--card);backdrop-filter:blur(14px);max-height:calc(100vh - 48px);overflow-y:auto}
-  .sidenav .cap{font-size:11px;letter-spacing:.16em;color:var(--text-3);padding:4px 10px 8px;text-transform:uppercase}
-  .sidenav .grp{font-size:11px;letter-spacing:.1em;color:var(--teal);padding:10px 10px 4px;font-weight:700}
+  .sidenav{position:sticky;top:24px;flex:0 0 224px;padding:16px 12px;border-radius:var(--radius);border:1px solid var(--line);background:var(--card);backdrop-filter:blur(14px);max-height:calc(100vh - 48px);overflow-y:auto}
+  .sidenav .cap{font-size:11px;letter-spacing:.14em;color:var(--text-3);padding:2px 12px 10px;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px}
+  .sidenav .cap::after{content:"";flex:1;height:1px;background:var(--line)}
+  .sidenav .grp{font-size:11px;letter-spacing:.1em;color:var(--teal);padding:10px 12px 4px;font-weight:700}
   .sidenav .grp.g2{color:var(--blue)}
-  .sidenav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;color:var(--text-2);text-decoration:none;font-size:12.5px;transition:.2s;border:1px solid transparent}
-  .sidenav a .no{font-family:var(--mono);font-size:11px;color:var(--text-3);width:22px;flex:none}
+  .sidenav a{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:11px;color:var(--text-2);text-decoration:none;font-size:13px;font-weight:500;transition:.18s;border:1px solid transparent;position:relative}
+  .sidenav a .ic{font-size:16px;line-height:1;width:22px;flex:none;text-align:center;color:var(--text-3);transition:.18s}
   .sidenav a:hover{color:var(--text);background:var(--card-strong)}
-  .sidenav a.active{color:var(--teal);background:var(--teal-dim);border-color:rgba(45,212,191,.25)}
-  .sidenav a.active.g2{color:var(--blue);background:var(--blue-dim);border-color:rgba(96,165,250,.25)}
-  .sidenav a.active .no{color:inherit}
+  .sidenav a:hover .ic{color:var(--teal)}
+  .sidenav a.active{color:var(--teal);background:var(--teal-dim);border-color:rgba(45,212,191,.28);font-weight:600}
+  .sidenav a.active::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:18px;border-radius:0 3px 3px 0;background:var(--teal)}
+  .sidenav a.active .ic{color:var(--teal)}
   main{flex:1;min-width:0}
 
   section{margin-bottom:60px;scroll-margin-top:20px}
@@ -938,17 +940,18 @@
 <div class="topbar"><span class="tb-dot"></span><b>骨科与机加工图纸知识整合</b><span class="tb-sub">单文件 · 离线可看</span></div>
 <div class="layout">
 <nav class="sidenav">
-<a href="#basics"><span class="no">01</span><span>两个领域（植入物 vs 工具）</span></a>
-<a href="#implants"><span class="no">02</span><span>植入物五大类</span></a>
-<a href="#instruments"><span class="no">03</span><span>工具六大功能类</span></a>
-<a href="#materials"><span class="no">04</span><span>材料体系</span></a>
-<a href="#hardness"><span class="no">05</span><span>特性与硬度</span></a>
-<a href="#video"><span class="no">06</span><span>手术视频讲解法</span></a>
-<a href="#index"><span class="no">07</span><span>术式反查速查表</span></a>
-<a href="#roles"><span class="no">08</span><span>四角色学习指南</span></a>
-<a href="#six"><span class="no">10</span><span>工程图六要素速览</span></a>
-<a href="#symbols"><span class="no">11</span><span>图纸基本符号含义</span></a>
-<a href="#live"><span class="no">12</span><span>真实工程图库 · 28 张</span></a>
+<div class="cap">目录 Contents</div>
+<a href="#basics"><span class="ic">🧭</span><span>两个领域（植入物 vs 工具）</span></a>
+<a href="#implants"><span class="ic">🦴</span><span>植入物五大类</span></a>
+<a href="#instruments"><span class="ic">🔧</span><span>工具六大功能类</span></a>
+<a href="#materials"><span class="ic">🧱</span><span>材料体系</span></a>
+<a href="#hardness"><span class="ic">📊</span><span>特性与硬度</span></a>
+<a href="#video"><span class="ic">🎬</span><span>手术视频讲解法</span></a>
+<a href="#index"><span class="ic">🔍</span><span>术式反查速查表</span></a>
+<a href="#roles"><span class="ic">👥</span><span>四角色学习指南</span></a>
+<a href="#six"><span class="ic">📐</span><span>工程图六要素速览</span></a>
+<a href="#symbols"><span class="ic">🔣</span><span>图纸基本符号含义</span></a>
+<a href="#live"><span class="ic">🖼️</span><span>真实工程图库 · 28 张</span></a>
 </nav>
 <main>
 <header class="hero">
