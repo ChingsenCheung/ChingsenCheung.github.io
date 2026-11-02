@@ -49,21 +49,20 @@
   nav.topbar{ position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border:1px solid var(--line); border-radius:14px; padding:10px 14px; display:flex; align-items:center; gap:10px; box-shadow:0 4px 16px rgba(15,23,42,.06); margin-bottom:26px; flex-wrap:wrap; }
   /* 左侧实用工具栏 + 板块列表布局 */
   .layout{ display:flex; gap:18px; align-items:flex-start; }
-  /* 暗色玻璃拟态侧栏 */
-  .sidebar{ position:sticky; top:76px; flex:0 0 196px; display:flex; flex-direction:column; gap:10px; padding:14px; border-radius:18px; background:rgba(15,23,42,.72); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%); border:1px solid rgba(255,255,255,.12); box-shadow:0 14px 36px rgba(15,23,42,.30); }
+  /* 左栏：渐变彩色工具栏（与主账号一致） */
+  .toolbar{ position:sticky; top:76px; flex:0 0 150px; display:flex; flex-direction:column; gap:10px; }
   .cats{ flex:1 1 auto; min-width:0; }
-  .nav-btn{ display:flex; align-items:center; gap:10px; text-decoration:none; color:#e2e8f0; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); border-radius:13px; padding:13px 14px; font-size:14px; font-weight:600; cursor:pointer; text-align:left; box-shadow:inset 0 1px 0 rgba(255,255,255,.06); transition:.18s; line-height:1.25; }
-  .nav-btn .ic{ font-size:20px; line-height:1; flex:none; filter:drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
-  .nav-btn .t{ display:block; }
-  .nav-btn .s{ display:block; font-size:11px; color:#94a3b8; font-weight:500; margin-top:2px; }
-  .nav-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.12); border-color:rgba(45,212,191,.55); box-shadow:0 8px 22px rgba(15,23,42,.30); }
-  .nav-btn.active{ background:linear-gradient(135deg,#0d9488,#0ea5e9); color:#fff; border-color:transparent; box-shadow:0 8px 24px rgba(13,148,136,.40), inset 0 1px 0 rgba(255,255,255,.18); }
-  .nav-btn.active .s{ color:rgba(255,255,255,.88); }
+  .tool-btn{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; text-decoration:none; color:#fff; background:linear-gradient(135deg,#0ea5e9,#0d9488); padding:14px 10px; border-radius:14px; font-size:13px; font-weight:600; line-height:1.2; text-align:center; box-shadow:0 6px 18px rgba(14,165,233,.25); transition:transform .2s ease, box-shadow .2s ease; }
+  .tool-btn .ic{ font-size:22px; line-height:1; }
+  .tool-btn .t{ display:block; }
+  .tool-btn .s{ display:block; font-size:11px; font-weight:500; opacity:.85; margin-top:1px; }
+  .tool-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 26px rgba(14,165,233,.4); }
+  .tool-btn.active{ background:linear-gradient(135deg,#0d9488,#0ea5e9); box-shadow:0 10px 26px rgba(13,148,136,.45); }
   /* 国家板块建设中提示条 */
   .country-hint{ background:linear-gradient(135deg, rgba(14,165,233,.95), rgba(13,148,136,.95)); color:#fff; padding:12px 18px; border-radius:12px; font-size:14px; margin-bottom:18px; box-shadow:0 8px 24px rgba(13,148,136,.3); display:none; }
   .country-hint.show{ display:block; }
   .country-hint b{ font-weight:700; }
-  @media (max-width:760px){ .layout{ flex-direction:column; } .sidebar{ position:static; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; padding:12px; } .nav-btn{ flex:1 1 150px; } }
+  @media (max-width:760px){ .layout{ flex-direction:column; } .toolbar{ position:static; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; } .tool-btn{ flex:1 1 140px; } }
   nav.topbar .who{ font-size:13px; font-weight:600; }
   nav.topbar .role{ font-size:11px; padding:2px 9px; border-radius:999px; background:#ecfdf5; color:#047857; border:1px solid #a7f3d0; }
   nav.topbar .spacer{ flex:1; }
@@ -165,7 +164,7 @@
   @media (max-width:600px){ .row-item{ flex-direction:column; align-items:flex-start; gap:8px; } .row-item .go{ margin-left:0; } }
   /* 全站主题化光标：地图/贸易风格十字准星，进入页面即生效 */
   html, body{ cursor:default; }
-  a, button, .card, .nav-btn, [role=button], .cat-head, .cust-region-h, .modal-bar button, .topbar button{ cursor:pointer; }
+  a, button, .card, .tool-btn, [role=button], .cat-head, .cust-region-h, .modal-bar button, .topbar button{ cursor:pointer; }
   input, textarea, select{ cursor:text; }
   footer{ text-align:center; color:var(--muted); font-size:12px; padding:24px; }
   /* 回到顶部悬浮按钮（玻璃质感圆形 FAB：品牌渐变 + 白色箭头 + 滚动浮现） */
@@ -265,24 +264,24 @@
     </nav>
     <div id="countryHint" class="country-hint"></div>
     <div class="layout">
-      <aside class="sidebar" id="sidebar">
-        <a class="nav-btn" href="worldmap.html" title="打开世界地图，按国家浏览客户分布">
+      <aside class="toolbar" id="sidebar">
+        <a class="tool-btn" href="worldmap.html" title="打开世界地图，按国家浏览客户分布">
           <span class="ic">🌍</span>
           <span><span class="t">世界地图</span><span class="s">按国家浏览客户分布</span></span>
         </a>
-        <a class="nav-btn" href="price.html" title="电外科产品价格查询">
+        <a class="tool-btn" href="price.html" title="电外科产品价格查询">
           <span class="ic">💰</span>
           <span><span class="t">产品价格查询</span><span class="s">电外科产品规格报价</span></span>
         </a>
-        <a class="nav-btn" href="cert.html" title="资质认证查询">
+        <a class="tool-btn" href="cert.html" title="资质认证查询">
           <span class="ic">📜</span>
           <span><span class="t">资质认证查询</span><span class="s">CE / MDR 认证声明</span></span>
         </a>
-        <a class="nav-btn" href="knowledge.html" title="专业知识学习">
+        <a class="tool-btn" href="knowledge.html" title="专业知识学习">
           <span class="ic">📚</span>
           <span><span class="t">专业知识学习</span><span class="s">骨科与机加工手册</span></span>
         </a>
-        <a class="nav-btn" href="ortho_customers.html" title="骨科工具潜在客户">
+        <a class="tool-btn" href="ortho_customers.html" title="骨科工具潜在客户">
           <span class="ic">🦴</span>
           <span><span class="t">骨科工具潜在客户</span><span class="s">骨科植入物 / 骨钻经销商</span></span>
         </a>
