@@ -603,7 +603,6 @@
   /* === 顶栏 / 导航栏置最左侧（整合时缺失/需调整的补齐） === */
   .topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-bottom:1px solid var(--line);background:rgba(10,14,26,.82);backdrop-filter:blur(14px);font-size:14px;letter-spacing:.02em}
   .topbar b{font-weight:600;color:var(--text)}
-  .topbar .tb-sub{margin-left:auto;margin-right:164px;font-size:12px;color:var(--text-3)}
   .topbar .tb-dot{width:9px;height:9px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
   .layout{display:flex;align-items:flex-start;max-width:none;margin:0;padding:0}
   .sidenav{position:fixed;left:0;top:48px;bottom:0;width:220px;flex:none;overflow-y:auto;border-radius:0;border-top:none;border-left:none;border-bottom:none;border-right:1px solid var(--line);background:rgba(10,14,26,.92);backdrop-filter:blur(14px);z-index:30}
@@ -639,14 +638,13 @@
 
   @media(max-width:960px){
     .back{top:12px;right:calc(12px - var(--sbw,0px));height:32px;padding:0 10px;font-size:12px;}
-    .topbar .tb-sub{margin-right:132px;font-size:11px;}
   }
   </style>
 </head>
 <body>
 <a class="back" href="index.html">← 返回综合索引</a>
 <div class="progress" id="progress"></div>
-<div class="topbar"><span class="tb-dot"></span><b>骨科与机加工图纸知识整合</b><span class="tb-sub">单文件 · 离线可看</span></div>
+<div class="topbar"><span class="tb-dot"></span><b>骨科与机加工图纸知识整合</b></div>
 <div class="layout">
 <nav class="sidenav">
 <div class="cap">目录 Contents</div>
@@ -666,7 +664,7 @@
 <header class="hero">
   <span class="eyebrow">骨科 · 机加工 · 工程图</span>
   <h1>骨科与机加工图纸<br>知识整合</h1>
-  <p class="sub">从「植入物 vs 工具」坐标系出发，打通 <b>材料 — 硬度 — 术式 — 工程图</b> 全链路；配 82 页高校教材工程图例（减速器测绘 + 典型零件分析）与图纸符号图解，单文件离线可看。</p>
+  <p class="sub">从「植入物 vs 工具」坐标系出发，打通 <b>材料 — 硬度 — 术式 — 工程图</b> 全链路；配 82 页高校教材工程图例（减速器测绘 + 典型零件分析）与图纸符号图解。</p>
   <div class="badges">
     <div class="badge"><div class="num">11</div><div class="lbl">知识章节</div></div>
     <div class="badge"><div class="num">5</div><div class="lbl">植入物大类</div></div>
@@ -1136,7 +1134,7 @@
 </div>
 </section>
 <section id="live" class="reveal">
-    <div class="sec-head"><span class="no g2">10</span><h2>工程图例库 · 82 页（两份教材 PDF 内嵌离线可看）</h2><span class="sec-tag b">教材原图</span></div>
+    <div class="sec-head"><span class="no g2">10</span><h2>工程图例库 · 82 页（含两份教材 PDF 内嵌原图）</h2><span class="sec-tag b">教材原图</span></div>
     <div class="gal-filter">
       <button class="gf on" data-f="all">全部 82</button>
       <button class="gf" data-f="red">减速器测绘 50</button>
